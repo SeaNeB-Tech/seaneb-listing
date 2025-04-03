@@ -1,0 +1,37 @@
+name: Auto Merge Main
+
+on:
+  pull_request:
+    types:
+      - opened
+
+jobs:
+  check_and_merge:
+    runs-on: ubuntu-latest
+    name: Check and Auto Merge
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Get allowed users from secrets
+        id: get_users
+        run: |
+          allowed_users="${{ secrets.ALLOWED_USERS }}"
+          echo "Allowed Users: $allowed_users"
+          echo "allowed_users=$allowed_users" >> $GITHUB_OUTPUT
+
+      - name: Check if pull request user is allowed
+        id: check_user
+        run: |
+          is_allowed=$(echo "${{ steps.get_users.outputs.allowed_users }}" | grep -c "${{ github.event.pull_request.user.login }}")
+          echo "Is Allowed: $is_allowed"
+          echo "is_allowed=$is_allowed" >> $GITHUB_OUTPUT
+
+      - name: Auto Merge Pull Request
+        if: steps.check_user.outputs.is_allowed == '1'
+        uses: juliangruber/merge-pull-request-action@v1
+        with:
+          github-token: ${{ secrets.CODENTIC_TOKEN }}
+          number: ${{ github.event.pull_request.number }}
+          method: merge
