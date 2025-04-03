@@ -26,7 +26,7 @@ const HeroSection = () => {
         </div>
 
         {/* Search bar - positioned in the middle */}
-        <div className='relative z-10 mx-auto mt-8'>
+        <div className='relative z-10 mt-4 max-w-7xl'>
           <div className='bg-white p-2 shadow-lg md:rounded-full'>
             <div className='flex flex-col md:flex-row'>
               <div className='flex flex-1 items-center border-b border-gray-200 px-4 py-2 md:border-r md:border-b-0'>
