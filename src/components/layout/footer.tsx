@@ -23,12 +23,7 @@ export default function Footer() {
 
   const explore: FooterLink[] = [
     { label: 'Home', link: routes.home },
-    { label: 'About Us ', link: routes.aboutUs },
-    { label: 'Services', link: routes.services },
-    { label: 'Contact Us', link: routes.contactUs },
-    { label: 'Terms & Conditions', link: routes.termsAndConditions },
-    { label: 'Privacy Policy', link: routes.privacyPolicy },
-    { label: 'Refund and Cancellation Policy', link: routes.refundPolicy }
+    
   ]
 
   const provideLinks: any[] = [
