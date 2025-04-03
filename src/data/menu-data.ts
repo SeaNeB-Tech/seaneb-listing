@@ -10,6 +10,5 @@ export const headerMenuData = (): HeaderMenuData[] => [
   {
     title: 'Home',
     href: routes.home
-  },
-  
+  }
 ]

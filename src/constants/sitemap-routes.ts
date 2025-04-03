@@ -1,5 +1,4 @@
 export const sitemapRoutes = {
   // ** SITE
-  home: '/',
-   
+  home: '/'
 }

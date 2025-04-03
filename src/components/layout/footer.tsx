@@ -21,10 +21,7 @@ type FooterLink = {
 export default function Footer() {
   const pathname = usePathname()
 
-  const explore: FooterLink[] = [
-    { label: 'Home', link: routes.home },
-    
-  ]
+  const explore: FooterLink[] = [{ label: 'Home', link: routes.home }]
 
   const provideLinks: any[] = [
     { label: 'UI / UX Design' },
