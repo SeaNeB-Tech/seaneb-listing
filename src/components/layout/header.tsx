@@ -33,8 +33,10 @@ export default function Header() {
       } else if (/iPad|iPhone|iPod/.test(userAgent)) {
         return 'ios'
       }
+
       return 'other'
     }
+
     return 'other'
   }
 
