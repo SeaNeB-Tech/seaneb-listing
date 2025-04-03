@@ -5,11 +5,19 @@ import ScreenWrapper from '@/components/wrapper/screen-wrapper'
 import { Calendar, ChevronDown, Dumbbell, Home, MapPin, Utensils } from 'lucide-react'
 
 import BannerImage from '@images/pages/home/banner-image-1.jpg'
+import Background from '@images/pages/home/hero-bg.svg'
+
 import Image from 'next/image'
 
 const HeroSection = () => {
   return (
-    <div className='plain-color relative bg-gradient-to-br py-10 lg:pt-20'>
+    <div
+      className='plain-color relative bg-gradient-to-br py-10 lg:pt-20'
+      style={{
+        backgroundImage: `url(${Background.src})`,
+        backgroundAttachment: 'fixed'
+      }}
+    >
       <ScreenWrapper className='relative h-full w-full'>
         {/* Left content */}
         <div className='z-10 flex !max-w-full flex-col justify-center py-8 lg:!max-w-[400px] xl:!max-w-full'>
