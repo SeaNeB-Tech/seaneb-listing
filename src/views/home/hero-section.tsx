@@ -14,7 +14,7 @@ const HeroSection = () => {
         {/* Left content */}
         <div className='z-10 flex !max-w-full flex-col justify-center py-8 lg:!max-w-[400px] xl:!max-w-full'>
           <h1 className='z-10 text-3xl font-medium text-gray-900 md:text-3xl lg:text-5xl'>Find Nearby Attractions</h1>
-          <p className='z-10 mt-4 text-2xl text-gray-600'>Expolore top-rated attractions, activities and more</p>
+          <p className='z-10 mt-4 text-2xl text-gray-600'>Explore top-rated attractions, activities and more</p>
         </div>
 
         {/* Search bar - positioned in the middle */}
