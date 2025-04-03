@@ -27,7 +27,7 @@ export function constructMetadata({
   image = '/images/logo/logo-white.png',
   icons = '/favicon.ico',
   noIndex = false,
-  keywords = '',
+  keywords = ''
 }: ConstructMetadata = {}): Metadata {
   return {
     title,
@@ -42,28 +42,26 @@ export function constructMetadata({
       images: [
         {
           url: image,
-          alt: typeof title === 'string' ? title : undefined,
-        },
-      ],
+          alt: typeof title === 'string' ? title : undefined
+        }
+      ]
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
       images: [{ url: image }],
-      creator: '@codentic.software',
+      creator: '@codentic.software'
     },
     icons,
-    metadataBase: new URL(
-      process.env.NEXT_PUBLIC_SITEMAP_URL || 'http://localhost:7679'
-    ),
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITEMAP_URL || 'http://localhost:7679'),
     ...(noIndex && {
       robots: {
         index: false,
-        follow: false,
-      },
+        follow: false
+      }
     }),
     creator: 'Codentic Software',
-    authors: [{ name: 'Codentic Software' }],
+    authors: [{ name: 'Codentic Software' }]
   }
 }

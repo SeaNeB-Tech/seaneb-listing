@@ -28,7 +28,7 @@ export default function Footer() {
     { label: 'Contact Us', link: routes.contactUs },
     { label: 'Terms & Conditions', link: routes.termsAndConditions },
     { label: 'Privacy Policy', link: routes.privacyPolicy },
-    { label: 'Refund and Cancellation Policy', link: routes.refundPolicy },
+    { label: 'Refund and Cancellation Policy', link: routes.refundPolicy }
   ]
 
   const provideLinks: any[] = [
@@ -37,7 +37,7 @@ export default function Footer() {
     { label: 'eCommerce app & website' },
     { label: 'Website Development' },
     { label: 'Custom ERP' },
-    { label: 'SEO / Analytics' },
+    { label: 'SEO / Analytics' }
   ]
 
   const isActiveLink = (path: string) => {
@@ -50,13 +50,7 @@ export default function Footer() {
         <div className='grid grid-cols-1 gap-5 pt-8 lg:grid-cols-12'>
           <div className='lg:col-span-4'>
             <Link href='/' className='mb-6 inline-block'>
-              <Image
-                src={Logo}
-                alt='Logo'
-                width={240}
-                height={240}
-                className='w-56 h-auto'
-              />
+              <Image src={Logo} alt='Logo' width={240} height={240} className='h-auto w-56' />
             </Link>
           </div>
 
@@ -71,10 +65,10 @@ export default function Footer() {
                         href={item.link}
                         aria-label='explore'
                         className={cn(
-                          'animated-underline text-sm text-gray-400 hover:text-footerText',
-                          isActiveLink(item.link) &&
-                            'font-semibold text-footerText opacity-100'
-                        )}>
+                          'animated-underline hover:text-footerText text-sm text-gray-400',
+                          isActiveLink(item.link) && 'text-footerText font-semibold opacity-100'
+                        )}
+                      >
                         {item.label}
                       </Link>
                     </li>
@@ -86,11 +80,7 @@ export default function Footer() {
                 <ul className='grid grid-cols-1 gap-2'>
                   {provideLinks?.map((item, index) => (
                     <li key={index}>
-                      <p
-                        aria-label='provideLinks'
-                        className={cn(
-                          'text-sm text-gray-400 hover:text-footerText'
-                        )}>
+                      <p aria-label='provideLinks' className={cn('hover:text-footerText text-sm text-gray-400')}>
                         {item.label}
                       </p>
                     </li>
@@ -103,7 +93,8 @@ export default function Footer() {
                     <Mail className='mr-3 h-5 w-5 shrink-0 text-xs text-white md:text-base' />
                     <Link
                       href={`mailto:̦${websiteConfig.email}`}
-                      className='animated-underline text-sm font-semibold text-gray-300 hover:text-footerText md:text-lg'>
+                      className='animated-underline hover:text-footerText text-sm font-semibold text-gray-300 md:text-lg'
+                    >
                       {websiteConfig.email}
                     </Link>
                   </li>
@@ -111,7 +102,8 @@ export default function Footer() {
                     <Phone className='mr-3 h-5 w-5 text-xs text-white md:text-base' />
                     <Link
                       href={`tel:${websiteConfig.call}`}
-                      className='animated-underline text-sm font-semibold text-gray-300 hover:text-footerText md:text-lg'>
+                      className='animated-underline hover:text-footerText text-sm font-semibold text-gray-300 md:text-lg'
+                    >
                       {websiteConfig.call}
                     </Link>
                   </li>
@@ -122,7 +114,8 @@ export default function Footer() {
                     target='_blank'
                     rel='noopener noreferrer'
                     aria-label='facebook redirects'
-                    className='text-white hover:text-footerText'>
+                    className='hover:text-footerText text-white'
+                  >
                     <Facebook className='h-5 w-5' />
                   </Link>
 
@@ -131,7 +124,8 @@ export default function Footer() {
                     target='_blank'
                     rel='noopener noreferrer'
                     aria-label='instagram redirects'
-                    className='text-white hover:text-footerText'>
+                    className='hover:text-footerText text-white'
+                  >
                     <Instagram className='h-5 w-5' />
                   </Link>
                   <Link
@@ -139,7 +133,8 @@ export default function Footer() {
                     target='_blank'
                     rel='noopener noreferrer'
                     aria-label='linked-in redirects'
-                    className='text-white hover:text-footerText'>
+                    className='hover:text-footerText text-white'
+                  >
                     <Linkedin className='h-5 w-5' />
                   </Link>
                 </div>

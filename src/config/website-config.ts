@@ -23,5 +23,5 @@ export const websiteConfig: WebsiteConfigType = {
   linkedin: 'https://www.linkedin.com/company/codentic-software',
   github: '#',
   iframe:
-    'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d29478.481302037082!2d72.924372!3d22.548783!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e4f5ca3f18731%3A0xc5bc40817fc821cf!2sCodentic%20Software!5e0!3m2!1sen!2sin!4v1741261276980!5m2!1sen!2sin',
+    'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d29478.481302037082!2d72.924372!3d22.548783!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e4f5ca3f18731%3A0xc5bc40817fc821cf!2sCodentic%20Software!5e0!3m2!1sen!2sin!4v1741261276980!5m2!1sen!2sin'
 }

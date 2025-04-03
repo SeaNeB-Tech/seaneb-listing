@@ -14,18 +14,18 @@ import './globals.css'
 const poppins = Roboto({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700', '800'],
-  variable: '--font-roboto',
+  variable: '--font-roboto'
 })
 
 export const metadata: Metadata = constructMetadata({
   title: {
     default: 'SeaNeb',
-    template: '%s - SeaNeb',
-  },
+    template: '%s - SeaNeb'
+  }
 })
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode
 }>) {

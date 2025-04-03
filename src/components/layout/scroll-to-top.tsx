@@ -48,7 +48,7 @@ const ScrollToTopButton = () => {
       initial={{ opacity: 0, bottom: -20 }}
       animate={isVisible ? { opacity: 1, bottom: 40 } : {}}
       transition={{ duration: 0.3, ease: 'linear' }}
-      className={`bg-textMain fixed bottom-10 right-10 z-[9999999] rounded-full bg-primary p-2 outline-none transition-opacity duration-200 ${
+      className={`bg-textMain bg-primary fixed right-10 bottom-10 z-[9999999] rounded-full p-2 transition-opacity duration-200 outline-none ${
         isVisible ? 'opacity-100' : 'opacity-0'
       }`}
       aria-label='Scroll to top button'
