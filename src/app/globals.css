@@ -123,7 +123,7 @@
 .plain-color {
   height: 600px;
   background-color: #ffffff;
-  background-image: url(/public/images/pages/home/hero-bg.svg);
+  background-image: url(/images/pages/home/hero-bg.svg);
   background-attachment: fixed;
   background-size: cover;
 }
