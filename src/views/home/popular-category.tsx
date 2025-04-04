@@ -4,8 +4,8 @@ import React from 'react'
 
 const CategoryItem = ({ category }: { category: CategoryListItem }) => {
   return (
-    <div className='bg-primary flex items-center justify-center rounded-lg p-3 text-white shadow-lg shadow-black/30'>
-      <p className='text-center text-lg font-medium tracking-wide'>{category?.title}</p>
+    <div className='bg-primary flex items-center justify-center rounded-lg p-2 text-white shadow-lg shadow-black/30 md:p-3'>
+      <p className='text-center text-sm font-medium tracking-wide md:text-lg'>{category?.title}</p>
     </div>
   )
 }
@@ -14,7 +14,7 @@ const PopularCategories = () => {
   return (
     <ScreenWrapper className='space-y-6 py-10 lg:py-20'>
       {/* Title */}
-      <div className='space-y-3'>
+      <div className='space-y-3 lg:mt-3'>
         <h2 className='after:bg-secondary relative w-max text-3xl after:absolute after:-bottom-1 after:left-0 after:h-[3px] after:w-full after:max-w-20 after:origin-bottom-right after:scale-x-100'>
           Popular Categories
         </h2>

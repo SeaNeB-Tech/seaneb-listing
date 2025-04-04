@@ -54,7 +54,7 @@ const ScrollToTopButton = () => {
       aria-label='Scroll to top button'
       onClick={scrollToTop}
     >
-      <ChevronUp className='text-inherit' />
+      <ChevronUp className='text-white' />
     </m.button>
   )
 }
