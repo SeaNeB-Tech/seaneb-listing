@@ -16,41 +16,46 @@ export interface Option {
 }
 
 export interface AsyncSelectProps<T> {
-  /** Async function to fetch options */
+  /* eslint-disable-next-line no-unused-vars */
   fetcher: (query?: string) => Promise<T[]>
-  /** Preload all data ahead of time */
+
   preload?: boolean
-  /** Function to filter options */
+
+  /* eslint-disable-next-line no-unused-vars */
   filterFn?: (option: T, query: string) => boolean
-  /** Function to render each option */
+
+  /* eslint-disable-next-line no-unused-vars */
   renderOption: (option: T) => React.ReactNode
-  /** Function to get the value from an option */
+
+  /* eslint-disable-next-line no-unused-vars */
   getOptionValue: (option: T) => string
-  /** Function to get the display value for the selected option */
+
+  /* eslint-disable-next-line no-unused-vars */
   getDisplayValue: (option: T) => React.ReactNode
-  /** Custom not found message */
+
   notFound?: React.ReactNode
-  /** Custom loading skeleton */
+
   loadingSkeleton?: React.ReactNode
-  /** Currently selected value */
+
   value: string
-  /** Callback when selection changes */
+
+  /* eslint-disable-next-line no-unused-vars */
   onChange: (value: string) => void
-  /** Label for the select field */
+
   label: string
-  /** Placeholder text when no selection */
+
   placeholder?: string
-  /** Disable the entire select */
+
   disabled?: boolean
-  /** Custom width for the popover */
+
   width?: string | number
-  /** Custom class names */
+
   className?: string
-  /** Custom trigger button class names */
+
   triggerClassName?: string
-  /** Custom no results message */
+
   noResultsMessage?: string
-  /** Allow clearing the selection */
+
   clearable?: boolean
 }
 
@@ -105,6 +110,7 @@ export function AsyncSelect<T>({
       try {
         setLoading(true)
         setError(null)
+
         // If we have a value, use it for the initial search
         const data = await fetcher(value)
         setOriginalOptions(data)
@@ -147,6 +153,7 @@ export function AsyncSelect<T>({
         setOptions(originalOptions)
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetcher, debouncedSearchTerm, mounted, preload, filterFn])
 
   const handleSelect = useCallback(

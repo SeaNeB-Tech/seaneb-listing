@@ -26,6 +26,7 @@ const searchLocation = async (inputValue?: string): Promise<string[]> => {
   })
 
   const data = await res.json()
+
   return data?.suggestions || []
 }
 

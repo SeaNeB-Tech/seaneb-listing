@@ -27,6 +27,7 @@ export async function POST(req: Request) {
 
     if (data.status === 'OK') {
       const cities = data.predictions.map((item: any) => item.description)
+
       return NextResponse.json({ status: 'success', data: cities })
     }
 

@@ -35,6 +35,7 @@ export function TypingAnimation({
       const startTimeout = setTimeout(() => {
         setStarted(true)
       }, delay)
+
       return () => clearTimeout(startTimeout)
     }
 
@@ -61,6 +62,7 @@ export function TypingAnimation({
     if (!started) return
 
     let i = 0
+
     const typingEffect = setInterval(() => {
       if (i < children.length) {
         setDisplayedText(children.substring(0, i + 1))
