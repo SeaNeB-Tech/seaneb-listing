@@ -12,10 +12,11 @@ import Image from 'next/image'
 const HeroSection = () => {
   return (
     <div
-      className='plain-color relative bg-gradient-to-br py-10 lg:pt-20'
+      className='relative bg-gradient-to-br py-10 lg:pt-20 xl:h-[600px]'
       style={{
         backgroundImage: `url(${Background.src})`,
-        backgroundAttachment: 'fixed'
+        backgroundAttachment: 'fixed',
+        backgroundSize: 'cover'
       }}
     >
       <ScreenWrapper className='relative h-full w-full'>
@@ -26,32 +27,32 @@ const HeroSection = () => {
         </div>
 
         {/* Search bar - positioned in the middle */}
-        <div className='relative z-10 mx-auto mt-8'>
-          <div className='bg-white p-2 shadow-lg md:rounded-full'>
-            <div className='flex flex-col md:flex-row'>
-              <div className='flex flex-1 items-center border-b border-gray-200 px-4 py-2 md:border-r md:border-b-0'>
+        <div className='relative z-10 mt-4 max-w-7xl'>
+          <div className='p-2 md:rounded-full md:bg-white md:shadow-lg'>
+            <div className='flex flex-col gap-2 md:flex-row'>
+              <div className='flex flex-1 items-center border-b border-gray-200 bg-white px-4 py-2 md:border-r md:border-b-0 md:bg-transparent'>
                 <input
                   type='text'
                   placeholder='What are you looking for?'
-                  className='w-full border-none bg-transparent text-lg outline-none'
+                  className='w-full border-none bg-white text-base outline-none md:bg-transparent md:text-lg'
                 />
               </div>
 
-              <div className='flex flex-1 items-center border-b border-gray-200 px-4 py-2 md:border-r md:border-b-0'>
+              <div className='flex flex-1 items-center border-b border-gray-200 bg-white px-4 py-2 md:border-r md:border-b-0 md:bg-transparent'>
                 <MapPin className='mr-2 h-4 w-4 text-gray-400' />
                 <input
                   type='text'
                   placeholder='Location'
-                  className='w-full border-none bg-transparent text-lg outline-none'
+                  className='w-full border-none bg-white text-base outline-none md:bg-transparent md:text-lg'
                 />
               </div>
 
-              <div className='flex flex-1 items-center px-4 py-2'>
-                <span className='text-lg text-gray-600'>All Categories</span>
+              <div className='flex flex-1 items-center bg-white px-4 py-2 md:bg-transparent'>
+                <span className='text-base text-gray-600 md:text-lg'>All Categories</span>
                 <ChevronDown className='ml-2 h-4 w-4 text-gray-400' />
               </div>
 
-              <button className='mt-2 rounded-full bg-red-500 px-6 py-2 text-lg font-medium text-white transition hover:bg-red-600 md:mt-0'>
+              <button className='mt-2 rounded-full bg-red-500 px-2 py-1 text-base font-medium text-white transition hover:bg-red-600 md:mt-0 md:px-6 md:py-2 md:text-lg'>
                 Search
               </button>
             </div>
@@ -62,19 +63,31 @@ const HeroSection = () => {
         <div className='relative z-10 mt-8'>
           <p className='mb-3 text-sm text-gray-600'>Or browse featured categories:</p>
           <div className='flex flex-wrap gap-2'>
-            <Link href='#' className='flex items-center rounded-full bg-gray-900 px-4 py-2 text-sm text-white'>
+            <Link
+              href='#'
+              className='flex items-center rounded-full bg-gray-900 px-2 py-1 text-sm text-white md:px-4 md:py-2'
+            >
               <Home className='mr-2 h-4 w-4' />
               Apartments
             </Link>
-            <Link href='#' className='flex items-center rounded-full bg-gray-900 px-4 py-2 text-sm text-white'>
+            <Link
+              href='#'
+              className='flex items-center rounded-full bg-gray-900 px-2 py-1 text-sm text-white md:px-4 md:py-2'
+            >
               <Utensils className='mr-2 h-4 w-4' />
               Eat & Drink
             </Link>
-            <Link href='#' className='flex items-center rounded-full bg-gray-900 px-4 py-2 text-sm text-white'>
+            <Link
+              href='#'
+              className='flex items-center rounded-full bg-gray-900 px-2 py-1 text-sm text-white md:px-4 md:py-2'
+            >
               <Calendar className='mr-2 h-4 w-4' />
               Events
             </Link>
-            <Link href='#' className='flex items-center rounded-full bg-gray-900 px-4 py-2 text-sm text-white'>
+            <Link
+              href='#'
+              className='flex items-center rounded-full bg-gray-900 px-2 py-1 text-sm text-white md:px-4 md:py-2'
+            >
               <Dumbbell className='mr-2 h-4 w-4' />
               Fitness
             </Link>
