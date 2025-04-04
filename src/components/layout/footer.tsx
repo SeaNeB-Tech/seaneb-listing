@@ -23,21 +23,14 @@ export default function Footer() {
 
   const explore: FooterLink[] = [{ label: 'Home', link: routes.home }]
 
-  const provideLinks: any[] = [
-    { label: 'UI / UX Design' },
-    { label: 'App Development' },
-    { label: 'eCommerce app & website' },
-    { label: 'Website Development' },
-    { label: 'Custom ERP' },
-    { label: 'SEO / Analytics' }
-  ]
+  const provideLinks: any[] = [{ label: 'UI / UX Design' }]
 
   const isActiveLink = (path: string) => {
     return pathname === path
   }
 
   return (
-    <footer className='bg-[#202429] text-white'>
+    <footer className='bg-black text-white'>
       <div className='container mx-auto pb-8 lg:pt-16'>
         <div className='grid grid-cols-1 gap-5 pt-8 lg:grid-cols-12'>
           <div className='lg:col-span-4'>
@@ -152,9 +145,7 @@ export default function Footer() {
 
       <div className='container mx-auto border-t border-gray-500'>
         <div className='py-5 lg:py-12'>
-          <p className='text-center text-gray-500'>
-            Codentic Software © {new Date().getFullYear()}. All Rights Reserved.
-          </p>
+          <p className='text-center text-gray-500'>SeaNeb © {new Date().getFullYear()}. All Rights Reserved.</p>
         </div>
       </div>
     </footer>

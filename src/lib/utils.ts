@@ -54,7 +54,7 @@ export function constructMetadata({
       creator: '@codentic.software'
     },
     icons,
-    metadataBase: new URL(process.env.NEXT_PUBLIC_SITEMAP_URL || 'http://localhost:7679'),
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITEMAP_URL || 'http://localhost:6590'),
     ...(noIndex && {
       robots: {
         index: false,

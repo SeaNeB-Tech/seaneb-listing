@@ -1,23 +1,23 @@
 'use client'
 
-import { headerMenuData } from '@/data/menu-data'
-import { cn } from '@/lib/utils'
-import Logo from '@images/logo/logo-small.png'
-import { Menu, X } from 'lucide-react'
-import { AnimatePresence } from 'motion/react'
-import * as m from 'motion/react-m'
-import Image from 'next/image'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
+
+import Link from 'next/link'
+import Image from 'next/image'
+import { usePathname } from 'next/navigation'
+
+import Logo from '@images/logo/logo-small.png'
+
 import ScreenWrapper from '../wrapper/screen-wrapper'
+
+import * as m from 'motion/react-m'
 
 export default function Header() {
   // ** Hooks
   const pathname = usePathname()
 
   // ** States
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  // const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrollPosition, setScrollPosition] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
 
@@ -52,9 +52,9 @@ export default function Header() {
     }
   }, [])
 
-  useEffect(() => {
-    setIsMenuOpen(false)
-  }, [pathname])
+  // useEffect(() => {
+  //   setIsMenuOpen(false)
+  // }, [pathname])
 
   return (
     <m.nav
@@ -74,7 +74,7 @@ export default function Header() {
           <div className='flex w-full items-center'>
             {/* Desktop Navigation */}
             <nav className='hidden flex-1 lg:block'>
-              <ul className='flex items-center gap-6'>
+              {/* <ul className='flex items-center gap-6'>
                 {headerMenuData().map((menu, index) => (
                   <li className='group relative' key={index}>
                     <Link
@@ -89,7 +89,7 @@ export default function Header() {
                     </Link>
                   </li>
                 ))}
-              </ul>
+              </ul> */}
             </nav>
             <div className='ml-4 flex flex-1 items-center justify-end lg:flex-none'>
               {(checkDevice() !== 'android' || !isMobile) && (
@@ -107,7 +107,7 @@ export default function Header() {
                   />
                 </Link>
               )}
-              {isMobile && (
+              {/* {isMobile && (
                 <button
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
                   className='bg-primary hover:bg-primary flex h-10 w-10 items-center justify-center rounded text-white lg:hidden'
@@ -115,13 +115,13 @@ export default function Header() {
                 >
                   {isMenuOpen ? <X className='h-5 w-5' /> : <Menu className='h-5 w-5' />}
                 </button>
-              )}
+              )} */}
             </div>
           </div>
         </ScreenWrapper>
       </header>
 
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {isMenuOpen && isMobile && (
           <m.div
             initial={{ opacity: 0, width: 0 }}
@@ -156,7 +156,7 @@ export default function Header() {
             </ul>
           </m.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
     </m.nav>
   )
 }

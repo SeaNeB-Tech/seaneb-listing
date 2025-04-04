@@ -4,8 +4,8 @@ import React from 'react'
 
 const CategoryItem = ({ category }: { category: CategoryListItem }) => {
   return (
-    <div className='bg-primary flex items-center justify-center rounded-lg p-3 text-white shadow-lg shadow-black/30'>
-      <p className='text-center text-lg font-medium tracking-wide'>{category?.title}</p>
+    <div className='bg-primary flex items-center justify-center rounded-lg p-2 text-white shadow-lg shadow-black/30 md:p-3'>
+      <p className='text-center text-sm font-medium tracking-wide md:text-lg'>{category?.title}</p>
     </div>
   )
 }
