@@ -2,20 +2,19 @@
 
 import { useEffect, useState } from 'react'
 
-import Link from 'next/link'
 import Image from 'next/image'
-import { usePathname } from 'next/navigation'
+import Link from 'next/link'
 
 import Logo from '@images/logo/logo-small.png'
 
 import ScreenWrapper from '../wrapper/screen-wrapper'
 
-import * as m from 'motion/react-m'
 import { cn } from '@/lib/utils'
+import * as m from 'motion/react-m'
 
 export default function Header() {
   // ** Hooks
-  const pathname = usePathname()
+  // const pathname = usePathname()
 
   // ** States
   // const [isMenuOpen, setIsMenuOpen] = useState(false)

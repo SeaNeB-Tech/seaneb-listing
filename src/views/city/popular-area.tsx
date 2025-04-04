@@ -8,12 +8,14 @@ import { capitalizeFirstLetter } from '@/utils'
 interface Props {
   city: string
   selectedArea: string | null
+  /* eslint-disable-next-line no-unused-vars */
   setSelectedArea: (v: string | null) => void
 }
 
 interface AreaItemProps {
   area: AreaListItem
   selectedArea: string | null
+  /* eslint-disable-next-line no-unused-vars */
   setSelectedArea: (v: string | null) => void
 }
 

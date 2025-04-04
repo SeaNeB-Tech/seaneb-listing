@@ -11,9 +11,11 @@ export const capitalizeFirstLetter = (string: string) => {
 
   return string?.toLowerCase().charAt(0).toUpperCase() + string?.toLowerCase().slice(1)
 }
+
 //? ** Capitalize the first letter of each word
 export const capitalizeFirstLetterOfEachWord = (string: string) => {
   if (!string) return string
+
   return string
     .toLowerCase()
     .split(' ')

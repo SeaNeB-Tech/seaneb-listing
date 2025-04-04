@@ -23,6 +23,7 @@ export default function VenueCard({ title, location, rating, date, price, imageU
   const getRatingColor = (score: number) => {
     if (score >= 4.5) return 'bg-green-500'
     if (score >= 3.5) return 'bg-yellow-500'
+
     return 'bg-orange-500'
   }
 

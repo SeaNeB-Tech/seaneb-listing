@@ -12,6 +12,7 @@ import {
 
 interface Props {
   value: number // current page (1-indexed)
+  /* eslint-disable-next-line no-unused-vars */
   onChange: (page: number) => void
   total: number // total items
   pageSize: number // items per page

@@ -24,6 +24,7 @@ const ListingFilters = ({ filters, setFilters }: Props) => {
         <div className='flex flex-wrap items-center gap-2'>
           {categoryListArray?.map(category => (
             <div
+              key={category?.u_id}
               className={cn(
                 'bg-background border-primary text-primary flex cursor-pointer items-center justify-center rounded-full border-2 px-2 py-1 md:px-3',
                 filters.category === category?.u_id ? 'bg-primary text-background' : 'text-primary'
