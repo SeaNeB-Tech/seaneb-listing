@@ -3,10 +3,11 @@ import React from 'react'
 import ScreenWrapper from '@/components/wrapper/screen-wrapper'
 import { majorCitiesArray } from '@/data/major-cities'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const CityItem = ({ city }: { city: (typeof majorCitiesArray)[0] }) => {
   return (
-    <div className='flex flex-col items-center justify-center rounded-lg p-1'>
+    <Link href={`/${city.u_id}`} className='flex flex-col items-center justify-center rounded-lg p-1'>
       <div className='flex h-20 w-20 items-center justify-center rounded-lg md:h-24 md:w-24'>
         <Image
           width={90}
@@ -17,7 +18,7 @@ const CityItem = ({ city }: { city: (typeof majorCitiesArray)[0] }) => {
         />
       </div>
       <p className='text-center text-sm font-normal md:text-lg'>{city.name}</p>
-    </div>
+    </Link>
   )
 }
 

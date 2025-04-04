@@ -11,6 +11,7 @@ import Logo from '@images/logo/logo-small.png'
 import ScreenWrapper from '../wrapper/screen-wrapper'
 
 import * as m from 'motion/react-m'
+import { cn } from '@/lib/utils'
 
 export default function Header() {
   // ** Hooks
@@ -58,10 +59,13 @@ export default function Header() {
 
   return (
     <m.nav
-      animate={scrollPosition >= 200 ? { opacity: 1, top: 0 } : undefined}
-      initial={scrollPosition >= 200 ? { opacity: 0, top: -100 } : undefined}
+      animate={scrollPosition >= 180 ? { opacity: 1, top: 0 } : undefined}
+      initial={scrollPosition >= 180 ? { opacity: 0, top: -100 } : undefined}
       transition={{ duration: 0.6, delay: 0.2 }}
-      className='navbar navbar-expand-lg sticky top-0 z-[99999] w-full bg-white p-0 shadow-lg'
+      className={cn(
+        'navbar navbar-expand-lg sticky top-0 z-[99999] w-full bg-white p-0',
+        scrollPosition >= 180 ? 'opacity-80 shadow-lg' : ''
+      )}
     >
       <header className='w-full py-1 lg:py-2'>
         <ScreenWrapper className='flex h-16 items-center'>
