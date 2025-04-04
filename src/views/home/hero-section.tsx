@@ -1,15 +1,37 @@
-import React from 'react'
+'use client'
+
 import Link from 'next/link'
+import Image from 'next/image'
 
 import ScreenWrapper from '@/components/wrapper/screen-wrapper'
-import { Calendar, ChevronDown, Dumbbell, Home, MapPin, Utensils } from 'lucide-react'
+import { Calendar, Dumbbell, Home, MapPin, Utensils } from 'lucide-react'
 
 import BannerImage from '@images/pages/home/banner-image-1.jpg'
 import Background from '@images/pages/home/hero-bg.svg'
 
-import Image from 'next/image'
+import { CategoryListItem } from '@/services/apis/types'
 
-const HeroSection = () => {
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { capitalizeFirstLetter } from '@/utils'
+import { AsyncSelect } from '@/components/ui/async-select'
+import { useState } from 'react'
+
+const searchLocation = async (inputValue?: string): Promise<string[]> => {
+  if (!inputValue) return []
+
+  const res = await fetch('/api/search/location', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ input: inputValue })
+  })
+
+  const data = await res.json()
+  return data?.suggestions || []
+}
+
+const HeroSection = ({ listCategories }: { listCategories: CategoryListItem[] }) => {
+  const [selectedUser, setSelectedUser] = useState<string | null>(null)
+
   return (
     <div
       className='relative bg-gradient-to-br py-10 lg:pt-20 xl:h-[600px]'
@@ -30,6 +52,7 @@ const HeroSection = () => {
         <div className='relative z-10 mt-4 max-w-7xl'>
           <div className='p-2 md:rounded-full md:bg-white md:shadow-lg'>
             <div className='flex flex-col gap-2 md:flex-row'>
+              {/* Search By Name */}
               <div className='flex flex-1 items-center border-b border-gray-200 bg-white px-4 py-2 md:border-r md:border-b-0 md:bg-transparent'>
                 <input
                   type='text'
@@ -38,18 +61,50 @@ const HeroSection = () => {
                 />
               </div>
 
+              {/* Enter Location */}
               <div className='flex flex-1 items-center border-b border-gray-200 bg-white px-4 py-2 md:border-r md:border-b-0 md:bg-transparent'>
-                <MapPin className='mr-2 h-4 w-4 text-gray-400' />
-                <input
-                  type='text'
-                  placeholder='Location'
-                  className='w-full border-none bg-white text-base outline-none md:bg-transparent md:text-lg'
+                <MapPin className='mr-2 h-5 w-5 shrink-0 text-gray-400' />
+                <AsyncSelect<string>
+                  fetcher={searchLocation}
+                  renderOption={user => (
+                    <div className='flex items-center gap-2'>
+                      <div className='flex flex-col'>
+                        <div className='font-medium'>{user}</div>
+                      </div>
+                    </div>
+                  )}
+                  getOptionValue={user => user}
+                  getDisplayValue={user => (
+                    <div className='flex items-center gap-2 text-left'>
+                      <div className='flex flex-col leading-tight'>
+                        <div className='font-medium'>{user}</div>
+                      </div>
+                    </div>
+                  )}
+                  notFound={<div className='py-6 text-center text-sm'>Try searching for your city name</div>}
+                  label='Location'
+                  placeholder='Location..'
+                  value={selectedUser || ''}
+                  onChange={setSelectedUser}
+                  width={'100%'}
                 />
               </div>
 
+              {/* List Category */}
               <div className='flex flex-1 items-center bg-white px-4 py-2 md:bg-transparent'>
-                <span className='text-base text-gray-600 md:text-lg'>All Categories</span>
-                <ChevronDown className='ml-2 h-4 w-4 text-gray-400' />
+                <Select>
+                  <SelectTrigger className='w-full border-none p-0 text-left text-base text-gray-600 ring-0 outline-none focus:ring-0 focus:ring-offset-0 md:text-lg'>
+                    <SelectValue placeholder='All Categories' />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value='all'>All Categories</SelectItem>
+                    {listCategories.map(category => (
+                      <SelectItem key={category.u_id} value={category.main_category}>
+                        {capitalizeFirstLetter(category.category)}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
               <button className='mt-2 rounded-full bg-red-500 px-2 py-1 text-base font-medium text-white transition hover:bg-red-600 md:mt-0 md:px-6 md:py-2 md:text-lg'>

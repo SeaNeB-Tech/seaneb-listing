@@ -50,6 +50,7 @@ const ListingGrid = ({ selectedArea }: { selectedArea: string }) => {
             .map((business, index) => (
               <VenueCard
                 key={index}
+                selectedArea={selectedArea}
                 id={business.category?.slug}
                 title={business.title}
                 location={business.address}

@@ -5,10 +5,12 @@ import { useState } from 'react'
 import Image from 'next/image'
 
 import { Heart } from 'lucide-react'
+import { usePathname, useRouter } from 'next/navigation'
 
 interface VenueCardProps {
   id: string
   title: string
+  selectedArea: string
   location: string
   rating: number
   date?: string
@@ -16,7 +18,10 @@ interface VenueCardProps {
   imageUrl: string
 }
 
-export default function VenueCard({ title, location, rating, date, price, imageUrl }: VenueCardProps) {
+export default function VenueCard({ title, selectedArea, location, rating, date, price, imageUrl }: VenueCardProps) {
+  const router = useRouter()
+  const pathname = usePathname()
+
   const [isFavorite, setIsFavorite] = useState(false)
 
   // Determine rating color based on score
@@ -28,7 +33,10 @@ export default function VenueCard({ title, location, rating, date, price, imageU
   }
 
   return (
-    <div className='relative h-[240px] cursor-pointer overflow-hidden rounded-md shadow-xl transition-transform duration-300 hover:scale-105'>
+    <div
+      onClick={() => router.push(`${pathname}/${selectedArea}/${title}`)}
+      className='relative h-[240px] cursor-pointer overflow-hidden rounded-md shadow-xl transition-transform duration-300 hover:scale-105'
+    >
       {/* Background Image */}
       <div className='absolute inset-0'>
         <Image src={imageUrl || '/placeholder.svg'} alt={title} fill className='object-cover' priority />
