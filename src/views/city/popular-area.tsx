@@ -38,7 +38,7 @@ const PopularAreas = ({ city, selectedArea, setSelectedArea }: Props) => {
     <ScreenWrapper className='space-y-6 py-10 lg:py-20'>
       {/* Title */}
       <div className='space-y-3 lg:mt-3'>
-        <h2 className='after:bg-secondary relative w-max text-3xl after:absolute after:-bottom-1 after:left-0 after:h-[3px] after:w-full after:max-w-20 after:origin-bottom-right after:scale-x-100'>
+        <h2 className='after:bg-secondary relative text-3xl whitespace-normal after:absolute after:-bottom-1 after:left-0 after:h-[3px] after:w-full after:max-w-20 after:origin-bottom-right after:scale-x-100'>
           Popular localities in <b>{capitalizeFirstLetter(city) || ''}</b>
         </h2>
       </div>

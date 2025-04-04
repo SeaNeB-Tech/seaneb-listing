@@ -1,16 +1,28 @@
+'use client'
+
 import ScreenWrapper from '@/components/wrapper/screen-wrapper'
-import { categoryListArray, CategoryListItem } from '@/data/categories'
-import React from 'react'
+import { CategoryListItem } from '@/services/apis/types'
+import { capitalizeFirstLetterOfEachWord } from '@/utils'
 
 const CategoryItem = ({ category }: { category: CategoryListItem }) => {
+  const linearGradientValue = ['rgba(17, 17, 17, 1)', 'rgba(65, 65, 65, 1)', 'rgba(65, 65, 65, 1)']
+
   return (
-    <div className='bg-primary flex items-center justify-center rounded-lg p-2 text-white shadow-lg shadow-black/30 md:p-3'>
-      <p className='text-center text-sm font-medium tracking-wide md:text-lg'>{category?.title}</p>
+    <div
+      className='flex items-center justify-center rounded-md p-2 shadow-md transition-transform duration-200 md:p-3'
+      style={{
+        backgroundImage: `linear-gradient(135deg, ${linearGradientValue.join(', ')})`,
+        color: '#fff'
+      }}
+    >
+      <p className='text-center text-sm font-semibold tracking-wide md:text-lg'>
+        {capitalizeFirstLetterOfEachWord(category?.category)}
+      </p>
     </div>
   )
 }
 
-const PopularCategories = () => {
+const PopularCategories = ({ listCategories }: { listCategories: CategoryListItem[] }) => {
   return (
     <ScreenWrapper className='space-y-6 py-10 lg:py-20'>
       {/* Title */}
@@ -21,8 +33,8 @@ const PopularCategories = () => {
         <p>List of most frequently searched categories</p>
       </div>
 
-      <div className='grid w-full grid-cols-4 gap-2 sm:grid-cols-5'>
-        {categoryListArray?.map(cc => <CategoryItem key={cc?.u_id} category={cc} />)}
+      <div className='flex w-full grid-cols-3 flex-wrap gap-2 sm:grid-cols-4 lg:grid lg:grid-cols-5'>
+        {listCategories?.map(cc => <CategoryItem key={cc?.u_id} category={cc} />)}
       </div>
     </ScreenWrapper>
   )

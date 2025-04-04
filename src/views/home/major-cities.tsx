@@ -8,11 +8,11 @@ import Link from 'next/link'
 const CityItem = ({ city }: { city: (typeof majorCitiesArray)[0] }) => {
   return (
     <Link href={`/${city.u_id}`} className='flex flex-col items-center justify-center rounded-lg p-1'>
-      <div className='flex h-20 w-20 items-center justify-center rounded-lg md:h-24 md:w-24'>
+      <div className='flex h-20 w-20 items-center justify-center rounded-lg p-3 md:h-24 md:w-24'>
         <Image
           width={90}
           height={90}
-          src={city.image}
+          src={`/images/city/icon.png`}
           alt={city?.name}
           className='h-auto w-full rounded object-contain shadow-md shadow-black/30'
         />
@@ -33,7 +33,7 @@ const MajorCities = () => {
         <p>Top cities</p>
       </div>
 
-      <div className='grid w-full grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-8'>
+      <div className='grid w-full grid-cols-3 gap-2 sm:grid-cols-4 lg:grid-cols-8'>
         {majorCitiesArray?.map(city => <CityItem key={city?.u_id} city={city} />)}
       </div>
     </ScreenWrapper>
