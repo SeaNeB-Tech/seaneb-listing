@@ -12,6 +12,7 @@ import { websiteConfig } from '@/config/website-config'
 import { routes } from '@/constants/routes'
 
 import { Facebook, Instagram, Linkedin, Mail, Phone } from 'lucide-react'
+import ScreenWrapper from '../wrapper/screen-wrapper'
 
 type FooterLink = {
   label: string
@@ -31,7 +32,7 @@ export default function Footer() {
 
   return (
     <footer className='bg-black text-white'>
-      <div className='container mx-auto pb-8 lg:pt-16'>
+      <ScreenWrapper className='pb-8 lg:pt-16'>
         <div className='grid grid-cols-1 gap-5 pt-8 lg:grid-cols-12'>
           <div className='lg:col-span-4'>
             <Link href='/' className='mb-6 inline-block'>
@@ -141,13 +142,13 @@ export default function Footer() {
             </div> */}
           </div>
         </div>
-      </div>
+      </ScreenWrapper>
 
-      <div className='container mx-auto border-t border-gray-500'>
+      <ScreenWrapper className='border-t border-gray-500'>
         <div className='py-5 lg:py-12'>
           <p className='text-center text-gray-500'>SeaNeb © {new Date().getFullYear()}. All Rights Reserved.</p>
         </div>
-      </div>
+      </ScreenWrapper>
     </footer>
   )
 }
