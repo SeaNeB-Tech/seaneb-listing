@@ -18,10 +18,8 @@ const BannerComponent = ({
   return (
     <div
       className={cn(
-        'w-full bg-blue-50',
-        bordered
-          ? 'rounded-b-[30px] border border-blue-100 shadow-blue-50 lg:rounded-none lg:border-none lg:shadow-none'
-          : ''
+        'w-full bg-orange-50',
+        bordered ? 'rounded-b-[30px] border shadow-blue-50 lg:rounded-none lg:border-none lg:shadow-none' : ''
       )}
     >
       <ScreenWrapper className='py-6 sm:py-16'>
@@ -30,7 +28,7 @@ const BannerComponent = ({
             animate={{ opacity: 1, x: 0 }}
             initial={{ opacity: 0, x: -100 }}
             transition={{ duration: 0.5 }}
-            className='text-3xl font-bold text-black sm:text-4xl'
+            className='text-3xl font-medium text-black sm:text-4xl'
           >
             {title}
           </m.p>

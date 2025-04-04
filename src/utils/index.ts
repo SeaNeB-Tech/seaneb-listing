@@ -1,10 +1,26 @@
-import { ValidateResult } from 'react-hook-form'
-
 //? ** Extracting First Letters
 export const getInitials = (string: string) => {
   if (!string) return string
 
   return string?.split(/\s/).reduce((response, word) => (response += word.slice(0, 1)), '')
+}
+
+//? ** Capitalize the first letter of a string
+export const capitalizeFirstLetter = (string: string) => {
+  if (!string) return string
+
+  return string?.toLowerCase().charAt(0).toUpperCase() + string?.toLowerCase().slice(1)
+}
+
+//? ** Capitalize the first letter of each word
+export const capitalizeFirstLetterOfEachWord = (string: string) => {
+  if (!string) return string
+
+  return string
+    .toLowerCase()
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ')
 }
 
 //? ** Await Function that is used to wait
@@ -72,32 +88,6 @@ export const defaultFormatDate = 'DD MMM, YYYY'
 
 //? ** Default DateTime Format
 export const defaultFormatTime = 'DD MMM, YYYY h:mm A'
-
-//? ** Validating Image Dimensions and Size
-type ValidateOptions = { fileSize: number; checkSquare?: boolean }
-
-export const validateImage = async (value: File, options: ValidateOptions): Promise<ValidateResult> => {
-  if (!value || !(value instanceof File)) return 'Please upload a valid image file.'
-
-  const MAX_SIZE_MB = options?.fileSize || 2
-  if (value.size > MAX_SIZE_MB * 1024 * 1024)
-    return `Please upload a image with less than ${options?.fileSize}MB size or use "Crop & Compress" below`
-
-  return new Promise(resolve => {
-    const img = new Image()
-    img.src = URL.createObjectURL(value)
-    img.onload = () => {
-      const aspectRatio = img.width / img.height
-      const isSquare = Math.abs(aspectRatio - 1) < 0.1 // Allow slight variation
-      resolve(
-        isSquare || options?.checkSquare === false
-          ? true
-          : 'Please upload a image that is square or use "Crop & Compress" below'
-      )
-    }
-    img.onerror = () => resolve('Invalid image file.')
-  })
-}
 
 export const getTodaysDate = () => {
   return `${new Date().getDate()}-${new Date().getMonth()}-${new Date().getFullYear()}`
