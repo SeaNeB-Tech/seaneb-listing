@@ -4,8 +4,10 @@ import { useState } from 'react'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
 
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { BusinessDetailsAPIResponse } from '@/types/business'
+import { generatePublicImageBusinessLink } from '@/lib/utils'
 
-function BusinessViewCarousel() {
+function BusinessViewCarousel({ businessData }: { businessData: BusinessDetailsAPIResponse }) {
   const [image, setImage] = useState<string | null>(null)
 
   return (
@@ -16,18 +18,18 @@ function BusinessViewCarousel() {
 
           align: 'start'
         }}
-        className='group relative mt-4 w-full'
+        className='group relative mt-0 w-full'
       >
         <CarouselContent>
-          {Array.from({ length: 7 }).map((_, index) => (
+          {businessData?.shop_galleries?.map((gallery, index) => (
             <CarouselItem key={index} className='md:basis-1/2 lg:basis-1/3 xl:basis-1/4'>
               <div
-                onClick={() => setImage(`/images/pages/business/single-listing-0${index + 1}.jpg`)}
+                onClick={() => setImage(generatePublicImageBusinessLink(businessData, gallery?.link))}
                 className='flex h-96 cursor-zoom-in items-center justify-center rounded-md bg-transparent'
               >
                 <img
-                  alt={'Image ' + index}
-                  src={`/images/pages/business/single-listing-0${index + 1}.jpg`}
+                  alt={`${businessData?.business_legal_name} - ${index}`}
+                  src={generatePublicImageBusinessLink(businessData, gallery?.link)}
                   className='h-full w-full object-cover'
                 />
               </div>

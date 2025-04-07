@@ -1,17 +1,16 @@
 'use client'
 
 import ScreenWrapper from '@/components/wrapper/screen-wrapper'
+import { color } from '@/constants/colors'
 import { CategoryListItem } from '@/services/apis/types'
 import { capitalizeFirstLetterOfEachWord } from '@/utils'
 
 const CategoryItem = ({ category }: { category: CategoryListItem }) => {
-  const linearGradientValue = ['rgba(17, 17, 17, 1)', 'rgba(65, 65, 65, 1)', 'rgba(65, 65, 65, 1)']
-
   return (
     <div
       className='flex items-center justify-center rounded-md p-2 shadow-md transition-transform duration-200 md:p-3'
       style={{
-        backgroundImage: `linear-gradient(135deg, ${linearGradientValue.join(', ')})`,
+        backgroundImage: `linear-gradient(135deg, ${color.linearGradientValue.join(', ')})`,
         color: '#fff'
       }}
     >

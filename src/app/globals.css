@@ -124,3 +124,24 @@
   background-color: #ffffff;
   background-size: cover;
 }
+
+/* From Uiverse.io by xXJollyHAKERXx */
+/* From Uiverse.io - Modified by ChatGPT */
+.spinner {
+  background-image: conic-gradient(blue, cyan, green, yellow, orange, red, magenta, blue);
+  animation: spinning82341 1.7s linear infinite;
+
+  border-radius: 51px;
+  filter: blur(1px);
+}
+
+.spinner1 {
+  background-color: rgb(255, 255, 255);
+  border-radius: 50px;
+}
+
+@keyframes spinning82341 {
+  to {
+    transform: rotate(360deg);
+  }
+}
