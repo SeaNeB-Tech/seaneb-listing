@@ -11,7 +11,7 @@ const CityComponent = ({ city }: { city: string }) => {
   return (
     <>
       <PopularAreas city={city} setSelectedArea={setSelectedArea} selectedArea={selectedArea} />
-      {selectedArea && <ListingGrid selectedArea={selectedArea} />}
+      {selectedArea && <ListingGrid city={city} selectedArea={selectedArea} />}
     </>
   )
 }

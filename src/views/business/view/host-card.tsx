@@ -1,0 +1,62 @@
+'use client'
+
+import { Mail, MessageSquare, Phone } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
+
+interface HostCardProps {
+  name: string
+  phone: string
+  email: string
+  imageUrl: string
+  onSendMessage?: () => void
+}
+
+export function HostCard({
+  name = 'Tom Perrin',
+  phone = '(123) 123-456',
+  email = 'tom@example.com',
+  imageUrl = '/placeholder.svg?height=80&width=80',
+  onSendMessage
+}: HostCardProps) {
+  return (
+    <div className='w-full max-w-sm rounded-sm bg-gray-100 p-6 lg:max-w-full'>
+      <div className='mb-4 flex items-start justify-between gap-2'>
+        <div className='truncate'>
+          <p className='text-sm text-gray-500'>Hosted by</p>
+          <h3 className='truncate text-xl font-medium text-gray-800'>{name}</h3>
+        </div>
+        <div className='relative h-14 w-14 overflow-hidden rounded-full'>
+          <Image src={imageUrl || '/placeholder.svg'} alt={name} fill className='object-cover' />
+        </div>
+      </div>
+
+      <div className='my-4 border-t border-gray-300'></div>
+
+      <div className='space-y-3'>
+        <Link
+          href={`tel:${phone.replace(/[^0-9]/g, '')}`}
+          className='flex items-center gap-3 text-gray-700 hover:text-gray-900'
+        >
+          <Phone className='h-4 w-4 text-gray-500' />
+          <span>{phone}</span>
+        </Link>
+
+        {email && (
+          <Link href={`mailto:${email}`} className='flex items-center gap-3 text-gray-700 hover:text-gray-900'>
+            <Mail className='h-4 w-4 text-gray-500' />
+            <span className='text-[#ff3366]'>{email}</span>
+          </Link>
+        )}
+
+        <button
+          onClick={onSendMessage}
+          className='mt-7 flex w-full items-center justify-center gap-2 rounded-md bg-[#ff3366] px-4 py-2 text-white hover:bg-[#e62e5c]'
+        >
+          <MessageSquare className='h-5 w-5' />
+          <span>Send Message</span>
+        </button>
+      </div>
+    </div>
+  )
+}

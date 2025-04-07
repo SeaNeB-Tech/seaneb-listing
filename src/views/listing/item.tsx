@@ -11,6 +11,7 @@ interface VenueCardProps {
   id: string
   title: string
   selectedArea: string
+  legalName: string
   location: string
   rating: number
   date?: string
@@ -18,7 +19,8 @@ interface VenueCardProps {
   imageUrl: string
 }
 
-export default function VenueCard({ title, selectedArea, location, rating, date, price, imageUrl }: VenueCardProps) {
+export default function VenueCard(props: VenueCardProps) {
+  const { title, selectedArea, legalName, location, rating, date, price, imageUrl } = props
   const router = useRouter()
   const pathname = usePathname()
 
@@ -34,12 +36,12 @@ export default function VenueCard({ title, selectedArea, location, rating, date,
 
   return (
     <div
-      onClick={() => router.push(`${pathname}/${selectedArea}/${title}`)}
+      onClick={() => router.push(`${pathname}/${selectedArea}/${legalName}`)}
       className='relative h-[240px] cursor-pointer overflow-hidden rounded-md shadow-xl transition-transform duration-300 hover:scale-105'
     >
       {/* Background Image */}
       <div className='absolute inset-0'>
-        <Image src={imageUrl || '/placeholder.svg'} alt={title} fill className='object-cover' priority />
+        <Image src={imageUrl || '/placeholder.svg'} alt={legalName} fill className='object-cover' priority />
         {/* Gradient Overlay */}
         <div className='absolute inset-0 bg-gradient-to-t from-black/80 to-transparent'></div>
       </div>
