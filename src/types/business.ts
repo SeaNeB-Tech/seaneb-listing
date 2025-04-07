@@ -72,3 +72,32 @@ export interface ShopGallery {
   updated_at: string
   business_u_id: string
 }
+
+export interface TestimonialItem {
+  u_id: string
+  media_url: string
+  thumbnail: string
+  type: string
+  feedback: string
+  rating: string
+  created_at: string
+  updated_at: string
+  users_u_id: string
+  business_u_id: string
+  user: TestimonialUser
+  business: TestimonialBusiness
+}
+
+export interface TestimonialUser {
+  u_id: string
+  first_name: string
+  last_name: string
+  image: string
+}
+
+export interface TestimonialBusiness {
+  u_id: string
+  business_name: string
+  seaneb_id: string
+  icon: string
+}
