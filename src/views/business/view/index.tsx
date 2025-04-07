@@ -4,7 +4,7 @@ import ScreenWrapper from '@/components/wrapper/screen-wrapper'
 
 import { Button } from '@/components/ui/button'
 import { generatePublicImageUserLink } from '@/lib/utils'
-import { BusinessDetailsAPIResponse } from '@/types/business'
+import { BusinessDetailsAPIResponse, TestimonialItem } from '@/types/business'
 import { Facebook, Instagram, LinkIcon, Mail, MapPin, MessageCircle, Phone, Twitter, Youtube } from 'lucide-react'
 import Link from 'next/link'
 import LocationMap from './basic/map'
@@ -12,13 +12,12 @@ import BusinessRating from './basic/rating'
 import { HostCard } from './host-card'
 import BusinessReviews from './reviews'
 
-const BusinessDetails = ({
-  businessData,
-  testimonials
-}: {
+interface BusinessDetailsProps {
   businessData: BusinessDetailsAPIResponse
-  testimonials: any[]
-}) => {
+  testimonials: TestimonialItem[]
+}
+
+const BusinessDetails = ({ businessData, testimonials }: BusinessDetailsProps) => {
   return (
     <ScreenWrapper className='grid grid-cols-1 gap-x-10 gap-y-10 py-10 lg:grid-cols-12 lg:py-20'>
       {/* Left Side View */}
