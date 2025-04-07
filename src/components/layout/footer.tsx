@@ -13,13 +13,14 @@ import { routes } from '@/constants/routes'
 
 import { Facebook, Instagram, Linkedin, Mail, Phone } from 'lucide-react'
 import ScreenWrapper from '../wrapper/screen-wrapper'
+import { memo } from 'react'
 
 type FooterLink = {
   label: string
   link: string
 }
 
-export default function Footer() {
+function Footer() {
   const pathname = usePathname()
 
   const explore: FooterLink[] = [{ label: 'Home', link: routes.home }]
@@ -36,7 +37,7 @@ export default function Footer() {
         <div className='grid grid-cols-1 gap-5 pt-8 lg:grid-cols-12'>
           <div className='lg:col-span-4'>
             <Link href='/' className='mb-6 inline-block'>
-              <Image src={Logo} alt='Logo' width={240} height={240} className='h-auto w-56' />
+              <Image src={Logo} alt='Logo' width={240} height={240} priority sizes='100vw' className='h-auto w-56' />
             </Link>
           </div>
 
@@ -152,3 +153,5 @@ export default function Footer() {
     </footer>
   )
 }
+
+export default memo(Footer)

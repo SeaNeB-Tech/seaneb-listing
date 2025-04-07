@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 
 import Image from 'next/image'
 import Link from 'next/link'
@@ -13,7 +13,7 @@ import ScreenWrapper from '../wrapper/screen-wrapper'
 import { cn } from '@/lib/utils'
 import * as m from 'motion/react-m'
 
-export default function Header() {
+function Header() {
   // ** Hooks
   // const pathname = usePathname()
 
@@ -62,7 +62,7 @@ export default function Header() {
       animate={scrollPosition >= 180 ? { opacity: 1, top: 0 } : undefined}
       initial={scrollPosition >= 180 ? { opacity: 0, top: -100 } : undefined}
       transition={{ duration: 0.6, delay: 0.2 }}
-      className={cn('navbar navbar-expand-lg sticky top-0 z-20 w-full bg-white p-0')}
+      className={cn('navbar navbar-expand-lg sticky top-0 z-20 w-full bg-white p-0 shadow-lg')}
     >
       <header className='w-full py-1 lg:py-2'>
         <ScreenWrapper className='flex h-16 items-center'>
@@ -177,3 +177,5 @@ export default function Header() {
     </m.nav>
   )
 }
+
+export default memo(Header)

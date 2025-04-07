@@ -1,28 +1,27 @@
 import React from 'react'
 
 import ScreenWrapper from '@/components/wrapper/screen-wrapper'
-import { majorCitiesArray } from '@/data/major-cities'
 import Image from 'next/image'
 import Link from 'next/link'
 
-const CityItem = ({ city }: { city: (typeof majorCitiesArray)[0] }) => {
+const CityItem = ({ city }: { city: string }) => {
   return (
-    <Link href={`/${city.u_id}`} className='flex flex-col items-center justify-center rounded-lg p-1'>
+    <Link href={`/${city}`} className='flex flex-col items-center justify-start rounded-lg p-1'>
       <div className='flex h-20 w-20 items-center justify-center rounded-lg p-3 md:h-24 md:w-24'>
         <Image
           width={90}
           height={90}
           src={`/images/city/icon.png`}
-          alt={city?.name}
-          className='h-auto w-full rounded object-contain shadow-md shadow-black/30'
+          alt={city}
+          className='h-auto w-full rounded-lg object-contain p-2 shadow-lg shadow-black/30'
         />
       </div>
-      <p className='text-center text-sm font-normal md:text-lg'>{city.name}</p>
+      <p className='text-center text-sm font-normal md:text-lg'>{city}</p>
     </Link>
   )
 }
 
-const MajorCities = () => {
+const MajorCities = ({ listCities }: { listCities: string[] }) => {
   return (
     <ScreenWrapper className='space-y-6 py-10'>
       {/* Title */}
@@ -34,7 +33,7 @@ const MajorCities = () => {
       </div>
 
       <div className='grid w-full grid-cols-3 gap-2 sm:grid-cols-4 lg:grid-cols-8'>
-        {majorCitiesArray?.map(city => <CityItem key={city?.u_id} city={city} />)}
+        {listCities?.map((city, index) => <CityItem key={index} city={city} />)}
       </div>
     </ScreenWrapper>
   )

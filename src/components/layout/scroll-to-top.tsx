@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { ChevronUp } from 'lucide-react'
 
 // ** Motion Imports
@@ -59,4 +59,4 @@ const ScrollToTopButton = () => {
   )
 }
 
-export default ScrollToTopButton
+export default memo(ScrollToTopButton)
