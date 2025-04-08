@@ -29,10 +29,6 @@ const LinkButton = ({ children, href }: { children: React.ReactNode; href: strin
 }
 
 const BusinessDetails = ({ businessData, testimonials }: BusinessDetailsProps) => {
-  console.log('🚀 -------------------------------------------------🚀')
-  console.log('🚀 ~ BusinessDetails ~ businessData:', businessData)
-  console.log('🚀 -------------------------------------------------🚀')
-
   return (
     <ScreenWrapper className='grid grid-cols-1 gap-x-10 gap-y-10 py-10 lg:grid-cols-12 lg:py-20'>
       {/* Left Side View */}
