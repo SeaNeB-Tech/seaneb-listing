@@ -65,7 +65,6 @@ const BusinessDetailsPage = async ({ params }: BusinessDetailsPageProps) => {
 
   if (data?.data) {
     const testimonials = await getTestimonials(data?.data?.u_id)
-    console.log('testimonials :', testimonials)
 
     return (
       <>

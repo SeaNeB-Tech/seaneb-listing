@@ -1,5 +1,7 @@
 'use client'
 
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { getInitials } from '@/utils'
 import { Mail, MessageSquare, Phone } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -26,9 +28,10 @@ export function HostCard({
           <p className='text-sm text-gray-500'>Hosted by</p>
           <h3 className='truncate text-xl font-medium text-gray-800'>{name}</h3>
         </div>
-        <div className='relative h-14 w-14 overflow-hidden rounded-full'>
-          <Image src={imageUrl || '/placeholder.svg'} alt={name} fill className='object-cover' />
-        </div>
+        <Avatar className='h-14 w-14'>
+          <AvatarImage src={imageUrl} alt={name} />
+          <AvatarFallback className='bg-gray-200 text-gray-600'>{getInitials(name)}</AvatarFallback>
+        </Avatar>
       </div>
 
       <div className='my-4 border-t border-gray-300'></div>
