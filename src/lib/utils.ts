@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
+import { BusinessDetailsAPIResponse } from '@/types/business'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -64,4 +65,12 @@ export function constructMetadata({
     creator: 'Codentic Software',
     authors: [{ name: 'Codentic Software' }]
   }
+}
+
+export const generatePublicImageBusinessLink = (businessData: BusinessDetailsAPIResponse, objectKey: string) => {
+  return `https://${process.env.NEXT_PUBLIC_DO_SPACES_NAME}.${process.env.NEXT_PUBLIC_DO_SPACES_REGION}.cdn.digitaloceanspaces.com/businesses/${businessData?.country}/${businessData?.state}/${businessData?.city}/${businessData?.area}/${businessData?.u_id}/store/${objectKey}`
+}
+
+export const generatePublicImageUserLink = (country: string, userId: string, objectKey: string) => {
+  return `https://${process.env.NEXT_PUBLIC_DO_SPACES_NAME}.${process.env.NEXT_PUBLIC_DO_SPACES_REGION}.cdn.digitaloceanspaces.com/users/${country}/${userId}/images/${objectKey}`
 }

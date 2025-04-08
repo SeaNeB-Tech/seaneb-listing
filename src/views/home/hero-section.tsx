@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 import ScreenWrapper from '@/components/wrapper/screen-wrapper'
-import { Calendar, Dumbbell, Home, MapPin, Utensils } from 'lucide-react'
+import { Calendar, Dumbbell, Home, MapPin, Search, Utensils } from 'lucide-react'
 
 import BannerImage from '@images/pages/home/banner-image-1.jpg'
 import Background from '@images/pages/home/hero-bg.svg'
@@ -15,6 +15,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { capitalizeFirstLetter } from '@/utils'
 import { AsyncSelect } from '@/components/ui/async-select'
 import { useState } from 'react'
+import { color } from '@/constants/colors'
 
 const searchLocation = async (inputValue?: string): Promise<string[]> => {
   if (!inputValue) return []
@@ -108,8 +109,17 @@ const HeroSection = ({ listCategories }: { listCategories: CategoryListItem[] })
                 </Select>
               </div>
 
-              <button className='mt-2 rounded-full bg-red-500 px-2 py-1 text-base font-medium text-white transition hover:bg-red-600 md:mt-0 md:px-6 md:py-2 md:text-lg'>
-                Search
+              <button
+                style={{
+                  backgroundImage: `linear-gradient(135deg, ${color.linearGradientValue.join(', ')})`,
+                  color: '#fff'
+                }}
+                className='mt-2 cursor-pointer rounded-full px-2 py-1 text-base font-medium text-white transition md:mt-0 md:px-6 md:py-2 md:text-lg'
+              >
+                <div className='flex items-center justify-center gap-2'>
+                  <Search className='h-5 w-5 shrink-0' />
+                  <span>Search</span>
+                </div>
               </button>
             </div>
           </div>
