@@ -10,6 +10,7 @@ import BusinessDetails from '@/views/business/view'
 import { BusinessDetailsAPIResponse, TestimonialItem } from '@/types/business'
 import { Metadata } from 'next'
 import { constructMetadata } from '@/lib/utils'
+import { sleep } from '@/utils'
 
 interface BusinessDetailsPageProps {
   params: Promise<{ city: string; category: string; business: string }>
