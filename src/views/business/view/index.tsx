@@ -95,7 +95,9 @@ const BusinessDetails = ({ businessData, testimonials }: BusinessDetailsProps) =
         </div>
 
         {/* Map */}
-        {businessData?.google_map_id && <LocationMap />}
+        {businessData?.latitude && businessData?.longitude && (
+          <LocationMap lat={businessData?.latitude} long={businessData?.longitude} />
+        )}
 
         {!!testimonials?.length && <BusinessReviews testimonials={testimonials} />}
       </div>

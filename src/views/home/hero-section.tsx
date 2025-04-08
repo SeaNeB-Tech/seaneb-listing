@@ -1,7 +1,9 @@
 'use client'
 
-import Link from 'next/link'
+import { useState } from 'react'
+
 import Image from 'next/image'
+import Link from 'next/link'
 
 import ScreenWrapper from '@/components/wrapper/screen-wrapper'
 import { Calendar, Dumbbell, Home, MapPin, Search, Utensils } from 'lucide-react'
@@ -9,13 +11,12 @@ import { Calendar, Dumbbell, Home, MapPin, Search, Utensils } from 'lucide-react
 import BannerImage from '@images/pages/home/banner-image-1.jpg'
 import Background from '@images/pages/home/hero-bg.svg'
 
-import { CategoryListItem } from '@/services/apis/types'
-
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { capitalizeFirstLetter } from '@/utils'
 import { AsyncSelect } from '@/components/ui/async-select'
-import { useState } from 'react'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { color } from '@/constants/colors'
+import { fetchCategoryList } from '@/services/apis'
+import { capitalizeFirstLetter } from '@/utils'
+import { useQuery } from '@tanstack/react-query'
 
 const searchLocation = async (inputValue?: string): Promise<string[]> => {
   if (!inputValue) return []
@@ -31,8 +32,15 @@ const searchLocation = async (inputValue?: string): Promise<string[]> => {
   return data?.suggestions || []
 }
 
-const HeroSection = ({ listCategories }: { listCategories: CategoryListItem[] }) => {
+const HeroSection = () => {
   const [selectedUser, setSelectedUser] = useState<string | null>(null)
+
+  const { data: categories } = useQuery({
+    queryKey: ['categories'],
+    queryFn: () => fetchCategoryList()
+  })
+
+  console.log('categories :', categories)
 
   return (
     <div
@@ -100,7 +108,7 @@ const HeroSection = ({ listCategories }: { listCategories: CategoryListItem[] })
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value='all'>All Categories</SelectItem>
-                    {listCategories.map(category => (
+                    {categories?.data.map(category => (
                       <SelectItem key={category.u_id} value={category.main_category}>
                         {capitalizeFirstLetter(category.category)}
                       </SelectItem>

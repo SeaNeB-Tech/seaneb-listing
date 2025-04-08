@@ -10,6 +10,7 @@ import BusinessDetails from '@/views/business/view'
 import { constructMetadata } from '@/lib/utils'
 import { BusinessDetailsAPIResponse, TestimonialItem } from '@/types/business'
 import { Metadata } from 'next'
+import NotFoundPage from '@/app/not-found'
 
 interface BusinessDetailsPageProps {
   params: Promise<{ city: string; category: string; business: string }>
@@ -75,7 +76,7 @@ const BusinessDetailsPage = async ({ params }: BusinessDetailsPageProps) => {
       </>
     )
   } else {
-    return redirect(`404`)
+    return <NotFoundPage />
   }
 }
 

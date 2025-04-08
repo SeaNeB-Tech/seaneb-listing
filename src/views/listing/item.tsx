@@ -1,17 +1,21 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import Image from 'next/image'
 
 import { Daum } from '@/services/apis/types'
 import { Heart } from 'lucide-react'
 import { usePathname, useRouter } from 'next/navigation'
+import { generatePublicImageBusinessLink } from '@/lib/utils'
+import { isValidImageUrl } from '@/utils'
 
 interface VenueCardProps {
   business: Daum
   selectedArea: string
 }
+
+const DEFAULT_IMAGE = '/images/pages/home/banner-image-1.jpg'
 
 export default function VenueCard(props: VenueCardProps) {
   const { business } = props
@@ -21,6 +25,8 @@ export default function VenueCard(props: VenueCardProps) {
   const pathname = usePathname()
 
   const [isFavorite, setIsFavorite] = useState(false)
+  const [isImageLoading, setIsImageLoading] = useState(false)
+  const [imageUrl, setImageUrl] = useState<string>(DEFAULT_IMAGE)
 
   // Determine rating color based on score
   const getRatingColor = (score: number) => {
@@ -36,13 +42,35 @@ export default function VenueCard(props: VenueCardProps) {
     return categories?.[0] || ''
   }, [business?.business_category])
 
-  const imageUrl = useMemo(() => '/images/pages/home/banner-image-1.jpg', [])
+  const businessImage = useCallback(async () => {
+    if (!!business?.shop_galleries?.[0]?.link && !!business?.country && !!business?.state && !!business?.city) {
+      return setImageUrl(generatePublicImageBusinessLink(business, business?.shop_galleries?.[0]?.link))
+    }
+
+    if (business?.icon) {
+      setIsImageLoading(true)
+      const valid = await isValidImageUrl(business?.icon)
+      setIsImageLoading(false)
+
+      if (valid) {
+        return setImageUrl(business?.icon)
+      } else {
+        return setImageUrl(DEFAULT_IMAGE)
+      }
+    }
+
+    return setImageUrl(DEFAULT_IMAGE)
+  }, [business])
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       router.prefetch(`${pathname}/${category}/${business_legal_name}`)
     }
-  })
+  }, [])
+
+  useEffect(() => {
+    businessImage()
+  }, [businessImage])
 
   return (
     <div
@@ -51,13 +79,13 @@ export default function VenueCard(props: VenueCardProps) {
     >
       {/* Background Image */}
       <div className='absolute inset-0'>
-        <Image src={imageUrl || '/placeholder.svg'} alt={business_legal_name} fill className='object-cover' priority />
+        <Image src={imageUrl} alt={business_legal_name} fill className='object-cover' priority />
         {/* Gradient Overlay */}
         <div className='absolute inset-0 bg-gradient-to-t from-black/80 to-transparent'></div>
       </div>
 
       {/* Rating Badge */}
-      {avg_rating && (
+      {!!avg_rating && (
         <div
           className={`absolute top-4 left-4 ${getRatingColor(avg_rating)} flex h-10 w-10 items-center justify-center rounded-full font-bold text-white`}
         >
