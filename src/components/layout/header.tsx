@@ -18,6 +18,7 @@ import * as m from 'motion/react-m'
 function Header() {
   // ** States
   const [scrollPosition, setScrollPosition] = useState(0)
+  const [agent, setAgent] = useState<'ios' | 'android' | 'other'>('other')
 
   const handleScroll = () => {
     setScrollPosition(window.scrollY)
@@ -40,6 +41,7 @@ function Header() {
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true })
+    setAgent(checkDevice())
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
@@ -81,7 +83,7 @@ function Header() {
             {/* Desktop Navigation */}
             <nav className='hidden flex-1 lg:block'></nav>
             <div className='ml-4 flex flex-1 items-center justify-end lg:flex-none'>
-              <Link href={websiteConfig.appstore} className={cn(checkDevice() === 'ios' ? 'block' : 'hidden lg:block')}>
+              <Link href={websiteConfig.appstore} className={cn(agent === 'ios' ? 'block' : 'hidden lg:block')}>
                 <Image
                   width={130}
                   height={60}
@@ -92,10 +94,7 @@ function Header() {
                   src={'/images/logo/app-store.svg'}
                 />
               </Link>
-              <Link
-                href={websiteConfig.playstore}
-                className={cn(checkDevice() === 'android' ? 'block' : 'hidden lg:block')}
-              >
+              <Link href={websiteConfig.playstore} className={cn(agent === 'android' ? 'block' : 'hidden lg:block')}>
                 <Image
                   width={160}
                   height={60}
