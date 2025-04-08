@@ -1,3 +1,5 @@
+import { ShopGallery } from '@/types/business'
+
 export interface CategoryListItem {
   u_id: string
   category: string
@@ -18,6 +20,7 @@ export interface Daum {
   area: string
   city: string
   created_at: string
+  shop_galleries: ShopGallery[]
   updated_at: string
   state: string
   country: string

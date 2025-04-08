@@ -6,12 +6,12 @@ import { AnimatePresence, motion } from 'motion/react'
 import PopularAreas from '@/views/city/popular-area'
 import ListingGrid from '@/views/listing/grid'
 
-const CityComponent = ({ city }: { city: string }) => {
+const CityComponent = ({ city, areas }: { city: string; areas: string[] }) => {
   const [selectedArea, setSelectedArea] = useState<string | null>(null)
 
   return (
     <>
-      <PopularAreas city={city} setSelectedArea={setSelectedArea} selectedArea={selectedArea} />
+      <PopularAreas city={city} setSelectedArea={setSelectedArea} selectedArea={selectedArea} areas={areas} />
 
       <AnimatePresence mode='wait'>
         {selectedArea && (

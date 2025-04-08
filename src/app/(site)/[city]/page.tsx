@@ -1,16 +1,25 @@
 import { capitalizeFirstLetterOfEachWord } from '@/utils'
 
+import NotFoundPage from '@/app/not-found'
 import BannerComponent from '@/components/layout/banner'
+import { endpoint } from '@/services/apis/endpoint'
 import CityComponent from '@/views/city'
+import axios from 'axios'
 
 const CityPage = async ({ params }: { params: Promise<{ city: string }> }) => {
   const getParams = await params
 
+  if (getParams?.city === 'not-found') return <NotFoundPage />
+
   const decodedCity = decodeURIComponent(getParams?.city || '')
 
-  // const areas = await axios.get(
-  //   `https://maps.googleapis.com/maps/api/place/textsearch/json?query=areas+in+${getParams?.city}&key=${process.env.GOOGLE_API_KEY}`
-  // )
+  if (!decodedCity) {
+    return <NotFoundPage />
+  }
+
+  const listOfAreas = await axios.get(process.env.NEXT_PUBLIC_API_URL + endpoint.areaList.uri + `?city=${decodedCity}`)
+
+  const allAreas = listOfAreas?.data?.data || []
 
   return (
     <>
@@ -18,7 +27,7 @@ const CityPage = async ({ params }: { params: Promise<{ city: string }> }) => {
         data={[{ path: `/${decodedCity}`, title: decodedCity }]}
         title={`${capitalizeFirstLetterOfEachWord(decodedCity)}`}
       />
-      <CityComponent city={decodedCity} />
+      <CityComponent city={decodedCity} areas={allAreas} />
     </>
   )
 }

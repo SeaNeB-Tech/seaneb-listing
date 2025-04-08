@@ -92,3 +92,13 @@ export const defaultFormatTime = 'DD MMM, YYYY h:mm A'
 export const getTodaysDate = () => {
   return `${new Date().getDate()}-${new Date().getMonth()}-${new Date().getFullYear()}`
 }
+
+export const isValidImageUrl = (url: string): Promise<boolean> => {
+  return new Promise(resolve => {
+    const img = new Image()
+    img.src = url
+
+    img.onload = () => resolve(true)
+    img.onerror = () => resolve(false)
+  })
+}

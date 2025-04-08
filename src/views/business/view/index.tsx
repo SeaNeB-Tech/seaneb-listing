@@ -32,7 +32,7 @@ const BusinessDetails = ({ businessData, testimonials }: BusinessDetailsProps) =
   return (
     <ScreenWrapper className='grid grid-cols-1 gap-x-10 gap-y-10 py-10 lg:grid-cols-12 lg:py-20'>
       {/* Left Side View */}
-      <div className='lg:col-span-8'>
+      <div className='min-h-[30vh] lg:col-span-8 lg:min-h-[50vh]'>
         <h2 className='text-3xl font-medium'>{businessData?.business_name}</h2>
         <div className='mt-2 flex items-center gap-2'>
           <MapPin className='h-4 w-4 text-gray-500' />
@@ -95,7 +95,9 @@ const BusinessDetails = ({ businessData, testimonials }: BusinessDetailsProps) =
         </div>
 
         {/* Map */}
-        {businessData?.google_map_id && <LocationMap />}
+        {businessData?.latitude && businessData?.longitude && (
+          <LocationMap lat={businessData?.latitude} long={businessData?.longitude} />
+        )}
 
         {!!testimonials?.length && <BusinessReviews testimonials={testimonials} />}
       </div>
