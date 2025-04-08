@@ -1,7 +1,6 @@
-import { Metadata } from 'next'
 import { clsx, type ClassValue } from 'clsx'
+import { Metadata } from 'next'
 import { twMerge } from 'tailwind-merge'
-import { BusinessDetailsAPIResponse } from '@/types/business'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -67,7 +66,10 @@ export function constructMetadata({
   }
 }
 
-export const generatePublicImageBusinessLink = (businessData: BusinessDetailsAPIResponse, objectKey: string) => {
+export const generatePublicImageBusinessLink = (
+  businessData: { country: string; state: string; city: string; area: string; u_id: string },
+  objectKey: string
+) => {
   return `https://${process.env.NEXT_PUBLIC_DO_SPACES_NAME}.${process.env.NEXT_PUBLIC_DO_SPACES_REGION}.cdn.digitaloceanspaces.com/businesses/${businessData?.country}/${businessData?.state}/${businessData?.city}/${businessData?.area}/${businessData?.u_id}/store/${objectKey}`
 }
 

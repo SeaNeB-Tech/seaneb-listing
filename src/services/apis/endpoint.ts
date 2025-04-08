@@ -2,21 +2,19 @@ import { ApiEndpoint } from '@/types/api-utils'
 
 type Endpoints = {
   categoryList: ApiEndpoint
-  majorCities: ApiEndpoint
   searchBusiness: ApiEndpoint
   viewBusiness: ApiEndpoint
   businessMeta: ApiEndpoint
   testimonials: ApiEndpoint
+  majorCities: ApiEndpoint
+  areaList: ApiEndpoint
+  popCategory: ApiEndpoint
 }
 
 export const endpoint: Endpoints = {
   categoryList: {
     method: 'GET',
     uri: '/api/business-category-list'
-  },
-  majorCities: {
-    method: 'GET',
-    uri: '/api/major-city'
   },
   searchBusiness: {
     method: 'GET',
@@ -33,5 +31,17 @@ export const endpoint: Endpoints = {
   testimonials: {
     method: 'GET',
     uri: '/api/business-testimonial-list/:id'
+  },
+  majorCities: {
+    method: 'GET',
+    uri: '/api/major-city'
+  },
+  areaList: {
+    method: 'GET',
+    uri: '/api/area-list'
+  },
+  popCategory: {
+    method: 'GET',
+    uri: '/api/popular-category'
   }
 }

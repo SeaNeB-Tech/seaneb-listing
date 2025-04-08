@@ -23,6 +23,8 @@ export interface BusinessDetailsAPIResponse {
   x_url: string
   website_url: string
   google_map_id: string
+  latitude: string
+  longitude: string
   icon: string
   activity_status: boolean
   otp: any
