@@ -1,18 +1,17 @@
 'use client'
 
-import { useState } from 'react'
+import { memo } from 'react'
 
-import { Check, ThumbsUp } from 'lucide-react'
+import { Check } from 'lucide-react'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Button } from '@/components/ui/button'
+import { getInitials } from '@/utils'
 
 interface ReviewProps {
   name: string
   date: string
   content: string
   rating: number
-  helpfulCount: number
   isVerified?: boolean
   avatarSrc?: string
 }
@@ -35,31 +34,13 @@ function StarRating({ rating }: { rating: number }) {
   )
 }
 
-export function Review({ name, date, content, rating, helpfulCount, isVerified, avatarSrc }: ReviewProps) {
-  const [helpful, setHelpful] = useState(false)
-  const [helpfulCountState, setHelpfulCountState] = useState(helpfulCount)
-
-  const handleHelpfulClick = () => {
-    if (!helpful) {
-      setHelpfulCountState(helpfulCountState + 1)
-      setHelpful(true)
-    } else {
-      setHelpfulCountState(helpfulCountState - 1)
-      setHelpful(false)
-    }
-  }
-
-  const initials = name
-    .split(' ')
-    .map(n => n[0])
-    .join('')
-
+export const Review = memo(({ name, date, content, rating, isVerified, avatarSrc }: ReviewProps) => {
   return (
     <div className='py-6'>
       <div className='flex items-start gap-4'>
         <Avatar className='h-16 w-16'>
           <AvatarImage src={avatarSrc} alt={name} />
-          <AvatarFallback className='bg-gray-200 text-gray-600'>{initials}</AvatarFallback>
+          <AvatarFallback className='bg-gray-200 text-gray-600'>{getInitials(name)}</AvatarFallback>
         </Avatar>
         <div className='flex-1'>
           <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between'>
@@ -77,20 +58,8 @@ export function Review({ name, date, content, rating, helpfulCount, isVerified, 
             <StarRating rating={rating} />
           </div>
           <p className='mt-3 text-gray-700'>{content}</p>
-          <div className='mt-4'>
-            <Button
-              variant='outline'
-              size='sm'
-              className={`flex items-center gap-2 ${helpful ? 'bg-gray-100' : ''}`}
-              onClick={handleHelpfulClick}
-            >
-              <ThumbsUp className='h-4 w-4' />
-              <span>Helpful Review</span>
-              <span className='ml-1 text-gray-500'>{helpfulCountState}</span>
-            </Button>
-          </div>
         </div>
       </div>
     </div>
   )
-}
+})

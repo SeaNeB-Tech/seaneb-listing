@@ -7,7 +7,7 @@ import { endpoint } from '@/services/apis/endpoint'
 import BusinessViewCarousel from '@/views/business/carousel'
 import BusinessDetails from '@/views/business/view'
 
-import { BusinessDetailsAPIResponse } from '@/types/business'
+import { BusinessDetailsAPIResponse, TestimonialItem } from '@/types/business'
 import { Metadata } from 'next'
 import { constructMetadata } from '@/lib/utils'
 
@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: BusinessDetailsPageProps): Pr
   })
 }
 
-const getTestimonials = async (businessId: string) => {
+const getTestimonials = async (businessId: string): Promise<TestimonialItem[]> => {
   try {
     const updatedURI = endpoint.testimonials.uri.replace(':id', businessId)
 
@@ -47,7 +47,7 @@ const getTestimonials = async (businessId: string) => {
 
     const listReviews = await axios.get(url)
 
-    return listReviews?.data?.data || []
+    return listReviews?.data?.data?.data || []
   } catch {
     return []
   }

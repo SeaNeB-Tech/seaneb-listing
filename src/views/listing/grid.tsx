@@ -77,7 +77,6 @@ const ListingGrid = ({ city, selectedArea }: { city: string; selectedArea: strin
                   legalName={business.business_legal_name}
                   location={business.city}
                   rating={business.avg_rating}
-                  price='Starting from $59 per night'
                   imageUrl='/images/pages/home/banner-image-1.jpg'
                 />
               ))}
