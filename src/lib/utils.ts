@@ -25,7 +25,7 @@ interface ConstructMetadata {
 export function constructMetadata({
   title = 'SeaNeb',
   description = 'Find the best deals, discounts, and offers near you with ease!',
-  image = '/images/logo/logo-white.png',
+  image = '/images/og/opengraph-image.png',
   icons = '/favicon.ico',
   noIndex = false,
   keywords = ''
