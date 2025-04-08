@@ -33,9 +33,6 @@ const ListingGrid = ({ city, selectedArea }: { city: string; selectedArea: strin
     queryFn: () => fetchBusinessList({ filters, city }),
     enabled: !!city && !!filters?.area
   })
-  console.log('🚀 -----------------------------------🚀')
-  console.log('🚀 ~ ListingGrid ~ apiData:', apiData)
-  console.log('🚀 -----------------------------------🚀')
 
   return (
     <ScreenWrapper className='relative grid grid-cols-1 gap-8 py-10 xl:grid-cols-12'>
@@ -89,7 +86,7 @@ const ListingGrid = ({ city, selectedArea }: { city: string; selectedArea: strin
       </div>
       {/* Filters */}
       <div className='relative xl:col-span-3'>
-        <ListingFilters filters={filters} setFilters={setFilters} />
+        <ListingFilters filters={filters} setFilters={setFilters} cityValue={city} />
       </div>
     </ScreenWrapper>
   )

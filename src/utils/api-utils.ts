@@ -4,7 +4,7 @@ import { ApiUtils, MakeUrl } from '@/types/api-utils'
 import Axios from 'axios'
 import { sign } from 'jsonwebtoken'
 
-const showLogs = true
+const showLogs = false
 
 export const getDefaultHeaders = async () => {
   return { 'Content-Type': 'application/json', SameSite: 'None' }

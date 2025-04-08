@@ -12,11 +12,13 @@ import { debounce } from 'lodash'
 
 interface Props {
   filters: BusinessFilters
+  cityValue: string
   setFilters: Dispatch<SetStateAction<BusinessFilters>>
 }
 
-const ListingFilters = ({ filters, setFilters }: Props) => {
+const ListingFilters = ({ filters, setFilters, cityValue }: Props) => {
   const [searchText, setSearchText] = useState('')
+  const [city, setCity] = useState(cityValue)
 
   const refetch = () => {
     setFilters((prev: BusinessFilters) => ({
@@ -36,6 +38,20 @@ const ListingFilters = ({ filters, setFilters }: Props) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const delayedQuery = useCallback(debounce(refetch, 500), [searchText])
 
+  const searchLocation = async (inputValue?: string): Promise<string[]> => {
+    if (!inputValue) return []
+
+    const res = await fetch('/api/search/location', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ input: inputValue })
+    })
+
+    const data = await res.json()
+
+    return data?.suggestions ? [cityValue, ...data?.suggestions] : [cityValue]
+  }
+
   const searchCategory = async (inputValue?: string): Promise<string[]> => {
     if (!inputValue) return allCategories
     await sleep(100)
@@ -54,16 +70,43 @@ const ListingFilters = ({ filters, setFilters }: Props) => {
   }, [searchText, delayedQuery])
 
   return (
-    <div className='sticky top-24 space-y-8'>
-      <h2 className='after:bg-secondary relative w-max text-2xl after:absolute after:-bottom-1 after:left-0 after:h-[3px] after:w-full after:max-w-12 after:origin-bottom-right after:scale-x-100'>
+    <div className='sticky top-24 space-y-8 rounded-sm bg-gray-100 p-6'>
+      <h2 className='after:bg-secondary relative w-max text-2xl after:absolute after:-bottom-1 after:left-0 after:h-[3px] after:w-full after:max-w-8 after:origin-bottom-right after:scale-x-100'>
         Filters
       </h2>
       <div className='flex flex-col gap-y-4'>
         {/* Search */}
         <Input
           value={searchText}
+          className='bg-white'
           onChange={e => setSearchText(e.target.value)}
           placeholder='What are you looking for?'
+        />
+
+        {/* Location */}
+        <AsyncSelect<string>
+          fetcher={searchLocation}
+          renderOption={user => (
+            <div className='flex items-center gap-2'>
+              <div className='flex flex-col'>
+                <div className='font-medium'>{user}</div>
+              </div>
+            </div>
+          )}
+          getOptionValue={user => user}
+          getDisplayValue={user => (
+            <div className='flex items-center gap-2 text-left'>
+              <div className='flex flex-col leading-tight'>
+                <div className='font-medium'>{user}</div>
+              </div>
+            </div>
+          )}
+          notFound={<div className='py-6 text-center text-sm'>Try searching for your city name</div>}
+          label='Location'
+          placeholder='Location..'
+          value={city || ''}
+          onChange={setCity}
+          width={'100%'}
         />
 
         {/* Category */}
