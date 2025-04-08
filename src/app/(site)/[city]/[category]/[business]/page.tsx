@@ -1,5 +1,3 @@
-import { redirect } from 'next/navigation'
-
 import axios from 'axios'
 
 import { endpoint } from '@/services/apis/endpoint'
@@ -7,10 +5,10 @@ import { endpoint } from '@/services/apis/endpoint'
 import BusinessViewCarousel from '@/views/business/carousel'
 import BusinessDetails from '@/views/business/view'
 
+import NotFoundPage from '@/app/not-found'
 import { constructMetadata } from '@/lib/utils'
 import { BusinessDetailsAPIResponse, TestimonialItem } from '@/types/business'
 import { Metadata } from 'next'
-import NotFoundPage from '@/app/not-found'
 
 interface BusinessDetailsPageProps {
   params: Promise<{ city: string; category: string; business: string }>

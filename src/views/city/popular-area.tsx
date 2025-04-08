@@ -1,7 +1,6 @@
 'use client'
 
 import ScreenWrapper from '@/components/wrapper/screen-wrapper'
-import { areaListArray, AreaListItem } from '@/data/areas'
 import { cn } from '@/lib/utils'
 import { capitalizeFirstLetter } from '@/utils'
 import { X } from 'lucide-react'
@@ -54,7 +53,7 @@ const PopularAreas = ({ city, selectedArea, setSelectedArea, areas }: Props) => 
 
   const filteredAreas = useMemo(
     () => (isSelected ? areas.filter(a => a === selectedArea) : areas),
-    [selectedArea, isSelected]
+    [selectedArea, isSelected, areas]
   )
 
   return (

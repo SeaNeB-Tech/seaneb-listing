@@ -1,11 +1,10 @@
 import { capitalizeFirstLetterOfEachWord } from '@/utils'
 
+import NotFoundPage from '@/app/not-found'
 import BannerComponent from '@/components/layout/banner'
+import { endpoint } from '@/services/apis/endpoint'
 import CityComponent from '@/views/city'
 import axios from 'axios'
-import { endpoint } from '@/services/apis/endpoint'
-import { redirect } from 'next/navigation'
-import NotFoundPage from '@/app/not-found'
 
 const CityPage = async ({ params }: { params: Promise<{ city: string }> }) => {
   const getParams = await params

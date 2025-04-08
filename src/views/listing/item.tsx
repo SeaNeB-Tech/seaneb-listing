@@ -25,7 +25,6 @@ export default function VenueCard(props: VenueCardProps) {
   const pathname = usePathname()
 
   const [isFavorite, setIsFavorite] = useState(false)
-  const [isImageLoading, setIsImageLoading] = useState(false)
   const [imageUrl, setImageUrl] = useState<string>(DEFAULT_IMAGE)
 
   // Determine rating color based on score
@@ -48,9 +47,7 @@ export default function VenueCard(props: VenueCardProps) {
     }
 
     if (business?.icon) {
-      setIsImageLoading(true)
       const valid = await isValidImageUrl(business?.icon)
-      setIsImageLoading(false)
 
       if (valid) {
         return setImageUrl(business?.icon)
@@ -66,6 +63,7 @@ export default function VenueCard(props: VenueCardProps) {
     if (typeof window !== 'undefined') {
       router.prefetch(`${pathname}/${category}/${business_legal_name}`)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {

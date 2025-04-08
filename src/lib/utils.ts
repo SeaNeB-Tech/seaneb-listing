@@ -1,7 +1,6 @@
-import { Metadata } from 'next'
 import { clsx, type ClassValue } from 'clsx'
+import { Metadata } from 'next'
 import { twMerge } from 'tailwind-merge'
-import { BusinessDetailsAPIResponse } from '@/types/business'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
