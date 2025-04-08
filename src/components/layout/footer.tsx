@@ -1,36 +1,15 @@
-'use client'
-
-import Link from 'next/link'
 import Image from 'next/image'
-import { usePathname } from 'next/navigation'
-
-import { cn } from '@/lib/utils'
+import Link from 'next/link'
 
 import Logo from '@images/logo/logo-white.png'
 
 import { websiteConfig } from '@/config/website-config'
-import { routes } from '@/constants/routes'
 
 import { Facebook, Instagram, Linkedin, Mail, Phone } from 'lucide-react'
-import ScreenWrapper from '../wrapper/screen-wrapper'
 import { memo } from 'react'
-
-type FooterLink = {
-  label: string
-  link: string
-}
+import ScreenWrapper from '../wrapper/screen-wrapper'
 
 function Footer() {
-  const pathname = usePathname()
-
-  const explore: FooterLink[] = [{ label: 'Home', link: routes.home }]
-
-  const provideLinks: any[] = [{ label: 'UI / UX Design' }]
-
-  const isActiveLink = (path: string) => {
-    return pathname === path
-  }
-
   return (
     <footer className='bg-black text-white'>
       <ScreenWrapper className='py-5'>
