@@ -2,16 +2,15 @@
 
 import ScreenWrapper from '@/components/wrapper/screen-wrapper'
 
-import { Button } from '@/components/ui/button'
 import { generatePublicImageUserLink } from '@/lib/utils'
 import { BusinessDetailsAPIResponse, TestimonialItem } from '@/types/business'
-import { Facebook, Instagram, LinkIcon, Mail, MapPin, MessageCircle, Phone, Twitter, Youtube } from 'lucide-react'
+import { Facebook, Instagram, LinkIcon, Mail, MapPin, Phone, Twitter } from 'lucide-react'
 import Link from 'next/link'
+import React from 'react'
 import LocationMap from './basic/map'
 import BusinessRating from './basic/rating'
 import { HostCard } from './host-card'
 import BusinessReviews from './reviews'
-import React from 'react'
 
 interface BusinessDetailsProps {
   businessData: BusinessDetailsAPIResponse
@@ -33,6 +32,7 @@ const BusinessDetails = ({ businessData, testimonials }: BusinessDetailsProps) =
   console.log('🚀 -------------------------------------------------🚀')
   console.log('🚀 ~ BusinessDetails ~ businessData:', businessData)
   console.log('🚀 -------------------------------------------------🚀')
+
   return (
     <ScreenWrapper className='grid grid-cols-1 gap-x-10 gap-y-10 py-10 lg:grid-cols-12 lg:py-20'>
       {/* Left Side View */}

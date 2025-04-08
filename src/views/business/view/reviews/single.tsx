@@ -1,11 +1,10 @@
 'use client'
 
-import { memo, useState } from 'react'
+import { memo } from 'react'
 
-import { Check, ThumbsUp } from 'lucide-react'
+import { Check } from 'lucide-react'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Button } from '@/components/ui/button'
 import { getInitials } from '@/utils'
 
 interface ReviewProps {
