@@ -10,18 +10,14 @@ import Logo from '@images/logo/logo-white.png'
 
 import ScreenWrapper from '../wrapper/screen-wrapper'
 
-import { cn } from '@/lib/utils'
-import * as m from 'motion/react-m'
 import { websiteConfig } from '@/config/website-config'
+import { cn } from '@/lib/utils'
+
+import * as m from 'motion/react-m'
 
 function Header() {
-  // ** Hooks
-  // const pathname = usePathname()
-
   // ** States
-  // const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrollPosition, setScrollPosition] = useState(0)
-  const [isMobile, setIsMobile] = useState(false)
 
   const handleScroll = () => {
     setScrollPosition(window.scrollY)
@@ -44,19 +40,11 @@ function Header() {
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true })
-    const handleResize = () => setIsMobile(window.innerWidth < 1024)
-    handleResize()
-    window.addEventListener('resize', handleResize)
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('resize', handleResize)
     }
   }, [])
-
-  // useEffect(() => {
-  //   setIsMenuOpen(false)
-  // }, [pathname])
 
   return (
     <m.nav
@@ -93,30 +81,31 @@ function Header() {
             {/* Desktop Navigation */}
             <nav className='hidden flex-1 lg:block'></nav>
             <div className='ml-4 flex flex-1 items-center justify-end lg:flex-none'>
-              {(checkDevice() !== 'android' || !isMobile) && (
-                <Link href={websiteConfig.appstore}>
-                  <Image
-                    width={130}
-                    height={60}
-                    sizes='100vw'
-                    className='w-auto'
-                    alt='Download on App Store'
-                    src={'/images/logo/app-store.svg'}
-                  />
-                </Link>
-              )}
-              {(checkDevice() !== 'ios' || !isMobile) && (
-                <Link href={websiteConfig.playstore}>
-                  <Image
-                    width={160}
-                    height={60}
-                    sizes='100vw'
-                    className='h-[60px]'
-                    alt='Download on Google Play'
-                    src={'/images/logo/google-play-store.png'}
-                  />
-                </Link>
-              )}
+              <Link href={websiteConfig.appstore} className={cn(checkDevice() === 'ios' ? 'block' : 'hidden lg:block')}>
+                <Image
+                  width={130}
+                  height={60}
+                  sizes='100vw'
+                  priority
+                  className='w-auto'
+                  alt='Download on App Store'
+                  src={'/images/logo/app-store.svg'}
+                />
+              </Link>
+              <Link
+                href={websiteConfig.playstore}
+                className={cn(checkDevice() === 'android' ? 'block' : 'hidden lg:block')}
+              >
+                <Image
+                  width={160}
+                  height={60}
+                  priority
+                  sizes='100vw'
+                  className='h-[60px]'
+                  alt='Download on Google Play'
+                  src={'/images/logo/google-play-store.png'}
+                />
+              </Link>
             </div>
           </div>
         </ScreenWrapper>
