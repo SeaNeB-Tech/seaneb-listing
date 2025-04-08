@@ -11,12 +11,14 @@ import { useMemo } from 'react'
 interface Props {
   city: string
   selectedArea: string | null
+  /* eslint-disable-next-line no-unused-vars */
   setSelectedArea: (v: string | null) => void
 }
 
 interface AreaItemProps {
   area: AreaListItem
   selectedArea: string | null
+  /* eslint-disable-next-line no-unused-vars */
   setSelectedArea: (v: string | null) => void
 }
 
@@ -51,7 +53,7 @@ const PopularAreas = ({ city, selectedArea, setSelectedArea }: Props) => {
 
   const filteredAreas = useMemo(
     () => (isSelected ? areaListArray.filter(a => a.u_id === selectedArea) : areaListArray),
-    [selectedArea, areaListArray]
+    [selectedArea, isSelected]
   )
 
   return (
