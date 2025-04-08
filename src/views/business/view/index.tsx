@@ -2,11 +2,11 @@
 
 import ScreenWrapper from '@/components/wrapper/screen-wrapper'
 
-import { Button } from '@/components/ui/button'
 import { generatePublicImageUserLink } from '@/lib/utils'
 import { BusinessDetailsAPIResponse, TestimonialItem } from '@/types/business'
-import { Facebook, Instagram, LinkIcon, Mail, MapPin, MessageCircle, Phone, Twitter, Youtube } from 'lucide-react'
+import { Facebook, Instagram, LinkIcon, Mail, MapPin, Phone, Twitter } from 'lucide-react'
 import Link from 'next/link'
+import React from 'react'
 import LocationMap from './basic/map'
 import BusinessRating from './basic/rating'
 import { HostCard } from './host-card'
@@ -17,7 +17,22 @@ interface BusinessDetailsProps {
   testimonials: TestimonialItem[]
 }
 
+const LinkButton = ({ children, href }: { children: React.ReactNode; href: string }) => {
+  return (
+    <Link
+      href={href || `#`}
+      className='flex cursor-pointer items-center gap-1.5 rounded-none border border-gray-300 bg-gray-100 px-2 py-2 text-xs text-black hover:bg-gray-300'
+    >
+      {children}
+    </Link>
+  )
+}
+
 const BusinessDetails = ({ businessData, testimonials }: BusinessDetailsProps) => {
+  console.log('🚀 -------------------------------------------------🚀')
+  console.log('🚀 ~ BusinessDetails ~ businessData:', businessData)
+  console.log('🚀 -------------------------------------------------🚀')
+
   return (
     <ScreenWrapper className='grid grid-cols-1 gap-x-10 gap-y-10 py-10 lg:grid-cols-12 lg:py-20'>
       {/* Left Side View */}
@@ -34,50 +49,52 @@ const BusinessDetails = ({ businessData, testimonials }: BusinessDetailsProps) =
           {/* Contacts */}
           <div className='mt-2 flex flex-wrap sm:mt-0'>
             {businessData?.contact_no && (
-              <Button className='cursor-pointer rounded-none border border-gray-300 bg-gray-100 text-xs text-black hover:bg-gray-300'>
+              <LinkButton href={`tel:${businessData?.contact_no}`}>
                 <Phone className='size-4' />
                 {businessData?.contact_no}
-              </Button>
+              </LinkButton>
             )}
             {businessData?.email && (
-              <Button className='cursor-pointer rounded-none border border-gray-300 bg-gray-100 text-xs text-black hover:bg-gray-300'>
+              <LinkButton href={`mailto:${businessData?.email}`}>
                 <Mail className='size-4' />
                 {businessData?.email}
-              </Button>
+              </LinkButton>
             )}
             {businessData?.website_url && (
-              <Button className='cursor-pointer rounded-none border border-gray-300 bg-gray-100 text-xs text-black hover:bg-gray-300'>
+              <LinkButton href={businessData?.website_url}>
                 <LinkIcon className='size-4' />
                 {businessData?.website_url || 'www.example.com'}
-              </Button>
+              </LinkButton>
             )}
           </div>
           {/* Socials */}
           <div className='flex flex-wrap'>
-            <Link href='#' className='flex items-center gap-1 bg-[#3b5998] px-3 py-1 text-white'>
-              <Facebook className='h-4 w-4' />
-              <span>Facebook</span>
-            </Link>
+            {businessData?.facebook_url && (
+              <Link
+                href={businessData?.facebook_url}
+                className='flex items-center gap-1 bg-[#3b5998] px-3 py-1 text-white'
+              >
+                <Facebook className='h-4 w-4' />
+                <span>Facebook</span>
+              </Link>
+            )}
 
-            <Link href='#' className='flex items-center gap-1 bg-[#ff0000] px-3 py-1 text-white'>
-              <Youtube className='h-4 w-4' />
-              <span>YouTube</span>
-            </Link>
+            {businessData?.instagram_url && (
+              <Link
+                href={businessData?.instagram_url}
+                className='flex items-center gap-1 bg-[#e1306c] px-3 py-1 text-white'
+              >
+                <Instagram className='h-4 w-4' />
+                <span>Instagram</span>
+              </Link>
+            )}
 
-            <Link href='#' className='flex items-center gap-1 bg-[#e1306c] px-3 py-1 text-white'>
-              <Instagram className='h-4 w-4' />
-              <span>Instagram</span>
-            </Link>
-
-            <Link href='#' className='flex items-center gap-1 bg-[#25D366] px-3 py-1 text-white'>
-              <MessageCircle className='h-4 w-4' />
-              <span>WhatsApp</span>
-            </Link>
-
-            <Link href='#' className='flex items-center gap-1 bg-[#1da1f2] px-3 py-1 text-white'>
-              <Twitter className='h-4 w-4' />
-              <span>Twitter</span>
-            </Link>
+            {businessData?.x_url && (
+              <Link href={businessData?.x_url} className='flex items-center gap-1 bg-[#1da1f2] px-3 py-1 text-white'>
+                <Twitter className='h-4 w-4' />
+                <span>Twitter</span>
+              </Link>
+            )}
           </div>
         </div>
 
@@ -98,7 +115,7 @@ const BusinessDetails = ({ businessData, testimonials }: BusinessDetailsProps) =
               name={user?.user?.full_name}
               phone={user?.user?.mobile_no}
               onSendMessage={() => {
-                console.log('Send message to', user?.user?.full_name)
+                window.open(`https://wa.me/${businessData?.whatsapp_no || user?.user?.mobile_no}`, '_blank')
               }}
             />
           ))}

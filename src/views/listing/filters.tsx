@@ -51,7 +51,6 @@ const ListingFilters = ({ filters, setFilters }: Props) => {
     delayedQuery()
 
     return delayedQuery.cancel
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchText, delayedQuery])
 
   return (
