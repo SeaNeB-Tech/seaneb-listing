@@ -1,12 +1,12 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import Image from 'next/image'
 
+import { Daum } from '@/services/apis/types'
 import { Heart } from 'lucide-react'
 import { usePathname, useRouter } from 'next/navigation'
-import { BusinessSearchResponse, Daum } from '@/services/apis/types'
 
 interface VenueCardProps {
   business: Daum
@@ -14,7 +14,8 @@ interface VenueCardProps {
 }
 
 export default function VenueCard(props: VenueCardProps) {
-  const { business, selectedArea } = props
+  const { business } = props
+
   const { business_name, business_legal_name, city, avg_rating } = business
   const router = useRouter()
   const pathname = usePathname()
@@ -29,13 +30,23 @@ export default function VenueCard(props: VenueCardProps) {
     return 'bg-orange-500'
   }
 
-  const category = useMemo(() => {}, [])
+  const category = useMemo(() => {
+    const categories = business?.business_category?.split(',')
+
+    return categories?.[0] || ''
+  }, [business?.business_category])
 
   const imageUrl = useMemo(() => '/images/pages/home/banner-image-1.jpg', [])
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      router.prefetch(`${pathname}/${category}/${business_legal_name}`)
+    }
+  })
+
   return (
     <div
-      onClick={() => router.push(`${pathname}/${selectedArea}/${business_legal_name}`)}
+      onClick={() => router.push(`${pathname}/${category}/${business_legal_name}`)}
       className='relative h-[240px] cursor-pointer overflow-hidden rounded-md shadow-xl transition-transform duration-300 hover:scale-105'
     >
       {/* Background Image */}

@@ -7,10 +7,9 @@ import { endpoint } from '@/services/apis/endpoint'
 import BusinessViewCarousel from '@/views/business/carousel'
 import BusinessDetails from '@/views/business/view'
 
+import { constructMetadata } from '@/lib/utils'
 import { BusinessDetailsAPIResponse, TestimonialItem } from '@/types/business'
 import { Metadata } from 'next'
-import { constructMetadata } from '@/lib/utils'
-import { sleep } from '@/utils'
 
 interface BusinessDetailsPageProps {
   params: Promise<{ city: string; category: string; business: string }>
