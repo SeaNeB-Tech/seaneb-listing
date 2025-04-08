@@ -4,8 +4,8 @@ import { useState } from 'react'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
 
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
-import { BusinessDetailsAPIResponse } from '@/types/business'
 import { generatePublicImageBusinessLink } from '@/lib/utils'
+import { BusinessDetailsAPIResponse } from '@/types/business'
 
 function BusinessViewCarousel({ businessData }: { businessData: BusinessDetailsAPIResponse }) {
   const [image, setImage] = useState<string | null>(null)
@@ -39,7 +39,7 @@ function BusinessViewCarousel({ businessData }: { businessData: BusinessDetailsA
         <CarouselPrevious className='absolute top-1/2 left-4 -translate-y-1/2 cursor-pointer opacity-0 transition-opacity duration-500 group-hover:opacity-100' />
         <CarouselNext className='absolute top-1/2 right-4 -translate-y-1/2 cursor-pointer opacity-0 transition-opacity duration-500 group-hover:opacity-100' />
         <Dialog open={!!image} onOpenChange={() => setImage(null)}>
-          <DialogContent className='flex h-[90vh] items-center justify-center border-none bg-transparent p-0 outline-none lg:max-w-4xl'>
+          <DialogContent className='flex items-center justify-center border-none bg-transparent p-0 shadow-none outline-none'>
             <DialogHeader hidden>
               <DialogTitle hidden>Share link</DialogTitle>
               <DialogDescription hidden>Anyone who has this link will be able to view this.</DialogDescription>
