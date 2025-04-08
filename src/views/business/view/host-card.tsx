@@ -13,13 +13,7 @@ interface HostCardProps {
   onSendMessage?: () => void
 }
 
-export function HostCard({
-  name = 'Tom Perrin',
-  phone = '(123) 123-456',
-  email = 'tom@example.com',
-  imageUrl = '/placeholder.svg?height=80&width=80',
-  onSendMessage
-}: HostCardProps) {
+export function HostCard({ name = '', phone = '', email = '', imageUrl = '', onSendMessage }: HostCardProps) {
   return (
     <div className='w-full max-w-sm rounded-sm bg-gray-100 p-6 lg:max-w-full'>
       <div className='mb-4 flex items-start justify-between gap-2'>
