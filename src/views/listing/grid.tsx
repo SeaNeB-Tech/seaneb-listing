@@ -34,6 +34,9 @@ const ListingGrid = ({ city, selectedArea }: { city: string; selectedArea: strin
     enabled: !!city && !!filters?.area,
     staleTime: 30
   })
+  console.log('🚀 -----------------------------------🚀')
+  console.log('🚀 ~ ListingGrid ~ apiData:', apiData)
+  console.log('🚀 -----------------------------------🚀')
 
   return (
     <ScreenWrapper className='relative grid grid-cols-1 gap-8 py-10 xl:grid-cols-12'>
