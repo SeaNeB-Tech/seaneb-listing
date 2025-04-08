@@ -11,8 +11,8 @@ export default async function Home() {
   return (
     <>
       <HeroSection listCategories={listCategories?.data?.data?.data || []} />
-      <PopularCategories listCategories={listCategories?.data?.data?.data || []} />
       <MajorCities listCities={listCities?.data?.data?.data || []} />
+      <PopularCategories listCategories={listCategories?.data?.data?.data || []} />
     </>
   )
 }

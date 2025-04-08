@@ -1,26 +1,22 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import Image from 'next/image'
 
+import { Daum } from '@/services/apis/types'
 import { Heart } from 'lucide-react'
 import { usePathname, useRouter } from 'next/navigation'
 
 interface VenueCardProps {
-  id: string
-  title: string
+  business: Daum
   selectedArea: string
-  legalName: string
-  location: string
-  rating: number
-  date?: string
-  price?: string
-  imageUrl: string
 }
 
 export default function VenueCard(props: VenueCardProps) {
-  const { title, selectedArea, legalName, location, rating, date, price, imageUrl } = props
+  const { business } = props
+
+  const { business_name, business_legal_name, city, avg_rating } = business
   const router = useRouter()
   const pathname = usePathname()
 
@@ -34,31 +30,38 @@ export default function VenueCard(props: VenueCardProps) {
     return 'bg-orange-500'
   }
 
+  const category = useMemo(() => {
+    const categories = business?.business_category?.split(',')
+
+    return categories?.[0] || ''
+  }, [business?.business_category])
+
+  const imageUrl = useMemo(() => '/images/pages/home/banner-image-1.jpg', [])
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      router.prefetch(`${pathname}/${category}/${business_legal_name}`)
+    }
+  })
+
   return (
     <div
-      onClick={() => router.push(`${pathname}/${selectedArea}/${legalName}`)}
+      onClick={() => router.push(`${pathname}/${category}/${business_legal_name}`)}
       className='relative h-[240px] cursor-pointer overflow-hidden rounded-md shadow-xl transition-transform duration-300 hover:scale-105'
     >
       {/* Background Image */}
       <div className='absolute inset-0'>
-        <Image src={imageUrl || '/placeholder.svg'} alt={legalName} fill className='object-cover' priority />
+        <Image src={imageUrl || '/placeholder.svg'} alt={business_legal_name} fill className='object-cover' priority />
         {/* Gradient Overlay */}
         <div className='absolute inset-0 bg-gradient-to-t from-black/80 to-transparent'></div>
       </div>
 
       {/* Rating Badge */}
-      {rating && (
+      {avg_rating && (
         <div
-          className={`absolute top-4 left-4 ${getRatingColor(rating)} flex h-10 w-10 items-center justify-center rounded-full font-bold text-white`}
+          className={`absolute top-4 left-4 ${getRatingColor(avg_rating)} flex h-10 w-10 items-center justify-center rounded-full font-bold text-white`}
         >
-          {rating}
-        </div>
-      )}
-
-      {/* Date Badge */}
-      {date && (
-        <div className='absolute top-4 right-4 text-right text-white'>
-          <p className='font-medium'>{date}</p>
+          {avg_rating}
         </div>
       )}
 
@@ -66,9 +69,8 @@ export default function VenueCard(props: VenueCardProps) {
       <div className='absolute bottom-0 left-0 w-full p-4 text-white'>
         <div className='flex items-center justify-between'>
           <div>
-            {title && <h3 className='flex items-center gap-1 text-xl font-bold'>{title}</h3>}
-            {location && <p className='text-sm opacity-90'>{location}</p>}
-            {price && <p className='text-lg font-medium'>{price}</p>}
+            {business_name && <h3 className='flex items-center gap-1 text-xl font-bold'>{business_name}</h3>}
+            {city && <p className='text-sm opacity-90'>{city}</p>}
           </div>
           <button
             onClick={e => {

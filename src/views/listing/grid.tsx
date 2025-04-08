@@ -34,6 +34,9 @@ const ListingGrid = ({ city, selectedArea }: { city: string; selectedArea: strin
     enabled: !!city && !!filters?.area,
     staleTime: 30
   })
+  console.log('🚀 -----------------------------------🚀')
+  console.log('🚀 ~ ListingGrid ~ apiData:', apiData)
+  console.log('🚀 -----------------------------------🚀')
 
   return (
     <ScreenWrapper className='relative grid grid-cols-1 gap-8 py-10 xl:grid-cols-12'>
@@ -69,16 +72,7 @@ const ListingGrid = ({ city, selectedArea }: { city: string; selectedArea: strin
             </div>
             <div className='mt-6 grid grid-cols-1 gap-8 lg:grid-cols-2'>
               {apiData?.data?.map((business, index) => (
-                <VenueCard
-                  key={index}
-                  selectedArea={selectedArea}
-                  id={business.u_id}
-                  title={business.business_name}
-                  legalName={business.business_legal_name}
-                  location={business.city}
-                  rating={business.avg_rating}
-                  imageUrl='/images/pages/home/banner-image-1.jpg'
-                />
+                <VenueCard business={business} key={index} selectedArea={selectedArea} />
               ))}
             </div>
             <div className='mt-10'>
