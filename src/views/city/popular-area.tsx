@@ -1,7 +1,6 @@
 'use client'
 
 import ScreenWrapper from '@/components/wrapper/screen-wrapper'
-import { areaListArray, AreaListItem } from '@/data/areas'
 import { cn } from '@/lib/utils'
 import { capitalizeFirstLetter } from '@/utils'
 import { X } from 'lucide-react'
@@ -10,13 +9,14 @@ import { useMemo } from 'react'
 
 interface Props {
   city: string
+  areas: string[]
   selectedArea: string | null
   /* eslint-disable-next-line no-unused-vars */
   setSelectedArea: (v: string | null) => void
 }
 
 interface AreaItemProps {
-  area: AreaListItem
+  area: string
   selectedArea: string | null
   /* eslint-disable-next-line no-unused-vars */
   setSelectedArea: (v: string | null) => void
@@ -38,22 +38,22 @@ const AreaItem = ({ area, selectedArea, setSelectedArea }: AreaItemProps) => {
       exit='exit'
       className={cn(
         'bg-background border-primary text-primary flex cursor-pointer items-center justify-center rounded-full border-2 px-2 py-1 md:px-3',
-        selectedArea === area?.u_id ? 'bg-primary text-background' : 'text-primary'
+        selectedArea === area ? 'bg-primary text-background' : 'text-primary'
       )}
-      onClick={() => (selectedArea === area?.u_id ? setSelectedArea(null) : setSelectedArea(area?.u_id))}
+      onClick={() => (selectedArea === area ? setSelectedArea(null) : setSelectedArea(area))}
     >
-      <p className='text-center text-sm font-medium tracking-wide md:text-base'>{area?.name}</p>
-      {selectedArea === area?.u_id && <X className='ml-2 size-4' />}
+      <p className='text-center text-sm font-medium tracking-wide capitalize md:text-base'>{area}</p>
+      {selectedArea === area && <X className='ml-2 size-4' />}
     </motion.div>
   )
 }
 
-const PopularAreas = ({ city, selectedArea, setSelectedArea }: Props) => {
+const PopularAreas = ({ city, selectedArea, setSelectedArea, areas }: Props) => {
   const isSelected = useMemo(() => !!selectedArea, [selectedArea])
 
   const filteredAreas = useMemo(
-    () => (isSelected ? areaListArray.filter(a => a.u_id === selectedArea) : areaListArray),
-    [selectedArea, isSelected]
+    () => (isSelected ? areas.filter(a => a === selectedArea) : areas),
+    [selectedArea, isSelected, areas]
   )
 
   return (
@@ -73,7 +73,7 @@ const PopularAreas = ({ city, selectedArea, setSelectedArea }: Props) => {
       <motion.div layout className='flex w-full flex-wrap items-center gap-2'>
         <AnimatePresence mode='wait'>
           {filteredAreas.map(area => (
-            <AreaItem key={area.u_id} area={area} setSelectedArea={setSelectedArea} selectedArea={selectedArea} />
+            <AreaItem key={area} area={area} setSelectedArea={setSelectedArea} selectedArea={selectedArea} />
           ))}
         </AnimatePresence>
       </motion.div>

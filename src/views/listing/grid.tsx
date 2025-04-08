@@ -29,10 +29,13 @@ const ListingGrid = ({ city, selectedArea }: { city: string; selectedArea: strin
   })
 
   const { data: apiData, isLoading } = useQuery({
-    queryKey: ['businesses', filters, city],
+    queryKey: ['businesses', filters, city, selectedArea],
     queryFn: () => fetchBusinessList({ filters, city }),
     enabled: !!city && !!filters?.area
   })
+  console.log('🚀 -----------------------------------🚀')
+  console.log('🚀 ~ ListingGrid ~ apiData:', apiData)
+  console.log('🚀 -----------------------------------🚀')
 
   return (
     <ScreenWrapper className='relative grid grid-cols-1 gap-8 py-10 xl:grid-cols-12'>
@@ -44,8 +47,8 @@ const ListingGrid = ({ city, selectedArea }: { city: string; selectedArea: strin
               <div className='spinner1 absolute top-1/2 left-1/2 size-10 -translate-x-1/2 -translate-y-1/2'></div>
             </div>
           </div>
-        ) : !apiData?.data || apiData?.data?.length === 0 ? (
-          <div className='flex h-full max-h-[50vh] w-full items-center justify-center rounded-lg border border-gray-300 p-6 text-lg font-semibold uppercase'>
+        ) : !apiData?.data?.length || apiData?.data?.length === 0 ? (
+          <div className='flex h-full max-h-[50vh] min-h-[30vh] w-full items-center justify-center rounded-lg border border-gray-300 p-6 text-lg font-semibold uppercase'>
             No businesses found in {city} - {selectedArea}
           </div>
         ) : (
@@ -71,14 +74,16 @@ const ListingGrid = ({ city, selectedArea }: { city: string; selectedArea: strin
                 <VenueCard business={business} key={index} selectedArea={selectedArea} />
               ))}
             </div>
-            <div className='mt-10'>
-              <PaginationComponent
-                value={filters?.pageIndex}
-                onChange={value => setFilters({ ...filters, pageIndex: value })}
-                total={apiData?.payload?.pagination?.total || 0}
-                pageSize={BUSINESS_ITEMS_PER_PAGE}
-              />
-            </div>
+            {apiData?.payload?.pagination?.total && (
+              <div className='mt-10'>
+                <PaginationComponent
+                  value={filters?.pageIndex}
+                  onChange={value => setFilters({ ...filters, pageIndex: value })}
+                  total={apiData?.payload?.pagination?.total || 0}
+                  pageSize={BUSINESS_ITEMS_PER_PAGE}
+                />
+              </div>
+            )}
           </>
         )}
       </div>
