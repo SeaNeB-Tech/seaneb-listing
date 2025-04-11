@@ -3,10 +3,11 @@ import React from 'react'
 import ScreenWrapper from '@/components/wrapper/screen-wrapper'
 import Image from 'next/image'
 import Link from 'next/link'
+import { toUrlName } from '@/utils'
 
 const CityItem = ({ city }: { city: string }) => {
   return (
-    <Link href={`/${city}`} className='flex flex-col items-center justify-start rounded-lg p-1'>
+    <Link href={toUrlName(`/${city}`)} className='flex flex-col items-center justify-start rounded-lg p-1'>
       <div className='flex h-20 w-20 items-center justify-center rounded-lg p-3 md:h-24 md:w-24'>
         <Image
           width={90}
