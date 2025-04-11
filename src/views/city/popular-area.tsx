@@ -49,10 +49,13 @@ const AreaItem = ({ area, selectedArea, setSelectedArea }: AreaItemProps) => {
 }
 
 const PopularAreas = ({ city, selectedArea, setSelectedArea, areas }: Props) => {
+  console.log('🚀 --------------------------------🚀')
+  console.log('🚀 ~ PopularAreas ~ areas:', areas)
+  console.log('🚀 --------------------------------🚀')
   const isSelected = useMemo(() => !!selectedArea, [selectedArea])
 
   const filteredAreas = useMemo(
-    () => (isSelected ? areas.filter(a => a === selectedArea) : areas),
+    () => (isSelected ? areas.filter(a => a === selectedArea && !!a?.length) : areas?.filter(v => !!v?.length)),
     [selectedArea, isSelected, areas]
   )
 
