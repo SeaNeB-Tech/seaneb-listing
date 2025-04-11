@@ -8,7 +8,7 @@ import { Daum } from '@/services/apis/types'
 import { Heart } from 'lucide-react'
 import { usePathname, useRouter } from 'next/navigation'
 import { generatePublicImageBusinessLink } from '@/lib/utils'
-import { isValidImageUrl } from '@/utils'
+import { isValidImageUrl, toUrlName } from '@/utils'
 
 interface VenueCardProps {
   business: Daum
@@ -61,7 +61,7 @@ export default function VenueCard(props: VenueCardProps) {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      router.prefetch(`${pathname}/${category}/${business_legal_name}`)
+      router.prefetch(toUrlName(`${pathname}/${category}/${business_legal_name}`))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -72,7 +72,7 @@ export default function VenueCard(props: VenueCardProps) {
 
   return (
     <div
-      onClick={() => router.push(`${pathname}/${category}/${business_legal_name}`)}
+      onClick={() => router.push(toUrlName(`${pathname}/${category}/${business_legal_name}`))}
       className='relative h-[240px] cursor-pointer overflow-hidden rounded-md shadow-xl transition-transform duration-300 hover:scale-105'
     >
       {/* Background Image */}
