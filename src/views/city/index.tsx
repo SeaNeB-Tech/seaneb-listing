@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from 'motion/react'
 import PopularAreas from '@/views/city/popular-area'
 import ListingGrid from '@/views/listing/grid'
 
-const CityComponent = ({ city, areas }: { city: string; areas: string[] }) => {
+const CityComponent = ({ city, areas, category }: { city: string; areas: string[]; category?: string }) => {
   const [selectedArea, setSelectedArea] = useState<string | null>(null)
 
   return (
@@ -22,7 +22,7 @@ const CityComponent = ({ city, areas }: { city: string; areas: string[] }) => {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5, ease: 'easeInOut' }}
           >
-            <ListingGrid city={city} selectedArea={selectedArea} />
+            <ListingGrid city={city} selectedArea={selectedArea} category={category || ''} />
           </motion.div>
         )}
       </AnimatePresence>
