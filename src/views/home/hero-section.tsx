@@ -93,7 +93,6 @@ const HeroSection = () => {
 
           const data: PlacesApiResponse = await res.json()
 
-          console.log('data?.data  :', data?.data)
           return data?.data || []
         } else {
           const res = await fetch('/api/search/user-location', {
@@ -116,6 +115,7 @@ const HeroSection = () => {
         }
       } catch (error) {
         console.log('error :', error)
+
         return []
       }
     },
@@ -125,7 +125,6 @@ const HeroSection = () => {
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       response => {
-        console.log('RESPONSE', response?.coords.latitude)
         setLocation({ lat: response?.coords?.latitude, long: response?.coords?.longitude })
       },
       err => {

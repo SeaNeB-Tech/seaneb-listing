@@ -29,9 +29,6 @@ export async function POST(req: Request) {
         }
       }
     }
-    console.log('🚀 ----------------------------🚀')
-    console.log('🚀 ~ POST ~ queries:', queries)
-    console.log('🚀 ----------------------------🚀')
 
     const data = await axios.post('https://places.googleapis.com/v1/places:searchNearby', queries, { headers })
 
@@ -40,13 +37,7 @@ export async function POST(req: Request) {
     if (data.statusText === 'OK') {
       if (responseData?.places?.length > 0) {
         const place = responseData?.places[0]
-        const area = place.addressComponents?.find(item => {
-          if (item?.types?.includes('sublocality_level_2')) {
-            return item?.longText
-          } else if (item?.types?.includes('sublocality_level_1')) {
-            return item?.longText
-          }
-        }) ?? { longText: place.formattedAddress.split(',')[0] }
+
         const city = place.addressComponents?.find(item => {
           if (item?.types?.includes('locality')) {
             return item?.longText
@@ -66,7 +57,6 @@ export async function POST(req: Request) {
       { status: 500 }
     )
   } catch (err: any) {
-    console.log('err :', err)
     return NextResponse.json({ status: 'error', message: err.message }, { status: 500 })
   }
 }
