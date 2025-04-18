@@ -25,7 +25,7 @@ export async function POST(req: Request) {
             latitude: location.lat,
             longitude: location.long
           },
-          radius: 50000.0
+          radius: 5000.0
         }
       }
     }
