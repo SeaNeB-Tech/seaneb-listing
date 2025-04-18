@@ -4,11 +4,11 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import Image from 'next/image'
 
-import { Daum } from '@/services/apis/types'
-import { Heart } from 'lucide-react'
-import { usePathname, useRouter } from 'next/navigation'
 import { generatePublicImageBusinessLink } from '@/lib/utils'
+import { Daum } from '@/services/apis/types'
 import { isValidImageUrl, toUrlName } from '@/utils'
+import { Heart } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 interface VenueCardProps {
   business: Daum
@@ -22,7 +22,6 @@ export default function VenueCard(props: VenueCardProps) {
 
   const { business_name, business_legal_name, city, avg_rating } = business
   const router = useRouter()
-  const pathname = usePathname()
 
   const [isFavorite, setIsFavorite] = useState(false)
   const [imageUrl, setImageUrl] = useState<string>(DEFAULT_IMAGE)
@@ -59,9 +58,12 @@ export default function VenueCard(props: VenueCardProps) {
     return setImageUrl(DEFAULT_IMAGE)
   }, [business])
 
+  const redirectRoute = useMemo(() => `/${city}/${category}/${business_legal_name}`, [])
+  console.log('redirectRoute :', redirectRoute)
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      router.prefetch(toUrlName(`${pathname}/${category}/${business_legal_name}`))
+      router.prefetch(toUrlName(redirectRoute))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -72,7 +74,7 @@ export default function VenueCard(props: VenueCardProps) {
 
   return (
     <div
-      onClick={() => router.push(toUrlName(`${pathname}/${category}/${business_legal_name}`))}
+      onClick={() => router.push(toUrlName(redirectRoute))}
       className='relative h-[240px] cursor-pointer overflow-hidden rounded-md shadow-xl transition-transform duration-300 hover:scale-105'
     >
       {/* Background Image */}

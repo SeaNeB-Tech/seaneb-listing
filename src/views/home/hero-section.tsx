@@ -125,6 +125,7 @@ const HeroSection = () => {
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       response => {
+        console.log('response?.coords :', response?.coords)
         setLocation({ lat: response?.coords?.latitude, long: response?.coords?.longitude })
       },
       err => {
