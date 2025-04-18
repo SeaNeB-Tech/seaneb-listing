@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { useCallback, useEffect, useState } from 'react'
 
 import Image from 'next/image'
 import Link from 'next/link'
@@ -15,32 +16,124 @@ import { AsyncSelect } from '@/components/ui/async-select'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { color } from '@/constants/colors'
 import { fetchCategoryList } from '@/services/apis'
-import { capitalizeFirstLetter } from '@/utils'
+import { PlacesApiItem, PlacesApiResponse } from '@/types/google-places'
+import { capitalizeFirstLetter, toUrlName } from '@/utils'
 import { useQuery } from '@tanstack/react-query'
 
-const searchLocation = async (inputValue?: string): Promise<string[]> => {
-  if (!inputValue) return []
+const modifyUserData = (city: string): PlacesApiItem => {
+  return {
+    placePrediction: {
+      place: 'places/ChIJhYgM_X5OXjkRFVJLDDy5oKk',
+      placeId: 'ChIJhYgM_X5OXjkRFVJLDDy5oKk',
 
-  const res = await fetch('/api/search/location', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ input: inputValue })
-  })
-
-  const data = await res.json()
-
-  return data?.suggestions || []
+      text: {
+        text: city,
+        matches: [
+          {
+            endOffset: 5
+          }
+        ]
+      },
+      structuredFormat: {
+        mainText: {
+          text: city,
+          matches: [
+            {
+              endOffset: 5
+            }
+          ]
+        },
+        secondaryText: {
+          text: city
+        }
+      },
+      types: ['geocode', 'locality', 'political']
+    }
+  }
 }
 
 const HeroSection = () => {
-  const [selectedUser, setSelectedUser] = useState<string | null>(null)
+  const router = useRouter()
+
+  const [searchText, setSearchText] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('all')
+  const [selectedLocation, setSelectedLocation] = useState<string | null>(null)
+  const [isSearching, setIsSearching] = useState(false)
+
+  const [location, setLocation] = useState<{ lat: number; long: number } | null>(null)
 
   const { data: categories } = useQuery({
     queryKey: ['categories'],
     queryFn: () => fetchCategoryList()
   })
 
-  console.log('categories :', categories)
+  const onSearch = () => {
+    if (!selectedLocation) return
+
+    const city = toUrlName(selectedLocation?.toLowerCase())
+    const category = !!selectedCategory && selectedCategory !== 'all' ? selectedCategory : ''
+    const query = searchText.trim()
+
+    setIsSearching(true)
+
+    router.push(`/${city}${!!category ? `/${category}` : ''}${!!query ? `?text=${encodeURIComponent(query)}` : ''}`)
+  }
+
+  const searchLocation = useCallback(
+    async (inputValue?: string): Promise<PlacesApiItem[]> => {
+      try {
+        if (!inputValue && !location) return []
+
+        if (!!inputValue) {
+          const res = await fetch('/api/search/location', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ input: inputValue })
+          })
+
+          const data: PlacesApiResponse = await res.json()
+
+          console.log('data?.data  :', data?.data)
+          return data?.data || []
+        } else {
+          const res = await fetch('/api/search/user-location', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ location })
+          })
+
+          const data: { status: string; data: string } = await res.json()
+
+          const cityName = data?.data
+
+          if (!!cityName) {
+            setSelectedLocation(cityName)
+
+            return !!cityName ? [modifyUserData(cityName)] : []
+          }
+
+          return []
+        }
+      } catch (error) {
+        console.log('error :', error)
+        return []
+      }
+    },
+    [location]
+  )
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      response => {
+        console.log('RESPONSE', response?.coords.latitude)
+        setLocation({ lat: response?.coords?.latitude, long: response?.coords?.longitude })
+      },
+      err => {
+        console.log('ERRR', err)
+      },
+      { enableHighAccuracy: true }
+    )
+  }, [])
 
   return (
     <div
@@ -58,7 +151,7 @@ const HeroSection = () => {
           <p className='z-10 mt-4 text-2xl text-gray-600'>Explore top-rated attractions, activities and more</p>
         </div>
 
-        {/* Search bar - positioned in the middle */}
+        {/* Search bar */}
         <div className='relative z-10 mt-4 max-w-7xl'>
           <div className='p-2 md:rounded-full md:bg-white md:shadow-lg'>
             <div className='flex flex-col gap-2 md:flex-row'>
@@ -66,6 +159,8 @@ const HeroSection = () => {
               <div className='flex flex-1 items-center border-b border-gray-200 bg-white px-4 py-2 md:border-r md:border-b-0 md:bg-transparent'>
                 <input
                   type='text'
+                  value={searchText}
+                  onChange={e => setSearchText(e.target.value)}
                   placeholder='What are you looking for?'
                   className='w-full border-none bg-white text-base outline-none md:bg-transparent md:text-lg'
                 />
@@ -74,35 +169,35 @@ const HeroSection = () => {
               {/* Enter Location */}
               <div className='flex flex-1 items-center border-b border-gray-200 bg-white px-4 py-2 md:border-r md:border-b-0 md:bg-transparent'>
                 <MapPin className='mr-2 h-5 w-5 shrink-0 text-gray-400' />
-                <AsyncSelect<string>
+                <AsyncSelect<PlacesApiItem>
                   fetcher={searchLocation}
                   renderOption={user => (
                     <div className='flex items-center gap-2'>
                       <div className='flex flex-col'>
-                        <div className='font-medium'>{user}</div>
+                        <div className='font-medium'>{user?.placePrediction?.text?.text}</div>
                       </div>
                     </div>
                   )}
-                  getOptionValue={user => user}
+                  getOptionValue={user => user?.placePrediction?.structuredFormat?.mainText?.text}
                   getDisplayValue={user => (
                     <div className='flex items-center gap-2 text-left'>
                       <div className='flex flex-col leading-tight'>
-                        <div className='font-medium'>{user}</div>
+                        <div className='font-medium'>{user?.placePrediction?.text?.text}</div>
                       </div>
                     </div>
                   )}
                   notFound={<div className='py-6 text-center text-sm'>Try searching for your city name</div>}
                   label='Location'
                   placeholder='Location..'
-                  value={selectedUser || ''}
-                  onChange={setSelectedUser}
+                  value={selectedLocation || ''}
+                  onChange={setSelectedLocation}
                   width={'100%'}
                 />
               </div>
 
-              {/* List Category */}
+              {/* Category */}
               <div className='flex flex-1 items-center bg-white px-4 py-2 md:bg-transparent'>
-                <Select>
+                <Select value={selectedCategory} onValueChange={setSelectedCategory}>
                   <SelectTrigger className='w-full border-none p-0 text-left text-base text-gray-600 ring-0 outline-none focus:ring-0 focus:ring-offset-0 md:text-lg'>
                     <SelectValue placeholder='All Categories' />
                   </SelectTrigger>
@@ -117,7 +212,10 @@ const HeroSection = () => {
                 </Select>
               </div>
 
+              {/* Search Button */}
               <button
+                onClick={onSearch}
+                disabled={isSearching}
                 style={{
                   backgroundImage: `linear-gradient(135deg, ${color.linearGradientValue.join(', ')})`,
                   color: '#fff'
@@ -125,8 +223,14 @@ const HeroSection = () => {
                 className='mt-2 cursor-pointer rounded-full px-2 py-1 text-base font-medium text-white transition md:mt-0 md:px-6 md:py-2 md:text-lg'
               >
                 <div className='flex items-center justify-center gap-2'>
-                  <Search className='h-5 w-5 shrink-0' />
-                  <span>Search</span>
+                  {isSearching ? (
+                    <span>Searching...</span>
+                  ) : (
+                    <>
+                      <Search className='h-5 w-5 shrink-0' />
+                      <span>Search</span>
+                    </>
+                  )}
                 </div>
               </button>
             </div>
@@ -137,34 +241,21 @@ const HeroSection = () => {
         <div className='relative z-10 mt-8'>
           <p className='mb-3 text-sm text-gray-600'>Or browse featured categories:</p>
           <div className='flex flex-wrap gap-2'>
-            <Link
-              href='#'
-              className='flex items-center rounded-full bg-gray-900 px-2 py-1 text-sm text-white md:px-4 md:py-2'
-            >
-              <Home className='mr-2 h-4 w-4' />
-              Apartments
-            </Link>
-            <Link
-              href='#'
-              className='flex items-center rounded-full bg-gray-900 px-2 py-1 text-sm text-white md:px-4 md:py-2'
-            >
-              <Utensils className='mr-2 h-4 w-4' />
-              Eat & Drink
-            </Link>
-            <Link
-              href='#'
-              className='flex items-center rounded-full bg-gray-900 px-2 py-1 text-sm text-white md:px-4 md:py-2'
-            >
-              <Calendar className='mr-2 h-4 w-4' />
-              Events
-            </Link>
-            <Link
-              href='#'
-              className='flex items-center rounded-full bg-gray-900 px-2 py-1 text-sm text-white md:px-4 md:py-2'
-            >
-              <Dumbbell className='mr-2 h-4 w-4' />
-              Fitness
-            </Link>
+            {[
+              { icon: <Home className='mr-2 h-4 w-4' />, label: 'Apartments' },
+              { icon: <Utensils className='mr-2 h-4 w-4' />, label: 'Eat & Drink' },
+              { icon: <Calendar className='mr-2 h-4 w-4' />, label: 'Events' },
+              { icon: <Dumbbell className='mr-2 h-4 w-4' />, label: 'Fitness' }
+            ].map(({ icon, label }, idx) => (
+              <Link
+                key={idx}
+                href='#'
+                className='flex items-center rounded-full bg-gray-900 px-2 py-1 text-sm text-white md:px-4 md:py-2'
+              >
+                {icon}
+                {label}
+              </Link>
+            ))}
           </div>
         </div>
 

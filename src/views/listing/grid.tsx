@@ -20,10 +20,10 @@ export interface BusinessFilters {
   area: string
 }
 
-const ListingGrid = ({ city, selectedArea }: { city: string; selectedArea: string }) => {
+const ListingGrid = ({ city, selectedArea, category }: { city: string; selectedArea: string; category?: string }) => {
   const [filters, setFilters] = useState<BusinessFilters>({
     search: '',
-    category: '',
+    category: category || '',
     pageIndex: 1,
     area: selectedArea
   })
