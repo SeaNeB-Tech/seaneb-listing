@@ -2,22 +2,28 @@
 
 import ScreenWrapper from '@/components/wrapper/screen-wrapper'
 import { color } from '@/constants/colors'
+import { useAppContext } from '@/context/app.context'
 import { CategoryListItem } from '@/services/apis/types'
-import { capitalizeFirstLetterOfEachWord } from '@/utils'
+import { capitalizeFirstLetterOfEachWord, toUrlName } from '@/utils'
+import Link from 'next/link'
 
 const CategoryItem = ({ category }: { category: CategoryListItem }) => {
+  const { currentCity } = useAppContext()
+
   return (
-    <div
-      className='flex items-center justify-center rounded-md p-2 shadow-md transition-transform duration-200 md:p-3'
-      style={{
-        backgroundImage: `linear-gradient(135deg, ${color.linearGradientValue.join(', ')})`,
-        color: '#fff'
-      }}
-    >
-      <p className='text-center text-sm font-semibold tracking-wide md:text-lg'>
-        {capitalizeFirstLetterOfEachWord(category?.category)}
-      </p>
-    </div>
+    <Link href={toUrlName(`/${currentCity}/${category?.main_category}`)}>
+      <div
+        className='flex items-center justify-center rounded-md p-2 shadow-md transition-transform duration-200 md:p-3'
+        style={{
+          backgroundImage: `linear-gradient(135deg, ${color.linearGradientValue.join(', ')})`,
+          color: '#fff'
+        }}
+      >
+        <p className='text-center text-sm font-semibold tracking-wide md:text-lg'>
+          {capitalizeFirstLetterOfEachWord(category?.category)}
+        </p>
+      </div>
+    </Link>
   )
 }
 

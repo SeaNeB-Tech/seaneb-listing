@@ -58,10 +58,7 @@ const PopularAreas = ({ city, selectedArea, setSelectedArea, areas }: Props) => 
 
   return (
     <ScreenWrapper
-      className={cn(
-        'space-y-6 py-10 transition-all duration-300 lg:py-20',
-        isSelected ? 'lg:pt-10 lg:pb-0' : 'min-h-[50vh]'
-      )}
+      className={cn('space-y-6 py-10 transition-all duration-300 lg:py-20', isSelected ? 'lg:pt-10 lg:pb-0' : '')}
     >
       {/* Title */}
       <div className='space-y-3 lg:mt-3'>

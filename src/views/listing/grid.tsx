@@ -31,7 +31,7 @@ const ListingGrid = ({ city, selectedArea, category }: { city: string; selectedA
   const { data: apiData, isLoading } = useQuery({
     queryKey: ['businesses', filters, city, selectedArea],
     queryFn: () => fetchBusinessList({ filters, city }),
-    enabled: !!city && !!filters?.area
+    enabled: !!city
   })
 
   return (
@@ -46,7 +46,7 @@ const ListingGrid = ({ city, selectedArea, category }: { city: string; selectedA
           </div>
         ) : !apiData?.data?.length || apiData?.data?.length === 0 ? (
           <div className='flex h-full max-h-[50vh] min-h-[30vh] w-full items-center justify-center rounded-lg border border-gray-300 p-6 text-lg font-semibold uppercase'>
-            No businesses found in {city} - {selectedArea}
+            No businesses found
           </div>
         ) : (
           <>

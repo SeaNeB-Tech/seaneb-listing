@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 
 import Image from 'next/image'
 import Link from 'next/link'
@@ -15,6 +15,7 @@ import Background from '@images/pages/home/hero-bg.svg'
 import { AsyncSelect } from '@/components/ui/async-select'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { color } from '@/constants/colors'
+import { useAppContext } from '@/context/app.context'
 import { fetchCategoryList } from '@/services/apis'
 import { PlacesApiItem, PlacesApiResponse } from '@/types/google-places'
 import { capitalizeFirstLetter, toUrlName } from '@/utils'
@@ -54,13 +55,12 @@ const modifyUserData = (city: string): PlacesApiItem => {
 
 const HeroSection = () => {
   const router = useRouter()
+  const { currentCity } = useAppContext()
 
   const [searchText, setSearchText] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null)
   const [isSearching, setIsSearching] = useState(false)
-
-  const [location, setLocation] = useState<{ lat: number; long: number } | null>(null)
 
   const { data: categories } = useQuery({
     queryKey: ['categories'],
@@ -76,13 +76,15 @@ const HeroSection = () => {
 
     setIsSearching(true)
 
-    router.push(`/${city}${!!category ? `/${category}` : ''}${!!query ? `?text=${encodeURIComponent(query)}` : ''}`)
+    router.push(
+      toUrlName(`/${city}${!!category ? `/${category}` : ''}${!!query ? `?text=${encodeURIComponent(query)}` : ''}`)
+    )
   }
 
   const searchLocation = useCallback(
     async (inputValue?: string): Promise<PlacesApiItem[]> => {
       try {
-        if (!inputValue && !location) return []
+        if (!inputValue && !currentCity) return []
 
         if (!!inputValue) {
           const res = await fetch('/api/search/location', {
@@ -95,20 +97,10 @@ const HeroSection = () => {
 
           return data?.data || []
         } else {
-          const res = await fetch('/api/search/user-location', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ location })
-          })
+          if (!!currentCity) {
+            setSelectedLocation(currentCity)
 
-          const data: { status: string; data: string } = await res.json()
-
-          const cityName = data?.data
-
-          if (!!cityName) {
-            setSelectedLocation(cityName)
-
-            return !!cityName ? [modifyUserData(cityName)] : []
+            return !!currentCity ? [modifyUserData(currentCity)] : []
           }
 
           return []
@@ -119,21 +111,8 @@ const HeroSection = () => {
         return []
       }
     },
-    [location]
+    [currentCity]
   )
-
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      response => {
-        console.log('response?.coords :', response?.coords)
-        setLocation({ lat: response?.coords?.latitude, long: response?.coords?.longitude })
-      },
-      err => {
-        console.log('ERRR', err)
-      },
-      { enableHighAccuracy: true }
-    )
-  }, [])
 
   return (
     <div

@@ -14,17 +14,15 @@ const CityComponent = ({ city, areas, category }: { city: string; areas: string[
       <PopularAreas city={city} setSelectedArea={setSelectedArea} selectedArea={selectedArea} areas={areas} />
 
       <AnimatePresence mode='wait'>
-        {selectedArea && (
-          <motion.div
-            key={selectedArea} // key helps AnimatePresence track changes
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5, ease: 'easeInOut' }}
-          >
-            <ListingGrid city={city} selectedArea={selectedArea} category={category || ''} />
-          </motion.div>
-        )}
+        <motion.div
+          key={selectedArea} // key helps AnimatePresence track changes
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.5, ease: 'easeInOut' }}
+        >
+          <ListingGrid city={city} selectedArea={selectedArea || ''} category={category || ''} />
+        </motion.div>
       </AnimatePresence>
     </>
   )
