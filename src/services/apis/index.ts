@@ -26,7 +26,7 @@ export const fetchBusinessList = async (pages: BusinessListParams): Promise<Busi
     uriEndPoint: endpoint.searchBusiness,
     query: {
       page: pages.filters.pageIndex,
-      area: pages?.filters?.area,
+      area: pages?.filters?.area || undefined,
       city: pages.city,
       search: pages.filters.search,
       business_category: pages.filters.category,

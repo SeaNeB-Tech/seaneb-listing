@@ -15,7 +15,7 @@ export interface BusinessDetailsAPIResponse {
   business_license_number: any
   document_link: string
   seaneb_id: string
-  country_code: any
+  country_code: string
   contact_no: string
   whatsapp_no: string
   facebook_url: string

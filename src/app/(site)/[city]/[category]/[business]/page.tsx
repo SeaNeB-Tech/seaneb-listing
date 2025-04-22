@@ -9,6 +9,7 @@ import NotFoundPage from '@/app/not-found'
 import { constructMetadata } from '@/lib/utils'
 import { BusinessDetailsAPIResponse, TestimonialItem } from '@/types/business'
 import { Metadata } from 'next'
+import { generateJSONLd } from '@/lib/json-ld'
 
 interface BusinessDetailsPageProps {
   params: Promise<{ city: string; category: string; business: string }>
@@ -22,7 +23,7 @@ export interface MetaAPIResponse {
 
 export async function generateMetadata({ params }: BusinessDetailsPageProps): Promise<Metadata> {
   // ** read route params
-  const { business, city } = await params
+  const { business, category, city } = await params
 
   // ** Fetch Data
   const query = `?business_legal_name=${decodeURIComponent(business)}`
@@ -54,7 +55,7 @@ const getTestimonials = async (businessId: string): Promise<TestimonialItem[]> =
 
 const BusinessDetailsPage = async ({ params }: BusinessDetailsPageProps) => {
   const getParams = await params
-  const { city, business } = getParams
+  const { city, category, business } = getParams
 
   // ** API URL
   const query = `?business_legal_name=${decodeURIComponent(business)}&city=${decodeURIComponent(city)}`
@@ -65,12 +66,16 @@ const BusinessDetailsPage = async ({ params }: BusinessDetailsPageProps) => {
   if (data?.data) {
     const testimonials = await getTestimonials(data?.data?.u_id)
 
+    const jsonLd = await generateJSONLd(data?.data, city, category, business)
+    console.log('jsonLd :', jsonLd)
+
     return (
       <>
         {!!data?.data?.shop_galleries?.length && data?.data?.country && data?.data?.state && (
           <BusinessViewCarousel businessData={data?.data} />
         )}
         <BusinessDetails businessData={data?.data} testimonials={testimonials} />
+        <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </>
     )
   } else {
