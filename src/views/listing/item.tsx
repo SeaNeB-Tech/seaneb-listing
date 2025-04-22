@@ -58,8 +58,10 @@ export default function VenueCard(props: VenueCardProps) {
     return setImageUrl(DEFAULT_IMAGE)
   }, [business])
 
-  const redirectRoute = useMemo(() => `/${city}/${category}/${business_legal_name}`, [])
-  console.log('redirectRoute :', redirectRoute)
+  const redirectRoute = useMemo(
+    () => `/${city}/${category}/${business_legal_name}`,
+    [city, category, business_legal_name]
+  )
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
