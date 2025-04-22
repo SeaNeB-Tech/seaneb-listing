@@ -23,7 +23,7 @@ export interface MetaAPIResponse {
 
 export async function generateMetadata({ params }: BusinessDetailsPageProps): Promise<Metadata> {
   // ** read route params
-  const { business, category, city } = await params
+  const { business, city } = await params
 
   // ** Fetch Data
   const query = `?business_legal_name=${decodeURIComponent(business)}`
@@ -67,7 +67,6 @@ const BusinessDetailsPage = async ({ params }: BusinessDetailsPageProps) => {
     const testimonials = await getTestimonials(data?.data?.u_id)
 
     const jsonLd = await generateJSONLd(data?.data, city, category, business)
-    console.log('jsonLd :', jsonLd)
 
     return (
       <>

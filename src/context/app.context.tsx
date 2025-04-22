@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext, useContext, useState, ReactNode, useMemo, useEffect, useCallback } from 'react'
+import React, { createContext, ReactNode, useCallback, useContext, useEffect, useState } from 'react'
 
 interface AppContextProps {
   currentCity: string
@@ -20,7 +20,6 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     try {
       navigator.geolocation.getCurrentPosition(
         async response => {
-          console.log(response?.coords)
           const res = await fetch('/api/search/user-location', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -59,5 +58,6 @@ export const useAppContext = (): AppContextProps => {
   if (!context) {
     throw new Error('useAppContext must be used within an AppProvider')
   }
+
   return context
 }
