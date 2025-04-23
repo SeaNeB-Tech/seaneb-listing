@@ -20,10 +20,10 @@ export interface BusinessFilters {
   area: string
 }
 
-const ListingGrid = ({ city, selectedArea }: { city: string; selectedArea: string }) => {
+const ListingGrid = ({ city, selectedArea, category }: { city: string; selectedArea: string; category?: string }) => {
   const [filters, setFilters] = useState<BusinessFilters>({
     search: '',
-    category: '',
+    category: category || '',
     pageIndex: 1,
     area: selectedArea
   })
@@ -31,7 +31,7 @@ const ListingGrid = ({ city, selectedArea }: { city: string; selectedArea: strin
   const { data: apiData, isLoading } = useQuery({
     queryKey: ['businesses', filters, city, selectedArea],
     queryFn: () => fetchBusinessList({ filters, city }),
-    enabled: !!city && !!filters?.area
+    enabled: !!city
   })
 
   return (
@@ -46,7 +46,7 @@ const ListingGrid = ({ city, selectedArea }: { city: string; selectedArea: strin
           </div>
         ) : !apiData?.data?.length || apiData?.data?.length === 0 ? (
           <div className='flex h-full max-h-[50vh] min-h-[30vh] w-full items-center justify-center rounded-lg border border-gray-300 p-6 text-lg font-semibold uppercase'>
-            No businesses found in {city} - {selectedArea}
+            No businesses found
           </div>
         ) : (
           <>

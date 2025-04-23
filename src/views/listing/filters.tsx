@@ -6,7 +6,7 @@ import { BusinessFilters } from './grid'
 
 import { AsyncSelect } from '@/components/ui/async-select'
 import { fetchCategoryList } from '@/services/apis'
-import { sleep } from '@/utils'
+import { sleep, toUrlName } from '@/utils'
 import { useQuery } from '@tanstack/react-query'
 import { debounce } from 'lodash'
 
@@ -120,19 +120,19 @@ const ListingFilters = ({ filters, setFilters, cityValue }: Props) => {
                 </div>
               </div>
             )}
-            getOptionValue={user => user}
+            getOptionValue={user => toUrlName(user)}
             getDisplayValue={user => (
               <div className='flex items-center gap-2 text-left'>
                 <div className='flex flex-col leading-tight'>
-                  <div className='font-medium'>{user}</div>
+                  <div className='font-medium capitalize'>{user}</div>
                 </div>
               </div>
             )}
             notFound={<div className='py-6 text-center text-sm'>No such category exists</div>}
             label='Category'
             placeholder='Pick a category..'
-            value={filters.category || ''}
-            onChange={e => setFilters((prev: BusinessFilters) => ({ ...prev, category: e }))}
+            value={toUrlName(filters.category) || ''}
+            onChange={e => setFilters((prev: BusinessFilters) => ({ ...prev, category: toUrlName(e) }))}
             width={'100%'}
           />
         )}

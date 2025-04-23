@@ -52,16 +52,13 @@ const PopularAreas = ({ city, selectedArea, setSelectedArea, areas }: Props) => 
   const isSelected = useMemo(() => !!selectedArea, [selectedArea])
 
   const filteredAreas = useMemo(
-    () => (isSelected ? areas.filter(a => a === selectedArea) : areas),
+    () => (isSelected ? areas.filter(a => a === selectedArea && !!a?.length) : areas?.filter(v => !!v?.length)),
     [selectedArea, isSelected, areas]
   )
 
   return (
     <ScreenWrapper
-      className={cn(
-        'space-y-6 py-10 transition-all duration-300 lg:py-20',
-        isSelected ? 'lg:pt-10 lg:pb-0' : 'min-h-[50vh]'
-      )}
+      className={cn('space-y-6 py-10 transition-all duration-300 lg:py-20', isSelected ? 'lg:pt-10 lg:pb-0' : '')}
     >
       {/* Title */}
       <div className='space-y-3 lg:mt-3'>

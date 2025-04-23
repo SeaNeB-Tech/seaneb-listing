@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from 'motion/react'
 import PopularAreas from '@/views/city/popular-area'
 import ListingGrid from '@/views/listing/grid'
 
-const CityComponent = ({ city, areas }: { city: string; areas: string[] }) => {
+const CityComponent = ({ city, areas, category }: { city: string; areas: string[]; category?: string }) => {
   const [selectedArea, setSelectedArea] = useState<string | null>(null)
 
   return (
@@ -14,17 +14,15 @@ const CityComponent = ({ city, areas }: { city: string; areas: string[] }) => {
       <PopularAreas city={city} setSelectedArea={setSelectedArea} selectedArea={selectedArea} areas={areas} />
 
       <AnimatePresence mode='wait'>
-        {selectedArea && (
-          <motion.div
-            key={selectedArea} // key helps AnimatePresence track changes
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5, ease: 'easeInOut' }}
-          >
-            <ListingGrid city={city} selectedArea={selectedArea} />
-          </motion.div>
-        )}
+        <motion.div
+          key={selectedArea} // key helps AnimatePresence track changes
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.5, ease: 'easeInOut' }}
+        >
+          <ListingGrid city={city} selectedArea={selectedArea || ''} category={category || ''} />
+        </motion.div>
       </AnimatePresence>
     </>
   )
