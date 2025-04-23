@@ -10,10 +10,27 @@ import Link from 'next/link'
 const CategoryItem = ({ category }: { category: CategoryListItem }) => {
   const { currentCity } = useAppContext()
 
-  return (
-    <Link href={toUrlName(`/${currentCity}/${category?.main_category}`)}>
+  if (currentCity) {
+    return (
+      <Link className='h-full' href={toUrlName(`/${currentCity}/${category?.main_category}`)}>
+        <div
+          className='flex h-full items-center justify-center rounded-md p-2 shadow-md transition-transform duration-200 md:p-3'
+          style={{
+            backgroundImage: `linear-gradient(135deg, ${color.linearGradientValue.join(', ')})`,
+            color: '#fff'
+          }}
+        >
+          <p className='text-center text-sm font-semibold tracking-wide md:text-lg'>
+            {capitalizeFirstLetterOfEachWord(category?.category)}
+          </p>
+        </div>
+      </Link>
+    )
+  } else {
+    return (
       <div
-        className='flex items-center justify-center rounded-md p-2 shadow-md transition-transform duration-200 md:p-3'
+        title='Location Permission Denied'
+        className='flex h-full items-center justify-center rounded-md p-2 shadow-md transition-transform duration-200 md:p-3'
         style={{
           backgroundImage: `linear-gradient(135deg, ${color.linearGradientValue.join(', ')})`,
           color: '#fff'
@@ -23,8 +40,8 @@ const CategoryItem = ({ category }: { category: CategoryListItem }) => {
           {capitalizeFirstLetterOfEachWord(category?.category)}
         </p>
       </div>
-    </Link>
-  )
+    )
+  }
 }
 
 const PopularCategories = ({ listCategories }: { listCategories: CategoryListItem[] }) => {
@@ -38,7 +55,7 @@ const PopularCategories = ({ listCategories }: { listCategories: CategoryListIte
         <p>List of most frequently searched categories</p>
       </div>
 
-      <div className='flex w-full grid-cols-3 flex-wrap gap-2 sm:grid-cols-4 lg:grid lg:grid-cols-5'>
+      <div className='flex w-full grid-cols-3 flex-wrap items-stretch gap-2 sm:grid-cols-4 lg:grid lg:grid-cols-5'>
         {listCategories?.map(cc => <CategoryItem key={cc?.main_category} category={cc} />)}
       </div>
     </ScreenWrapper>
