@@ -2,7 +2,7 @@
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { getInitials } from '@/utils'
-import { LucideMessageCircle, Mail, MessageSquare, Phone } from 'lucide-react'
+import { LucideMessageCircle, Mail, Phone } from 'lucide-react'
 import Link from 'next/link'
 
 interface HostCardProps {
