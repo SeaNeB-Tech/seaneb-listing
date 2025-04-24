@@ -171,6 +171,7 @@ export function AsyncSelect<T>({
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
+          aria-label={`Search ${label.toLowerCase()}...`}
           variant='outline'
           role='combobox'
           aria-expanded={open}
