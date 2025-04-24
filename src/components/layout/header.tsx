@@ -29,7 +29,7 @@ function Header() {
       const userAgent = window.navigator.userAgent || navigator.vendor
       if (/android/i.test(userAgent)) {
         return 'android'
-      } else if (/iPad|iPhone|iPod/.test(userAgent)) {
+      } else if (/iPad|iPhone|Mac|iPod/.test(userAgent)) {
         return 'ios'
       }
 
@@ -89,7 +89,7 @@ function Header() {
                   height={60}
                   sizes='100vw'
                   priority
-                  className='w-auto'
+                  className='h-[42px] w-auto'
                   alt='Download on App Store'
                   src={'/images/logo/app-store.svg'}
                 />
