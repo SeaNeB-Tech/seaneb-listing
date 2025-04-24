@@ -5,17 +5,14 @@ import { AnimatePresence, motion } from 'motion/react'
 import PopularAreas from '@/views/city/popular-area'
 import ListingGrid from '@/views/listing/grid'
 
-const CityComponent = ({
-  city,
-  areas,
-  category,
-  selectedArea
-}: {
+interface CityComponentProps {
   city: string
   areas: string[]
   category?: string
   selectedArea: string | null
-}) => {
+}
+
+const CityComponent = ({ city, areas, category, selectedArea }: CityComponentProps) => {
   return (
     <>
       <PopularAreas city={city} selectedArea={selectedArea} areas={areas} category={category} />
