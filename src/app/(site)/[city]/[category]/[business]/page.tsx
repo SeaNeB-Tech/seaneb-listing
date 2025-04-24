@@ -11,6 +11,8 @@ import { BusinessDetailsAPIResponse, TestimonialItem } from '@/types/business'
 import { Metadata } from 'next'
 import { generateJSONLd } from '@/lib/json-ld'
 
+const SEPARATOR_VALUE = '-in-'
+
 interface BusinessDetailsPageProps {
   params: Promise<{ city: string; category: string; business: string }>
 }
@@ -57,8 +59,27 @@ const BusinessDetailsPage = async ({ params }: BusinessDetailsPageProps) => {
   const getParams = await params
   const { city, category, business } = getParams
 
+  let decodedCity = decodeURIComponent(city || '')
+
+  if (!decodedCity) {
+    return <NotFoundPage />
+  }
+
+  let selectedArea: string | null = null
+
+  if (decodedCity?.includes(SEPARATOR_VALUE)) {
+    const separatorLength = SEPARATOR_VALUE?.length
+
+    const findSeparation = decodedCity?.indexOf(SEPARATOR_VALUE)
+    const areaName = decodedCity?.slice(0, findSeparation)
+    const cityName = decodedCity?.slice(findSeparation + separatorLength)
+
+    selectedArea = areaName
+    decodedCity = cityName
+  }
+
   // ** API URL
-  const query = `?business_legal_name=${decodeURIComponent(business)}&city=${decodeURIComponent(city)}`
+  const query = `?business_legal_name=${decodeURIComponent(business)}&city=${decodeURIComponent(decodedCity)}`
   const url = process.env.NEXT_PUBLIC_API_URL + endpoint.viewBusiness.uri + query
 
   const { data }: { data: { data: BusinessDetailsAPIResponse } } = await axios.get(url)
@@ -66,7 +87,7 @@ const BusinessDetailsPage = async ({ params }: BusinessDetailsPageProps) => {
   if (data?.data) {
     const testimonials = await getTestimonials(data?.data?.u_id)
 
-    const jsonLd = await generateJSONLd(data?.data, city, category, business)
+    const jsonLd = await generateJSONLd(data?.data, decodedCity, category, business)
 
     return (
       <>
