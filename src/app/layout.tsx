@@ -24,13 +24,13 @@ export const metadata: Metadata = constructMetadata({
   }
 })
 
+const isProduction = process.env.NEXT_PUBLIC_NODE_ENV === 'production'
+
 export default function RootLayout({
   children
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const isProduction = process.env.NEXT_PUBLIC_NODE_ENV === 'production'
-
   return (
     <html lang='en' translate='no'>
       <head></head>

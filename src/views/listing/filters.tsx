@@ -9,6 +9,7 @@ import { fetchCategoryList } from '@/services/apis'
 import { sleep, toUrlName } from '@/utils'
 import { useQuery } from '@tanstack/react-query'
 import { debounce } from 'lodash'
+import { usePathname, useRouter } from 'next/navigation'
 
 interface Props {
   filters: BusinessFilters
@@ -19,6 +20,8 @@ interface Props {
 const ListingFilters = ({ filters, setFilters, cityValue }: Props) => {
   const [searchText, setSearchText] = useState('')
   const [city, setCity] = useState(cityValue)
+  const pathname = usePathname()
+  const router = useRouter()
 
   const refetch = () => {
     setFilters((prev: BusinessFilters) => ({
@@ -61,6 +64,20 @@ const ListingFilters = ({ filters, setFilters, cityValue }: Props) => {
     )
 
     return filteredCategories?.map(category => category?.category) || []
+  }
+
+  // && Category Change
+  const handleCategoryChange = (e: string) => {
+    console.log(pathname)
+
+    const splitPaths = pathname?.split('/')
+    if (!!e) {
+      const pushURL = toUrlName(`/${splitPaths?.at(1)}/${e}`)
+      router.push(pushURL)
+    } else {
+      const pushURL = toUrlName(`/${splitPaths?.at(1)}`)
+      router.push(pushURL)
+    }
   }
 
   useEffect(() => {
@@ -132,7 +149,7 @@ const ListingFilters = ({ filters, setFilters, cityValue }: Props) => {
             label='Category'
             placeholder='Pick a category..'
             value={toUrlName(filters.category) || ''}
-            onChange={e => setFilters((prev: BusinessFilters) => ({ ...prev, category: toUrlName(e) }))}
+            onChange={handleCategoryChange}
             width={'100%'}
           />
         )}

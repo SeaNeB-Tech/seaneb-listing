@@ -6,15 +6,30 @@ import { endpoint } from '@/services/apis/endpoint'
 import CityComponent from '@/views/city'
 import axios from 'axios'
 
+const SEPARATOR_VALUE = '-in-'
+
 const CityPage = async ({ params }: { params: Promise<{ city: string }> }) => {
   const getParams = await params
 
   if (getParams?.city === 'not-found') return <NotFoundPage />
 
-  const decodedCity = decodeURIComponent(getParams?.city || '')
+  let decodedCity = decodeURIComponent(getParams?.city || '')
 
   if (!decodedCity) {
     return <NotFoundPage />
+  }
+
+  let selectedArea: string | null = null
+
+  if (decodedCity?.includes(SEPARATOR_VALUE)) {
+    const separatorLength = SEPARATOR_VALUE?.length
+
+    const findSeparation = decodedCity?.indexOf(SEPARATOR_VALUE)
+    const areaName = decodedCity?.slice(0, findSeparation)
+    const cityName = decodedCity?.slice(findSeparation + separatorLength)
+
+    selectedArea = areaName
+    decodedCity = cityName
   }
 
   const listOfAreas = await axios.get(process.env.NEXT_PUBLIC_API_URL + endpoint.areaList.uri + `?city=${decodedCity}`)
@@ -25,9 +40,9 @@ const CityPage = async ({ params }: { params: Promise<{ city: string }> }) => {
     <>
       <BannerComponent
         data={[{ path: `/${decodedCity}`, title: decodedCity }]}
-        title={`${capitalizeFirstLetterOfEachWord(decodedCity)}`}
+        title={`${capitalizeFirstLetterOfEachWord(selectedArea || decodedCity)}`}
       />
-      <CityComponent city={decodedCity} areas={allAreas} />
+      <CityComponent city={decodedCity} areas={allAreas} selectedArea={selectedArea} />
     </>
   )
 }

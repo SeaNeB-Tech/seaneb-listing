@@ -2,24 +2,24 @@
 
 import ScreenWrapper from '@/components/wrapper/screen-wrapper'
 import { cn } from '@/lib/utils'
-import { capitalizeFirstLetter } from '@/utils'
+import { capitalizeFirstLetter, toUrlName } from '@/utils'
 import { X } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
+import { useRouter } from 'next/navigation'
 import { useMemo } from 'react'
 
 interface Props {
   city: string
+  category?: string
   areas: string[]
   selectedArea: string | null
-  /* eslint-disable-next-line no-unused-vars */
-  setSelectedArea: (v: string | null) => void
 }
 
 interface AreaItemProps {
   area: string
   selectedArea: string | null
   /* eslint-disable-next-line no-unused-vars */
-  setSelectedArea: (v: string | null) => void
+  handleAreaSelect: (v: string) => void
 }
 
 const fadeVariant = {
@@ -28,7 +28,9 @@ const fadeVariant = {
   exit: { opacity: 0, scale: 0.95 }
 }
 
-const AreaItem = ({ area, selectedArea, setSelectedArea }: AreaItemProps) => {
+const AreaItem = ({ area, selectedArea, handleAreaSelect }: AreaItemProps) => {
+  const isSelected = useMemo(() => toUrlName(selectedArea || '') === toUrlName(area), [selectedArea, area])
+
   return (
     <motion.div
       layout
@@ -38,23 +40,40 @@ const AreaItem = ({ area, selectedArea, setSelectedArea }: AreaItemProps) => {
       exit='exit'
       className={cn(
         'bg-background border-primary text-primary flex cursor-pointer items-center justify-center rounded-full border-2 px-2 py-1 md:px-3',
-        selectedArea === area ? 'bg-primary text-background' : 'text-primary'
+        isSelected ? 'bg-primary text-background' : 'text-primary'
       )}
-      onClick={() => (selectedArea === area ? setSelectedArea(null) : setSelectedArea(area))}
+      onClick={() => handleAreaSelect(area)}
     >
       <p className='text-center text-sm font-medium tracking-wide capitalize md:text-base'>{area}</p>
-      {selectedArea === area && <X className='ml-2 size-4' />}
+      {isSelected && <X className='ml-2 size-4' />}
     </motion.div>
   )
 }
 
-const PopularAreas = ({ city, selectedArea, setSelectedArea, areas }: Props) => {
+const PopularAreas = ({ city, selectedArea, category, areas }: Props) => {
+  // ** Hooks
+  const router = useRouter()
   const isSelected = useMemo(() => !!selectedArea, [selectedArea])
 
   const filteredAreas = useMemo(
-    () => (isSelected ? areas.filter(a => a === selectedArea && !!a?.length) : areas?.filter(v => !!v?.length)),
+    () =>
+      isSelected
+        ? areas.filter(a => toUrlName(a) === toUrlName(selectedArea || '') && !!a?.length)
+        : areas?.filter(v => !!v?.length),
     [selectedArea, isSelected, areas]
   )
+
+  // ** Functions
+  const handleAreaSelect = (area: string) => {
+    if (toUrlName(area) !== toUrlName(selectedArea || '')) {
+      const pushURL = toUrlName(`/${area}-in-${city}`) + (category ? toUrlName(`/${category}`) : '')
+      console.log('pushURL :', pushURL)
+      router.push(pushURL)
+    } else {
+      const pushURL = `/${city}` + (category ? toUrlName(`/${category}`) : '')
+      router.push(pushURL)
+    }
+  }
 
   return (
     <ScreenWrapper
@@ -70,7 +89,7 @@ const PopularAreas = ({ city, selectedArea, setSelectedArea, areas }: Props) => 
       <motion.div layout className='flex w-full flex-wrap items-center gap-2'>
         <AnimatePresence mode='wait'>
           {filteredAreas.map(area => (
-            <AreaItem key={area} area={area} setSelectedArea={setSelectedArea} selectedArea={selectedArea} />
+            <AreaItem key={area} area={area} handleAreaSelect={handleAreaSelect} selectedArea={selectedArea} />
           ))}
         </AnimatePresence>
       </motion.div>
