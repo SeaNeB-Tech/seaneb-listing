@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 6590 --turbo",
+    "dev": "next dev -p 6590 --turbopack",
     "build": "next build",
     "start": "next start -p 6590",
     "lint": "next lint",

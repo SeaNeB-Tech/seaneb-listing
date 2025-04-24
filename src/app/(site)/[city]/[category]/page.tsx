@@ -22,6 +22,8 @@ const CategoryPage = async ({ params }: { params: Promise<{ city: string; catego
 
   let selectedArea: string | null = null
 
+  let bannerPaths = [{ path: `/${decodedCity}`, title: decodedCity }]
+
   if (decodedCity?.includes(SEPARATOR_VALUE)) {
     const separatorLength = SEPARATOR_VALUE?.length
 
@@ -31,6 +33,11 @@ const CategoryPage = async ({ params }: { params: Promise<{ city: string; catego
 
     selectedArea = areaName
     decodedCity = cityName
+
+    bannerPaths = [
+      { path: `/${decodedCity}`, title: decodedCity },
+      { path: `/${selectedArea}-in-${decodedCity}`, title: selectedArea }
+    ]
   }
 
   const listOfAreas = await axios.get(process.env.NEXT_PUBLIC_API_URL + endpoint.areaList.uri + `?city=${decodedCity}`)
@@ -40,8 +47,8 @@ const CategoryPage = async ({ params }: { params: Promise<{ city: string; catego
   return (
     <>
       <BannerComponent
-        data={[{ path: `/${decodedCity}`, title: decodedCity }]}
-        title={`${capitalizeFirstLetterOfEachWord(decodedCity)}`}
+        data={bannerPaths}
+        title={`${capitalizeFirstLetterOfEachWord(selectedArea ? selectedArea?.replaceAll('-', ' ') : decodedCity)}`}
       />
       <CityComponent city={decodedCity} areas={allAreas} category={decodedCategory} selectedArea={selectedArea} />
     </>

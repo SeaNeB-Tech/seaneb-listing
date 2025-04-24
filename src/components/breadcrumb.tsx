@@ -34,7 +34,6 @@ const BreadcrumbComponent = ({ data }: Props) => {
                       {val?.title}
                     </BreadcrumbLink>
                   </BreadcrumbItem>
-                  <BreadcrumbSeparator />
                 </>
               ) : (
                 <BreadcrumbItem>
