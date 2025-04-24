@@ -168,6 +168,7 @@ const HeroSection = () => {
                   notFound={<div className='py-6 text-center text-sm'>Try searching for your city name</div>}
                   label='Location'
                   placeholder='Location..'
+                  clearable
                   value={selectedLocation || ''}
                   onChange={setSelectedLocation}
                   width={'100%'}

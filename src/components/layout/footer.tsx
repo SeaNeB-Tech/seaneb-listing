@@ -107,7 +107,7 @@ function Footer() {
 
       <ScreenWrapper className='border-t border-gray-500'>
         <div className='py-5 lg:py-7'>
-          <p className='text-center text-gray-500'>SeaNeb © {new Date().getFullYear()}. All Rights Reserved.</p>
+          <p className='text-center text-gray-300'>SeaNeb © {new Date().getFullYear()}. All Rights Reserved.</p>
         </div>
       </ScreenWrapper>
     </footer>
