@@ -13,7 +13,7 @@ const CityItem = ({ city }: { city: string }) => {
           width={90}
           height={90}
           src={`/images/city/icon.png`}
-          alt={city}
+          alt={`major city name - ${city}, click to proceed`}
           className='h-auto w-full rounded-lg object-contain p-2 shadow-lg shadow-black/30'
         />
       </div>
