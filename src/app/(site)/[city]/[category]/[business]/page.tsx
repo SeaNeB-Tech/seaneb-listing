@@ -65,16 +65,12 @@ const BusinessDetailsPage = async ({ params }: BusinessDetailsPageProps) => {
     return <NotFoundPage />
   }
 
-  let selectedArea: string | null = null
-
   if (decodedCity?.includes(SEPARATOR_VALUE)) {
     const separatorLength = SEPARATOR_VALUE?.length
 
     const findSeparation = decodedCity?.indexOf(SEPARATOR_VALUE)
-    const areaName = decodedCity?.slice(0, findSeparation)
     const cityName = decodedCity?.slice(findSeparation + separatorLength)
 
-    selectedArea = areaName
     decodedCity = cityName
   }
 

@@ -64,7 +64,7 @@ export default function VenueCard(props: VenueCardProps) {
     }
 
     return toUrlName(`/${city}/${category}/${business_legal_name}`)
-  }, [city, category, business_legal_name])
+  }, [selectedArea, city, category, business_legal_name])
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
