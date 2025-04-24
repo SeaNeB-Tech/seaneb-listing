@@ -1,17 +1,24 @@
 'use client'
 
-import React, { useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 
 import PopularAreas from '@/views/city/popular-area'
 import ListingGrid from '@/views/listing/grid'
 
-const CityComponent = ({ city, areas, category }: { city: string; areas: string[]; category?: string }) => {
-  const [selectedArea, setSelectedArea] = useState<string | null>(null)
-
+const CityComponent = ({
+  city,
+  areas,
+  category,
+  selectedArea
+}: {
+  city: string
+  areas: string[]
+  category?: string
+  selectedArea: string | null
+}) => {
   return (
     <>
-      <PopularAreas city={city} setSelectedArea={setSelectedArea} selectedArea={selectedArea} areas={areas} />
+      <PopularAreas city={city} selectedArea={selectedArea} areas={areas} category={category} />
 
       <AnimatePresence mode='wait'>
         <motion.div
