@@ -40,15 +40,17 @@ const CityPage = async ({ params }: { params: Promise<{ city: string }> }) => {
 
   const listOfAreas = await axios.get(process.env.NEXT_PUBLIC_API_URL + endpoint.areaList.uri + `?city=${decodedCity}`)
 
-  const allAreas = listOfAreas?.data?.data || []
+  const allAreas: string[] = listOfAreas?.data?.data || []
+
+  const uniqueAreas = [...new Set(allAreas?.map(v => capitalizeFirstLetterOfEachWord(v?.toLowerCase())))]
 
   return (
     <>
       <BannerComponent
         data={bannerPaths}
-        title={`${capitalizeFirstLetterOfEachWord(selectedArea ? selectedArea?.replaceAll('-', ' ') : decodedCity)}`}
+        title={`${capitalizeFirstLetterOfEachWord(selectedArea ? selectedArea?.replaceAll('-', ' ') : decodedCity?.replaceAll('-', ' '))}`}
       />
-      <CityComponent city={decodedCity} areas={allAreas} selectedArea={selectedArea} />
+      <CityComponent city={decodedCity} areas={uniqueAreas} selectedArea={selectedArea} />
     </>
   )
 }

@@ -15,7 +15,7 @@ interface CityComponentProps {
 const CityComponent = ({ city, areas, category, selectedArea }: CityComponentProps) => {
   return (
     <>
-      <PopularAreas city={city} selectedArea={selectedArea} areas={areas} category={category} />
+      {!!areas?.length && <PopularAreas city={city} selectedArea={selectedArea} areas={areas} category={category} />}
 
       <AnimatePresence mode='wait'>
         <motion.div
@@ -24,6 +24,7 @@ const CityComponent = ({ city, areas, category, selectedArea }: CityComponentPro
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.5, ease: 'easeInOut' }}
+          className={!areas?.length ? 'flex min-h-[50vh] w-full items-center justify-center' : undefined}
         >
           <ListingGrid city={city} selectedArea={selectedArea || ''} category={category || ''} />
         </motion.div>
