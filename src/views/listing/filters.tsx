@@ -10,7 +10,7 @@ import { PlacesApiItem, PlacesApiResponse } from '@/types/google-places'
 import { capitalizeFirstLetterOfEachWord, sleep, toUrlName } from '@/utils'
 import { useQuery } from '@tanstack/react-query'
 import { debounce } from 'lodash'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 interface Props {
   filters: BusinessFilters
@@ -19,7 +19,11 @@ interface Props {
 }
 
 const ListingFilters = ({ filters, setFilters, cityValue }: Props) => {
-  const [searchText, setSearchText] = useState('')
+  const search = useSearchParams()
+
+  const text = search.get('text')
+
+  const [searchText, setSearchText] = useState(text || '')
   const pathname = usePathname()
   const router = useRouter()
 
