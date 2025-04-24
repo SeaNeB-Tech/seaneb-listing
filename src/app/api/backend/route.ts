@@ -19,7 +19,7 @@ const makeUrl = ({ uri = '', pathParams, query }: MakeUrl, host: string) => {
 
 export async function POST(req: Request) {
   const secret = process.env.NEXT_PUBLIC_API_SECRET_KEY ?? `THISISSECRET`
-  const { params }: { params: string } = await req.json()
+  const { params }: { params: string } = await req?.json()
 
   const decParams = verify(params, secret)
 

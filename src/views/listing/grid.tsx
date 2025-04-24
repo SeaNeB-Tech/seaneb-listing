@@ -10,6 +10,7 @@ import { useQuery } from '@tanstack/react-query'
 import ListingFilters from './filters'
 import VenueCard from './item'
 import { PaginationComponent } from './pagination'
+import { useSearchParams } from 'next/navigation'
 
 export const BUSINESS_ITEMS_PER_PAGE = 8
 
@@ -21,8 +22,12 @@ export interface BusinessFilters {
 }
 
 const ListingGrid = ({ city, selectedArea, category }: { city: string; selectedArea: string; category?: string }) => {
+  const search = useSearchParams()
+
+  const text = search.get('text')
+
   const [filters, setFilters] = useState<BusinessFilters>({
-    search: '',
+    search: text || '',
     category: category || '',
     pageIndex: 1,
     area: selectedArea
