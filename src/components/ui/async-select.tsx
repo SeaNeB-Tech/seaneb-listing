@@ -205,8 +205,12 @@ export function AsyncSelect<T>({
               options.length === 0 &&
               (notFound || <CommandEmpty>{noResultsMessage ?? `No ${label.toLowerCase()} found.`}</CommandEmpty>)}
             <CommandGroup>
-              {options.map(option => (
-                <CommandItem key={getOptionValue(option)} value={getOptionValue(option)} onSelect={handleSelect}>
+              {options.map((option, index) => (
+                <CommandItem
+                  key={`${getOptionValue(option)}-${index}`}
+                  value={getOptionValue(option)}
+                  onSelect={handleSelect}
+                >
                   {renderOption(option)}
                   <Check
                     className={cn(

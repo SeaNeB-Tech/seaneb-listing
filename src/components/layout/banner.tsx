@@ -6,15 +6,13 @@ import BreadcrumbComponent from '../breadcrumb'
 
 import * as m from 'motion/react-m'
 
-const BannerComponent = ({
-  title,
-  data,
-  bordered = true
-}: {
+interface Props {
   title: string
   data: { path: string; title: string }[]
   bordered?: boolean
-}) => {
+}
+
+const BannerComponent = ({ title, data, bordered = true }: Props) => {
   return (
     <div
       className={cn(

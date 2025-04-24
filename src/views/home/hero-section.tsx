@@ -131,7 +131,7 @@ const HeroSection = () => {
         </div>
 
         {/* Search bar */}
-        <div className='relative z-10 mt-4 max-w-7xl'>
+        <form onSubmit={onSearch} className='relative z-10 mt-4 max-w-7xl'>
           <div className='p-2 md:rounded-full md:bg-white md:shadow-lg'>
             <div className='flex flex-col gap-2 md:flex-row'>
               {/* Search By Name */}
@@ -193,6 +193,7 @@ const HeroSection = () => {
 
               {/* Search Button */}
               <button
+                type='submit'
                 onClick={onSearch}
                 disabled={isSearching}
                 style={{
@@ -214,7 +215,7 @@ const HeroSection = () => {
               </button>
             </div>
           </div>
-        </div>
+        </form>
 
         {/* Categories */}
         <div className='relative z-10 mt-8'>

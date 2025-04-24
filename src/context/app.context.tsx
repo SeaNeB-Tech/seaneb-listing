@@ -1,5 +1,6 @@
 'use client'
 
+import { getLocationData } from '@/utils/location'
 import React, { createContext, ReactNode, useCallback, useContext, useEffect, useState } from 'react'
 
 interface AppContextProps {
@@ -15,6 +16,11 @@ interface AppProviderProps {
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   // ** States
   const [currentCity, setCurrentCity] = useState<string>('')
+
+  const getLocationFromIP = async () => {
+    const locationData = await getLocationData()
+    setCurrentCity(locationData?.city || '')
+  }
 
   const fetchCurrentLocation = useCallback(async () => {
     try {
@@ -32,12 +38,13 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
           setCurrentCity(cityName)
         },
         err => {
-          console.log('Error Fetching User Location', err)
+          if (err.code === 1) {
+            getLocationFromIP()
+          }
         },
         { enableHighAccuracy: true }
       )
-    } catch (error) {
-      console.log('error :', error)
+    } catch {
       setCurrentCity('')
     }
   }, [])
