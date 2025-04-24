@@ -18,7 +18,7 @@ interface VenueCardProps {
 const DEFAULT_IMAGE = '/images/pages/home/banner-image-1.jpg'
 
 export default function VenueCard(props: VenueCardProps) {
-  const { business } = props
+  const { business, selectedArea } = props
 
   const { business_name, business_legal_name, city, avg_rating } = business
   const router = useRouter()
@@ -58,14 +58,17 @@ export default function VenueCard(props: VenueCardProps) {
     return setImageUrl(DEFAULT_IMAGE)
   }, [business])
 
-  const redirectRoute = useMemo(
-    () => `/${city}/${category}/${business_legal_name}`,
-    [city, category, business_legal_name]
-  )
+  const redirectRoute = useMemo(() => {
+    if (!!selectedArea) {
+      return toUrlName(`/${selectedArea}-in-${city}/${category}/${business_legal_name}`)
+    }
+
+    return toUrlName(`/${city}/${category}/${business_legal_name}`)
+  }, [selectedArea, city, category, business_legal_name])
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      router.prefetch(toUrlName(redirectRoute))
+      router.prefetch(redirectRoute)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -76,7 +79,7 @@ export default function VenueCard(props: VenueCardProps) {
 
   return (
     <div
-      onClick={() => router.push(toUrlName(redirectRoute))}
+      onClick={() => router.push(redirectRoute)}
       className='relative h-[240px] cursor-pointer overflow-hidden rounded-md shadow-xl transition-transform duration-300 hover:scale-105'
     >
       {/* Background Image */}

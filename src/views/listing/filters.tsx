@@ -6,9 +6,11 @@ import { BusinessFilters } from './grid'
 
 import { AsyncSelect } from '@/components/ui/async-select'
 import { fetchCategoryList } from '@/services/apis'
-import { sleep, toUrlName } from '@/utils'
+import { PlacesApiItem, PlacesApiResponse } from '@/types/google-places'
+import { capitalizeFirstLetterOfEachWord, sleep, toUrlName } from '@/utils'
 import { useQuery } from '@tanstack/react-query'
 import { debounce } from 'lodash'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 interface Props {
   filters: BusinessFilters
@@ -17,8 +19,13 @@ interface Props {
 }
 
 const ListingFilters = ({ filters, setFilters, cityValue }: Props) => {
-  const [searchText, setSearchText] = useState('')
-  const [city, setCity] = useState(cityValue)
+  const search = useSearchParams()
+
+  const text = search.get('text')
+
+  const [searchText, setSearchText] = useState(text || '')
+  const pathname = usePathname()
+  const router = useRouter()
 
   const refetch = () => {
     setFilters((prev: BusinessFilters) => ({
@@ -38,19 +45,29 @@ const ListingFilters = ({ filters, setFilters, cityValue }: Props) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const delayedQuery = useCallback(debounce(refetch, 500), [searchText])
 
-  const searchLocation = async (inputValue?: string): Promise<string[]> => {
-    if (!inputValue) return []
+  const searchLocation = useCallback(async (inputValue?: string): Promise<PlacesApiItem[]> => {
+    try {
+      if (!inputValue) return []
 
-    const res = await fetch('/api/search/location', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ input: inputValue })
-    })
+      if (!!inputValue) {
+        const res = await fetch('/api/search/location', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ input: inputValue })
+        })
 
-    const data = await res.json()
+        const data: PlacesApiResponse = await res.json()
 
-    return data?.suggestions ? [cityValue, ...data?.suggestions] : [cityValue]
-  }
+        return data?.data || []
+      } else {
+        return []
+      }
+    } catch (error) {
+      console.log('error :', error)
+
+      return []
+    }
+  }, [])
 
   const searchCategory = async (inputValue?: string): Promise<string[]> => {
     if (!inputValue) return allCategories
@@ -61,6 +78,34 @@ const ListingFilters = ({ filters, setFilters, cityValue }: Props) => {
     )
 
     return filteredCategories?.map(category => category?.category) || []
+  }
+
+  // && Category Change
+  const handleCategoryChange = (e: string) => {
+    const splitPaths = pathname?.split('/')
+    if (!!e) {
+      const pushURL = toUrlName(`/${splitPaths?.at(1)}/${e}`)
+      router.push(pushURL)
+    } else {
+      const pushURL = toUrlName(`/${splitPaths?.at(1)}`)
+      router.push(pushURL)
+    }
+  }
+
+  // ** City Change
+  const handleCityChange = (e: string) => {
+    const splitPaths = pathname?.split('/')
+
+    if (!!e) {
+      const category = splitPaths?.at(2)
+      if (!!category) {
+        const pushURL = toUrlName(`/${e}/${splitPaths?.at(2)}`)
+        router.push(pushURL)
+      } else {
+        const pushURL = toUrlName(`/${e}`)
+        router.push(pushURL)
+      }
+    }
   }
 
   useEffect(() => {
@@ -84,28 +129,28 @@ const ListingFilters = ({ filters, setFilters, cityValue }: Props) => {
         />
 
         {/* Location */}
-        <AsyncSelect<string>
+        <AsyncSelect<PlacesApiItem>
           fetcher={searchLocation}
           renderOption={user => (
             <div className='flex items-center gap-2'>
               <div className='flex flex-col'>
-                <div className='font-medium'>{user}</div>
+                <div className='font-medium'>{user?.placePrediction?.text?.text}</div>
               </div>
             </div>
           )}
-          getOptionValue={user => user}
+          getOptionValue={user => user?.placePrediction?.structuredFormat?.mainText?.text}
           getDisplayValue={user => (
             <div className='flex items-center gap-2 text-left'>
               <div className='flex flex-col leading-tight'>
-                <div className='font-medium'>{user}</div>
+                <div className='font-medium'>{user?.placePrediction?.text?.text}</div>
               </div>
             </div>
           )}
           notFound={<div className='py-6 text-center text-sm'>Try searching for your city name</div>}
           label='Location'
-          placeholder='Location..'
-          value={city || ''}
-          onChange={setCity}
+          placeholder={cityValue ? capitalizeFirstLetterOfEachWord(cityValue) : 'Location..'}
+          value={cityValue || ''}
+          onChange={handleCityChange}
           width={'100%'}
         />
 
@@ -132,7 +177,7 @@ const ListingFilters = ({ filters, setFilters, cityValue }: Props) => {
             label='Category'
             placeholder='Pick a category..'
             value={toUrlName(filters.category) || ''}
-            onChange={e => setFilters((prev: BusinessFilters) => ({ ...prev, category: toUrlName(e) }))}
+            onChange={handleCategoryChange}
             width={'100%'}
           />
         )}

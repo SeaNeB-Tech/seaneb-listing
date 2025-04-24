@@ -10,26 +10,9 @@ import Link from 'next/link'
 const CategoryItem = ({ category }: { category: CategoryListItem }) => {
   const { currentCity } = useAppContext()
 
-  if (currentCity) {
-    return (
-      <Link className='h-full' href={toUrlName(`/${currentCity}/${category?.main_category}`)}>
-        <div
-          className='flex h-full items-center justify-center rounded-md p-2 shadow-md transition-transform duration-200 md:p-3'
-          style={{
-            backgroundImage: `linear-gradient(135deg, ${color.linearGradientValue.join(', ')})`,
-            color: '#fff'
-          }}
-        >
-          <p className='text-center text-sm font-semibold tracking-wide md:text-lg'>
-            {capitalizeFirstLetterOfEachWord(category?.category)}
-          </p>
-        </div>
-      </Link>
-    )
-  } else {
-    return (
+  return (
+    <Link className='h-full' href={toUrlName(`/${currentCity || 'Anand'}/${category?.main_category}`)}>
       <div
-        title='Location Permission Denied'
         className='flex h-full items-center justify-center rounded-md p-2 shadow-md transition-transform duration-200 md:p-3'
         style={{
           backgroundImage: `linear-gradient(135deg, ${color.linearGradientValue.join(', ')})`,
@@ -40,8 +23,8 @@ const CategoryItem = ({ category }: { category: CategoryListItem }) => {
           {capitalizeFirstLetterOfEachWord(category?.category)}
         </p>
       </div>
-    )
-  }
+    </Link>
+  )
 }
 
 const PopularCategories = ({ listCategories }: { listCategories: CategoryListItem[] }) => {
