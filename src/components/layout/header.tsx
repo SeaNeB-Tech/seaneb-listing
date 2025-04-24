@@ -81,26 +81,26 @@ function Header() {
 
           <div className='flex w-full items-center'>
             {/* Desktop Navigation */}
-            <nav className='hidden flex-1 lg:block'></nav>
-            <div className='ml-4 flex flex-1 items-center justify-end lg:flex-none'>
-              <Link href={websiteConfig.appstore} className={cn(agent === 'ios' ? 'block' : 'hidden lg:block')}>
+            <nav className='block flex-1'></nav>
+            <div className='ml-4 flex flex-none items-center justify-end'>
+              <Link href={websiteConfig.appstore} className={cn(agent === 'ios' ? 'block' : 'block')}>
                 <Image
                   width={130}
                   height={60}
                   sizes='100vw'
                   priority
-                  className='w-auto'
+                  className='h-[30px] w-auto sm:h-[40px]'
                   alt='Download on App Store'
                   src={'/images/logo/app-store.svg'}
                 />
               </Link>
-              <Link href={websiteConfig.playstore} className={cn(agent === 'android' ? 'block' : 'hidden lg:block')}>
+              <Link href={websiteConfig.playstore} className={cn(agent === 'android' ? 'block' : 'block')}>
                 <Image
                   width={160}
                   height={60}
                   priority
                   sizes='100vw'
-                  className='h-[60px]'
+                  className='h-[45px] w-auto sm:h-[60px]'
                   alt='Download on Google Play'
                   src={'/images/logo/google-play-store.png'}
                 />
