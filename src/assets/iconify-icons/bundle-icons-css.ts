@@ -22,8 +22,6 @@ import { getIcons, getIconsCSS, stringToIcon } from '@iconify/utils'
  * Script configuration
  */
 interface BundleScriptCustomSVGConfig {
-  // eslint-disable-next-line lines-around-comment
-  // Path to SVG files
   dir: string
 
   // True if icons should be treated as monotone: colors replaced with currentColor
@@ -34,8 +32,6 @@ interface BundleScriptCustomSVGConfig {
 }
 
 interface BundleScriptCustomJSONConfig {
-  // eslint-disable-next-line lines-around-comment
-  // Path to JSON file
   filename: string
 
   // List of icons to import. If missing, all icons will be imported
@@ -43,8 +39,6 @@ interface BundleScriptCustomJSONConfig {
 }
 
 interface BundleScriptConfig {
-  // eslint-disable-next-line lines-around-comment
-  // Custom SVG to import and bundle
   svg?: BundleScriptCustomSVGConfig[]
 
   // Icons to bundled from @iconify/json packages
