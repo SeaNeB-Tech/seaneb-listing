@@ -1,12 +1,15 @@
 type WebsiteConfigType = {
   name: string
   call: string
+  website: string
   whatsapp: string
   officeAddress: string
   email: string
   facebook: string
   instagram: string
   linkedin: string
+  youtube: string
+  twitter_x: string
   appstore: string
   playstore: string
   github: string
@@ -17,12 +20,15 @@ export const websiteConfig: WebsiteConfigType = {
   name: 'SeaNeb',
   call: '+91 8849889928',
   whatsapp: '+91 8849889928',
+  website: 'https://www.seaneb.com/',
   officeAddress:
     ' S - 204 Radha swami swamipia, opp. home science college, Mota Bazaar, Vallabh Vidyanagar, Anand - 388120, Gujarat, India.',
   email: 'info@codenticsoftware.com',
-  facebook: 'https://www.facebook.com/codentic.software',
-  instagram: 'https://www.instagram.com/codentic.software',
-  linkedin: 'https://www.linkedin.com/company/codentic-software',
+  facebook: 'https://www.facebook.com/SeaNeB.Tech/',
+  instagram: 'https://www.instagram.com/seaneb.tech',
+  linkedin: 'https://www.linkedin.com/company/seaneb',
+  youtube: 'https://www.youtube.com/@seaneb',
+  twitter_x: 'https://x.com/SeaNeB',
   github: '#',
   appstore: 'https://apps.apple.com/in/app/seaneb/id6443700981',
   playstore: 'https://play.google.com/store/apps/details?id=com.seaneb.customer',
