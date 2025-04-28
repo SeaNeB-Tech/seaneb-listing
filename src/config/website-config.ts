@@ -31,7 +31,7 @@ export const websiteConfig: WebsiteConfigType = {
   twitter_x: 'https://x.com/SeaNeB',
   github: '#',
   appstore: 'https://apps.apple.com/in/app/seaneb/id6443700981',
-  playstore: 'https://play.google.com/store/apps/details?id=com.seaneb.customer',
+  playstore: 'https://play.google.com/store/apps/details?id=com.seaneb.offers',
   iframe:
     'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d29478.481302037082!2d72.924372!3d22.548783!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e4f5ca3f18731%3A0xc5bc40817fc821cf!2sCodentic%20Software!5e0!3m2!1sen!2sin!4v1741261276980!5m2!1sen!2sin'
 }
