@@ -5,7 +5,7 @@ import Logo from '@images/logo/logo-white.png'
 
 import { websiteConfig } from '@/config/website-config'
 
-import { Facebook, Instagram, Linkedin, Mail, Phone } from 'lucide-react'
+import { Mail, Phone } from 'lucide-react'
 import { memo } from 'react'
 import ScreenWrapper from '../wrapper/screen-wrapper'
 
@@ -20,7 +20,7 @@ function Footer() {
             </Link>
           </div>
 
-          <div className='flex items-center justify-center space-x-5'>
+          <div className='flex flex-col items-center justify-center gap-2 space-x-5 sm:flex-row sm:gap-0'>
             <div className='flex items-center'>
               <Mail className='mr-3 h-5 w-5 shrink-0 text-xs text-white md:text-base' />
               <Link
@@ -46,9 +46,9 @@ function Footer() {
                 target='_blank'
                 rel='noopener noreferrer'
                 aria-label='facebook redirects'
-                className='hover:text-footerText text-white'
+                className='hover:text-footerText flex items-center justify-center text-white'
               >
-                <Facebook className='h-5 w-5' />
+                <i className='ri-facebook-box-line !size-6' />
               </Link>
 
               <Link
@@ -56,18 +56,38 @@ function Footer() {
                 target='_blank'
                 rel='noopener noreferrer'
                 aria-label='instagram redirects'
-                className='hover:text-footerText text-white'
+                className='hover:text-footerText flex items-center justify-center text-white'
               >
-                <Instagram className='h-5 w-5' />
+                <i className='ri-instagram-line !size-6' />
               </Link>
               <Link
                 href={websiteConfig.linkedin}
                 target='_blank'
                 rel='noopener noreferrer'
                 aria-label='linked-in redirects'
-                className='hover:text-footerText text-white'
+                className='hover:text-footerText flex items-center justify-center text-white'
               >
-                <Linkedin className='h-5 w-5' />
+                <i className='ri-linkedin-box-line !size-6' />
+              </Link>
+
+              <Link
+                href={websiteConfig.twitter_x}
+                target='_blank'
+                rel='noopener noreferrer'
+                aria-label='twitter_x redirects'
+                className='hover:text-footerText flex items-center justify-center text-white'
+              >
+                <i className='ri-twitter-x-line !size-6' />
+              </Link>
+
+              <Link
+                href={websiteConfig.youtube}
+                target='_blank'
+                rel='noopener noreferrer'
+                aria-label='youtube redirects'
+                className='hover:text-footerText flex items-center justify-center text-white'
+              >
+                <i className='ri-youtube-line !size-6' />
               </Link>
             </div>
           </div>
@@ -78,9 +98,9 @@ function Footer() {
               target='_blank'
               rel='noopener noreferrer'
               aria-label='facebook redirects'
-              className='hover:text-footerText text-white'
+              className='hover:text-footerText flex items-center justify-center text-white'
             >
-              <Facebook className='h-5 w-5' />
+              <i className='ri-facebook-box-line !size-6' />
             </Link>
 
             <Link
@@ -88,18 +108,39 @@ function Footer() {
               target='_blank'
               rel='noopener noreferrer'
               aria-label='instagram redirects'
-              className='hover:text-footerText text-white'
+              className='hover:text-footerText flex items-center justify-center text-white'
             >
-              <Instagram className='h-5 w-5' />
+              <i className='ri-instagram-line !size-6' />
             </Link>
+
             <Link
               href={websiteConfig.linkedin}
               target='_blank'
               rel='noopener noreferrer'
               aria-label='linked-in redirects'
-              className='hover:text-footerText text-white'
+              className='hover:text-footerText flex items-center justify-center text-white'
             >
-              <Linkedin className='h-5 w-5' />
+              <i className='ri-linkedin-box-line !size-6' />
+            </Link>
+
+            <Link
+              href={websiteConfig.twitter_x}
+              target='_blank'
+              rel='noopener noreferrer'
+              aria-label='twitter_x redirects'
+              className='hover:text-footerText flex items-center justify-center text-white'
+            >
+              <i className='ri-twitter-x-line !size-6' />
+            </Link>
+
+            <Link
+              href={websiteConfig.youtube}
+              target='_blank'
+              rel='noopener noreferrer'
+              aria-label='youtube redirects'
+              className='hover:text-footerText flex items-center justify-center text-white'
+            >
+              <i className='ri-youtube-line !size-6' />
             </Link>
           </div>
         </div>
@@ -107,7 +148,9 @@ function Footer() {
 
       <ScreenWrapper className='border-t border-gray-500'>
         <div className='py-5 lg:py-7'>
-          <p className='text-center text-gray-300'>SeaNeb © {new Date().getFullYear()}. All Rights Reserved.</p>
+          <p className='text-center text-gray-300'>
+            <Link href={websiteConfig?.website}>SeaNeB</Link> © {new Date().getFullYear()}. All Rights Reserved.
+          </p>
         </div>
       </ScreenWrapper>
     </footer>
