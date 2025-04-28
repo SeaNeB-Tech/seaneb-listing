@@ -11,6 +11,9 @@ import NextProgress from '@/components/layout/next-progress'
 // ** Styles
 import './globals.css'
 
+// Generated Icon CSS Imports
+import '@assets/iconify-icons/generated-icons.css'
+
 const poppins = Roboto({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700', '800'],
