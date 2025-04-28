@@ -4,7 +4,7 @@ import { getIp } from './ip-data'
 import axios from 'axios'
 
 export const getLocationData = async () => {
-  const ip = await getIp('v4')
+  const ip = await getIp('v6')
 
   try {
     const response = await axios.get(
