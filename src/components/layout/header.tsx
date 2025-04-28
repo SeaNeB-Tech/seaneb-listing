@@ -5,8 +5,7 @@ import { memo, useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import LogoSmall from '@images/logo/logo-small.png'
-import Logo from '@images/logo/logo-white.png'
+import Logo from '@images/logo/logo-dark.png'
 
 import ScreenWrapper from '../wrapper/screen-wrapper'
 
@@ -59,22 +58,7 @@ function Header() {
         <ScreenWrapper className='flex h-16 items-center'>
           <div className='flex items-center'>
             <Link href='/' className='flex items-center gap-2 lg:mr-8'>
-              <Image
-                src={LogoSmall}
-                alt='logo'
-                width={48}
-                height={48}
-                priority
-                className='h-12 w-12 shrink-0 lg:hidden'
-              />
-              <Image
-                src={Logo}
-                alt='logo'
-                width={264}
-                height={48}
-                priority
-                className='hidden shrink-0 invert-100 lg:block'
-              />
+              <Image src={Logo} alt='logo' width={264} height={48} priority className='shrink-0' />
               {/* <p className='text-lg font-medium'>SeaNeB</p> */}
             </Link>
           </div>
