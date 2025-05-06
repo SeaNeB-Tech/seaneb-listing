@@ -5,8 +5,28 @@ import BannerComponent from '@/components/layout/banner'
 import { endpoint } from '@/services/apis/endpoint'
 import CityComponent from '@/views/city'
 import axios from 'axios'
+import { Metadata } from 'next'
+import { capitalize } from 'lodash'
+import { constructMetadata } from '@/lib/utils'
 
 const SEPARATOR_VALUE = '-in-'
+
+export async function generateMetadata({
+  params
+}: {
+  params: Promise<{ city: string; category: string }>
+}): Promise<Metadata> {
+  // ** read route params
+  const { city } = await params
+
+  let decodedCity = capitalize(decodeURIComponent(city || ''))
+
+  return constructMetadata({
+    title: `Businesses In ${decodedCity}`,
+    description: `Find businesses in ${decodedCity}. Explore various categories and discover local services.`,
+    keywords: `business, location, ${decodedCity}, businesses in ${decodedCity}`
+  })
+}
 
 const CityPage = async ({ params }: { params: Promise<{ city: string }> }) => {
   const getParams = await params
