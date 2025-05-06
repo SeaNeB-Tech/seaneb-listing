@@ -81,9 +81,9 @@ const PopularAreas = ({ city, selectedArea, category, areas }: Props) => {
     >
       {/* Title */}
       <div className='space-y-3 lg:mt-3'>
-        <h2 className='after:bg-secondary relative text-3xl whitespace-normal after:absolute after:-bottom-1 after:left-0 after:h-[3px] after:w-full after:max-w-20 after:origin-bottom-right after:scale-x-100'>
+        <h3 className='after:bg-secondary relative text-3xl whitespace-normal after:absolute after:-bottom-1 after:left-0 after:h-[3px] after:w-full after:max-w-20 after:origin-bottom-right after:scale-x-100'>
           Popular localities in <b>{capitalizeFirstLetter(city) || ''}</b>
-        </h2>
+        </h3>
       </div>
 
       <motion.div layout className='flex w-full flex-wrap items-center gap-2'>

@@ -27,9 +27,9 @@ const MajorCities = ({ listCities }: { listCities: string[] }) => {
     <ScreenWrapper className='space-y-6 py-10 lg:pt-20'>
       {/* Title */}
       <div className='space-y-3'>
-        <h2 className='after:bg-secondary relative w-max text-3xl after:absolute after:-bottom-1 after:left-0 after:h-[3px] after:w-full after:max-w-20 after:origin-bottom-right after:scale-x-100'>
+        <h3 className='after:bg-secondary relative w-max text-3xl after:absolute after:-bottom-1 after:left-0 after:h-[3px] after:w-full after:max-w-20 after:origin-bottom-right after:scale-x-100'>
           Major Cities
-        </h2>
+        </h3>
         <p>Top cities</p>
       </div>
 
