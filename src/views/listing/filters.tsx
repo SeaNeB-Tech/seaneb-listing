@@ -116,9 +116,9 @@ const ListingFilters = ({ filters, setFilters, cityValue }: Props) => {
 
   return (
     <div className='sticky top-24 space-y-8 rounded-sm bg-gray-100 p-6'>
-      <h2 className='after:bg-secondary relative w-max text-2xl after:absolute after:-bottom-1 after:left-0 after:h-[3px] after:w-full after:max-w-8 after:origin-bottom-right after:scale-x-100'>
+      <h4 className='after:bg-secondary relative w-max text-2xl after:absolute after:-bottom-1 after:left-0 after:h-[3px] after:w-full after:max-w-8 after:origin-bottom-right after:scale-x-100'>
         Filters
-      </h2>
+      </h4>
       <div className='flex flex-col gap-y-4'>
         {/* Search */}
         <Input
