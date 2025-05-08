@@ -50,10 +50,15 @@ interface BundleScriptConfig {
   json?: (string | BundleScriptCustomJSONConfig)[]
 }
 
+const fixedIcons = ['facebook-box-line', 'instagram-line', 'linkedin-box-line', ' twitter-x-line', 'youtube-line']
+
 const sources: BundleScriptConfig = {
   json: [
     // Iconify JSON file (@iconify/json is a package name, /json/ is directory where files are, then filename)
-    require.resolve('@iconify/json/json/ri.json')
+    {
+      filename: require.resolve('@iconify/json/json/ri.json'),
+      icons: fixedIcons.map(icon => icon.trim()) // Ensure no extra spaces like ' twitter-x-line'
+    }
 
     // Custom file with only few icons
     /* {
@@ -134,12 +139,15 @@ const target = join(__dirname, 'generated-icons.css')
    * Bundle JSON files and collect icons
    */
   if (sources.json) {
+    console.log('sources.json :', sources.json)
     for (let i = 0; i < sources.json.length; i++) {
       const item = sources.json[i]
+      console.log('item :', item)
 
       // Load icon set
       const filename = typeof item === 'string' ? item : item.filename
       const content = JSON.parse(await fs.readFile(filename, 'utf8')) as IconifyJSON
+      console.log(content, ': content')
 
       // Filter icons
       if (typeof item !== 'string' && item.icons?.length) {
