@@ -63,7 +63,7 @@ const ListingFilters = ({ filters, setFilters, cityValue }: Props) => {
         return []
       }
     } catch (error) {
-      console.log('error :', error)
+      console.error('error :', error)
 
       return []
     }

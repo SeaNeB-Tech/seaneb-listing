@@ -139,15 +139,12 @@ const target = join(__dirname, 'generated-icons.css')
    * Bundle JSON files and collect icons
    */
   if (sources.json) {
-    console.log('sources.json :', sources.json)
     for (let i = 0; i < sources.json.length; i++) {
       const item = sources.json[i]
-      console.log('item :', item)
 
       // Load icon set
       const filename = typeof item === 'string' ? item : item.filename
       const content = JSON.parse(await fs.readFile(filename, 'utf8')) as IconifyJSON
-      console.log(content, ': content')
 
       // Filter icons
       if (typeof item !== 'string' && item.icons?.length) {

@@ -106,7 +106,7 @@ const HeroSection = () => {
           return []
         }
       } catch (error) {
-        console.log('error :', error)
+        console.error('error :', error)
 
         return []
       }
