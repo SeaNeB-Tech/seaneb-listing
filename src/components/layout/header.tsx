@@ -58,7 +58,14 @@ function Header() {
         <ScreenWrapper className='flex h-16 items-center'>
           <div className='flex items-center'>
             <Link href='/' className='flex items-center gap-2 lg:mr-8'>
-              <Image src={Logo} alt='logo' width={264} height={48} priority className='shrink-0' />
+              <Image
+                src={Logo}
+                alt='logo'
+                width={220}
+                height={38}
+                priority
+                className='h-auto max-w-44 shrink-0 sm:max-w-full'
+              />
               {/* <p className='text-lg font-medium'>SeaNeB</p> */}
             </Link>
           </div>

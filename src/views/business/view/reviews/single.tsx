@@ -46,7 +46,7 @@ export const Review = memo(({ name, date, content, rating, isVerified, avatarSrc
           <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between'>
             <div>
               <div className='flex items-center gap-1.5'>
-                <h3 className='font-medium text-gray-900'>{name}</h3>
+                <h4 className='font-medium text-gray-900'>{name}</h4>
                 {isVerified && (
                   <span className='flex h-5 w-5 items-center justify-center rounded-full bg-green-500 text-white'>
                     <Check className='h-3 w-3' />
