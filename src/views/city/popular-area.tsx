@@ -67,7 +67,6 @@ const PopularAreas = ({ city, selectedArea, category, areas }: Props) => {
   const handleAreaSelect = (area: string) => {
     if (toUrlName(area) !== toUrlName(selectedArea || '')) {
       const pushURL = toUrlName(`/${area}-in-${city}`) + (category ? toUrlName(`/${category}`) : '')
-      console.log('pushURL :', pushURL)
       router.push(pushURL)
     } else {
       const pushURL = `/${city}` + (category ? toUrlName(`/${category}`) : '')
