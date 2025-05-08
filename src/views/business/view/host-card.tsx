@@ -19,7 +19,7 @@ export function HostCard({ name = '', phone = '', email = '', imageUrl = '', onS
       <div className='mb-4 flex items-start justify-between gap-2'>
         <div className='truncate'>
           <p className='text-sm text-gray-500'>Hosted by</p>
-          <h3 className='truncate text-xl font-medium text-gray-800'>{name}</h3>
+          <h5 className='truncate text-xl font-medium text-gray-800'>{name}</h5>
         </div>
         <Avatar className='h-14 w-14'>
           <AvatarImage src={imageUrl} alt={name} />
