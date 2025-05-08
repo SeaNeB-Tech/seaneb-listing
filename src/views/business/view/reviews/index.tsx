@@ -7,9 +7,9 @@ import dayjs from 'dayjs'
 const BusinessReviews = ({ testimonials }: { testimonials: TestimonialItem[] }) => {
   return (
     <div className='mt-8 space-y-4'>
-      <h2 className='text-2xl'>
+      <h3 className='text-2xl'>
         Reviews <span className='text-lg'>{`(${testimonials?.length})`}</span>
-      </h2>
+      </h3>
 
       {testimonials?.map((item, index) => (
         <Review

@@ -22,8 +22,8 @@ interface ConstructMetadata {
 }
 
 export function constructMetadata({
-  title = 'SeaNeb',
-  description = 'Find the best deals, discounts, and offers near you with ease!',
+  title = 'SeaNeb | Discover Local Business Deals, B2B Offers & Exclusive Discounts Nearby',
+  description = 'SeaNeb helps you connect with local businesses, discover exclusive B2B deals, discounts, and offers near you. Save more while building powerful business ties.',
   image = '/images/og/opengraph-image.png',
   icons = '/favicon.ico',
   noIndex = false,
@@ -33,7 +33,6 @@ export function constructMetadata({
     title,
     description,
     keywords,
-
     openGraph: {
       title,
       type: 'website',

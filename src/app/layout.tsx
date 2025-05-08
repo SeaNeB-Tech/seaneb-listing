@@ -22,7 +22,7 @@ const poppins = Roboto({
 
 export const metadata: Metadata = constructMetadata({
   title: {
-    default: 'SeaNeb',
+    default: 'SeaNeb | Discover Local Business Deals, B2B Offers & Exclusive Discounts Nearby',
     template: '%s - SeaNeb'
   }
 })
@@ -36,7 +36,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' translate='no'>
-      <head></head>
+      <head>
+        <link rel='canonical' href={process.env.NEXT_PUBLIC_SITEMAP_URL} />
+      </head>
       <body className={`${poppins.className} antialiased`}>
         <Providers>
           <NextProgress />
