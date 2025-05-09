@@ -22,7 +22,7 @@ const poppins = Roboto({
 
 export const metadata: Metadata = constructMetadata({
   title: {
-    default: 'SeaNeb | Discover Local Business Deals, B2B Offers & Exclusive Discounts Nearby',
+    default: 'SeaNeb | Discover Local Business Deals & B2B Offers',
     template: '%s - SeaNeb'
   }
 })

@@ -16,7 +16,15 @@ function Footer() {
         <div className=' '>
           <div className='flex justify-center'>
             <Link href='/' className='mb-6 inline-block'>
-              <Image src={Logo} alt='Logo' width={240} height={240} priority sizes='100vw' className='h-auto w-56' />
+              <Image
+                src={Logo}
+                alt='Logo'
+                width={240}
+                height={240}
+                loading='lazy'
+                sizes='100vw'
+                className='h-auto w-56'
+              />
             </Link>
           </div>
 
