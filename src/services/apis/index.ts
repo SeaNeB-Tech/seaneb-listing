@@ -21,15 +21,15 @@ export const fetchCategoryList = async (): Promise<{ data: CategoryListItem[] }>
 }
 
 // ** Business List
-export const fetchBusinessList = async (pages: BusinessListParams): Promise<BusinessSearchResponse> => {
+export const fetchBusinessList = async (pages?: BusinessListParams): Promise<BusinessSearchResponse> => {
   const response = await callApi({
     uriEndPoint: endpoint.searchBusiness,
     query: {
-      page: pages.filters.pageIndex,
+      page: pages?.filters.pageIndex,
       area: pages?.filters?.area || undefined,
-      city: pages.city,
-      search: pages.filters.search,
-      business_category: pages.filters.category,
+      city: pages?.city,
+      search: pages?.filters.search,
+      business_category: pages?.filters.category,
       items_per_page: BUSINESS_ITEMS_PER_PAGE
     }
   })
