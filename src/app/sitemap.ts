@@ -33,9 +33,7 @@ const getBusinessData = async (): Promise<MetadataRoute.Sitemap> => {
     } else {
       return []
     }
-  } catch (error) {
-    console.log('error :', error)
-
+  } catch {
     return []
   }
 }
