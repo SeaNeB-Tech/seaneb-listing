@@ -14,6 +14,8 @@ export const fetchCategoryList = async (): Promise<{ data: CategoryListItem[] }>
   const response = await callApi({ uriEndPoint: endpoint.categoryList })
     .then(res => res?.data)
     .catch((err: ApiResponse) => {
+      console.log('err :', err)
+
       return err?.data
     })
 

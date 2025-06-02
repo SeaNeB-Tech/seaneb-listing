@@ -15,9 +15,30 @@ const jsonLd: WithContext<LocalBusiness> = {
   areaServed: 'Worldwide'
 }
 
+const fetchHomePageData = async () => {
+  const listCategories = async () => {
+    try {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL + endpoint.popCategory.uri
+
+      return await axios.get(apiUrl)
+    } catch {
+      return null
+    }
+  }
+
+  const listCities = async () => {
+    try {
+      return await axios.get(process.env.NEXT_PUBLIC_API_URL + endpoint.majorCities.uri)
+    } catch {
+      return null
+    }
+  }
+
+  return await Promise.all([listCategories(), listCities()])
+}
+
 export default async function Home() {
-  const listCategories = await axios.get(process.env.NEXT_PUBLIC_API_URL + endpoint.popCategory.uri)
-  const listCities = await axios.get(process.env.NEXT_PUBLIC_API_URL + endpoint.majorCities.uri)
+  const [listCategories, listCities] = await fetchHomePageData()
 
   return (
     <>
