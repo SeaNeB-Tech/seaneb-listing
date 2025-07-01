@@ -18,7 +18,7 @@ const BusinessReviews = ({ testimonials }: { testimonials: TestimonialItem[] }) 
           content={item?.feedback}
           date={dayjs(item?.created_at).format('MMMM YYYY')}
           isVerified={false}
-          avatarSrc={generatePublicImageUserLink('india', item?.users_u_id, item?.user?.image)}
+          avatarSrc={generatePublicImageUserLink(item?.user?.image)}
           rating={Number(item?.rating || 0)}
         />
       ))}

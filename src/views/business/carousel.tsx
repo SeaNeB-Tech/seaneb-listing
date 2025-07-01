@@ -24,12 +24,12 @@ function BusinessViewCarousel({ businessData }: { businessData: BusinessDetailsA
           {businessData?.shop_galleries?.map((gallery, index) => (
             <CarouselItem key={index} className='md:basis-1/2 lg:basis-1/3 xl:basis-1/4'>
               <div
-                onClick={() => setImage(generatePublicImageBusinessLink(businessData, gallery?.link))}
+                onClick={() => setImage(generatePublicImageBusinessLink(gallery?.link))}
                 className='flex h-96 cursor-zoom-in items-center justify-center rounded-md bg-transparent'
               >
                 <img
                   alt={`${businessData?.business_legal_name} - ${index}`}
-                  src={generatePublicImageBusinessLink(businessData, gallery?.link)}
+                  src={generatePublicImageBusinessLink(gallery?.link)}
                   className='h-full w-full object-cover'
                 />
               </div>
