@@ -65,13 +65,10 @@ export function constructMetadata({
   }
 }
 
-export const generatePublicImageBusinessLink = (
-  businessData: { country: string; state: string; city: string; area: string; u_id: string },
-  objectKey: string
-) => {
+export const generatePublicImageBusinessLink = (objectKey: string) => {
   return `https://${process.env.NEXT_PUBLIC_DO_SPACES_NAME}.${process.env.NEXT_PUBLIC_DO_SPACES_REGION}.cdn.digitaloceanspaces.com/${objectKey}`
 }
 
-export const generatePublicImageUserLink = (country: string, userId: string, objectKey: string) => {
+export const generatePublicImageUserLink = (objectKey: string) => {
   return `https://${process.env.NEXT_PUBLIC_DO_SPACES_NAME}.${process.env.NEXT_PUBLIC_DO_SPACES_REGION}.cdn.digitaloceanspaces.com/${objectKey}`
 }
