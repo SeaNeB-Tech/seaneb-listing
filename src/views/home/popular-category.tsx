@@ -39,7 +39,9 @@ const PopularCategories = ({ listCategories }: { listCategories: CategoryListIte
       </div>
 
       <div className='flex w-full grid-cols-3 flex-wrap items-stretch gap-2 sm:grid-cols-4 lg:grid lg:grid-cols-5'>
-        {listCategories?.map(cc => <CategoryItem key={cc?.main_category} category={cc} />)}
+        {listCategories?.map(cc => (
+          <CategoryItem key={cc?.main_category} category={cc} />
+        ))}
       </div>
     </ScreenWrapper>
   )
