@@ -38,6 +38,8 @@ export default function RootLayout({
     <html lang='en' translate='no'>
       <head>
         <link rel='canonical' href={process.env.NEXT_PUBLIC_SITEMAP_URL} />
+        <link rel='apple-touch-icon' href='/images/logo/apple-touch-icon.png' />
+        <link rel='manifest' href='/manifest.json' />
       </head>
       <body className={`${poppins.className} antialiased`}>
         <Providers>
