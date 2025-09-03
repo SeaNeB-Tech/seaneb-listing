@@ -34,7 +34,9 @@ const MajorCities = ({ listCities }: { listCities: string[] }) => {
       </div>
 
       <div className='grid w-full grid-cols-3 gap-2 sm:grid-cols-4 lg:grid-cols-8'>
-        {listCities?.map((city, index) => <CityItem key={index} city={city} />)}
+        {listCities?.map((city, index) => (
+          <CityItem key={index} city={city} />
+        ))}
       </div>
     </ScreenWrapper>
   )

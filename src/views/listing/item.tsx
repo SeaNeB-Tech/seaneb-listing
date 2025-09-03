@@ -42,7 +42,7 @@ export default function VenueCard(props: VenueCardProps) {
 
   const businessImage = useCallback(async () => {
     if (!!business?.shop_galleries?.[0]?.link && !!business?.country && !!business?.state && !!business?.city) {
-      return setImageUrl(generatePublicImageBusinessLink(business, business?.shop_galleries?.[0]?.link))
+      return setImageUrl(generatePublicImageBusinessLink(business?.shop_galleries?.[0]?.link))
     }
 
     if (business?.icon) {

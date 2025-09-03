@@ -109,7 +109,7 @@ const BusinessDetails = ({ businessData, testimonials }: BusinessDetailsProps) =
             <HostCard
               key={user?.u_id}
               email={user?.user?.email}
-              imageUrl={generatePublicImageUserLink('india', user?.users_u_id, user?.user?.image + '-140x140.png')}
+              imageUrl={generatePublicImageUserLink(user?.user?.image + '-140x140.png')}
               name={user?.user?.full_name}
               phone={user?.user?.mobile_no}
               onSendMessage={() => {
