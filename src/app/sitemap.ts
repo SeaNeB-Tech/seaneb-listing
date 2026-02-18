@@ -18,7 +18,7 @@ import { BusinessSearchResponse } from '@/services/apis/types'
 // ** Utility Imports
 import { toUrlName } from '@/utils'
 
-const url = process.env.NEXT_PUBLIC_SITEMAP_URL ?? 'https://in.seaneb.com'
+const url = process.env.NEXT_PUBLIC_SITEMAP_URL ?? 'https://www.seaneb.com'
 const apiUrl = process.env.NEXT_PUBLIC_API_URL + endpoint.searchBusiness.uri
 
 interface BusinessDynamicList extends ApiResponse {

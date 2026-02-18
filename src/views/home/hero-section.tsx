@@ -66,6 +66,7 @@ const HeroSection = () => {
     queryKey: ['categories'],
     queryFn: () => fetchCategoryList()
   })
+  
 
   const onSearch = () => {
     if (!selectedLocation) return
@@ -184,8 +185,10 @@ const HeroSection = () => {
                   <SelectContent>
                     <SelectItem value='all'>All Categories</SelectItem>
                     {categories?.data.map(category => (
-                      <SelectItem key={category.u_id} value={category.main_category}>
-                        {capitalizeFirstLetter(category.category)}
+                      <SelectItem
+  key={category.u_id}
+  value={`${category.main_category}-${category.u_id}`}
+>                        {capitalizeFirstLetter(category.category)}
                       </SelectItem>
                     ))}
                   </SelectContent>
