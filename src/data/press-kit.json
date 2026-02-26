@@ -42,11 +42,11 @@
         "items": [
             {
                 "label": "Primary Logo (SVG)",
-                "href": "/images/seaneb-logo.svg"
+                "href": "/images/marketing/seaneb-logo.svg"
             },
             {
                 "label": "App UI Screenshot",
-                "href": "/images/seaneb-offers-ui.svg"
+                "href": "/images/marketing/seaneb-offers-ui.svg"
             }
         ]
     },

@@ -10,7 +10,7 @@
     "whatIsApp": {
         "heading": "What is SeaNeB App?",
         "subheading": "Get the Best Local Offers & Deals in One Simple Place",
-        "image": "/images/seaneb-offers-ui.svg",
+        "image": "/images/marketing/seaneb-offers-ui.svg",
         "imageAlt": "SeaNeB Offers UI",
         "paragraphs": [
             "SeaNeB App is a location-based local business/shop discovery app designed to connect local business owners with customers in their own locality. Whether you're a shopkeeper, a restaurant owner, or a service provider, SeaNeB App helps you post your deals, discounts, and promotions in real-time — and reach customers right where they are.",
@@ -23,16 +23,16 @@
         "line2": "✅ Support Local • ✅ Save Smart • ✅ Stay Updated",
         "appStore": {
             "href": "https://apps.apple.com/us/app/seaneb/id6755147919",
-            "image": "/images/app-store-badge.svg",
+            "image": "/images/marketing/app-store-badge.svg",
             "alt": "App Store"
         },
         "googlePlay": {
             "href": "https://play.google.com/store/apps/details?id=com.seaneb.offers",
-            "image": "/images/google-play-badge.svg",
+            "image": "/images/marketing/google-play-badge.svg",
             "alt": "Google Play"
         },
         "qrCode": {
-            "image": "/images/seaneb-qr-code.svg",
+            "image": "/images/marketing/seaneb-qr-code.svg",
             "alt": "QR Code"
         }
     },
@@ -85,7 +85,7 @@
         "items": [
             {
                 "title": "Simplifies Offer Discovery & Management",
-                "img": "/images/benefit-simplifies-offer.svg",
+                "img": "/images/marketing/benefit-simplifies-offer.svg",
                 "body": "The app provides a simple, clean user interface — allowing customers to find and use offers quickly, and businesses to manage them without needing tech skills or external support. From uploading images to setting offer terms and expiries, the process is built for speed and control.",
                 "whyLabel": "Why It Matters:",
                 "points": [
@@ -95,7 +95,7 @@
             },
             {
                 "title": "Empowers Smart Buying Decisions for Local Consumer",
-                "img": "/images/benefit-smart-buying.svg",
+                "img": "/images/marketing/benefit-smart-buying.svg",
                 "body": "Customers want to stretch their spending without sacrificing quality. SeaNeB Offers helps users discover relevant discounts across food, services, retail, and more—organized by category, proximity, and expiry date.",
                 "whyLabel": "Why It Matters:",
                 "points": [
@@ -105,7 +105,7 @@
             },
             {
                 "title": "Increases Local Business Visibility Without Ad Spend",
-                "img": "/images/benefit-local-visibility.svg",
+                "img": "/images/marketing/benefit-local-visibility.svg",
                 "body": "Businesses can publish and promote their deals without the complexity or cost of running digital ads. The app surfaces their offers organically to users browsing locally, meaning zero advertising cost but continuous exposure.",
                 "whyLabel": "Why It Matters:",
                 "points": [
@@ -115,7 +115,7 @@
             },
             {
                 "title": "Bridges the Gap Between Businesses and Customers",
-                "img": "/images/benefit-bridges-gap.svg",
+                "img": "/images/marketing/benefit-bridges-gap.svg",
                 "body": "The SeaNeB Offers App connects verified local businesses directly with nearby customers looking for relevant, time-sensitive offers. Unlike mass-market deal apps, SeaNeB Offers emphasizes hyperlocal engagement, helping small businesses promote to real people in their vicinity.",
                 "whyLabel": "Why It Matters:",
                 "points": [
@@ -125,7 +125,7 @@
             },
             {
                 "title": "Boosts Local Commerce Through Real-Time Offer",
-                "img": "/images/benefit-boosts-commerce.svg",
+                "img": "/images/marketing/benefit-boosts-commerce.svg",
                 "body": "For both seasonal campaigns and last-minute deals, SeaNeB lets businesses instantly reach their audience. Customers receive real-time notifications about new offers in their location or category of interest, creating timely action.",
                 "whyLabel": "Why It Matters:",
                 "points": [
@@ -135,7 +135,7 @@
             },
             {
                 "title": "Builds Trust With Verified Listings",
-                "img": "/images/benefit-verified-listings.svg",
+                "img": "/images/marketing/benefit-verified-listings.svg",
                 "body": "All businesses and offers go through a basic verification process, making customers more confident in engaging. Each listing shows details like business location, T&Cs, duration, and usage limits—reducing ambiguity and increasing conversions.",
                 "whyLabel": "Why It Matters:",
                 "points": [
@@ -147,7 +147,7 @@
     },
     "featuresTable": {
         "heading": "Key Features at a Glance",
-        "mockupImage": "/images/seaneb-offers-ui.svg",
+        "mockupImage": "/images/marketing/seaneb-offers-ui.svg",
         "mockupAlt": "Mockup",
         "rows": [
             {

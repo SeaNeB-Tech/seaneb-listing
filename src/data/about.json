@@ -8,7 +8,7 @@
         "subheading": "An initiative by SeaNeB Technologies Pvt. Ltd."
     },
     "intro": {
-        "logo": "/images/seaneb-logo.svg",
+        "logo": "/images/marketing/seaneb-logo.svg",
         "logoAlt": "SeaNeB.COM",
         "heading": "Search NearBy App",
         "paragraphs": [
@@ -31,7 +31,7 @@
                 "id": "buyers",
                 "heading": "All Buyers / Customers",
                 "subheading": "Empowering Local Commerce in the Digital Age",
-                "image": "/images/about-buyers.jpg",
+                "image": "/images/marketing/about-buyers.jpg",
                 "imageAlt": "grey shopping cart",
                 "paragraphs": [
                     "At SeaNeB App, we are committed to supporting users who want to strengthen the local economy by choosing to shop within their own neighborhoods. However, in today's fast-paced digital world, visiting local stores in person isn't always convenient.",
@@ -43,7 +43,7 @@
                 "id": "businesses",
                 "heading": "Local Businesses / Shops",
                 "subheading": "Leveling the Playing Field for MSMEs",
-                "image": "/images/about-local-customers.jpg",
+                "image": "/images/marketing/about-local-customers.jpg",
                 "imageAlt": "come in we're local signage",
                 "paragraphs": [
                     "For Micro, Small, and Medium Enterprises (MSMEs), competing against medium and large-scale businesses is incredibly challenging. Larger businesses often rely on their capital power to fuel aggressive growth and marketing strategies, even if they operate at a loss for several years. This imbalance gradually weakens and threatens the local economy.",
@@ -54,7 +54,7 @@
         ]
     },
     "ourStory": {
-        "image": "/images/about-device.svg",
+        "image": "/images/marketing/about-device.svg",
         "imageAlt": "Mobile Device",
         "heading": "Our Story",
         "subheading": "Born from a Vision. Built for Local Empowerment.",
