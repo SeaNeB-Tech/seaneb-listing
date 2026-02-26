@@ -8,7 +8,7 @@ export const footerLinks = {
     { label: 'Acceptable Use Policy', href: '/acceptable-use-policy' },
     { label: 'Content Policy', href: '/content-policy' },
     { label: 'Child Safety Policy', href: '/child-safety-standards-policy' },
-    { label: 'EULA', href: '/end-user-licence-agreement' }
+    { label: 'End User License Agreement', href: '/end-user-licence-agreement' }
   ],
   product: [
     { label: 'Partner With Us', href: '/partner-with-us' },

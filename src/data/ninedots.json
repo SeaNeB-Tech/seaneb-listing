@@ -1,0 +1,39 @@
+{
+  "apps": [
+    {
+      "name": "SeaNeB App",
+      "image": "/images/ninedots/seaneb-app.svg",
+      "url": "https://www.seaneb.com"
+    },
+    {
+      "name": "Tiffin Service",
+      "image": "/images/ninedots/tiffin-service.webp",
+      "url": "https://tiffinservice.app"
+    },
+    {
+      "name": "Jobs",
+      "image": "/images/ninedots/seaneb-jobs.webp",
+      "url": "https://jobs.seaneb.com"
+    },
+    {
+      "name": "Auto",
+      "image": "/images/ninedots/seaneb-auto.png",
+      "url": "https://auto.seaneb.com"
+    },
+     {
+      "name": "Property",
+      "image": "/images/ninedots/seaneb-property.webp",
+      "url": "https://property.seaneb.com"
+    },
+    {
+      "name": "News",
+      "image": "/images/ninedots/seaneb-news.png",
+      "url": "https://news.seaneb.com"
+    },
+    {
+      "name": "NGO",
+      "image": "/images/ninedots/seaneb-ngo.webp",
+      "url": "https://ngo.seaneb.com"
+    }
+  ]
+}
