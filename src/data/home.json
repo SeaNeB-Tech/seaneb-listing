@@ -1,0 +1,51 @@
+{
+    "meta": {
+        "title": "SeaNeB – Empowering Local Businesses",
+        "description": "SeaNeB helps MSMEs and local entrepreneurs grow with easy-to-use, zero-commission platforms for meals, promotions, and online shops."
+    },
+    "hero": {
+        "backgroundImage": "/images/marketing/hero-bg.webp",
+        "heading": "Empowering the Local Economy",
+        "subheading": "Connecting Local Businesses with Local Communities",
+        "paragraphs": [
+            "SeaNeB helps MSMEs and local entrepreneurs grow with easy-to-use, zero-commission platforms for meals, promotions, and online shops.",
+            "With SeaNeB's #VocalForLocal app, you can easily discover the best offers from nearby businesses, save money on unique deals, and play a vital role in boosting your local market. It's time to make every purchase count for your community."
+        ]
+    },
+    "makingDifference": {
+        "heading": "Making the difference for Local Businesses",
+        "image": "/images/marketing/making-difference-local-business.webp",
+        "imageAlt": "Local Business",
+        "paragraphs": [
+            "At SeaNeB, we believe in the transformative power of local businesses. Large-scale organizations often dominate markets with their extensive resources and cutting-edge technologies, leaving micro, small, and medium enterprises (MSMEs) with limited opportunities to compete.",
+            "This growing imbalance threatens the vibrancy of local economies. SeaNeB's mission is to bridge this gap by offering an accessible, intuitive platform that empowers local businesses to thrive and encourages consumers to make impactful choices. By supporting SeaNeB, you're contributing to a future where every local business has the opportunity to grow and flourish."
+        ]
+    },
+    "whySeaneb": {
+        "heading": "Why SeaNeB?",
+        "subheading": "Why Thousands of Local Businesses choose SeaNeB?",
+        "image": "/images/marketing/future-of-local-commerce.webp",
+        "imageAlt": "Future of Local Commerce",
+        "points": [
+            "100% Commission-Free Listings",
+            "Made for Local Shops, Services & MSMEs",
+            "Boosts Discoverability & Customer Reach",
+            "Supports Digital India & Vocal for Local",
+            "Easy-to-use Mobile + Web Platforms"
+        ]
+    },
+    "blogTeaser": {
+        "heading": "Our latest content",
+        "subheading": "Check out what's new in our company!",
+        "linkLabel": "See all",
+        "linkHref": "/blog",
+        "placeholder": "Latest news coming soon."
+    },
+    "joinMovement": {
+        "backgroundImage": "/images/marketing/join-movement-bg.webp",
+        "eyebrow": "Be a part of Local Empowerment!!",
+        "heading": "Join the Movement",
+        "ctaLabel": "Explore Now",
+        "ctaHref": "/seaneb-app"
+    }
+}

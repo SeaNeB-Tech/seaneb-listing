@@ -1,0 +1,30 @@
+{
+    "meta": {
+        "title": "Refund Policy | SeaNeB",
+        "description": "SeaNeB refund policy – understand our cancellation and refund procedures."
+    },
+    "title": "Refund Policy",
+    "lastUpdated": "Last updated August 17, 2025",
+    "sections": [
+        {
+            "heading": "ALL SALES ARE FINAL",
+            "paragraphs": [
+                "All purchases made through SeaNeB are non-refundable. Once a subscription or plan is activated, we do not offer refunds for partially used periods.",
+                "However, you can cancel your subscription at any time and your access will remain active until the end of your current billing period."
+            ]
+        },
+        {
+            "heading": "EXCEPTIONS",
+            "paragraphs": [
+                "We may consider refunds on a case-by-case basis if: (1) you were charged in error; (2) the service was not delivered as described due to a technical issue on our end.",
+                "To request a refund exception, please contact us at hello@seaneb.com within 7 days of the charge."
+            ]
+        },
+        {
+            "heading": "CONTACT US",
+            "paragraphs": [
+                "For refund-related queries, email us at hello@seaneb.com or visit our Contact page."
+            ]
+        }
+    ]
+}

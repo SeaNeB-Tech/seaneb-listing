@@ -1,0 +1,45 @@
+{
+    "meta": {
+        "title": "End User Licence Agreement | SeaNeB",
+        "description": "End User Licence Agreement (EULA) for the SeaNeB mobile application."
+    },
+    "title": "End User Licence Agreement",
+    "lastUpdated": "Last updated August 17, 2025",
+    "sections": [
+        {
+            "heading": "AGREEMENT TO TERMS",
+            "paragraphs": [
+                "This End User Licence Agreement ('EULA') is a legal agreement between you and SeaNeB Technologies Pvt Ltd ('Company', 'we', 'us', or 'our') for the use of the SeaNeB mobile application ('App').",
+                "By downloading, installing, or using the App, you agree to be bound by the terms of this EULA. If you do not agree to the terms of this EULA, do not download, install, or use the App."
+            ]
+        },
+        {
+            "heading": "LICENCE GRANT",
+            "paragraphs": [
+                "SeaNeB Technologies Pvt Ltd grants you a revocable, non-exclusive, non-transferable, limited right to download, install, and use the App solely for your personal, non-commercial purposes strictly in accordance with the terms of this EULA."
+            ]
+        },
+        {
+            "heading": "RESTRICTIONS",
+            "list": [
+                "Licence the App, sell, resell, transfer, assign, distribute or otherwise commercially exploit or make available to any third party the App.",
+                "Modify or make derivative works based upon the App.",
+                "Reverse engineer or access the App in order to build a competitive product or service.",
+                "Use the App for purposes other than those for which it is designed and intended."
+            ]
+        },
+        {
+            "heading": "TERMINATION",
+            "paragraphs": [
+                "This EULA is effective until terminated by you or us. Your rights under this EULA will terminate automatically without notice from us if you fail to comply with any term of this EULA.",
+                "Upon termination of this EULA, you shall cease all use of the App and delete all copies of the App from your mobile device or from your desktop."
+            ]
+        },
+        {
+            "heading": "CONTACT US",
+            "paragraphs": [
+                "If you have any questions about this EULA, please contact us at hello@seaneb.com."
+            ]
+        }
+    ]
+}

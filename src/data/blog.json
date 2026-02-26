@@ -1,0 +1,143 @@
+{
+    "meta": {
+        "title": "Our Blog | SeaNeB",
+        "description": "Insights, updates, and stories about local businesses, the economy, and the #VocalForLocal movement."
+    },
+    "hero": {
+        "heading": "Our Blog",
+        "subheading": "Insights, updates, and stories about local businesses, the economy, and the #VocalForLocal movement."
+    },
+    "sidebar": {
+        "aboutUs": {
+            "tagline": "Connecting Local Businesses with Local Communities",
+            "description1": "SeaNeB helps MSMEs and local entrepreneurs grow with easy-to-use, zero-commission platforms for meals, promotions, and online shops.",
+            "description2": "With SeaNeB's #VocalForLocal app, you can easily discover the best offers from nearby businesses, save money on unique deals, and play a vital role in boosting your local market. It's time to make every purchase count for your community."
+        },
+        "tags": [
+            "Local Business",
+            "Vocal for Local",
+            "MSME",
+            "Digital Marketing",
+            "India",
+            "Economy",
+            "Growth",
+            "Startups"
+        ],
+        "archives": [
+            {
+                "label": "January 2025",
+                "count": 7
+            },
+            {
+                "label": "December 2024",
+                "count": 3
+            },
+            {
+                "label": "November 2024",
+                "count": 5
+            }
+        ]
+    },
+    "posts": [
+        {
+            "id": 1,
+            "title": "Why Every Local Business Needs a Digital Presence in 2025",
+            "slug": "why-every-local-business-needs-a-digital-presence-in-2025",
+            "excerpt": "The way that consumers find and engage with businesses has changed as a result of the digital revolution. The days of relying solely on physical signboards or word of mouth are long gone.",
+            "date": "Jan 15, 2025",
+            "author": "SeaNeB Team",
+            "image": "/images/marketing/Why Every Local Business Needs a Digital Presence.jpg",
+            "category": "Digital Marketing"
+        },
+        {
+            "id": 2,
+            "title": "India's MSMEs: Backbone of the Local Economy and Vocal for Local",
+            "slug": "indias-msmes-backbone-of-the-local-economy-and-vocal-for-local",
+            "excerpt": "India's MSMEs are crucial to its local economy, driving job creation, innovation, and regional growth. As the backbone of India's economy, these businesses promote the 'Vocal for Local' initiative.",
+            "date": "Jan 12, 2025",
+            "author": "SeaNeB Team",
+            "image": "/images/marketing/India’s MSMEs Backbone of the Local Economy.jpg",
+            "category": "Economy"
+        },
+        {
+            "id": 3,
+            "title": "5 Ways the Vocal for Local Movement is Strengthening the Economy of India",
+            "slug": "vocal-for-local-movement-for-economy-of-india",
+            "excerpt": "Discover 5 ways the Vocal for Local movement empowers Indian startups, MSMEs, and small businesses to boost the economy of India.",
+            "date": "Jan 10, 2025",
+            "author": "SeaNeB Team",
+            "image": "/images/marketing/5 Ways the Vocal for Local Movement.jpg",
+            "category": "Vocal for Local"
+        },
+        {
+            "id": 4,
+            "title": "Top Business Ideas in Gujarat: How Local Businesses and MSMEs Are Powering Manufacturing Industries",
+            "slug": "business-ideas-in-gujarat-local-business-msme",
+            "excerpt": "Explore top business ideas in Gujarat. See how local businesses and MSMEs drive growth, with key MSME schemes boosting manufacturing industries.",
+            "date": "Jan 08, 2025",
+            "author": "SeaNeB Team",
+            "image": "/images/marketing/Top Business Ideas in Gujarat.jpg",
+            "category": "Business Ideas"
+        },
+        {
+            "id": 5,
+            "title": "Top 10 Festivals In India That Celebrate Local Businesses and Culture",
+            "slug": "top-10-festivals-of-india-which-support-local-business",
+            "excerpt": "Festivals in India are arguably the most vibrant reflection of the country's rich cultural heritage. But beyond the rituals, prayers, and celebrations, these festivals play a massive role in supporting local businesses.",
+            "date": "Jan 05, 2025",
+            "author": "SeaNeB Team",
+            "image": "/images/marketing/Top 10 Festivals In India.jpg",
+            "category": "Culture"
+        },
+        {
+            "id": 6,
+            "title": "Record-Breaking Diwali 2025: Made in India Products Drive ₹5.4 Trillion Sales",
+            "slug": "diwali-2025-made-in-india-sales-record",
+            "excerpt": "The Diwali 2025 festive season has been nothing short of historic for India's economy. With record-breaking sales of ₹5.4 trillion, this year's data confirms a massive shift in consumer behavior.",
+            "date": "Jan 03, 2025",
+            "author": "SeaNeB Team",
+            "image": "/images/marketing/Record-Breaking Diwali 2025.jpg",
+            "category": "Economy"
+        },
+        {
+            "id": 7,
+            "title": "What is SeaNeB? A Commission-Free Platform For Local Businesses in India",
+            "slug": "what-is-seaneb",
+            "excerpt": "In the digital age, local businesses often struggle to compete with e-commerce giants and large aggregators that charge hefty commissions. Enter SeaNeB – a commission-free platform designed exclusively for local businesses in India.",
+            "date": "Jan 01, 2025",
+            "author": "SeaNeB Team",
+            "image": "/images/marketing/What is SeaNeB.png",
+            "category": "Platform"
+        },
+        {
+            "id": 8,
+            "title": "Top Updates on Vocal for Local: Highlights from 2025",
+            "slug": "vocal-for-local-2025-updates",
+            "excerpt": "The Vocal for Local movement has gained significant momentum in 2025, transforming from a slogan into a nationwide economic revolution. Explore the key highlights.",
+            "date": "Dec 30, 2024",
+            "author": "SeaNeB Team",
+            "image": "/images/marketing/Top Updates on Vocal for Local.jpg",
+            "category": "Updates"
+        },
+        {
+            "id": 9,
+            "title": "Rise of Indian MSMEs: How Small Businesses Are Powering the 2025 Economic Boom",
+            "slug": "india-msme-small-business-indian-economy",
+            "excerpt": "MSMEs have always been the backbone of the Indian economy, but in 2025, they are taking center stage like never before. Learn how they are driving growth.",
+            "date": "Dec 28, 2024",
+            "author": "SeaNeB Team",
+            "image": "/images/marketing/Rise of Indian MSMEs.jpg",
+            "category": "MSME"
+        },
+        {
+            "id": 10,
+            "title": "The Future of Local Commerce in India: Trends to Watch in 2025",
+            "slug": "local-commerce-2025",
+            "excerpt": "Local commerce in India is undergoing a rapid transformation. From digital adoption to hyper-local delivery models, here are the trends redefining the market in 2025.",
+            "date": "Dec 25, 2024",
+            "author": "SeaNeB Team",
+            "image": "/images/marketing/The Future of Local Commerce in India.jpg",
+            "category": "Trends"
+        }
+    ]
+}

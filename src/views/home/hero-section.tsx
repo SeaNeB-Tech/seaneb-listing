@@ -224,7 +224,7 @@ const HeroSection = () => {
         {/* Categories */}
         <div className='relative z-10 mt-8'>
           <p className='mb-3 text-sm text-gray-600'>Or browse featured categories:</p>
-          <div className='flex flex-wrap gap-2'>
+          <div className='flex flex-wrap text-white gap-2'>
             {[
               { icon: <Home className='mr-2 h-4 w-4' />, label: 'Apartments' },
               { icon: <Utensils className='mr-2 h-4 w-4' />, label: 'Eat & Drink' },

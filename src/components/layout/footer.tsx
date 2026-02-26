@@ -1,13 +1,23 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { Facebook, Twitter, Linkedin, Instagram, Youtube } from 'lucide-react'
 
 import Logo from '@images/logo/logo-white.png'
 
 import { websiteConfig } from '@/config/website-config'
+import { footerLinks } from '@/config/footer-links'
 
 import { Mail, Phone } from 'lucide-react'
 import { memo } from 'react'
 import ScreenWrapper from '../wrapper/screen-wrapper'
+
+const SOCIAL_ICONS = {
+  facebook: Facebook,
+  instagram: Instagram,
+  linkedin: Linkedin,
+  youtube: Youtube,
+  twitter_x: Twitter
+} as const
 
 function Footer() {
   return (
@@ -28,129 +38,80 @@ function Footer() {
             </Link>
           </div>
 
-          <div className='flex flex-col items-center justify-center gap-2 space-x-5 sm:flex-row sm:gap-0'>
-            <div className='flex items-center'>
-              <Mail className='mr-3 h-5 w-5 shrink-0 text-xs text-white md:text-base' />
-              <Link
-                href={`mailto:${websiteConfig.email}`}
-                className='animated-underline hover:text-footerText = text-sm font-medium text-gray-300'
-              >
-                {websiteConfig.email}
-              </Link>
-            </div>
-            <div className='flex items-center'>
-              <Phone className='mr-3 h-5 w-5 text-xs text-white md:text-base' />
-              <Link
-                href={`tel:${websiteConfig.call}`}
-                className='animated-underline hover:text-footerText = text-sm font-medium text-gray-300'
-              >
-                {websiteConfig.call}
-              </Link>
-            </div>
-            <div className='hidden h-1 w-1 rounded-full bg-white lg:block' />
-            <div className='hidden space-x-4 lg:flex'>
-              <Link
-                href={websiteConfig.facebook}
-                target='_blank'
-                rel='noopener noreferrer'
-                aria-label='facebook redirects'
-                className='hover:text-footerText flex items-center justify-center text-white'
-              >
-                <i className='ri-facebook-box-line !size-6' />
-              </Link>
+          <div className="grid gap-x-14 gap-y-12 mb-12
+  text-[15px]
+  grid-cols-1 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(210px,1fr))]">
 
-              <Link
-                href={websiteConfig.instagram}
-                target='_blank'
-                rel='noopener noreferrer'
-                aria-label='instagram redirects'
-                className='hover:text-footerText flex items-center justify-center text-white'
-              >
-                <i className='ri-instagram-line !size-6' />
-              </Link>
-              <Link
-                href={websiteConfig.linkedin}
-                target='_blank'
-                rel='noopener noreferrer'
-                aria-label='linked-in redirects'
-                className='hover:text-footerText flex items-center justify-center text-white'
-              >
-                <i className='ri-linkedin-box-line !size-6' />
-              </Link>
+  {/* Dynamic sections */}
+  {Object.entries(footerLinks).map(([section, links]) => (
+    <div key={section}>
+      <p className="font-semibold mb-4 text-white text-base tracking-wide">
+        {section === 'legal' ? 'Legal' :
+         section === 'product' ? 'Help & Support' :
+         section}
+      </p>
 
-              <Link
-                href={websiteConfig.twitter_x}
-                target='_blank'
-                rel='noopener noreferrer'
-                aria-label='twitter_x redirects'
-                className='hover:text-footerText flex items-center justify-center text-white'
-              >
-                <i className='ri-twitter-x-line !size-6' />
-              </Link>
-
-              <Link
-                href={websiteConfig.youtube}
-                target='_blank'
-                rel='noopener noreferrer'
-                aria-label='youtube redirects'
-                className='hover:text-footerText flex items-center justify-center text-white'
-              >
-                <i className='ri-youtube-line !size-6' />
-              </Link>
-            </div>
-          </div>
-
-          <div className='mt-4 flex items-center justify-center space-x-4 lg:hidden'>
-            <Link
-              href={websiteConfig.facebook}
-              target='_blank'
-              rel='noopener noreferrer'
-              aria-label='facebook redirects'
-              className='hover:text-footerText flex items-center justify-center text-white'
-            >
-              <i className='ri-facebook-box-line !size-6' />
+      <ul className="space-y-2.5">
+        {links.map(link => (
+          <li key={link.href}>
+            <Link href={link.href} className="text-gray-400 hover:text-white transition leading-6">
+              {link.label}
             </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  ))}
 
-            <Link
-              href={websiteConfig.instagram}
-              target='_blank'
-              rel='noopener noreferrer'
-              aria-label='instagram redirects'
-              className='hover:text-footerText flex items-center justify-center text-white'
-            >
-              <i className='ri-instagram-line !size-6' />
-            </Link>
+  {/* Contact (separate because not links list) */}
+  <div>
+    <p className="font-semibold mb-3 text-white">Contact</p>
 
-            <Link
-              href={websiteConfig.linkedin}
-              target='_blank'
-              rel='noopener noreferrer'
-              aria-label='linked-in redirects'
-              className='hover:text-footerText flex items-center justify-center text-white'
-            >
-              <i className='ri-linkedin-box-line !size-6' />
-            </Link>
+    <div className="space-y-3 text-gray-400">
+      <div className="flex items-center gap-2">
+        <Mail className="w-4 h-4" />
+        <Link href={`mailto:${websiteConfig.email}`} className="hover:text-white">
+          {websiteConfig.email}
+        </Link>
+      </div>
 
-            <Link
-              href={websiteConfig.twitter_x}
-              target='_blank'
-              rel='noopener noreferrer'
-              aria-label='twitter_x redirects'
-              className='hover:text-footerText flex items-center justify-center text-white'
-            >
-              <i className='ri-twitter-x-line !size-6' />
-            </Link>
+      <div className="flex items-center gap-2">
+        <Phone className="w-4 h-4" />
+        <Link href={`tel:${websiteConfig.call}`} className="hover:text-white">
+          {websiteConfig.call}
+        </Link>
+      </div>
+    </div>
+  </div>
 
-            <Link
-              href={websiteConfig.youtube}
-              target='_blank'
-              rel='noopener noreferrer'
-              aria-label='youtube redirects'
-              className='hover:text-footerText flex items-center justify-center text-white'
-            >
-              <i className='ri-youtube-line !size-6' />
-            </Link>
-          </div>
+  {/* Social — always last (right side naturally) */}
+  <div className="lg:justify-self-end">
+  <p className="font-semibold mb-3 text-white">Follow Us</p>
+
+  <div className="flex gap-3">
+  {(Object.entries(websiteConfig.social ?? {}) as [string, string][])
+    .map(([key, href]) => {
+      const Icon = SOCIAL_ICONS[key as keyof typeof SOCIAL_ICONS]
+
+      if (!Icon) return null
+
+      return (
+        <Link
+          key={key}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="rounded-full bg-white/10 p-3 hover:bg-white/20 transition"
+        >
+          <Icon size={20} />
+        </Link>
+      )
+    })}
+</div>
+</div>
+
+</div>
+
         </div>
       </ScreenWrapper>
 

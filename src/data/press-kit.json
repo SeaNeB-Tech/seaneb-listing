@@ -1,0 +1,59 @@
+{
+    "meta": {
+        "title": "Press Kit | SeaNeB",
+        "description": "Download SeaNeB's press kit – brand assets, logos, company fact sheet, and media contact information."
+    },
+    "heading": "Press Kit",
+    "subheading": "Everything the press needs to cover SeaNeB.",
+    "about": {
+        "heading": "About SeaNeB",
+        "paragraphs": [
+            "SeaNeB (Search Near By) is an Indian tech startup building commission-free digital tools for MSMEs and local businesses. Founded to bridge the gap between local commerce and the digital economy, SeaNeB operates platforms for offers, e-commerce, job listings, and local discovery.",
+            "SeaNeB is an initiative by SeaNeB Technologies Pvt. Ltd., a government-recognised startup based in Anand, Gujarat, India."
+        ]
+    },
+    "facts": {
+        "heading": "Company Facts",
+        "items": [
+            {
+                "label": "Founded",
+                "value": "2022"
+            },
+            {
+                "label": "Headquarters",
+                "value": "Anand, Gujarat, India"
+            },
+            {
+                "label": "Mission",
+                "value": "Empowering local businesses with commission-free digital tools"
+            },
+            {
+                "label": "Platform",
+                "value": "Mobile App (iOS & Android) + Web"
+            },
+            {
+                "label": "Business Model",
+                "value": "Flat subscription – zero commission on transactions"
+            }
+        ]
+    },
+    "assets": {
+        "heading": "Brand Assets",
+        "items": [
+            {
+                "label": "Primary Logo (SVG)",
+                "href": "/images/marketing/seaneb-logo.svg"
+            },
+            {
+                "label": "App UI Screenshot",
+                "href": "/images/marketing/seaneb-offers-ui.svg"
+            }
+        ]
+    },
+    "mediaContact": {
+        "heading": "Media Contact",
+        "name": "SeaNeB PR Team",
+        "email": "hello@seaneb.com",
+        "website": "https://www.seaneb.org"
+    }
+}

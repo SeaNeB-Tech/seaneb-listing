@@ -1,0 +1,40 @@
+{
+    "meta": {
+        "title": "Child Safety Standards Policy | SeaNeB",
+        "description": "SeaNeB's Child Safety and Standards Policy (CSAE) – our commitment to protecting minors on our platform."
+    },
+    "title": "Child Safety Standards Policy (CSAE)",
+    "lastUpdated": "Last updated August 17, 2025",
+    "sections": [
+        {
+            "heading": "OUR COMMITMENT",
+            "paragraphs": [
+                "SeaNeB Technologies Pvt Ltd is deeply committed to the safety and wellbeing of children. We have a zero-tolerance policy for content that exploits, abuses, or endangers minors.",
+                "We strictly prohibit Child Sexual Abuse and Exploitation (CSAE) content of any kind on our platforms."
+            ]
+        },
+        {
+            "heading": "PROHIBITED CONTENT AND BEHAVIOUR",
+            "list": [
+                "Any content that sexually exploits or abuses minors (CSAM).",
+                "Grooming, soliciting, or communicating with a minor for sexual purposes.",
+                "Sharing, distributing, or viewing any content that sexualises minors.",
+                "Facilitating or encouraging any form of child abuse or trafficking."
+            ]
+        },
+        {
+            "heading": "REPORTING",
+            "paragraphs": [
+                "If you encounter content or behaviour that violates this policy, please report it immediately to us at hello@seaneb.com, or through the in-app reporting feature.",
+                "We will report detected CSAM to the National Center for Missing & Exploited Children (NCMEC) and cooperate fully with law enforcement authorities."
+            ]
+        },
+        {
+            "heading": "ENFORCEMENT",
+            "paragraphs": [
+                "Any account found to be in violation of this policy will be immediately and permanently banned. We reserve the right to report violators to law enforcement.",
+                "We regularly audit our platform and train our moderation teams to identify and remove any such content."
+            ]
+        }
+    ]
+}

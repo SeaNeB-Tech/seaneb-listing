@@ -12,6 +12,11 @@ import ScreenWrapper from '../wrapper/screen-wrapper'
 import { websiteConfig } from '@/config/website-config'
 import { cn } from '@/lib/utils'
 
+import siteJson from '@/data/site.json'
+import type { SiteData } from '@/types/site'
+
+const siteData: SiteData = siteJson
+
 import * as m from 'motion/react-m'
 
 function Header() {
@@ -72,7 +77,40 @@ function Header() {
 
           <div className='flex w-full items-center'>
             {/* Desktop Navigation */}
-            <nav className='hidden flex-1 lg:block'></nav>
+            <nav className='hidden flex-1 lg:block'>
+  <ul className='flex items-center justify-center gap-8'>
+    {siteData.navigation.main.map((item) => {
+      if (!item.href) return null
+
+      if (item.external) {
+        return (
+          <li key={item.label}>
+            <a
+              href={item.href}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='text-sm font-medium text-gray-700 hover:text-primary transition'
+            >
+              {item.label}
+            </a>
+          </li>
+        )
+      }
+
+      return (
+        <li key={item.label}>
+          <Link
+            href={item.href}
+            className='text-sm font-medium text-gray-700 hover:text-primary transition'
+          >
+            {item.label}
+          </Link>
+        </li>
+      )
+    })}
+  </ul>
+</nav>
+
             <div className='ml-4 flex flex-1 items-center justify-end lg:flex-none'>
               <Link href={websiteConfig.appstore} className={cn(agent === 'ios' ? 'block' : 'hidden lg:block')}>
                 <Image

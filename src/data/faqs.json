@@ -1,0 +1,70 @@
+{
+    "meta": {
+        "title": "FAQs | SeaNeB",
+        "description": "Frequently asked questions about SeaNeB – the local business discovery and empowerment platform."
+    },
+    "heading": "Frequently Asked Questions",
+    "subheading": "Find answers to the most common questions about SeaNeB.",
+    "categories": [
+        {
+            "category": "General",
+            "items": [
+                {
+                    "question": "What is SeaNeB?",
+                    "answer": "SeaNeB (Search Near By) is a location-based local business discovery platform that helps MSMEs promote their deals, offers, and services to nearby customers at zero commission."
+                },
+                {
+                    "question": "Is SeaNeB free to use?",
+                    "answer": "Yes! Browsing local deals and businesses on the SeaNeB app is 100% free for customers. Businesses can list their basic profile for free and choose from affordable paid plans for additional promotions."
+                },
+                {
+                    "question": "Which cities are supported?",
+                    "answer": "SeaNeB is currently expanding across India. Check the app to see if your city is available, and if not, you can request coverage for your area."
+                }
+            ]
+        },
+        {
+            "category": "For Businesses",
+            "items": [
+                {
+                    "question": "How do I list my business on SeaNeB?",
+                    "answer": "Download the SeaNeB app, sign up as a customer, and then register your business from your profile page. Follow the on-screen steps to complete your business profile."
+                },
+                {
+                    "question": "How does commission-free work?",
+                    "answer": "Unlike other platforms that charge a percentage of every sale or order, SeaNeB charges a flat subscription fee. You keep 100% of your earnings on every transaction or deal."
+                },
+                {
+                    "question": "What types of promotions can I run?",
+                    "answer": "You can post discount offers, limited-time deals, service announcements, product highlights, and job listings directly through the SeaNeB business dashboard."
+                }
+            ]
+        },
+        {
+            "category": "Account & Privacy",
+            "items": [
+                {
+                    "question": "Do I need an account to browse offers?",
+                    "answer": "You need to log in with your mobile number to access all features. We don't store unnecessary personal data."
+                },
+                {
+                    "question": "How do I delete my account?",
+                    "answer": "You can request account deletion from within the app under Profile > Settings > Delete Account, or by emailing us at hello@seaneb.com."
+                }
+            ]
+        },
+        {
+            "category": "Support",
+            "items": [
+                {
+                    "question": "How do I contact support?",
+                    "answer": "Visit our Contact page or email us at support@seaneb.com. We aim to respond within 24 business hours."
+                },
+                {
+                    "question": "Where can I report a bug?",
+                    "answer": "You can report bugs through the in-app feedback option or by emailing support@seaneb.com with a description of the issue and your device details."
+                }
+            ]
+        }
+    ]
+}

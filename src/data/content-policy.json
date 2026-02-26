@@ -1,0 +1,35 @@
+{
+    "meta": {
+        "title": "Content Policy | SeaNeB",
+        "description": "SeaNeB content policy – standards for content created and shared on our platforms."
+    },
+    "title": "Content Policy",
+    "lastUpdated": "Last updated August 17, 2025",
+    "sections": [
+        {
+            "heading": "OUR STANDARDS",
+            "paragraphs": [
+                "SeaNeB is committed to maintaining a safe, respectful, and law-abiding environment. All content posted on our platforms must comply with applicable laws and our community standards.",
+                "Content that is defamatory, obscene, hateful, discriminatory, or otherwise harmful is strictly prohibited."
+            ]
+        },
+        {
+            "heading": "PROHIBITED CONTENT",
+            "list": [
+                "Content that promotes or incites violence or hatred against individuals or groups.",
+                "Sexually explicit or pornographic material.",
+                "Content involving minors in an inappropriate manner.",
+                "Spam, phishing attempts, or misleading information.",
+                "Content that infringes on intellectual property rights.",
+                "Advertisements for illegal goods or services."
+            ]
+        },
+        {
+            "heading": "ENFORCEMENT",
+            "paragraphs": [
+                "We reserve the right to remove any content that violates this policy without prior notice. Repeated violations may result in account suspension or termination.",
+                "To report violating content, please use our Contact page or email hello@seaneb.com."
+            ]
+        }
+    ]
+}

@@ -1,0 +1,166 @@
+{
+    "meta": {
+        "title": "Partner With Us | SeaNeB",
+        "description": "Grow your local business with SeaNeB. Zero commission, maximum growth. Join India's growing digital platform for local and small businesses."
+    },
+    "hero": {
+        "badge": "Partner With Us",
+        "heading": "Grow Your Local Business",
+        "headingSuffix": "with SeaNeB",
+        "subheading": "Zero Commission. Maximum Growth.",
+        "ctaLabel": "Get Started Free",
+        "ctaHref": "/contact"
+    },
+    "intro": {
+        "heading": "Join the Local Business Revolution",
+        "paragraphs": [
+            "Welcome to SeaNeB, India's growing digital platform for local and small businesses. Our mission is simple — to empower entrepreneurs, shop owners, and service providers to grow online, attract more customers, and showcase their businesses across India.",
+            "Whether you're a small business owner, local service provider, or startup, SeaNeB helps you connect, promote, and grow without worrying about hefty commissions or hidden fees.",
+            "Partner with SeaNeB and take your business to the next level."
+        ]
+    },
+    "pricing": {
+        "heading": "Commission-Free Business Growth Plans",
+        "subheading": "Find the plan that best fits your business goals. SeaNeB offers lifetime 0% commission — you keep 100% of your earnings.",
+        "plans": [
+            {
+                "id": "startup",
+                "name": "Startup",
+                "label": "New small businesses or startups looking to gain visibility.",
+                "highlight": false,
+                "features": [
+                    "0% Commission",
+                    "Unlimited Visibility",
+                    "1 Business Listing",
+                    "2 km Radius Reach",
+                    "Business Page Included",
+                    "Instant Setup"
+                ]
+            },
+            {
+                "id": "professional",
+                "name": "Professional",
+                "label": "Growing businesses ready to expand their online presence.",
+                "highlight": true,
+                "popularLabel": "Most Popular",
+                "features": [
+                    "0% Commission",
+                    "Unlimited Visibility",
+                    "1 Business Listing",
+                    "2 km Radius Reach",
+                    "Business Page Included",
+                    "Instant Setup"
+                ]
+            },
+            {
+                "id": "expert",
+                "name": "Expert",
+                "label": "Established MSMEs or franchises looking for maximum exposure.",
+                "highlight": false,
+                "features": [
+                    "0% Commission",
+                    "Unlimited Visibility",
+                    "1 Business Listing",
+                    "2 km Radius Reach",
+                    "Business Page Included",
+                    "Instant Setup"
+                ]
+            }
+        ]
+    },
+    "whyPartner": {
+        "heading": "Why Partner with SeaNeB?",
+        "subheading": "SeaNeB helps you boost your revenue, connect with local customers, and grow your business visibility — all without commission cuts.",
+        "reasons": [
+            {
+                "icon": "Globe",
+                "title": "Access to a Large Business Network",
+                "description": "Join a fast-growing platform connecting thousands of small and local businesses with customers searching for trusted services nearby."
+            },
+            {
+                "icon": "Settings",
+                "title": "Simple Business Management",
+                "description": "Manage your business listing, leads, and promotions — all from one easy dashboard designed for local entrepreneurs."
+            },
+            {
+                "icon": "BadgeCheck",
+                "title": "Enhanced Visibility & Credibility",
+                "description": "Get discovered by new customers and gain credibility as a verified business listed on SeaNeB."
+            },
+            {
+                "icon": "BarChart3",
+                "title": "Smart Promotion Tools",
+                "description": "Promote your offers, deals, or seasonal discounts directly to customers looking for businesses like yours."
+            },
+            {
+                "icon": "MessageSquare",
+                "title": "Customer Engagement",
+                "description": "SeaNeB makes it easier to engage with your audience through reviews, messages, and feedback — building stronger trust and repeat customers."
+            },
+            {
+                "icon": "DollarSign",
+                "title": "Save Marketing Costs",
+                "description": "Skip expensive ads. SeaNeB's optimised platform gives your business visibility at a fraction of the marketing cost."
+            },
+            {
+                "icon": "Rocket",
+                "title": "Increased Productivity",
+                "description": "Our tools help you organise your promotions, track engagement, and measure performance — so you can focus on growth, not paperwork."
+            }
+        ]
+    },
+    "howItWorks": {
+        "heading": "How It Works",
+        "subheading": "Getting started is simple. Follow these four easy steps to launch your business on SeaNeB.",
+        "steps": [
+            {
+                "step": "01",
+                "title": "Sign Up",
+                "description": "List your business or service on SeaNeB and start reaching local customers instantly."
+            },
+            {
+                "step": "02",
+                "title": "Showcase Your Business",
+                "description": "Add your business details, offers, and promotions to attract new customers."
+            },
+            {
+                "step": "03",
+                "title": "Connect & Grow",
+                "description": "Receive direct leads and messages from potential clients, with zero commission."
+            },
+            {
+                "step": "04",
+                "title": "Expand Your Reach",
+                "description": "Use SeaNeB's local visibility tools to stand out in your area and grow your customer base."
+            }
+        ]
+    },
+    "faq": {
+        "heading": "Frequently Asked Questions",
+        "subheading": "Here are some common questions about our company.",
+        "contactNote": "Still have questions?",
+        "contactLinkLabel": "Contact Us",
+        "contactHref": "/contact",
+        "contactSuffix": "Our team will be happy to guide you.",
+        "items": [
+            {
+                "question": "How do I get started as a SeaNeB partner?",
+                "answer": "You can easily sign up through our \"Partner With Us\" page and create your business profile within minutes."
+            },
+            {
+                "question": "What are the costs involved?",
+                "answer": "SeaNeB offers affordable monthly plans with 0% commission — you only pay for visibility, not sales."
+            },
+            {
+                "question": "Can I list multiple businesses?",
+                "answer": "Yes! Our Professional and Enterprise plans allow multiple listings under a single SeaNeB account."
+            }
+        ]
+    },
+    "cta": {
+        "heading": "Ready to Grow?",
+        "subheading": "Partner with SeaNeB today and take the first step toward digital visibility, local recognition, and long-term success.",
+        "buttonLabel": "Contact Us",
+        "buttonHref": "/contact"
+    }
+}

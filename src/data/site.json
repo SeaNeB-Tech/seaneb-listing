@@ -1,0 +1,131 @@
+{
+    "company": {
+        "name": "SeaNeB",
+        "legalName": "SeaNeB Technologies Pvt. Ltd.",
+        "email": "hello@seaneb.com",
+        "tagline": "Connecting Local Businesses with Local Communities",
+        "description": "SeaNeB helps MSMEs and local entrepreneurs grow with easy-to-use, zero-commission platforms for meals, promotions, and online shops.",
+        "urls": {
+            "main": "https://www.seaneb.org",
+            "app": "https://www.seaneb.app",
+            "india": "https://www.india.gov.in",
+            "career": "https://www.linkedin.com/company/seaneb/jobs/"
+        }
+    },
+    "navigation": {
+        "main": [
+            {
+                "label": "Home",
+                "href": "/"
+            },
+            {
+                "label": "About",
+                "href": "/about"
+            },
+            {
+                "label": "Solution",
+                "href": "/seaneb-app"
+            },
+            {
+                "label": "Blogs",
+                "href": "/blog"
+            },
+            {
+                "label": "Contact",
+                "href": "/contact"
+            }
+        ],
+        "cta": {
+            "label": "List Your Business Free",
+            "href": "/list-your-business"
+        }
+    },
+    "footer": {
+        "policies": [
+            {
+                "label": "Acceptable Use Policy",
+                "href": "/acceptable-use-policy"
+            },
+            {
+                "label": "Terms & Conditions",
+                "href": "/terms-and-conditions"
+            },
+            {
+                "label": "End User Licence Agreement",
+                "href": "/end-user-licence-agreement"
+            },
+            {
+                "label": "Privacy Policy",
+                "href": "/privacy-policy"
+            },
+            {
+                "label": "Refund Policy",
+                "href": "/refund-policy"
+            },
+            {
+                "label": "Cookie Policy",
+                "href": "/cookie-policy"
+            },
+            {
+                "label": "Content Policy",
+                "href": "/content-policy"
+            },
+            {
+                "label": "CSAE",
+                "href": "/child-safety-standards-policy"
+            }
+        ],
+        "about": [
+            {
+                "label": "About SeaNeB App",
+                "href": "/about"
+            },
+            {
+                "label": "News & Blogs",
+                "href": "/blog"
+            },
+            {
+                "label": "Our Solution",
+                "href": "/seaneb-app"
+            },
+            {
+                "label": "Press Kit",
+                "href": "/press-kit"
+            },
+            {
+                "label": "Career",
+                "href": "https://www.linkedin.com/company/seaneb/jobs/",
+                "external": true
+            },
+            {
+                "label": "FAQs",
+                "href": "/faqs"
+            }
+        ],
+        "contact": [
+            {
+                "label": "Help & Support",
+                "href": "/contact"
+            },
+            {
+                "label": "Partner with us",
+                "href": "/partner-with-us"
+            },
+            {
+                "label": "Vocal for Local with us",
+                "href": null
+            },
+            {
+                "label": "Report a Bug",
+                "href": null
+            }
+        ],
+        "social": {
+            "facebook": "https://about.seaneb.com/website/social/facebook",
+            "twitter": "https://about.seaneb.com/website/social/twitter",
+            "linkedin": "https://about.seaneb.com/website/social/linkedin",
+            "instagram": "https://about.seaneb.com/website/social/instagram",
+            "youtube": "https://about.seaneb.com/website/social/youtube"
+        }
+    }
+}

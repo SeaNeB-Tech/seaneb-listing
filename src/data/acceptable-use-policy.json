@@ -1,0 +1,69 @@
+{
+    "meta": {
+        "title": "Acceptable Use Policy | SeaNeB",
+        "description": "Acceptable use policy for SeaNeB services – read before using our platform."
+    },
+    "title": "Acceptable Use Policy",
+    "lastUpdated": "Last updated August 17, 2025",
+    "intro": {
+        "paragraph": "This Acceptable Use Policy ('Policy') is part of our Terms and Conditions ('Legal Terms') and should therefore be read alongside our main Legal Terms and Conditions. If you do not agree with these Legal Terms, please refrain from using our Services. Your continued use of our Services implies acceptance of these Legal Terms.",
+        "termsHref": "/terms-and-conditions",
+        "appliesTo": "Please carefully review this Policy which applies to any and all:",
+        "scope": [
+            "uses of our Services (as defined in 'Legal Terms')",
+            "forms, materials, consent tools, comments, post, and all other content available on the Services ('Content')",
+            "material which you contribute to the Services including any upload, post, review, disclosure, ratings, comments, chat etc. in any forum, chatrooms, reviews, and to any interactive services associated with it ('Contribution')"
+        ]
+    },
+    "sections": [
+        {
+            "heading": "WHO WE ARE",
+            "paragraphs": [
+                "We are SeaNeB Technologies Pvt Ltd, doing business as SeaNeB App and SeaNeB ('Company', 'we', 'us', or 'our') a company registered in India at FF/8 Madhav Aracde, Anand, Gujarat 388315. We operate the website SeaNeB.Com (the 'Site'), the mobile application SeaNeB (the 'App'), as well as any other related products and services that refer or link to this Policy (collectively, the 'Services')."
+            ]
+        },
+        {
+            "heading": "USE OF THE SERVICES",
+            "paragraphs": [
+                "When you use the Services, you warrant that you will comply with this Policy and with all applicable laws.",
+                "You also acknowledge that you may not:"
+            ],
+            "list": [
+                "Systematically retrieve data or other content from the Services to create or compile, directly or indirectly, a collection, compilation, database, or directory without written permission from us.",
+                "Make any unauthorised use of the Services, including collecting usernames and/or email addresses of users by electronic or other means for the purpose of sending unsolicited email, or creating user accounts by automated means or under false pretences.",
+                "Circumvent, disable, or otherwise interfere with security-related features of the Services.",
+                "Engage in unauthorised framing of or linking to the Services.",
+                "Trick, defraud, or mislead us and other users, especially in any attempt to learn sensitive account information such as user passwords.",
+                "Make improper use of our Services, including our support services or submit false reports of abuse or misconduct.",
+                "Engage in any automated use of the Services, such as using scripts to send comments or messages, or using any data mining, robots, or similar data gathering and extraction tools.",
+                "Interfere with, disrupt, or create an undue burden on the Services or the networks or the Services connected.",
+                "Attempt to impersonate another user or person or use the username of another user.",
+                "Use any information obtained from the Services in order to harass, abuse, or harm another person.",
+                "Use the Services as part of any effort to compete with us or otherwise use the Services and/or the Content for any revenue-generating endeavour or commercial enterprise.",
+                "Decipher, decompile, disassemble, or reverse engineer any of the software comprising or in any way making up a part of the Services, except as expressly permitted by applicable law.",
+                "Attempt to bypass any measures of the Services designed to prevent or restrict access to the Services, or any portion of the Services.",
+                "Harass, annoy, intimidate, or threaten any of our employees or agents engaged in providing any portion of the Services to you.",
+                "Delete the copyright or other proprietary rights notice from any Content.",
+                "Copy or adapt the Services' software, including but not limited to Flash, PHP, HTML, JavaScript, or other code.",
+                "Upload or transmit (or attempt to upload or to transmit) viruses, Trojan horses, or other material.",
+                "Disparage, tarnish, or otherwise harm, in our opinion, us and/or the Services.",
+                "Use the Services in a manner inconsistent with any applicable laws or regulations.",
+                "Sell or otherwise transfer your profile."
+            ]
+        },
+        {
+            "heading": "CONTRIBUTIONS",
+            "paragraphs": [
+                "In this Policy, the term 'Contribution' means: any data, information, software, text, code, music, scripts, sound, graphics, photos, videos, tags, messages, interactive features, or other materials that you post, share, upload, submit, or otherwise provide in any manner on or through to the Services.",
+                "Some areas of the Services may allow users to upload, transmit, or post Contributions. We may but are under no obligation to review or moderate the Contributions made on the Services, and we expressly exclude our liability for any loss or damage resulting from any of our users' breach of this Policy."
+            ]
+        },
+        {
+            "heading": "HOW CAN YOU CONTACT US ABOUT THIS POLICY?",
+            "paragraphs": [
+                "If you have any further questions or comments or wish to report any problematic Content or Contribution, you may contact us by:",
+                "Online contact form: https://www.seaneb.com/contact"
+            ]
+        }
+    ]
+}

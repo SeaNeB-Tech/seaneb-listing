@@ -1,0 +1,210 @@
+{
+    "meta": {
+        "title": "SeaNeB (Search Near By) App | Our Solution",
+        "description": "Discover local offers and deals in your area. SeaNeB App connects local business owners with nearby customers – empowering local commerce."
+    },
+    "hero": {
+        "heading": "SeaNeB (Search Near By) App",
+        "subheading": "Discover Local Offers/Deals in Your Area | Empowering Local Commerce"
+    },
+    "whatIsApp": {
+        "heading": "What is SeaNeB App?",
+        "subheading": "Get the Best Local Offers & Deals in One Simple Place",
+        "image": "/images/marketing/seaneb-offers-ui.svg",
+        "imageAlt": "SeaNeB Offers UI",
+        "paragraphs": [
+            "SeaNeB App is a location-based local business/shop discovery app designed to connect local business owners with customers in their own locality. Whether you're a shopkeeper, a restaurant owner, or a service provider, SeaNeB App helps you post your deals, discounts, and promotions in real-time — and reach customers right where they are.",
+            "For customers, it's a one-stop solution to find trending offers nearby, explore new shops, and save money while supporting the local economy."
+        ]
+    },
+    "localDiscoveryCta": {
+        "heading": "Local Discovery = SeaNeB App",
+        "line1": "Your only app for effective and impactful #VocalForLocal.",
+        "line2": "✅ Support Local • ✅ Save Smart • ✅ Stay Updated",
+        "appStore": {
+            "href": "https://apps.apple.com/us/app/seaneb/id6755147919",
+            "image": "/images/marketing/app-store-badge.svg",
+            "alt": "App Store"
+        },
+        "googlePlay": {
+            "href": "https://play.google.com/store/apps/details?id=com.seaneb.offers",
+            "image": "/images/marketing/google-play-badge.svg",
+            "alt": "Google Play"
+        },
+        "qrCode": {
+            "image": "/images/marketing/seaneb-qr-code.svg",
+            "alt": "QR Code"
+        }
+    },
+    "whyChoose": {
+        "heading": "Why Choose SeaNeB App?",
+        "subheading": "One App, Two Benefits",
+        "whatYouGet": {
+            "heading": "What Do You Get?",
+            "subheading": "SeaNeB is designed for quick discovery and easy redemption. Here's what the app helps you with:",
+            "features": [
+                {
+                    "title": "Location-Based Discovery",
+                    "text": "Find deals near you, whether you're in any city we support."
+                },
+                {
+                    "title": "Browse Businesses by Category",
+                    "text": "Choose from categories like Food, Services, Retail, Education, Wellness, and more."
+                },
+                {
+                    "title": "Time-Sensitive Deals",
+                    "text": "Get the latest deals before it expires. Don't miss out on limited-time promos."
+                },
+                {
+                    "title": "Verified Listings",
+                    "text": "Every deal is verified and uploaded in collaboration with partner businesses."
+                }
+            ]
+        },
+        "whoIsItFor": {
+            "heading": "Who Is It For?",
+            "subheading": "For everyone who is part of Local Economy. From consumers to Businesses to job seekers.",
+            "audiences": [
+                {
+                    "title": "Customers",
+                    "text": "Looking for savings and deals on everyday products or services? Start here."
+                },
+                {
+                    "title": "Local Businesses",
+                    "text": "Promote your discounts directly to engaged, local users. Find the workforce you needed."
+                },
+                {
+                    "title": "Job Seekers",
+                    "text": "All those who are looking for jobs from near by market."
+                }
+            ]
+        }
+    },
+    "keyBenefits": {
+        "heading": "Key Benefits",
+        "items": [
+            {
+                "title": "Simplifies Offer Discovery & Management",
+                "img": "/images/marketing/benefit-simplifies-offer.svg",
+                "body": "The app provides a simple, clean user interface — allowing customers to find and use offers quickly, and businesses to manage them without needing tech skills or external support. From uploading images to setting offer terms and expiries, the process is built for speed and control.",
+                "whyLabel": "Why It Matters:",
+                "points": [
+                    "70% of small businesses avoid digital platforms due to complexity",
+                    "Frictionless tools reduce business onboarding time and improve user retention"
+                ]
+            },
+            {
+                "title": "Empowers Smart Buying Decisions for Local Consumer",
+                "img": "/images/marketing/benefit-smart-buying.svg",
+                "body": "Customers want to stretch their spending without sacrificing quality. SeaNeB Offers helps users discover relevant discounts across food, services, retail, and more—organized by category, proximity, and expiry date.",
+                "whyLabel": "Why It Matters:",
+                "points": [
+                    "76% of consumers say personalized offers influence their purchase decisions",
+                    "2 out of 3 customers actively look for deals before visiting a store or booking a service"
+                ]
+            },
+            {
+                "title": "Increases Local Business Visibility Without Ad Spend",
+                "img": "/images/marketing/benefit-local-visibility.svg",
+                "body": "Businesses can publish and promote their deals without the complexity or cost of running digital ads. The app surfaces their offers organically to users browsing locally, meaning zero advertising cost but continuous exposure.",
+                "whyLabel": "Why It Matters:",
+                "points": [
+                    "Many small businesses spend ₹5,000–₹25,000/month on digital ads with unclear ROI",
+                    "SeaNeB gives them visibility at a fraction of that cost"
+                ]
+            },
+            {
+                "title": "Bridges the Gap Between Businesses and Customers",
+                "img": "/images/marketing/benefit-bridges-gap.svg",
+                "body": "The SeaNeB Offers App connects verified local businesses directly with nearby customers looking for relevant, time-sensitive offers. Unlike mass-market deal apps, SeaNeB Offers emphasizes hyperlocal engagement, helping small businesses promote to real people in their vicinity.",
+                "whyLabel": "Why It Matters:",
+                "points": [
+                    "93% of consumers say they prefer supporting local businesses when possible",
+                    "88% of mobile searches for local intent result in either a call or visit within 24 hours"
+                ]
+            },
+            {
+                "title": "Boosts Local Commerce Through Real-Time Offer",
+                "img": "/images/marketing/benefit-boosts-commerce.svg",
+                "body": "For both seasonal campaigns and last-minute deals, SeaNeB lets businesses instantly reach their audience. Customers receive real-time notifications about new offers in their location or category of interest, creating timely action.",
+                "whyLabel": "Why It Matters:",
+                "points": [
+                    "Push notifications have an average open rate of 90%",
+                    "Time-sensitive alerts increase offer redemption likelihood by 45%"
+                ]
+            },
+            {
+                "title": "Builds Trust With Verified Listings",
+                "img": "/images/marketing/benefit-verified-listings.svg",
+                "body": "All businesses and offers go through a basic verification process, making customers more confident in engaging. Each listing shows details like business location, T&Cs, duration, and usage limits—reducing ambiguity and increasing conversions.",
+                "whyLabel": "Why It Matters:",
+                "points": [
+                    "Verified listings increase user trust and conversion by 30% or more",
+                    "Clear offer conditions reduce cart abandonment or drop-offs"
+                ]
+            }
+        ]
+    },
+    "featuresTable": {
+        "heading": "Key Features at a Glance",
+        "mockupImage": "/images/marketing/seaneb-offers-ui.svg",
+        "mockupAlt": "Mockup",
+        "rows": [
+            {
+                "feature": "🎁 Offers & Promotions",
+                "description": "Get Local Offers and Promotions"
+            },
+            {
+                "feature": "🌍 Regional Filters",
+                "description": "Sort by city, category, or business type"
+            },
+            {
+                "feature": "🛒 Merchant Listings",
+                "description": "Verified business pages with active offers"
+            },
+            {
+                "feature": "🔔 Notifications",
+                "description": "Get alerts for new or expiring offers"
+            },
+            {
+                "feature": "🧩 Simple UX",
+                "description": "Lightweight, clutter-free interface"
+            },
+            {
+                "feature": "🔐 Privacy First",
+                "description": "No unnecessary permissions or tracking"
+            }
+        ]
+    },
+    "faq": {
+        "heading": "Frequently asked questions",
+        "subheading": "Here are some common questions about our company.",
+        "items": [
+            {
+                "question": "Is the SeaNeB App free?",
+                "answer": "Yes, it's 100% free to use. No subscription or hidden fees.",
+                "listAnswer": null
+            },
+            {
+                "question": "Are the deals updated regularly?",
+                "answer": "Yes. We work with partners to update and verify deals every week.",
+                "listAnswer": null
+            },
+            {
+                "question": "Can I use it without creating an account?",
+                "answer": "Unfortunately, you need to login with your mobile number. Don't worry, we don't save any of your data.",
+                "listAnswer": null
+            },
+            {
+                "question": "How can I list my business offers on the app?",
+                "answer": "It's very simple.",
+                "listAnswer": [
+                    "Just download the app is a customer.",
+                    "Find an option to register your business from your profile.",
+                    "Register your business, make the payment and promote as per your need."
+                ],
+                "listSuffix": "Now you can add your offers/posts and promote it anytime."
+            }
+        ]
+    }
+}

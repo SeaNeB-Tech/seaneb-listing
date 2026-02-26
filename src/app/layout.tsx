@@ -7,6 +7,7 @@ import Providers from '@/components/provider'
 import { constructMetadata } from '@/lib/utils'
 import { Analytics } from '@vercel/analytics/next'
 import NextProgress from '@/components/layout/next-progress'
+import Layout from '@/components/layout'
 
 // ** Styles
 import './globals.css'
@@ -44,9 +45,14 @@ export default function RootLayout({
       </head>
       <body className={`${poppins.className} antialiased`}>
         <Providers>
-          <NextProgress />
-          {children} {isProduction && <Analytics />}
-        </Providers>
+  <NextProgress />
+
+  <Layout>
+    {children}
+  </Layout>
+
+  {isProduction && <Analytics />}
+</Providers>
       </body>
     </html>
   )

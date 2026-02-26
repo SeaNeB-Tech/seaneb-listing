@@ -1,0 +1,84 @@
+{
+    "meta": {
+        "title": "Contact SeaNeB | SeaNeB",
+        "description": "Want to get in touch? We'd love to hear from you. Contact SeaNeB today via sales or support."
+    },
+    "hero": {
+        "heading": "Contact SeaNeB",
+        "subheading": "Want to get in touch? We'd love to hear from you. Contact us Today! Here's how you can reach us."
+    },
+    "cards": [
+        {
+            "id": "sales",
+            "heading": "Talk to Sales",
+            "description": "Would you like to connect with us before onboarding?",
+            "email": "sales@seaneb.com",
+            "image": "/images/marketing/contact-sales.svg",
+            "imageAlt": "Talk to Sales"
+        },
+        {
+            "id": "support",
+            "heading": "Support",
+            "description": "Are you stuck with something on our digital solutions?",
+            "email": "support@seaneb.com",
+            "image": "/images/marketing/contact-support.svg",
+            "imageAlt": "Support"
+        }
+    ],
+    "form": {
+        "intro": "Reach out to us with any inquiries related to our initiatives supporting local economic growth. Our team will review your message and respond at the earliest opportunity.",
+        "fields": [
+            {
+                "id": "name",
+                "label": "Name",
+                "type": "text",
+                "required": true
+            },
+            {
+                "id": "phone",
+                "label": "Phone Number",
+                "type": "tel",
+                "required": false
+            },
+            {
+                "id": "email",
+                "label": "Email",
+                "type": "email",
+                "required": true
+            },
+            {
+                "id": "company",
+                "label": "Company",
+                "type": "text",
+                "required": false
+            },
+            {
+                "id": "subject",
+                "label": "Subject",
+                "type": "text",
+                "required": true
+            },
+            {
+                "id": "message",
+                "label": "Question",
+                "type": "textarea",
+                "rows": 6,
+                "required": true
+            }
+        ],
+        "submitLabel": "Submit"
+    },
+    "address": {
+        "companyName": "SeaNeB Technologies Pvt Ltd",
+        "description": "We aim to empower MSMEs with innovative digital solutions. Our team merges expertise and technology to create tailored digital solutions that enhance efficiency and drive growth. By focusing on local economy needs, we deliver valuable results that meet the unique challenges of each business.",
+        "street": "FF/8 Madhav Aracde, Jol,",
+        "city": "Anand - 388120,",
+        "state": "Gujarat, India.",
+        "phone": "+91 (8511) SEANEB",
+        "email": "hello@seaneb.com"
+    },
+    "social": {
+        "backgroundImage": "/images/marketing/contact-social-bg.jpg",
+        "heading": "Social Media"
+    }
+}

@@ -1,0 +1,116 @@
+{
+    "meta": {
+        "title": "About SeaNeB | SeaNeB",
+        "description": "Learn about SeaNeB Technologies Pvt. Ltd. – a government-recognised Indian tech startup empowering local businesses and MSMEs across India."
+    },
+    "hero": {
+        "heading": "About SeaNeB App",
+        "subheading": "An initiative by SeaNeB Technologies Pvt. Ltd."
+    },
+    "intro": {
+        "logo": "/images/marketing/seaneb-logo.svg",
+        "logoAlt": "SeaNeB.COM",
+        "heading": "Search NearBy App",
+        "paragraphs": [
+            {
+                "text": "SeaNeB App is an initiative by SeaNeB Technologies Pvt. Ltd., a government-recognised Indian tech startup focused on creating commission-free digital solutions for India's MSMEs, small vendors, and home-based service providers.",
+                "companyLink": {
+                    "href": "https://www.seaneb.org",
+                    "label": "SeaNeB Technologies Pvt. Ltd."
+                }
+            },
+            {
+                "text": "Our goal is simple: make digital tools accessible, affordable, and effective for every local business across India – from a home tiffin service to a retail shop in your neighbourhood."
+            }
+        ]
+    },
+    "whomWeServe": {
+        "heading": "Whom we serve",
+        "audiences": [
+            {
+                "id": "buyers",
+                "heading": "All Buyers / Customers",
+                "subheading": "Empowering Local Commerce in the Digital Age",
+                "image": "/images/marketing/about-buyers.jpg",
+                "imageAlt": "grey shopping cart",
+                "paragraphs": [
+                    "At SeaNeB App, we are committed to supporting users who want to strengthen the local economy by choosing to shop within their own neighborhoods. However, in today's fast-paced digital world, visiting local stores in person isn't always convenient.",
+                    "That's why we develop user-friendly apps that bring the local market to your fingertips. With our innovative platforms, you can access SeaNeB Shops (eCommerce) and SeaNeB App like tools designed specifically to help you discover and engage with businesses around you, all without leaving your home."
+                ],
+                "reverse": false
+            },
+            {
+                "id": "businesses",
+                "heading": "Local Businesses / Shops",
+                "subheading": "Leveling the Playing Field for MSMEs",
+                "image": "/images/marketing/about-local-customers.jpg",
+                "imageAlt": "come in we're local signage",
+                "paragraphs": [
+                    "For Micro, Small, and Medium Enterprises (MSMEs), competing against medium and large-scale businesses is incredibly challenging. Larger businesses often rely on their capital power to fuel aggressive growth and marketing strategies, even if they operate at a loss for several years. This imbalance gradually weakens and threatens the local economy.",
+                    "At SeaNeB, we empower local business owners with affordable, impactful digital tools that help them compete effectively in today's digital landscape without needing massive budgets. Our solutions are designed specifically for MSMEs who are ready to grow but lack access to the resources that big players take for granted."
+                ],
+                "reverse": true
+            }
+        ]
+    },
+    "ourStory": {
+        "image": "/images/marketing/about-device.svg",
+        "imageAlt": "Mobile Device",
+        "heading": "Our Story",
+        "subheading": "Born from a Vision. Built for Local Empowerment.",
+        "paragraphs": [
+            "At SeaNeB (Search Near By) App, our journey began with a simple yet powerful idea (inspired by the \"Vocal For Local\" vision of Prime Minister Mr. Narendra Modi), to rebuild the strength of the local economy by empowering small and medium businesses in the digital age.",
+            "In a world dominated by large corporations and global marketplaces, local businesses often struggle to stay visible, compete, and grow. The lack of affordable digital tools and marketing resources creates a wide gap that pushes MSMEs into the shadows.",
+            "We saw this challenge not just as a problem, but as an opportunity to create meaningful change.",
+            "That's why we started SeaNeB App, an initiative with the belief that every local business deserves a fair chance. Our tools are designed to offer eCommerce, local discovery, job search and social media-style engagement, making it easier for businesses to connect with nearby customers and grow sustainably.",
+            "From our early prototypes to the launch of our flagship apps, our mission has remained unchanged:"
+        ],
+        "quote": "To make local commerce powerful, digital, and visible.",
+        "closingParagraph": "Whether you're a local shop owner, a service provider, or a consumer who believes in \"Vocal for Local\", SeaNeB is here to help build a stronger, more connected community, one click at a time.",
+        "cta": {
+            "label": "Explore Our Solutions",
+            "href": "/seaneb-app"
+        },
+        "modiLink": "https://www.narendramodi.in/globalsearch?&keyword=vocal%20for%20local&fromdate=&todate="
+    },
+    "visionMission": {
+        "brandName": "SeaNeB",
+        "mission": {
+            "heading": "Mission",
+            "text": "To empower local businesses and MSMEs by providing affordable digital tools that enable them to thrive in the modern digital economy. We aim to bridge the gap between local sellers and nearby customers through innovative platforms built for visibility, engagement, and sustainable growth."
+        },
+        "vision": {
+            "heading": "Vision",
+            "text": "To become the most trusted platform for local commerce, where every small and medium business, no matter how limited their resources can grow, compete, and succeed in a digital-first world. We envision a future where \"Vocal for Local\" is not just a campaign, but a way of life."
+        },
+        "coreValues": {
+            "heading": "Core Values",
+            "items": [
+                {
+                    "title": "Local First Only:",
+                    "text": "We focus the growth and visibility of local businesses, recognizing their essential role in shaping strong, self-reliant communities."
+                },
+                {
+                    "title": "Accessibility:",
+                    "text": "We build affordable and easy-to-use tools that every MSME can access regardless of technical expertise or capital strength."
+                },
+                {
+                    "title": "Empowerment Through Innovation:",
+                    "text": "We leverage technology to provide smart, impactful solutions that help small businesses compete on a level playing field."
+                },
+                {
+                    "title": "Transparency & Trust:",
+                    "text": "We maintain honest, clear communication with our users and partners. No hidden commissions. No false promises."
+                },
+                {
+                    "title": "Community-Centric Growth:",
+                    "text": "We believe in solutions that not only support businesses but also foster a sense of local community and mutual growth."
+                },
+                {
+                    "title": "Sustainability:",
+                    "text": "We promote long-term, ethical growth by helping businesses attract loyal, nearby customers rather than chasing unsustainable scale."
+                }
+            ]
+        }
+    }
+}
