@@ -2,8 +2,12 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import aboutData from '@/data/about.json'
+import aboutJson from '@/data/about.json'
 import type { AboutData } from '@/types/about'
+
+const aboutData = aboutJson as AboutData
+
+
 
 export const metadata: Metadata = {
   title: aboutData.meta.title,

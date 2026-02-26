@@ -247,6 +247,15 @@ a {
   background-clip: text;
 }
 
+.btn-gradient {
+  background: linear-gradient(135deg, var(--brand-grad-from), var(--brand-grad-to));
+  color: white;
+}
+
+.btn-gradient:hover {
+  filter: brightness(1.05);
+}
+
 .skeleton {
   background: linear-gradient(90deg,
       var(--skeleton-base) 25%,

@@ -118,7 +118,7 @@ function Header() {
                   height={60}
                   sizes='100vw'
                   priority
-                  className='h-[42px] w-auto'
+                  className='h-[60px]'
                   alt='Download on App Store'
                   src={'/images/logo/app-store.svg'}
                 />

@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import PolicyPage from '@/components/PolicyPage'
 
 import dataJson from '@/data/privacy-policy.json'

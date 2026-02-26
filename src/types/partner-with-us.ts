@@ -52,13 +52,24 @@ export interface PartnerPricing {
    WHY PARTNER
 ====================================================== */
 
+/**
+ * icon is string because JSON stores icon name
+ * Later mapped to Lucide component
+ */
 export interface PartnerReason {
-  icon: string
+  icon:
+    | 'Globe'
+    | 'Settings'
+    | 'BadgeCheck'
+    | 'BarChart3'
+    | 'MessageSquare'
+    | 'DollarSign'
+    | 'Rocket'
   title: string
   description: string
 }
 
-export interface PartnerWhy {
+export interface PartnerWhyPartner {
   heading: string
   subheading: string
   reasons: PartnerReason[]
@@ -119,7 +130,7 @@ export interface PartnerWithUsData {
   hero: PartnerHero
   intro: PartnerIntro
   pricing: PartnerPricing
-  whyPartner: PartnerWhy
+  whyPartner: PartnerWhyPartner
   howItWorks: PartnerHowItWorks
   faq: PartnerFaq
   cta: PartnerCta

@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import type { Metadata } from 'next'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight, Plus, Minus } from 'lucide-react'
 
@@ -10,7 +9,7 @@ import type { SeaNebAppData, FaqItemType } from '@/types/seaneb-app'
 
 const appData: SeaNebAppData = appJson
 
-const { hero, whatIsApp, localDiscoveryCta, whyChoose, keyBenefits, featuresTable, faq } = appData
+const { hero, whatIsApp, whyChoose, keyBenefits, featuresTable, faq } = appData
 
 /* ==============================
    BENEFITS CAROUSEL
@@ -37,10 +36,11 @@ function BenefitsCarousel() {
     const timer = setInterval(() => {
       setCurrent((c) => (c + 1) % items.length)
     }, 8000)
+    
     return () => clearInterval(timer)
   }, [items.length])
 
-  const item = items[current]
+  const item = items[current];
 
   return (
     <div className="bg-white rounded-2xl shadow-lg p-6 lg:p-10">

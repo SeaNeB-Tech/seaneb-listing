@@ -13,7 +13,7 @@
             "heading": "Talk to Sales",
             "description": "Would you like to connect with us before onboarding?",
             "email": "sales@seaneb.com",
-            "image": "/images/marketing/contact-sales.svg",
+            "image": "/images/contact-sales.svg",
             "imageAlt": "Talk to Sales"
         },
         {
@@ -21,7 +21,7 @@
             "heading": "Support",
             "description": "Are you stuck with something on our digital solutions?",
             "email": "support@seaneb.com",
-            "image": "/images/marketing/contact-support.svg",
+            "image": "/images/contact-support.svg",
             "imageAlt": "Support"
         }
     ],
@@ -78,7 +78,7 @@
         "email": "hello@seaneb.com"
     },
     "social": {
-        "backgroundImage": "/images/marketing/contact-social-bg.jpg",
+        "backgroundImage": "/images/contact-social-bg.jpg",
         "heading": "Social Media"
     }
 }

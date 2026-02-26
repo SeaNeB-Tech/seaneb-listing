@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Calendar, User, Search, Facebook, Twitter, Linkedin, Instagram, Youtube } from 'lucide-react'
+import { Calendar, User, Search } from 'lucide-react'
 
 import blogJson from '@/data/blog.json'
 import type { BlogData } from '@/types/blog'
