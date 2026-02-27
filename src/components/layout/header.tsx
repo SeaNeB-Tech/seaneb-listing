@@ -7,7 +7,6 @@ import Link from 'next/link'
 import Logo from '@images/logo/logo-dark.png'
 import ScreenWrapper from '../wrapper/screen-wrapper'
 
-import { cn } from '@/lib/utils'
 import siteJson from '@/data/site.json'
 import ninedots from '@/data/ninedots.json'
 
