@@ -33,16 +33,21 @@ function Header() {
       if (!menuRef.current?.contains(e.target as Node)) setOpenMenu(false)
     }
     document.addEventListener('mousedown', handler)
+
     return () => document.removeEventListener('mousedown', handler)
   }, [])
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true })
+
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const isActive = (href?: string) => {
-    if (!href) return false
+    if (!href){
+      
+      return false
+    }
     if (href === '/') return pathname === '/'
     return pathname.startsWith(href)
   }
