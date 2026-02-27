@@ -35,11 +35,13 @@ function Header() {
       }
     }
     document.addEventListener('mousedown', handler)
+
     return () => document.removeEventListener('mousedown', handler)
   }, [])
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true })
+    
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
