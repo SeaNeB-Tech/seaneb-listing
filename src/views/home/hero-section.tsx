@@ -2,14 +2,10 @@
 
 import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
-
-import Image from 'next/image'
 import Link from 'next/link'
 
 import ScreenWrapper from '@/components/wrapper/screen-wrapper'
 import { Calendar, Dumbbell, Home, MapPin, Search, Utensils } from 'lucide-react'
-
-import BannerImage from '@images/pages/home/banner-image-1.jpg'
 import Background from '@images/pages/home/hero-bg.webp'
 
 import { AsyncSelect } from '@/components/ui/async-select'
