@@ -9,11 +9,10 @@ import ScreenWrapper from '../wrapper/screen-wrapper'
 
 import siteJson from '@/data/site.json'
 import ninedots from '@/data/ninedots.json'
-
 import type { SiteData } from '@/types/site'
-const siteData: SiteData = siteJson
-
 import * as m from 'motion/react-m'
+
+const siteData: SiteData = siteJson
 
 function Header() {
   const [scrollPosition, setScrollPosition] = useState(0)
@@ -32,13 +31,14 @@ function Header() {
       if (!menuRef.current?.contains(e.target as Node)) setOpenMenu(false)
     }
     document.addEventListener('mousedown', handler)
+
     return () => document.removeEventListener('mousedown', handler)
   }, [])
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+
+    return () => window.removeEventListener('scroll', handleScroll)}, [])
 
   return (
     <>
@@ -83,8 +83,13 @@ function Header() {
               <nav className='hidden flex-1 lg:block mr-4'>
                 <ul className='flex items-center justify-center gap-8'>
                   {siteData.navigation.main.map((item) => {
-                    if (!item.href) return null
+                    if (!item.href){
+
+                      return null
+                    }
+
                     return (
+
                       <li key={item.label}>
                         {item.external ? (
                           <a
@@ -178,7 +183,11 @@ function Header() {
   <nav className='p-5'>
     <ul className='flex flex-col gap-4 items-center text-center w-full'>
       {siteData.navigation.main.map((item) => {
-        if (!item.href) return null
+        if (!item.href){
+          
+          return null
+        }
+
         return (
           <li key={item.label} className="w-full text-center">
             <Link
