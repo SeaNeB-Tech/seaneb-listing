@@ -45,10 +45,11 @@ function Header() {
 
   const isActive = (href?: string) => {
     if (!href){
-      
+
       return false
     }
     if (href === '/') return pathname === '/'
+    
     return pathname.startsWith(href)
   }
 
