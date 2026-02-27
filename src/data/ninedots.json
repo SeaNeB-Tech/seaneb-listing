@@ -1,18 +1,18 @@
 {
   "apps": [
     {
-      "name": "SeaNeB App",
-      "image": "/images/ninedots/seaneb-app.svg",
+      "name": "SeaNeB",
+      "image": "/images/ninedots/seaneb-app.png",
       "url": "https://www.seaneb.com"
     },
     {
-      "name": "Tiffin Service",
-      "image": "/images/ninedots/tiffin-service.webp",
+      "name": "Tiffin",
+      "image": "/images/ninedots/tiffin-service.png",
       "url": "https://tiffinservice.app"
     },
     {
       "name": "Jobs",
-      "image": "/images/ninedots/seaneb-jobs.webp",
+      "image": "/images/ninedots/seaneb-jobs.png",
       "url": "https://jobs.seaneb.com"
     },
     {
@@ -22,7 +22,7 @@
     },
      {
       "name": "Property",
-      "image": "/images/ninedots/seaneb-property.webp",
+      "image": "/images/ninedots/seaneb-property.png",
       "url": "https://property.seaneb.com"
     },
     {
@@ -32,7 +32,7 @@
     },
     {
       "name": "NGO",
-      "image": "/images/ninedots/seaneb-ngo.webp",
+      "image": "/images/ninedots/seaneb-ngo.png",
       "url": "https://ngo.seaneb.com"
     }
   ]

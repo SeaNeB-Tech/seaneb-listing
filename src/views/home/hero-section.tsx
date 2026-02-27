@@ -10,7 +10,7 @@ import ScreenWrapper from '@/components/wrapper/screen-wrapper'
 import { Calendar, Dumbbell, Home, MapPin, Search, Utensils } from 'lucide-react'
 
 import BannerImage from '@images/pages/home/banner-image-1.jpg'
-import Background from '@images/pages/home/hero-bg.svg'
+import Background from '@images/pages/home/hero-bg.webp'
 
 import { AsyncSelect } from '@/components/ui/async-select'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -124,11 +124,13 @@ const HeroSection = () => {
         backgroundSize: 'cover'
       }}
     >
+        <div className="pointer-events-none absolute inset-0 bg-black/20 lg:bg-black/50" />
+
       <ScreenWrapper className='relative h-full w-full'>
         {/* Left content */}
         <div className='z-10 flex !max-w-full flex-col justify-center py-8 lg:!max-w-[400px] xl:!max-w-full'>
-          <h1 className='z-10 text-3xl font-medium text-gray-900 md:text-3xl lg:text-5xl'>Find Nearby Attractions</h1>
-          <h2 className='z-10 mt-4 text-2xl text-gray-600'>Explore top-rated attractions, activities and more</h2>
+          <h1 className='z-10 text-3xl font-medium text-white md:text-3xl lg:text-5xl'>Find Nearby Attractions</h1>
+          <h2 className='z-10 mt-4 text-2xl text-white'>Explore top-rated attractions, activities and more</h2>
         </div>
 
         {/* Search bar */}
@@ -223,7 +225,7 @@ const HeroSection = () => {
 
         {/* Categories */}
         <div className='relative z-10 mt-8'>
-          <p className='mb-3 text-sm text-gray-600'>Or browse featured categories:</p>
+          <p className='mb-3 text-sm text-white'>Or browse featured categories:</p>
           <div className='flex flex-wrap text-white gap-2'>
             {[
               { icon: <Home className='mr-2 h-4 w-4' />, label: 'Apartments' },
@@ -243,7 +245,7 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Image */}
+        {/* Image
         <div className='absolute top-2 right-20 hidden lg:block'>
           <Image
             src={BannerImage}
@@ -251,7 +253,7 @@ const HeroSection = () => {
             draggable={false}
             className='!max-h-[500px] !max-w-[550px] rounded-lg object-cover shadow-lg xl:!max-h-[600px] xl:!max-w-full'
           />
-        </div>
+        </div> */}
       </ScreenWrapper>
     </div>
   )

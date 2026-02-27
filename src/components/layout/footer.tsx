@@ -1,7 +1,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { Facebook, Twitter, Linkedin, Instagram, Youtube } from 'lucide-react'
-
+import {
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaYoutube,
+  FaXTwitter
+} from "react-icons/fa6"
 import Logo from '@images/logo/logo-white.png'
 
 import { websiteConfig } from '@/config/website-config'
@@ -12,11 +17,11 @@ import { memo } from 'react'
 import ScreenWrapper from '../wrapper/screen-wrapper'
 
 const SOCIAL_ICONS = {
-  facebook: Facebook,
-  instagram: Instagram,
-  linkedin: Linkedin,
-  youtube: Youtube,
-  twitter_x: Twitter
+  facebook: FaFacebook,
+  instagram: FaInstagram,
+  linkedin: FaLinkedin,
+  youtube: FaYoutube,
+  twitter_x: FaXTwitter
 } as const
 
 function Footer() {
