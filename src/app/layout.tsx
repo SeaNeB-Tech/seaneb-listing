@@ -37,7 +37,6 @@ export default function RootLayout({
         <link rel='manifest' href='/manifest.json' />
         {!isProduction && <meta name='robots' content='noindex, nofollow' />}
 
-        {isProduction && (
           <Script
             id='gtm-script'
             strategy='afterInteractive'
@@ -54,11 +53,9 @@ export default function RootLayout({
               `
             }}
           />
-        )}
       </head>
 
       <body className={`${poppins.className} antialiased`}>
-        {isProduction && (
           <noscript>
             <iframe
               src='https://www.googletagmanager.com/ns.html?id=GTM-PBWN9VZC'
@@ -67,7 +64,6 @@ export default function RootLayout({
               style={{ display: 'none', visibility: 'hidden' }}
             />
           </noscript>
-        )}
 
         <Providers>
           <NextProgress />
