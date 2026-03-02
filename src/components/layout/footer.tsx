@@ -196,32 +196,42 @@ function Footer() {
                 </div>
 
                 <div className="flex flex-col gap-3">
-                  <Link
-                    href={websiteConfig.appstore}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Image
-                      src="/images/logo/app-store.svg"
-                      alt="Download on App Store"
-                      width={140}
-                      height={44}
-                    />
-                  </Link>
 
-                  <Link
-                    href={websiteConfig.playstore}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Image
-                      src="/images/logo/google-play-store.png"
-                      alt="Get it on Google Play"
-                      width={155}
-                      height={55}
-                    />
-                  </Link>
-                </div>
+  {/* App Store */}
+  <Link
+    href={websiteConfig.appstore}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="transition hover:opacity-80"
+  >
+    <div className="relative h-[50px] w-[160px]">
+      <Image
+        src="/images/logo/app-store.svg"
+        alt="Download on App Store"
+        fill
+        className="object-contain"
+      />
+    </div>
+  </Link>
+
+  {/* Play Store */}
+  <Link
+    href={websiteConfig.playstore}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="transition hover:opacity-80"
+  >
+    <div className="relative h-[70px] w-[160px]">
+      <Image
+        src="/images/logo/google-play-store.png"
+        alt="Get it on Google Play"
+        fill
+        className="object-contain scale-[1.1]"
+      />
+    </div>
+  </Link>
+
+</div>
               </div>
             </div>
 

@@ -1,18 +1,12 @@
-// ** Next Imports
 import { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
-
-// ** Custom Components
+import Script from 'next/script'
 import Providers from '@/components/provider'
 import { constructMetadata } from '@/lib/utils'
 import { Analytics } from '@vercel/analytics/next'
 import NextProgress from '@/components/layout/next-progress'
 import Layout from '@/components/layout'
-
-// ** Styles
 import './globals.css'
-
-// Generated Icon CSS Imports
 import '@assets/iconify-icons/generated-icons.css'
 
 const poppins = Roboto({
@@ -23,7 +17,7 @@ const poppins = Roboto({
 
 export const metadata: Metadata = constructMetadata({
   title: {
-    default: 'SeaNeB | Discover Local Business Deals & B2B Offers',
+    default: 'SeaNeb | Discover Local Business Deals & B2B Offers',
     template: '%s - SeaNeb'
   }
 })
@@ -42,17 +36,48 @@ export default function RootLayout({
         <link rel='apple-touch-icon' href='/images/logo/apple-touch-icon.png' />
         <link rel='manifest' href='/manifest.json' />
         {!isProduction && <meta name='robots' content='noindex, nofollow' />}
+
+        {isProduction && (
+          <Script
+            id='gtm-script'
+            strategy='afterInteractive'
+            dangerouslySetInnerHTML={{
+              __html: `
+                (function(w,d,s,l,i){w[l]=w[l]||[];
+                w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+                var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+                j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;
+                f.parentNode.insertBefore(j,f);
+                })(window,document,'script','dataLayer','GTM-PBWN9VZC');
+              `
+            }}
+          />
+        )}
       </head>
+
       <body className={`${poppins.className} antialiased`}>
+        {isProduction && (
+          <noscript>
+            <iframe
+              src='https://www.googletagmanager.com/ns.html?id=GTM-PBWN9VZC'
+              height='0'
+              width='0'
+              style={{ display: 'none', visibility: 'hidden' }}
+            />
+          </noscript>
+        )}
+
         <Providers>
-  <NextProgress />
+          <NextProgress />
 
-  <Layout>
-    {children}
-  </Layout>
+          <Layout>
+            {children}
+          </Layout>
 
-  {isProduction && <Analytics />}
-</Providers>
+          {isProduction && <Analytics />}
+        </Providers>
       </body>
     </html>
   )

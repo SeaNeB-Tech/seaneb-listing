@@ -228,43 +228,43 @@ const HeroSection = () => {
     For business registration download the app now!
   </p>
 
-  <div className='flex flex-col items-start gap-4 sm:flex-row sm:items-center'>
-    
-    {/* App Store — bigger */}
-    <Link
-      href={websiteConfig.appstore}
-      target='_blank'
-      rel='noopener noreferrer'
-      className='transition hover:opacity-80'
-    >
-      <div className='relative h-[56px] w-[180px]'>
-        <Image
-          src='/images/logo/app-store.svg'
-          alt='Download on App Store'
-          fill
-          className='object-contain'
-        />
-      </div>
-    </Link>
+  <div className="flex w-full flex-col items-center gap-4 sm:flex-row sm:items-center">
 
-    {/* Play Store — bigger */}
-    <Link
-      href={websiteConfig.playstore}
-      target='_blank'
-      rel='noopener noreferrer'
-      className='transition hover:opacity-80'
-    >
-      <div className='relative h-[68px] w-[250px]'>
-        <Image
-          src='/images/logo/google-play-store.png'
-          alt='Get it on Google Play'
-          fill
-          className='object-contain scale-[1.05]'
-        />
-      </div>
-    </Link>
+  {/* App Store */}
+  <Link
+    href={websiteConfig.appstore}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="transition hover:opacity-80"
+  >
+    <div className="relative h-[48px] w-[160px] sm:h-[56px] sm:w-[180px]">
+      <Image
+        src="/images/logo/app-store.svg"
+        alt="Download on App Store"
+        fill
+        className="object-contain"
+      />
+    </div>
+  </Link>
 
-  </div>
+  {/* Play Store */}
+  <Link
+    href={websiteConfig.playstore}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="transition hover:opacity-80"
+  >
+    <div className="relative h-[60px] w-[150px] sm:h-[68px] sm:w-[250px]">
+      <Image
+  src="/images/logo/google-play-store.png"
+  alt="Get it on Google Play"
+  fill
+  className="object-contain scale-[1.12]"
+/>
+    </div>
+  </Link>
+
+</div>
 </div>
 
 
