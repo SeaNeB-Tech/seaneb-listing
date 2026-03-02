@@ -33,25 +33,22 @@ function Header() {
       if (!menuRef.current?.contains(e.target as Node)) setOpenMenu(false)
     }
     document.addEventListener('mousedown', handler)
-
     return () => document.removeEventListener('mousedown', handler)
   }, [])
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true })
-
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const isActive = (href?: string) => {
-    if (!href){
-
-      return false
-    }
+    if (!href) return false
     if (href === '/') return pathname === '/'
-    
     return pathname.startsWith(href)
   }
+
+  const liveApps = ninedots.apps.filter(app => app.status === 'live')
+  const upcomingApps = ninedots.apps.filter(app => app.status === 'upcoming')
 
   return (
     <>
@@ -63,16 +60,12 @@ function Header() {
       >
         <header className='w-full py-1 lg:py-2'>
           <ScreenWrapper className='flex h-16 items-center justify-between'>
-
             {/* Hamburger */}
-            <button
-              onClick={() => setOpenMenu(true)}
-              className='lg:hidden p-2 rounded-lg hover:bg-gray-100'
-            >
+            <button onClick={() => setOpenMenu(true)} className='rounded-lg p-2 hover:bg-gray-100 lg:hidden'>
               <div className='flex flex-col gap-[4px]'>
-                <span className='w-5 h-[2px] bg-gray-800 rounded' />
-                <span className='w-5 h-[2px] bg-gray-800 rounded' />
-                <span className='w-5 h-[2px] bg-gray-800 rounded' />
+                <span className='h-[2px] w-5 rounded bg-gray-800' />
+                <span className='h-[2px] w-5 rounded bg-gray-800' />
+                <span className='h-[2px] w-5 rounded bg-gray-800' />
               </div>
             </button>
 
@@ -90,34 +83,26 @@ function Header() {
 
             {/* RIGHT */}
             <div className='flex items-center'>
-
               {/* Desktop Nav */}
-              <nav className='hidden flex-1 lg:block mr-4'>
+              <nav className='mr-4 hidden flex-1 lg:block'>
                 <ul className='flex items-center justify-center gap-8'>
-                  {siteData.navigation.main.map((item) => {
+                  {siteData.navigation.main.map(item => {
                     if (!item.href) return null
-
                     const active = isActive(item.href)
 
                     return (
-                      <li key={item.label} className="relative group">
+                      <li key={item.label} className='group relative'>
                         <Link
                           href={item.href}
-                          className={`relative text-sm font-medium transition pb-1 ${
-                            active
-                              ? 'text-primary'
-                              : 'text-gray-700 hover:text-primary'
+                          className={`relative pb-1 text-sm font-medium transition ${
+                            active ? 'text-primary' : 'hover:text-primary text-gray-700'
                           }`}
                         >
                           {item.label}
-
-                          {/* underline */}
                           <span
-                            className={`
-                              absolute left-0 -bottom-1 h-[2px] w-full bg-primary
-                              transition-transform duration-300 origin-left
-                              ${active ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}
-                            `}
+                            className={`bg-primary absolute -bottom-1 left-0 h-[2px] w-full origin-left transition-transform duration-300 ${
+                              active ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                            }`}
                           />
                         </Link>
                       </li>
@@ -127,13 +112,16 @@ function Header() {
               </nav>
 
               {/* Apps */}
-              <div ref={appsRef} className='relative flex items-center cursor-pointer'>
+              <div ref={appsRef} className='relative flex cursor-pointer items-center'>
                 <button
                   onClick={() => setOpenApps(v => !v)}
-                  className='group grid grid-cols-3 gap-[3px] p-2 rounded-lg hover:bg-gray-100 transition'
+                  className='group grid grid-cols-3 gap-[3px] rounded-lg p-2 transition hover:bg-gray-100'
                 >
                   {Array.from({ length: 9 }).map((_, i) => (
-                    <span key={i} className='h-[6px] w-[6px] rounded-full bg-gray-700 group-hover:scale-125 transition' />
+                    <span
+                      key={i}
+                      className='h-[6px] w-[6px] rounded-full bg-gray-700 transition group-hover:scale-125'
+                    />
                   ))}
                 </button>
 
@@ -141,17 +129,64 @@ function Header() {
                   <m.div
                     initial={{ opacity: 0, y: 10, scale: 0.96 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    className='absolute right-0 top-12 w-[340px] rounded-2xl border bg-white p-4 shadow-xl'
+                    className='absolute top-12 right-0 w-[380px] rounded-2xl border bg-white p-5 shadow-xl'
                   >
-                    <div className='grid grid-cols-3 gap-4'>
-                      {ninedots.apps.map((app) => (
-                        <a key={app.name} href={app.url} target='_blank' rel='noopener noreferrer'
-                          className='flex flex-col items-center gap-2 rounded-xl p-3 hover:bg-gray-100 transition'>
-                          <Image src={app.image} alt={app.name} width={48} height={48} className='rounded-lg' />
-                          <span className='text-xs text-center font-medium'>{app.name}</span>
-                        </a>
-                      ))}
-                    </div>
+                    {/* OUR PRODUCTS */}
+                    {liveApps.length > 0 && (
+                      <div>
+                        <h3 className='relative mb-4 inline-block text-sm font-semibold text-gray-800'>
+                          Our Products
+                          <span className='bg-primary absolute -bottom-1 left-0 h-[2px] w-10 rounded-full' />
+                        </h3>
+
+                        <div className='grid grid-cols-3 gap-4'>
+                          {liveApps.map(app => (
+                            <a
+                              key={app.name}
+                              href={app.url}
+                              target='_blank'
+                              rel='noopener noreferrer'
+                              className='flex flex-col items-center gap-2 rounded-xl p-3 transition hover:bg-gray-100'
+                            >
+                              <Image src={app.image} alt={app.name} width={48} height={48} className='rounded-lg' />
+                              <span className='text-center text-xs font-medium'>{app.name}</span>
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* UPCOMING PRODUCTS */}
+                    {upcomingApps.length > 0 && (
+                      <div className='mt-6'>
+                        <h3 className='relative mb-4 inline-block text-sm font-semibold text-gray-800'>
+                          Upcoming Products
+                          <span className='bg-primary absolute -bottom-1 left-0 h-[2px] w-10 rounded-full' />
+                        </h3>
+                        <div className='grid grid-cols-3 gap-4'>
+                          {upcomingApps.map(app => (
+                            <div
+                              key={app.name}
+                              className='relative flex cursor-not-allowed flex-col items-center gap-2 rounded-xl bg-gray-50 p-3 opacity-80'
+                            >
+                              <Image
+                                src={app.image}
+                                alt={app.name}
+                                width={48}
+                                height={48}
+                                className='rounded-lg grayscale'
+                              />
+
+                              <span className='text-center text-xs font-medium'>{app.name}</span>
+
+                              <span className='bg-primary absolute top-1 right-1 rounded-full px-2 py-[2px] text-[10px] text-white'>
+                                Upcoming
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </m.div>
                 )}
               </div>
@@ -168,25 +203,23 @@ function Header() {
         transition={{ type: 'spring', damping: 20 }}
         className='fixed inset-y-0 left-0 z-50 w-[280px] bg-white shadow-xl lg:hidden'
       >
-        <div className='p-5 flex justify-between items-center border-b'>
+        <div className='flex items-center justify-between border-b p-5'>
           <span className='font-semibold'>Menu</span>
           <button onClick={() => setOpenMenu(false)}>✕</button>
         </div>
 
         <nav className='p-5'>
-          <ul className='flex flex-col gap-4 items-center text-center w-full'>
-            {siteData.navigation.main.map((item) => {
+          <ul className='flex w-full flex-col items-center gap-4 text-center'>
+            {siteData.navigation.main.map(item => {
               if (!item.href) return null
               const active = isActive(item.href)
 
               return (
-                <li key={item.label} className="w-full">
+                <li key={item.label} className='w-full'>
                   <Link
                     href={item.href}
                     onClick={() => setOpenMenu(false)}
-                    className={`block text-sm font-medium ${
-                      active ? 'text-primary' : 'text-gray-700'
-                    }`}
+                    className={`block text-sm font-medium ${active ? 'text-primary' : 'text-gray-700'}`}
                   >
                     {item.label}
                   </Link>
@@ -197,11 +230,7 @@ function Header() {
         </nav>
       </m.div>
 
-      {openMenu && (
-        <div className='fixed inset-0 bg-black/30 z-40 lg:hidden'
-          onClick={() => setOpenMenu(false)}
-        />
-      )}
+      {openMenu && <div className='fixed inset-0 z-40 bg-black/30 lg:hidden' onClick={() => setOpenMenu(false)} />}
     </>
   )
 }

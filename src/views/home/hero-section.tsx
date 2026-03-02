@@ -4,10 +4,11 @@ import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { websiteConfig } from '@/config/website-config'
 
 import ScreenWrapper from '@/components/wrapper/screen-wrapper'
-import { Calendar, Dumbbell, Home, MapPin, Search, Utensils } from 'lucide-react'
-import Background from '@images/pages/home/hero-bg.webp'
+import { MapPin, Search } from 'lucide-react'
+import Background from '@images/pages/home/hero-bg.png'
 
 import { AsyncSelect } from '@/components/ui/async-select'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -128,8 +129,8 @@ const HeroSection = () => {
       <ScreenWrapper className='relative z-10 h-full w-full'>
         {/* Left content */}
         <div className='z-10 flex !max-w-full flex-col justify-center py-8 lg:!max-w-[400px] xl:!max-w-full'>
-          <h1 className='z-10 text-3xl font-medium text-white md:text-3xl lg:text-5xl'>Find Nearby Attractions</h1>
-          <h2 className='z-10 mt-4 text-2xl text-white'>Explore top-rated attractions, activities and more</h2>
+          <h1 className='z-10 text-3xl font-medium text-white md:text-3xl lg:text-5xl'>Find Nearby local businesses</h1>
+          <h2 className='z-10 mt-4 text-2xl text-white'>Explore nearby offers, activities and more</h2>
         </div>
 
         {/* Search bar */}
@@ -221,27 +222,52 @@ const HeroSection = () => {
           </div>
         </form>
 
-        {/* Categories */}
-        <div className='relative z-10 mt-8'>
-          <p className='mb-3 text-sm text-white'>Or browse featured categories:</p>
-          <div className='flex flex-wrap gap-2 text-white'>
-            {[
-              { icon: <Home className='mr-2 h-4 w-4' />, label: 'Apartments' },
-              { icon: <Utensils className='mr-2 h-4 w-4' />, label: 'Eat & Drink' },
-              { icon: <Calendar className='mr-2 h-4 w-4' />, label: 'Events' },
-              { icon: <Dumbbell className='mr-2 h-4 w-4' />, label: 'Fitness' }
-            ].map(({ icon, label }, idx) => (
-              <Link
-                key={idx}
-                href='#'
-                className='flex items-center rounded-full bg-gray-900 px-2 py-1 text-sm text-white md:px-4 md:py-2'
-              >
-                {icon}
-                {label}
-              </Link>
-            ))}
-          </div>
-        </div>
+       {/* Business registration */}
+<div className='relative z-10 mt-10 flex flex-col items-start gap-4'>
+  <p className='text-sm font-medium tracking-wide text-white/80 md:text-base'>
+    For business registration download the app now!
+  </p>
+
+  <div className='flex flex-col items-start gap-4 sm:flex-row sm:items-center'>
+    
+    {/* App Store — bigger */}
+    <Link
+      href={websiteConfig.appstore}
+      target='_blank'
+      rel='noopener noreferrer'
+      className='transition hover:opacity-80'
+    >
+      <div className='relative h-[56px] w-[180px]'>
+        <Image
+          src='/images/logo/app-store.svg'
+          alt='Download on App Store'
+          fill
+          className='object-contain'
+        />
+      </div>
+    </Link>
+
+    {/* Play Store — bigger */}
+    <Link
+      href={websiteConfig.playstore}
+      target='_blank'
+      rel='noopener noreferrer'
+      className='transition hover:opacity-80'
+    >
+      <div className='relative h-[68px] w-[250px]'>
+        <Image
+          src='/images/logo/google-play-store.png'
+          alt='Get it on Google Play'
+          fill
+          className='object-contain scale-[1.05]'
+        />
+      </div>
+    </Link>
+
+  </div>
+</div>
+
+
 
         {/* Image
         <div className='absolute top-2 right-20 hidden lg:block'>
@@ -253,7 +279,10 @@ const HeroSection = () => {
           />
         </div> */}
       </ScreenWrapper>
+      
     </div>
+
+    
   )
 }
 

@@ -79,13 +79,3 @@ export const fetchAreaList = async (): Promise<{ data: CategoryListItem[] }> => 
   return response
 }
 
-// ** Popular Categories
-export const fetchPopularCategories = async (): Promise<{ data: any[] }> => {
-  const response = await callApi({ uriEndPoint: endpoint.popCategory })
-    .then(res => res)
-    .catch((err: ApiResponse) => {
-      return err
-    })
-
-  return response
-}

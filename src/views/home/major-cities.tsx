@@ -1,5 +1,5 @@
 import React from 'react'
-
+import BusinessCounter from '@/views/home/business-counter'
 import ScreenWrapper from '@/components/wrapper/screen-wrapper'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -28,7 +28,7 @@ const MajorCities = ({ listCities }: { listCities: string[] }) => {
       {/* Title */}
       <div className='space-y-3'>
         <h2 className='after:bg-secondary relative w-max text-3xl after:absolute after:-bottom-1 after:left-0 after:h-[3px] after:w-full after:max-w-20 after:origin-bottom-right after:scale-x-100'>
-          Major Cities
+          Find businesses in city
         </h2>
         <p>Top cities</p>
       </div>
@@ -38,6 +38,8 @@ const MajorCities = ({ listCities }: { listCities: string[] }) => {
           <CityItem key={index} city={city} />
         ))}
       </div>
+
+      <BusinessCounter />
     </ScreenWrapper>
   )
 }

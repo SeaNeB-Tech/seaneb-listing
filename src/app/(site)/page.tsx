@@ -1,7 +1,6 @@
 import { endpoint } from '@/services/apis/endpoint'
 import HeroSection from '@/views/home/hero-section'
 import MajorCities from '@/views/home/major-cities'
-import PopularCategories from '@/views/home/popular-category'
 import axios from 'axios'
 import { LocalBusiness, WithContext } from 'schema-dts'
 
@@ -44,7 +43,6 @@ export default async function Home() {
     <>
       <HeroSection />
       <MajorCities listCities={listCities?.data?.data?.data || []} />
-      <PopularCategories listCategories={listCategories?.data?.data?.data || []} />
       <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     </>
   )
