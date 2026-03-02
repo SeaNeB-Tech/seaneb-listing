@@ -33,17 +33,26 @@ function Header() {
       if (!menuRef.current?.contains(e.target as Node)) setOpenMenu(false)
     }
     document.addEventListener('mousedown', handler)
+
     return () => document.removeEventListener('mousedown', handler)
   }, [])
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true })
+
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const isActive = (href?: string) => {
-    if (!href) return false
-    if (href === '/') return pathname === '/'
+    if (!href){
+
+      return false
+    }
+    if (href === '/'){
+
+      return pathname === '/'
+    }
+
     return pathname.startsWith(href)
   }
 
@@ -87,7 +96,10 @@ function Header() {
               <nav className='mr-4 hidden flex-1 lg:block'>
                 <ul className='flex items-center justify-center gap-8'>
                   {siteData.navigation.main.map(item => {
-                    if (!item.href) return null
+                    if (!item.href){
+
+                      return null
+                    }
                     const active = isActive(item.href)
 
                     return (
@@ -211,7 +223,10 @@ function Header() {
         <nav className='p-5'>
           <ul className='flex w-full flex-col items-center gap-4 text-center'>
             {siteData.navigation.main.map(item => {
-              if (!item.href) return null
+              if (!item.href){
+
+                return null
+              }
               const active = isActive(item.href)
 
               return (
