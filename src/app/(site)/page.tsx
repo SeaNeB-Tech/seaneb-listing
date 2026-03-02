@@ -37,7 +37,7 @@ const fetchHomePageData = async () => {
 }
 
 export default async function Home() {
-  const [listCities] = await fetchHomePageData()
+  const [, listCities] = await fetchHomePageData()
 
   return (
     <>
