@@ -53,9 +53,9 @@ function Footer() {
           </div>
 
           {/* Grid */}
-          <div className="grid gap-x-14 gap-y-10 mb-12 text-[15px] grid-cols-1 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(210px,1fr))]">
+          <div className="grid gap-x-14 gap-y-12 mb-12 text-[15px] grid-cols-1 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(210px,1fr))]">
 
-            {/* Dynamic Accordion Sections */}
+            {/* Dynamic Sections */}
             {Object.entries(footerLinks).map(([section, links]) => {
               const title =
                 section === 'legal'
@@ -64,31 +64,45 @@ function Footer() {
                   ? 'Help & Support'
                   : section
 
+              const isAccordion =
+                section === 'legal' || section === 'product'
+
               const isOpen = openSection === section
 
               return (
                 <div key={section}>
                   {/* Heading */}
                   <button
-                    onClick={() => toggleSection(section)}
-                    className="w-full flex items-center justify-between font-semibold mb-3 text-white text-base tracking-wide"
+                    onClick={() =>
+                      isAccordion && toggleSection(section)
+                    }
+                    className="w-full flex items-center justify-between font-semibold mb-3 text-white text-base tracking-wide lg:cursor-default"
                   >
                     {title}
 
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform duration-300 ${
-                        isOpen ? 'rotate-180' : ''
-                      }`}
-                    />
+                    {isAccordion && (
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform duration-300 lg:hidden ${
+                          isOpen ? 'rotate-180' : ''
+                        }`}
+                      />
+                    )}
                   </button>
 
                   {/* Content */}
                   <ul
-                    className={`overflow-hidden transition-all duration-300 ease-in-out space-y-2.5 text-gray-400 ${
-                      isOpen
-                        ? 'max-h-96 opacity-100'
-                        : 'max-h-0 opacity-0'
-                    }`}
+                    className={`
+                      space-y-2.5 text-gray-400 overflow-hidden transition-all duration-300
+                      ${
+                        isAccordion
+                          ? `lg:block ${
+                              isOpen
+                                ? 'max-h-96 opacity-100'
+                                : 'max-h-0 opacity-0 lg:max-h-full lg:opacity-100'
+                            }`
+                          : ''
+                      }
+                    `}
                   >
                     {links.map(link => (
                       <li key={link.href}>
@@ -105,27 +119,11 @@ function Footer() {
               )
             })}
 
-            {/* Contact (Accordion Too) */}
+            {/* Contact */}
             <div>
-              <button
-                onClick={() => toggleSection('contact')}
-                className="w-full flex items-center justify-between font-semibold mb-3 text-white text-base tracking-wide"
-              >
-                Contact
-                <ChevronDown
-                  className={`w-4 h-4 transition-transform duration-300 ${
-                    openSection === 'contact' ? 'rotate-180' : ''
-                  }`}
-                />
-              </button>
+              <p className="font-semibold mb-3 text-white">Contact</p>
 
-              <div
-                className={`overflow-hidden transition-all duration-300 ease-in-out space-y-3 text-gray-400 ${
-                  openSection === 'contact'
-                    ? 'max-h-40 opacity-100'
-                    : 'max-h-0 opacity-0'
-                }`}
-              >
+              <div className="space-y-3 text-gray-400">
                 <div className="flex items-center gap-2">
                   <Mail className="w-4 h-4" />
                   <Link
@@ -148,93 +146,72 @@ function Footer() {
               </div>
             </div>
 
-            {/* Social (Accordion Too) */}
-            <div>
-              <button
-                onClick={() => toggleSection('social')}
-                className="w-full flex items-center justify-between font-semibold mb-3 text-white text-base tracking-wide"
-              >
-                Follow Us
-                <ChevronDown
-                  className={`w-4 h-4 transition-transform duration-300 ${
-                    openSection === 'social' ? 'rotate-180' : ''
-                  }`}
-                />
-              </button>
+            {/* Social + Stores */}
+            <div className="lg:justify-self-end">
+              <p className="font-semibold mb-3 text-white">Follow Us</p>
 
-              <div
-                className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                  openSection === 'social'
-                    ? 'max-h-96 opacity-100'
-                    : 'max-h-0 opacity-0'
-                }`}
-              >
-                <div className="flex gap-3 mb-4">
-                  {(Object.entries(
-                    websiteConfig.social ?? {}
-                  ) as [string, string][]).map(
-                    ([key, href]) => {
-                      const Icon =
-                        SOCIAL_ICONS[
-                          key as keyof typeof SOCIAL_ICONS
-                        ]
-                      if (!Icon) return null
+              <div className="flex gap-3 mb-4">
+                {(Object.entries(
+                  websiteConfig.social ?? {}
+                ) as [string, string][]).map(
+                  ([key, href]) => {
+                    const Icon =
+                      SOCIAL_ICONS[
+                        key as keyof typeof SOCIAL_ICONS
+                      ]
+                    if (!Icon) return null
 
-                      return (
-                        <Link
-                          key={key}
-                          href={href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="rounded-full bg-white/10 p-3 hover:bg-white/20 transition"
-                        >
-                          <Icon size={20} />
-                        </Link>
-                      )
-                    }
-                  )}
-                </div>
+                    return (
+                      <Link
+                        key={key}
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rounded-full bg-white/10 p-3 hover:bg-white/20 transition"
+                      >
+                        <Icon size={20} />
+                      </Link>
+                    )
+                  }
+                )}
+              </div>
 
-                <div className="flex flex-col gap-3">
+              {/* Store buttons */}
+              <div className="mt-5 flex flex-col sm:flex-row items-start sm:items-center gap-3">
 
-  {/* App Store */}
-  <Link
-    href={websiteConfig.appstore}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="transition hover:opacity-80"
-  >
-    <div className="relative h-[50px] w-[160px]">
-      <Image
-        src="/images/logo/app-store.svg"
-        alt="Download on App Store"
-        fill
-        className="object-contain"
-      />
-    </div>
-  </Link>
+                <Link
+                  href={websiteConfig.appstore}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition hover:opacity-80"
+                >
+                  <div className="relative h-[44px] w-[140px]">
+                    <Image
+                      src="/images/logo/app-store.svg"
+                      alt="Download on App Store"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                </Link>
 
-  {/* Play Store */}
-  <Link
-    href={websiteConfig.playstore}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="transition hover:opacity-80"
-  >
-    <div className="relative h-[70px] w-[160px]">
-      <Image
-        src="/images/logo/google-play-store.png"
-        alt="Get it on Google Play"
-        fill
-        className="object-contain scale-[1.1]"
-      />
-    </div>
-  </Link>
-
-</div>
+                <Link
+                  href={websiteConfig.playstore}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition hover:opacity-80"
+                >
+                  <div className="relative h-[55px] w-[155px]">
+                    <Image
+                      src="/images/logo/google-play-store.png"
+                      alt="Get it on Google Play"
+                      fill
+                      className="object-contain scale-[1.08]"
+                    />
+                  </div>
+                </Link>
               </div>
             </div>
-
           </div>
         </div>
       </ScreenWrapper>
