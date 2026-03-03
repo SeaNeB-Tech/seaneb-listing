@@ -1,6 +1,11 @@
+export interface BlogContentBlock {
+  type: 'heading' | 'paragraph' | 'list' | 'image' | 'quote'
+  text?: string
+  items?: string[]
+}
 /* ======================================================
    META
-   ====================================================== */
+====================================================== */
 
 export interface BlogMeta {
   title: string
@@ -9,7 +14,7 @@ export interface BlogMeta {
 
 /* ======================================================
    HERO
-   ====================================================== */
+====================================================== */
 
 export interface BlogHero {
   heading: string
@@ -18,7 +23,7 @@ export interface BlogHero {
 
 /* ======================================================
    SIDEBAR
-   ====================================================== */
+====================================================== */
 
 export interface BlogAboutUs {
   tagline: string
@@ -39,7 +44,7 @@ export interface BlogSidebar {
 
 /* ======================================================
    POSTS
-   ====================================================== */
+====================================================== */
 
 export interface BlogPost {
   id: number
@@ -50,11 +55,12 @@ export interface BlogPost {
   author: string
   image: string
   category: string
+  content: BlogContentBlock[]
 }
 
 /* ======================================================
    ROOT
-   ====================================================== */
+====================================================== */
 
 export interface BlogData {
   meta: BlogMeta
