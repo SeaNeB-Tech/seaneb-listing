@@ -3,9 +3,6 @@ export interface BlogContentBlock {
   text?: string
   items?: string[]
 }
-/* ======================================================
-   META
-====================================================== */
 
 export interface BlogMeta {
   title: string

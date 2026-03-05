@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Calendar, User, Search } from 'lucide-react'
+import { Calendar, User } from 'lucide-react'
 import { notFound } from 'next/navigation'
 
 import blogJson from '@/data/blog.json'
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   description: blogData.meta.description
 }
 
-const { hero, sidebar, posts } = blogData
+const { posts } = blogData
 
 export default async function BlogDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -26,8 +26,10 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
   ====================================================== */
 
   if (!selectedPost) {
+    
     return notFound()
   }
+
   return (
     <main className='min-h-screen bg-white py-16'>
       <div className='container mx-auto max-w-3xl px-4'>
