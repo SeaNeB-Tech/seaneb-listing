@@ -15,13 +15,16 @@ const poppins = Roboto({
   variable: '--font-roboto'
 })
 
-export const metadata: Metadata = constructMetadata({
+export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITEMAP_URL!),
   title: {
     default: 'SeaNeb | Discover Local Business Deals & B2B Offers',
     template: '%s - SeaNeb'
+  },
+  alternates: {
+    canonical: '/'
   }
-})
-
+}
 const isProduction = process.env.NEXT_PUBLIC_NODE_ENV === 'production'
 
 export default function RootLayout({
@@ -32,10 +35,9 @@ export default function RootLayout({
   return (
     <html lang='en' translate='no'>
       <head>
-        <link rel='canonical' href={process.env.NEXT_PUBLIC_SITEMAP_URL} />
         <link rel='apple-touch-icon' href='/images/logo/apple-touch-icon.png' />
         <link rel='manifest' href='/manifest.json' />
-        {!isProduction && <meta name='robots' content='noindex, nofollow' />}
+        {!isProduction && <meta name='robots' content='index, follow' />}
 
           <Script
             id='gtm-script'

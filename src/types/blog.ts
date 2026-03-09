@@ -1,7 +1,8 @@
 export interface BlogContentBlock {
-  type: 'heading' | 'paragraph' | 'list' | 'image' | 'quote'
+  type: 'heading' | 'paragraph' | 'list' | 'link'
   text?: string
   items?: string[]
+  url?: string
 }
 
 export interface BlogMeta {
