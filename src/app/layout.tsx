@@ -2,7 +2,6 @@ import { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
 import Script from 'next/script'
 import Providers from '@/components/provider'
-import { constructMetadata } from '@/lib/utils'
 import { Analytics } from '@vercel/analytics/next'
 import NextProgress from '@/components/layout/next-progress'
 import Layout from '@/components/layout'
@@ -25,7 +24,9 @@ export const metadata: Metadata = {
     canonical: '/'
   }
 }
+
 const isProduction = process.env.NEXT_PUBLIC_NODE_ENV === 'production'
+
 
 export default function RootLayout({
   children
