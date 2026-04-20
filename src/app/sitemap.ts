@@ -15,9 +15,6 @@ import { endpoint } from '@/services/apis/endpoint'
 import { ApiResponse } from '@/types/api-response'
 import { BusinessSearchResponse } from '@/services/apis/types'
 
-// ** Utility Imports
-import { toUrlName } from '@/utils'
-
 const url = process.env.NEXT_PUBLIC_SITEMAP_URL ?? 'https://www.seaneb.com'
 const apiUrl = process.env.NEXT_PUBLIC_API_URL + endpoint.searchBusiness.uri
 
@@ -34,6 +31,16 @@ const getBusinessData = async (): Promise<MetadataRoute.Sitemap> => {
   // !! Return cached data if valid
   if (cachedData && cacheTimestamp && Date.now() - cacheTimestamp < CACHE_DURATION) {
     return cachedData
+  }
+
+  const sanitizeSlug = (value: string) => {
+    return value
+      .toLowerCase()
+      .replace(/&/g, 'and')
+      .replace(/[^a-z0-9\s-]/g, '') // removes || and other invalid chars
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '')
   }
 
   try {
@@ -53,9 +60,14 @@ const getBusinessData = async (): Promise<MetadataRoute.Sitemap> => {
     const businessRoutes: MetadataRoute.Sitemap = []
     for (const business of response.data.data) {
       if (business?.city && business?.business_category && business?.business_legal_name) {
-        const category = business.business_category.split(',')[0]?.trim()
+        const rawCategory = business.business_category?.split(',')[0]?.trim() || 'general'
+        const city = sanitizeSlug(business.city)
+        const cat = sanitizeSlug(rawCategory)
+        const name = sanitizeSlug(business.business_legal_name)
+        const finalUrl = `${url}/${city}/${cat}/${name}`
+
         businessRoutes.push({
-          url: `${url}${toUrlName(`/${business.city}/${category}/${business.business_legal_name}`)}`,
+          url: encodeURI(finalUrl).replace(/&/g, '%26'),
           lastModified: business.updated_at ? dayjs(business.updated_at).toDate() : new Date(),
           changeFrequency: 'weekly' as const,
           priority: 0.9
@@ -97,5 +109,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const businessData = await getBusinessData()
 
   // ** Use Set to ensure no duplicates
-  return [...new Set([...pageRoutes, ...businessData])]
+  const map = new Map()
+
+  for (const item of [...pageRoutes, ...businessData]) {
+    map.set(item.url, item)
+  }
+
+  return Array.from(map.values())
 }
