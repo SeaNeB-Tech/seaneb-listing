@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     title: 'SeaNeb | Discover Local Business Deals & B2B Offers',
     description:
       'Find nearby MSME businesses, local services, and verified vendors with SeaNeB.',
-    images: ['/images/og/opengraph-image.png']
+    images: ['/images/og/og.jpg']
   }
 }
 
