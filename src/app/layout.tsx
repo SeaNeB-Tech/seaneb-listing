@@ -39,6 +39,31 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: '/'
+  },
+   openGraph: {
+    title: 'SeaNeb | Discover Local Business Deals & B2B Offers',
+    description:
+      'Explore local MSME business listings, nearby services, and vendors with SeaNeB.',
+    url: process.env.NEXT_PUBLIC_SITEMAP_URL,
+    siteName: 'SeaNeb',
+    images: [
+      {
+        url: '/images/og/og.jpg', 
+        width: 1200,
+        height: 630,
+        alt: 'SeaNeb - Local Business Discovery Platform'
+      }
+    ],
+    locale: 'en_IN',
+    type: 'website'
+  },
+
+  twitter: {
+    card: 'summary_large_image',
+    title: 'SeaNeb | Discover Local Business Deals & B2B Offers',
+    description:
+      'Find nearby MSME businesses, local services, and verified vendors with SeaNeB.',
+    images: ['/images/og/opengraph-image.png']
   }
 }
 

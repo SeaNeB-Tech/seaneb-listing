@@ -24,7 +24,7 @@ interface ConstructMetadata {
 export function constructMetadata({
   title = 'SeaNeb | Discover Local Business Deals & B2B Offers',
   description = 'Explore top-rated restaurants, stores, shops, and business categories near you with SeaNeb. Connect and grow your business today.',
-  image = '/images/og/opengraph-image.png',
+  image = '/images/og/og.jpg',
   icons = '/favicon.ico',
   noIndex = false,
   keywords = ''
