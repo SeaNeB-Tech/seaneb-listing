@@ -13,20 +13,35 @@ const poppins = Roboto({
   weight: ['300', '400', '500', '600', '700', '800'],
   variable: '--font-roboto'
 })
-
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITEMAP_URL!),
   title: {
     default: 'SeaNeb | Discover Local Business Deals & B2B Offers',
     template: '%s - SeaNeb'
   },
+  description:
+    'Explore local MSME business listings on SeaNeB. Find nearby shops, services, and vendors with detailed profiles, offers, and business information.',
+  keywords: [
+    'SeaNeB',
+    'MSME businesses',
+    'local business listings',
+    'nearby businesses',
+    'business directory India',
+    'local services',
+    'shops near me',
+    'local vendors',
+    'small businesses India',
+    'business listings platform',
+    'discover local businesses',
+    'B2B listings',
+    'verified business profiles'
+  ],
   alternates: {
     canonical: '/'
   }
 }
 
 const isProduction = process.env.NEXT_PUBLIC_NODE_ENV === 'production'
-
 
 export default function RootLayout({
   children
@@ -38,13 +53,12 @@ export default function RootLayout({
       <head>
         <link rel='apple-touch-icon' href='/images/logo/apple-touch-icon.png' />
         <link rel='manifest' href='/manifest.json' />
-        {!isProduction && <meta name='robots' content='index, follow' />}
-
-          <Script
-            id='gtm-script'
-            strategy='afterInteractive'
-            dangerouslySetInnerHTML={{
-              __html: `
+        {!isProduction && <meta name='robots' content='noindex, nofollow' />}
+        <Script
+          id='gtm-script'
+          strategy='afterInteractive'
+          dangerouslySetInnerHTML={{
+            __html: `
                 (function(w,d,s,l,i){w[l]=w[l]||[];
                 w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
                 var f=d.getElementsByTagName(s)[0],
@@ -54,26 +68,24 @@ export default function RootLayout({
                 f.parentNode.insertBefore(j,f);
                 })(window,document,'script','dataLayer','GTM-PBWN9VZC');
               `
-            }}
-          />
+          }}
+        />
       </head>
 
       <body className={`${poppins.className} antialiased`}>
-          <noscript>
-            <iframe
-              src='https://www.googletagmanager.com/ns.html?id=GTM-PBWN9VZC'
-              height='0'
-              width='0'
-              style={{ display: 'none', visibility: 'hidden' }}
-            />
-          </noscript>
+        <noscript>
+          <iframe
+            src='https://www.googletagmanager.com/ns.html?id=GTM-PBWN9VZC'
+            height='0'
+            width='0'
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
 
         <Providers>
           <NextProgress />
 
-          <Layout>
-            {children}
-          </Layout>
+          <Layout>{children}</Layout>
 
           {isProduction && <Analytics />}
         </Providers>

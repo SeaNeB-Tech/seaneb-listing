@@ -50,7 +50,7 @@ export function constructMetadata({
       title,
       description,
       images: [{ url: image }],
-      creator: '@codentic.software'
+      creator: '@seaneb'
     },
     icons,
     metadataBase: new URL(process.env.NEXT_PUBLIC_SITEMAP_URL || 'http://localhost:6590'),
@@ -60,8 +60,8 @@ export function constructMetadata({
         follow: false
       }
     }),
-    creator: 'Codentic Software',
-    authors: [{ name: 'Codentic Software' }]
+    creator: 'SeaNeB Technologies',
+    authors: [{ name: 'SeaNeB Technologies' }]
   }
 }
 
