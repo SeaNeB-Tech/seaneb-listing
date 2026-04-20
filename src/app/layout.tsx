@@ -13,6 +13,7 @@ const poppins = Roboto({
   weight: ['300', '400', '500', '600', '700', '800'],
   variable: '--font-roboto'
 })
+
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITEMAP_URL!),
   title: {
