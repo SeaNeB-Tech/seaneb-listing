@@ -56,8 +56,8 @@ export function constructMetadata({
     metadataBase: new URL(process.env.NEXT_PUBLIC_SITEMAP_URL || 'http://localhost:6590'),
     ...(noIndex && {
       robots: {
-        index: false,
-        follow: false
+        index: true,
+        follow: true
       }
     }),
     creator: 'SeaNeB Technologies',

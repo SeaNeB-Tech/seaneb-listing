@@ -54,7 +54,7 @@ export default function RootLayout({
       <head>
         <link rel='apple-touch-icon' href='/images/logo/apple-touch-icon.png' />
         <link rel='manifest' href='/manifest.json' />
-        {!isProduction && <meta name='robots' content='noindex, nofollow' />}
+        {!isProduction && <meta name='robots' content='index, follow' />}
         <Script
           id='gtm-script'
           strategy='afterInteractive'
