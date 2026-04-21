@@ -14,7 +14,7 @@ import Logo from '@images/logo/logo-white.png'
 import { websiteConfig } from '@/config/website-config'
 import { footerLinks } from '@/config/footer-links'
 
-import { Mail, Phone, ChevronDown } from 'lucide-react'
+import { Mail, ChevronDown } from 'lucide-react'
 import { memo, useState } from 'react'
 import ScreenWrapper from '../wrapper/screen-wrapper'
 

@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram, Youtube } from 'lucide-react'
+import { Mail, MapPin, Facebook, Twitter, Linkedin, Instagram, Youtube } from 'lucide-react'
 
 import contactJson from '@/data/contact.json'
 import siteJson from '@/data/site.json'
