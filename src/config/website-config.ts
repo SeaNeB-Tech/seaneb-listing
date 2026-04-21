@@ -8,9 +8,7 @@ type SocialLinks = {
 
 type WebsiteConfigType = {
   name: string
-  call: string
   website: string
-  whatsapp: string
   officeAddress: string
   email: string
 
@@ -24,8 +22,6 @@ type WebsiteConfigType = {
 
 export const websiteConfig: WebsiteConfigType = {
   name: 'SeaNeB',
-  call: '+91 8511732632',
-  whatsapp: '+91 8511732632',
   website: 'https://www.seaneb.com/',
   officeAddress: 'Madhav Arcade, F-8, Jol, Anand, Gujarat 388315',
   email: 'hello@seaneb.com',

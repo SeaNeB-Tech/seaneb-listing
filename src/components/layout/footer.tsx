@@ -133,16 +133,6 @@ function Footer() {
                     {websiteConfig.email}
                   </Link>
                 </div>
-
-                <div className="flex items-center gap-2">
-                  <Phone className="w-4 h-4" />
-                  <Link
-                    href={`tel:${websiteConfig.call}`}
-                    className="hover:text-white"
-                  >
-                    {websiteConfig.call}
-                  </Link>
-                </div>
               </div>
             </div>
 
