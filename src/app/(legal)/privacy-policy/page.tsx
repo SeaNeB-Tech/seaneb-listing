@@ -13,6 +13,16 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/privacy-policy',
   },
+  robots: {
+  index: true,
+  follow: true,
+  googleBot: {
+    index: true,
+    follow: true,
+    'max-image-preview': 'large',
+    'max-snippet': -1,
+  },
+}
 }
 
 const introNode = (

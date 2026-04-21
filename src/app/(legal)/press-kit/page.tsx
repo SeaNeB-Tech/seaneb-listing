@@ -10,6 +10,16 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/press-kit',
   },
+  robots: {
+  index: true,
+  follow: true,
+  googleBot: {
+    index: true,
+    follow: true,
+    'max-image-preview': 'large',
+    'max-snippet': -1,
+  },
+}
 }
 
 const { heading, subheading, about, facts, assets, mediaContact } = pressData

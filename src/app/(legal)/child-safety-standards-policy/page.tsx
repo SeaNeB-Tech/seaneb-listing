@@ -13,6 +13,16 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/child-safety-standards-policy',
   },
+  robots: {
+  index: true,
+  follow: true,
+  googleBot: {
+    index: true,
+    follow: true,
+    'max-image-preview': 'large',
+    'max-snippet': -1,
+  },
+}
 }
 
 export default function ChildSafetyPage() {

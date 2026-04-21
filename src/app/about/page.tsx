@@ -15,6 +15,16 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/about',
   },
+  robots: {
+  index: true,
+  follow: true,
+  googleBot: {
+    index: true,
+    follow: true,
+    'max-image-preview': 'large',
+    'max-snippet': -1,
+  },
+}
 }
 
 const { hero, intro, whomWeServe, ourStory, visionMission } = aboutData

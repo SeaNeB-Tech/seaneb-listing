@@ -13,6 +13,16 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/content-policy',
   },
+  robots: {
+  index: true,
+  follow: true,
+  googleBot: {
+    index: true,
+    follow: true,
+    'max-image-preview': 'large',
+    'max-snippet': -1,
+  },
+}
 }
 
 export default function ContentPolicyPage() {

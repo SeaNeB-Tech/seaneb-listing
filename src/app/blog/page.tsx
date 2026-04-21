@@ -23,6 +23,16 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/blog',
   },
+  robots: {
+  index: true,
+  follow: true,
+  googleBot: {
+    index: true,
+    follow: true,
+    'max-image-preview': 'large',
+    'max-snippet': -1,
+  },
+}
 }
 
 /* ======================================================
