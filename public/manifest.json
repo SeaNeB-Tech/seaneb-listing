@@ -1,7 +1,7 @@
 {
-    "name": "SeaNeb",
-    "short_name": "SeaNeb",
-    "description": "Explore top-rated restaurants, stores, shops, and business categories near you with SeaNeb. Connect and grow your business today.",
+    "name": "SeaNeB",
+    "short_name": "SeaNeB",
+    "description": "Explore top-rated restaurants, stores, shops, and business categories near you with SeaNeB. Connect and grow your business today.",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",

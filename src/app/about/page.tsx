@@ -35,10 +35,10 @@ const jsonLd = {
     {
       "@type": "Organization",
       "@id": "https://www.seaneb.com/#organization",
-      "name": "SeaNeb",
+      "name": "SeaNeB",
       "url": "https://www.seaneb.com/",
       "logo": "https://www.seaneb.com/images/logo/logo-white.png",
-      "description": "SeaNeb connects users with local MSME businesses, services, and vendors across India.",
+      "description": "SeaNeB connects users with local MSME businesses, services, and vendors across India.",
       "sameAs": [
         "https://www.facebook.com/",
         "https://www.instagram.com/",
@@ -49,7 +49,7 @@ const jsonLd = {
       "@type": "WebSite",
       "@id": "https://www.seaneb.com/#website",
       "url": "https://www.seaneb.com/",
-      "name": "SeaNeb - Discover Local Businesses",
+      "name": "SeaNeB - Discover Local Businesses",
       "publisher": {
         "@id": "https://www.seaneb.com/#organization"
       },
@@ -61,9 +61,9 @@ const jsonLd = {
     },
     {
       "@type": "AboutPage",
-      "name": "About SeaNeb",
+      "name": "About SeaNeB",
       "url": "https://www.seaneb.com/about",
-      "description": "Learn about SeaNeb, a platform helping users discover local MSME businesses and services."
+      "description": "Learn about SeaNeB, a platform helping users discover local MSME businesses and services."
     }
   ]
 }

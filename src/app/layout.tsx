@@ -21,8 +21,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITEMAP_URL!),
   
   title: {
-    default: 'SeaNeb | Discover Local Business Deals & B2B Offers',
-    template: '%s - SeaNeb'
+    default: 'SeaNeB | Discover Local Business Deals & B2B Offers',
+    template: '%s - SeaNeB'
   },
   description:
     'Explore local MSME business listings on SeaNeB. Find nearby shops, services, and vendors with detailed profiles, offers, and business information.',
@@ -42,17 +42,17 @@ export const metadata: Metadata = {
     'verified business profiles'
   ],
    openGraph: {
-    title: 'SeaNeb | Discover Local Business Deals & B2B Offers',
+    title: 'SeaNeB | Discover Local Business Deals & B2B Offers',
     description:
       'Explore local MSME business listings, nearby services, and vendors with SeaNeB.',
     url: process.env.NEXT_PUBLIC_SITEMAP_URL,
-    siteName: 'SeaNeb',
+    siteName: 'SeaNeB',
     images: [
       {
         url: '/images/og/og.jpg', 
         width: 1200,
         height: 630,
-        alt: 'SeaNeb - Local Business Discovery Platform'
+        alt: 'SeaNeB - Local Business Discovery Platform'
       }
     ],
     locale: 'en_IN',
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
 
   twitter: {
     card: 'summary_large_image',
-    title: 'SeaNeb | Discover Local Business Deals & B2B Offers',
+    title: 'SeaNeB | Discover Local Business Deals & B2B Offers',
     description:
       'Find nearby MSME businesses, local services, and verified vendors with SeaNeB.',
     images: ['/images/og/og.jpg']
