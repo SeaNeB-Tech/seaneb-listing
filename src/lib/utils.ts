@@ -65,10 +65,23 @@ export function constructMetadata({
   }
 }
 
-export const generatePublicImageBusinessLink = (objectKey: string) => {
-  return `https://${process.env.NEXT_PUBLIC_DO_SPACES_NAME}.${process.env.NEXT_PUBLIC_DO_SPACES_REGION}.cdn.digitaloceanspaces.com/${objectKey}`
+export const generatePublicImageBusinessLink = (objectKey?: string) => {
+  if (!objectKey) return '/images/default.jpg'
+  return `/storage/${objectKey}`
 }
 
-export const generatePublicImageUserLink = (objectKey: string) => {
-  return `https://${process.env.NEXT_PUBLIC_DO_SPACES_NAME}.${process.env.NEXT_PUBLIC_DO_SPACES_REGION}.cdn.digitaloceanspaces.com/${objectKey}`
+export const generatePublicImageUserLink = (objectKey?: string) => {
+  if (!objectKey) return '/images/default-avatar.png'
+
+  // If full URL → extract path
+  if (objectKey.startsWith('http')) {
+    const url = new URL(objectKey)
+    return `/storage${url.pathname}`
+  }
+
+  const cleanKey = objectKey
+    .replace(/^\/+/, '')
+    .replace(/^storage\//, '')
+
+  return `/storage/${cleanKey}`
 }

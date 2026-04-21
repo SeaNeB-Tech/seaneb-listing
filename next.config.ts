@@ -19,6 +19,14 @@ const nextConfig: NextConfig = {
         hostname: `${process.env.NEXT_PUBLIC_DO_SPACES_NAME}.${process.env.NEXT_PUBLIC_DO_SPACES_REGION}.cdn.digitaloceanspaces.com`
       }
     ]
+  },
+    async rewrites() {
+    return [
+      {
+        source: '/storage/:path*',
+        destination: `https://${process.env.NEXT_PUBLIC_DO_SPACES_NAME}.${process.env.NEXT_PUBLIC_DO_SPACES_REGION}.cdn.digitaloceanspaces.com/:path*`
+      }
+    ]
   }
 }
 
