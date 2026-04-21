@@ -24,21 +24,25 @@ export interface MetaAPIResponse {
 }
 
 export async function generateMetadata({ params }: BusinessDetailsPageProps): Promise<Metadata> {
-  // ** read route params
-  const { business, city } = await params
+  const { business, city, category } = await params
 
-  // ** Fetch Data
   const query = `?business_legal_name=${decodeURIComponent(business)}`
   const url = process.env.NEXT_PUBLIC_API_URL + endpoint.businessMeta.uri + query
 
   const { data }: { data: { data: MetaAPIResponse } } = await axios.get(url)
 
-  return constructMetadata({
-    title: data?.data?.business_name,
-    description: `Find business details for ${data?.data?.business_name} located in ${decodeURIComponent(city)}.${data?.data?.website_url ? ` Visit their website at ${data?.data?.website_url}` : ''}`,
-    keywords: `business, ${data?.data?.business_name}, ${decodeURIComponent(city)}`,
-    image: data?.data?.icon
-  })
+  return {
+    ...constructMetadata({
+      title: data?.data?.business_name,
+      description: `Find business details for ${data?.data?.business_name} located in ${decodeURIComponent(city)}.${data?.data?.website_url ? ` Visit their website at ${data?.data?.website_url}` : ''}`,
+      keywords: `business, ${data?.data?.business_name}, ${decodeURIComponent(city)}`,
+      image: data?.data?.icon
+    }),
+
+    alternates: {
+      canonical: `/${city}/${category}/${business}`,
+    },
+  }
 }
 
 const getTestimonials = async (businessId: string): Promise<TestimonialItem[]> => {

@@ -7,7 +7,10 @@ const faqsData = dataJson as FaqsData
 
 export const metadata: Metadata = {
   title: faqsData.meta.title,
-  description: faqsData.meta.description
+  description: faqsData.meta.description,
+  alternates: {
+    canonical: '/faqs',
+  },
 }
 
 export default function Page() {

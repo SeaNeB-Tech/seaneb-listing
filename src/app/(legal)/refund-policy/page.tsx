@@ -10,8 +10,10 @@ const data = dataJson as unknown as RefundPolicyData
 export const metadata: Metadata = {
   title: data.meta.title,
   description: data.meta.description,
+  alternates: {
+    canonical: '/refund-policy',
+  },
 }
-
 export default function RefundPolicyPage() {
   return <PolicyPage data={data} />
 }

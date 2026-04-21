@@ -9,6 +9,9 @@ const data = dataJson as unknown as TermsAndConditionsData
 export const metadata: Metadata = {
   title: data.meta.title,
   description: data.meta.description,
+  alternates: {
+    canonical: '/terms-and-conditions',
+  },
 }
 
 export default function TermsAndConditionsPage() {

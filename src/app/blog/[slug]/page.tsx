@@ -9,9 +9,24 @@ import type { BlogData } from '@/types/blog'
 
 const blogData = blogJson as BlogData
 
-export const metadata: Metadata = {
-  title: blogData.meta.title,
-  description: blogData.meta.description
+export async function generateMetadata(
+  { params }: { params: Promise<{ slug: string }> }
+): Promise<Metadata> {
+  const { slug } = await params
+
+  const selectedPost = posts.find(p => p.slug === slug)
+
+  if (!selectedPost) {
+    return {}
+  }
+
+  return {
+    title: selectedPost.title,
+    description: selectedPost.excerpt,
+    alternates: {
+      canonical: `/blog/${slug}`,
+    },
+  }
 }
 
 const { posts } = blogData

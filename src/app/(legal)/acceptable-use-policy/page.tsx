@@ -10,6 +10,9 @@ const data: AcceptableUsePolicyData = dataJson
 export const metadata: Metadata = {
   title: data.meta.title,
   description: data.meta.description,
+  alternates: {
+    canonical: '/acceptable-use-policy',
+  },
 }
 
 const introNode = (

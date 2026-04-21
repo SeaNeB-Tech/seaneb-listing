@@ -19,7 +19,10 @@ const { hero, sidebar, posts } = blogData
 
 export const metadata: Metadata = {
   title: blogData.meta.title,
-  description: blogData.meta.description
+  description: blogData.meta.description,
+  alternates: {
+    canonical: '/blog',
+  },
 }
 
 /* ======================================================

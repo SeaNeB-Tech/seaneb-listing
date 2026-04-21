@@ -6,7 +6,10 @@ const pressData = dataJson as PressKitData
 
 export const metadata: Metadata = {
   title: pressData.meta.title,
-  description: pressData.meta.description
+  description: pressData.meta.description,
+  alternates: {
+    canonical: '/press-kit',
+  },
 }
 
 const { heading, subheading, about, facts, assets, mediaContact } = pressData

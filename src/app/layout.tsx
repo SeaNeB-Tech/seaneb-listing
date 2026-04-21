@@ -14,8 +14,12 @@ const poppins = Roboto({
   variable: '--font-roboto'
 })
 
+
+
 export const metadata: Metadata = {
+  
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITEMAP_URL!),
+  
   title: {
     default: 'SeaNeb | Discover Local Business Deals & B2B Offers',
     template: '%s - SeaNeb'
@@ -37,9 +41,6 @@ export const metadata: Metadata = {
     'B2B listings',
     'verified business profiles'
   ],
-  alternates: {
-    canonical: '/'
-  },
    openGraph: {
     title: 'SeaNeb | Discover Local Business Deals & B2B Offers',
     description:

@@ -12,6 +12,9 @@ const aboutData = aboutJson as AboutData
 export const metadata: Metadata = {
   title: aboutData.meta.title,
   description: aboutData.meta.description,
+  alternates: {
+    canonical: '/about',
+  },
 }
 
 const { hero, intro, whomWeServe, ourStory, visionMission } = aboutData

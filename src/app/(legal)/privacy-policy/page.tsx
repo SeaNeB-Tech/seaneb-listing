@@ -10,6 +10,9 @@ const data = dataJson as unknown as PrivacyPolicyData
 export const metadata: Metadata = {
   title: data.meta.title,
   description: data.meta.description,
+  alternates: {
+    canonical: '/privacy-policy',
+  },
 }
 
 const introNode = (

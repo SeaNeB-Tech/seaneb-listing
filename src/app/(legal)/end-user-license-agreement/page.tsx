@@ -10,6 +10,9 @@ const data = dataJson as unknown as EulaData
 export const metadata: Metadata = {
   title: data.meta.title,
   description: data.meta.description,
+  alternates: {
+    canonical: '/end-user-licence-agreement',
+  },
 }
 
 export default function EulaPage() {

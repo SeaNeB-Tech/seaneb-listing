@@ -10,6 +10,9 @@ const data = dataJson as unknown as ContentPolicyData
 export const metadata: Metadata = {
   title: data.meta.title,
   description: data.meta.description,
+  alternates: {
+    canonical: '/content-policy',
+  },
 }
 
 export default function ContentPolicyPage() {

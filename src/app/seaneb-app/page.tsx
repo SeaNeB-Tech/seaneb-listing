@@ -9,6 +9,9 @@ const appData: SeaNebAppData = appJson
 export const metadata: Metadata = {
   title: appData.meta.title,
   description: appData.meta.description,
+  alternates: {
+    canonical: '/seaneb-app',
+  },
 }
 
 export default function Page() {

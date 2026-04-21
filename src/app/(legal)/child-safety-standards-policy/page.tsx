@@ -10,6 +10,9 @@ const data = dataJson as unknown as ChildSafetyStandardsPolicyData
 export const metadata: Metadata = {
   title: data.meta.title,
   description: data.meta.description,
+  alternates: {
+    canonical: '/child-safety-standards-policy',
+  },
 }
 
 export default function ChildSafetyPage() {

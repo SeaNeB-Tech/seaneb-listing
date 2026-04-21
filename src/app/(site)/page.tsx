@@ -3,6 +3,14 @@ import HeroSection from '@/views/home/hero-section'
 import MajorCities from '@/views/home/major-cities'
 import axios from 'axios'
 import { LocalBusiness, WithContext } from 'schema-dts'
+import type { Metadata } from 'next'
+
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/',
+  },
+}
 
 const jsonLd: WithContext<LocalBusiness> = {
   '@context': 'https://schema.org',
