@@ -67,6 +67,7 @@ export function constructMetadata({
 
 export const generatePublicImageBusinessLink = (objectKey?: string) => {
   if (!objectKey) return '/images/default.jpg'
+
   return `/storage/${objectKey}`
 }
 
@@ -76,6 +77,7 @@ export const generatePublicImageUserLink = (objectKey?: string) => {
   // If full URL → extract path
   if (objectKey.startsWith('http')) {
     const url = new URL(objectKey)
+    
     return `/storage${url.pathname}`
   }
 
