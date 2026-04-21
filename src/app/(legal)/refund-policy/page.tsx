@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     canonical: '/refund-policy',
   },
 }
+
 export default function RefundPolicyPage() {
   return <PolicyPage data={data} />
 }
