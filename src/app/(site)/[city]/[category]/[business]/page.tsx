@@ -101,9 +101,9 @@ const BusinessDetailsPage = async ({ params }: BusinessDetailsPageProps) => {
 
     return (
       <>
-        {!!data?.data?.shop_galleries?.length && data?.data?.country && data?.data?.state && (
-          <BusinessViewCarousel businessData={data?.data} />
-        )}
+       {data?.data?.country && data?.data?.state && (
+  <BusinessViewCarousel businessData={data?.data} />
+)}
         <BusinessDetails businessData={data?.data} testimonials={testimonials} />
         <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </>

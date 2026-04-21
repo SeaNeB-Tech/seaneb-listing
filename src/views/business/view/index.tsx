@@ -1,125 +1,204 @@
 'use client'
 
 import ScreenWrapper from '@/components/wrapper/screen-wrapper'
-
 import { generatePublicImageUserLink } from '@/lib/utils'
 import { BusinessDetailsAPIResponse, TestimonialItem } from '@/types/business'
-import { Facebook, Instagram, LinkIcon, Mail, MapPin, Phone, Twitter } from 'lucide-react'
-import Link from 'next/link'
+import { Mail, MapPin, Phone, Share2 } from 'lucide-react'
 import React from 'react'
 import LocationMap from './basic/map'
 import BusinessRating from './basic/rating'
-import { HostCard } from './host-card'
 import BusinessReviews from './reviews'
+import { FaWhatsapp } from 'react-icons/fa'
 
 interface BusinessDetailsProps {
   businessData: BusinessDetailsAPIResponse
   testimonials: TestimonialItem[]
 }
 
-const LinkButton = ({ children, href }: { children: React.ReactNode; href: string }) => {
-  return (
-    <Link
-      href={href || `#`}
-      className='flex cursor-pointer items-center gap-1.5 rounded-none border border-gray-300 bg-gray-100 px-2 py-2 text-xs text-black hover:bg-gray-300'
-    >
-      {children}
-    </Link>
-  )
-}
+/* 🔹 Reusable Card */
+const Card = ({ title, children }: any) => (
+  <div className="rounded-xl border bg-white shadow-sm overflow-hidden">
+    <div className="border-b px-4 py-3 text-sm font-semibold text-gray-600 bg-gray-50">
+      {title}
+    </div>
+    <div className="p-4">{children}</div>
+  </div>
+)
 
 const BusinessDetails = ({ businessData, testimonials }: BusinessDetailsProps) => {
   return (
-    <ScreenWrapper className='grid grid-cols-1 gap-x-10 gap-y-10 py-10 lg:grid-cols-12 lg:py-20'>
-      {/* Left Side View */}
-      <div className='min-h-[30vh] lg:col-span-8 lg:min-h-[50vh]'>
-        <h2 className='text-3xl font-medium'>{businessData?.business_name}</h2>
-        <div className='mt-2 flex items-center gap-2'>
-          <MapPin className='h-4 w-4 text-gray-500' />
-          <p className='capitalize'>{`${businessData?.area}, ${businessData?.city}`?.toLowerCase()}</p>
-        </div>
-        <BusinessRating businessData={businessData} />
+    <div className="bg-gray-50">
+      <ScreenWrapper className="grid grid-cols-1 gap-8 py-10 lg:grid-cols-12">
 
-        {/* Links */}
-        <div className='mt-4 flex flex-col justify-center gap-2 lg:mt-8'>
-          {/* Contacts */}
-          <div className='mt-2 flex flex-wrap sm:mt-0'>
-            {businessData?.contact_no && (
-              <LinkButton href={`tel:${businessData?.contact_no}`}>
-                <Phone className='size-4' />
-                {businessData?.contact_no}
-              </LinkButton>
-            )}
-            {businessData?.email && (
-              <LinkButton href={`mailto:${businessData?.email}`}>
-                <Mail className='size-4' />
-                {businessData?.email}
-              </LinkButton>
-            )}
-            {businessData?.website_url && (
-              <LinkButton href={businessData?.website_url}>
-                <LinkIcon className='size-4' />
-                {businessData?.website_url || 'www.example.com'}
-              </LinkButton>
-            )}
+        {/* LEFT */}
+        <div className="lg:col-span-8 space-y-6">
+
+          {/* Header */}
+          <div className="rounded-xl border bg-white p-5 shadow-sm">
+            <h1 className="text-2xl font-semibold">
+              {businessData?.business_name}
+            </h1>
+
+            <div className="mt-2 flex items-center gap-2 text-sm text-gray-500">
+              <MapPin className="h-4 w-4" />
+              {businessData?.area}, {businessData?.city}, {businessData?.state}
+            </div>
+
+            <div className="mt-3">
+              <BusinessRating businessData={businessData} />
+            </div>
           </div>
-          {/* Socials */}
-          <div className='flex flex-wrap'>
-            {businessData?.facebook_url && (
-              <Link
-                href={businessData?.facebook_url}
-                className='flex items-center gap-1 bg-[#3b5998] px-3 py-1 text-white'
-              >
-                <Facebook className='h-4 w-4' />
-                <span>Facebook</span>
-              </Link>
-            )}
 
-            {businessData?.instagram_url && (
-              <Link
-                href={businessData?.instagram_url}
-                className='flex items-center gap-1 bg-[#e1306c] px-3 py-1 text-white'
-              >
-                <Instagram className='h-4 w-4' />
-                <span>Instagram</span>
-              </Link>
-            )}
+          {/* Contact */}
+          <Card title="Contact Information">
+            <div className="grid gap-4 sm:grid-cols-2 text-sm">
 
-            {businessData?.x_url && (
-              <Link href={businessData?.x_url} className='flex items-center gap-1 bg-[#1da1f2] px-3 py-1 text-white'>
-                <Twitter className='h-4 w-4' />
-                <span>Twitter</span>
-              </Link>
-            )}
-          </div>
+              {businessData?.contact_no && (
+                <a href={`tel:${businessData.contact_no}`} className="flex items-center gap-3">
+                  <div className="bg-gray-100 p-2 rounded-md">
+                    <Phone className="h-4 w-4 text-gray-600" />
+                  </div>
+                  <span className="font-medium">{businessData.contact_no}</span>
+                </a>
+              )}
+
+              {businessData?.email && (
+                <a href={`mailto:${businessData.email}`} className="flex items-center gap-3">
+                  <div className="bg-gray-100 p-2 rounded-md">
+                    <Mail className="h-4 w-4 text-gray-600" />
+                  </div>
+                  <span>{businessData.email}</span>
+                </a>
+              )}
+            </div>
+          </Card>
+
+          {/* Location */}
+          {businessData?.latitude && businessData?.longitude && (
+            <Card title="Location">
+              <LocationMap lat={businessData.latitude} long={businessData.longitude} />
+            </Card>
+          )}
+
+          {/* Reviews */}
+          {!!testimonials?.length && (
+            <Card title="Customer Reviews">
+              <BusinessReviews testimonials={testimonials} />
+            </Card>
+          )}
         </div>
 
-        {/* Map */}
-        {businessData?.latitude && businessData?.longitude && (
-          <LocationMap lat={businessData?.latitude} long={businessData?.longitude} />
-        )}
+        {/* RIGHT */}
+        <div className="lg:col-span-4 space-y-6">
 
-        {!!testimonials?.length && <BusinessReviews testimonials={testimonials} />}
-      </div>
+          {/* Owner */}
+          <Card title="Business Owner">
+            {businessData?.users_businesses?.map(user => (
+              <div key={user?.u_id} className="space-y-4">
 
-      {/* Right Side View */}
-      <div className='relative lg:col-span-4'>
-        <div className='sticky top-24 flex flex-col items-center gap-4'>
-          {businessData?.users_businesses?.map(user => (
-            <HostCard
-              key={user?.u_id}
-              email={user?.user?.email}
-              imageUrl={generatePublicImageUserLink(user?.user?.image + '-140x140.png')}
-              name={user?.user?.full_name}
-              phone={user?.user?.mobile_no}
-              onSendMessage={() => {
-                window.open(`https://wa.me/${businessData?.whatsapp_no || user?.user?.mobile_no}`, '_blank')
+                {/* Profile */}
+                <div className="flex items-start gap-3">
+                  <img
+                    src={generatePublicImageUserLink(user?.user?.image + '-140x140.png')}
+                    className="h-12 w-12 rounded-full object-cover border"
+                  />
+
+                  <div className="space-y-1">
+                    <p className="font-semibold text-sm">
+                      {user?.user?.full_name}
+                    </p>
+
+                    {user?.user?.email && (
+                      <a
+                        href={`mailto:${user?.user?.email}`}
+                        className="flex items-center gap-1 text-xs text-gray-500 hover:underline"
+                      >
+                        <Mail className="h-3.5 w-3.5" />
+                        {user?.user?.email}
+                      </a>
+                    )}
+
+                    {user?.user?.mobile_no && (
+                      <a
+                        href={`tel:${user?.user?.mobile_no}`}
+                        className="flex items-center gap-1 text-xs text-gray-500 hover:underline"
+                      >
+                        <Phone className="h-3.5 w-3.5" />
+                        {user?.user?.mobile_no}
+                      </a>
+                    )}
+                  </div>
+                </div>
+
+                {/* Actions */}
+                <div className="flex gap-2">
+                  <button
+                    onClick={() =>
+                      window.open(
+                        `https://wa.me/${businessData?.whatsapp_no || user?.user?.mobile_no}`,
+                        '_blank'
+                      )
+                    }
+                    className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-green-600 py-2 text-sm font-medium text-white hover:bg-green-700 transition"
+                  >
+                    <FaWhatsapp className="h-4 w-4" />
+                    WhatsApp
+                  </button>
+
+                  {user?.user?.mobile_no && (
+                    <a
+                      href={`tel:${user?.user?.mobile_no}`}
+                      className="flex flex-1 items-center justify-center gap-2 rounded-lg border py-2 text-sm font-medium hover:bg-gray-100 transition"
+                    >
+                      <Phone className="h-4 w-4" />
+                      Call
+                    </a>
+                  )}
+                </div>
+
+              </div>
+            ))}
+          </Card>
+
+          {/* Business Details */}
+          <Card title="Business Details">
+            <div className="space-y-3 text-sm">
+              {[
+                { label: 'City', value: businessData?.city },
+                { label: 'State', value: businessData?.state },
+                { label: 'Country', value: businessData?.country }
+              ].map((item, i) => (
+                <div key={i} className="flex justify-between">
+                  <span className="text-gray-500">{item.label}</span>
+                  <span className="font-medium capitalize">{item.value}</span>
+                </div>
+              ))}
+            </div>
+          </Card>
+
+          {/* Share */}
+          <Card title="Share Business">
+            <button
+              onClick={async () => {
+                if (navigator.share) {
+                  await navigator.share({
+                    title: businessData?.business_name,
+                    url: window.location.href
+                  })
+                } else {
+                  navigator.clipboard.writeText(window.location.href)
+                }
               }}
-            />
-          ))}
+              className="flex w-full items-center justify-center gap-2 rounded-lg border py-2 text-sm hover:bg-gray-100"
+            >
+              <Share2 className="h-4 w-4" />
+              Share
+            </button>
+          </Card>
+
         </div>
-      </div>
-    </ScreenWrapper>
+      </ScreenWrapper>
+    </div>
   )
 }
 
