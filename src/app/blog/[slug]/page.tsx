@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Calendar, User } from 'lucide-react'
 import { notFound } from 'next/navigation'
+import parse from 'html-react-parser'
 
 import blogJson from '@/data/blog.json'
 import type { BlogData } from '@/types/blog'
@@ -27,15 +28,15 @@ export async function generateMetadata(
       canonical: `/blog/${slug}`,
     },
     robots: {
-  index: true,
-  follow: true,
-  googleBot: {
-    index: true,
-    follow: true,
-    'max-image-preview': 'large',
-    'max-snippet': -1,
-  },
-}
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    }
   }
 }
 
@@ -133,11 +134,13 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
 
                 if (block.type === 'paragraph') {
 
-                  return <p key={index} className='mb-4' dangerouslySetInnerHTML={{ __html: block.text || '' }} />
+                  return <p key={index} className='mb-4'>
+                    {parse(block.text || '')}
+                  </p>
                 }
 
                 if (block.type === 'list' && block.items) {
-                  
+
                   return (
                     <ul key={index} className='mb-4 list-disc space-y-2 pl-6'>
                       {block.items.map((item, i) => (
