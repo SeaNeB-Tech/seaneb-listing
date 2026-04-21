@@ -19,9 +19,53 @@ export const metadata: Metadata = {
 
 const { hero, intro, whomWeServe, ourStory, visionMission } = aboutData
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.seaneb.com/#organization",
+      "name": "SeaNeb",
+      "url": "https://www.seaneb.com/",
+      "logo": "https://www.seaneb.com/images/logo/logo-white.png",
+      "description": "SeaNeb connects users with local MSME businesses, services, and vendors across India.",
+      "sameAs": [
+        "https://www.facebook.com/",
+        "https://www.instagram.com/",
+        "https://www.linkedin.com/"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.seaneb.com/#website",
+      "url": "https://www.seaneb.com/",
+      "name": "SeaNeb - Discover Local Businesses",
+      "publisher": {
+        "@id": "https://www.seaneb.com/#organization"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.seaneb.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "AboutPage",
+      "name": "About SeaNeb",
+      "url": "https://www.seaneb.com/about",
+      "description": "Learn about SeaNeb, a platform helping users discover local MSME businesses and services."
+    }
+  ]
+}
+
 export default function AboutPage() {
   return (
     <main className="bg-white">
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero */}
       <section
         className="py-14 relative"
@@ -87,9 +131,8 @@ export default function AboutPage() {
         <section key={audience.id} className="py-12 pb-20">
           <div className="container mx-auto px-4">
             <div
-              className={`flex ${
-                audience.reverse ? 'flex-col-reverse' : 'flex-col'
-              } lg:flex-row items-center gap-12`}
+              className={`flex ${audience.reverse ? 'flex-col-reverse' : 'flex-col'
+                } lg:flex-row items-center gap-12`}
             >
               {!audience.reverse && (
                 <div className="w-full lg:w-1/2">
