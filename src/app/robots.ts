@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       ...(process.env.NEXT_PUBLIC_NODE_ENV === 'production' ? { allow: '/' } : { disallow: '/' })
     },
-    sitemap: `${baseUrl}`
+    sitemap: `${baseUrl}/sitemap.xml`
   }
 }
