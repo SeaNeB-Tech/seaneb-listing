@@ -9,6 +9,7 @@ type Endpoints = {
   majorCities: ApiEndpoint
   areaList: ApiEndpoint
   popCategory: ApiEndpoint
+  contactUs: ApiEndpoint
 }
 
 export const endpoint: Endpoints = {
@@ -43,5 +44,10 @@ export const endpoint: Endpoints = {
   popCategory: {
     method: 'GET',
     uri: '/api/popular-category'
+  },
+
+  contactUs: {
+    method: 'POST',
+    uri: '/api/v1/contact-us'
   }
 }

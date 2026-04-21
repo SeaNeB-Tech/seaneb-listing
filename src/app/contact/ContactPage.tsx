@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import Image from 'next/image'
 import { Mail, MapPin, Facebook, Twitter, Linkedin, Instagram, Youtube } from 'lucide-react'
 
@@ -8,6 +9,9 @@ import siteJson from '@/data/site.json'
 
 import type { ContactData } from '@/types/contact'
 import type { SiteData } from '@/types/site'
+
+import { callApi } from '@/utils/api-utils'
+import { endpoint } from '@/services/apis/endpoint'
 
 const contactData = contactJson as ContactData
 const siteData = siteJson as SiteData
@@ -23,16 +27,71 @@ const SOCIAL_ICONS = {
 }
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+  })
+
+  const [loading, setLoading] = useState(false)
+
+  const handleChange = (e: any) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+
+    try {
+      await callApi({
+        uriEndPoint: endpoint.contactUs,
+        body: {
+          ...formData,
+          product_key: 'seaneb'
+        },
+         apiHostUrl: process.env.NEXT_PUBLIC_CONTACT_URL
+      })
+
+      alert('Message sent successfully')
+
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: ''
+      })
+    } catch (err) {
+      console.error(err)
+      alert('Failed to send message')
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <main className='bg-zinc-50'>
       {/* Hero */}
       <section
         className='py-14 text-center'
-        style={{ backgroundImage: 'linear-gradient(135deg, var(--heading-grad-from) 0%, var(--heading-grad-to) 100%)' }}
+        style={{
+          backgroundImage:
+            'linear-gradient(135deg, var(--heading-grad-from) 0%, var(--heading-grad-to) 100%)'
+        }}
       >
         <div className='container mx-auto px-4'>
-          <h1 className='mb-4 text-4xl font-bold text-white md:text-5xl'>{hero.heading}</h1>
-          <p className='text-xl text-white opacity-90'>{hero.subheading}</p>
+          <h1 className='mb-4 text-4xl font-bold text-white md:text-5xl'>
+            {hero.heading}
+          </h1>
+          <p className='text-xl text-white opacity-90'>
+            {hero.subheading}
+          </p>
         </div>
       </section>
 
@@ -44,13 +103,24 @@ export default function ContactPage() {
               <div key={card.id} className='w-full md:w-5/12'>
                 <div className='flex h-full flex-col overflow-hidden rounded-lg bg-white shadow'>
                   <div className='relative flex aspect-square items-center justify-center bg-gray-50 p-8'>
-                    <Image src={card.image} alt={card.imageAlt} fill className='object-contain' />
+                    <Image
+                      src={card.image}
+                      alt={card.imageAlt}
+                      fill
+                      className='object-contain'
+                    />
                   </div>
 
                   <div className='flex flex-grow flex-col justify-center p-8 text-center'>
-                    <h2 className='mb-4 text-2xl font-bold'>{card.heading}</h2>
-                    <p className='mb-2 text-gray-600'>{card.description}</p>
-                    <p className='text-xl font-medium text-gray-800'>{card.email}</p>
+                    <h2 className='mb-4 text-2xl font-bold'>
+                      {card.heading}
+                    </h2>
+                    <p className='mb-2 text-gray-600'>
+                      {card.description}
+                    </p>
+                    <p className='text-xl font-medium text-gray-800'>
+                      {card.email}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -64,9 +134,11 @@ export default function ContactPage() {
         <div className='container mx-auto flex flex-col gap-12 px-4 lg:flex-row'>
           {/* Form */}
           <div className='w-full lg:w-7/12'>
-            <p className='mb-8 text-lg leading-relaxed text-gray-600'>{form.intro}</p>
+            <p className='mb-8 text-lg leading-relaxed text-gray-600'>
+              {form.intro}
+            </p>
 
-            <form className='space-y-6'>
+            <form className='space-y-6' onSubmit={handleSubmit}>
               {form.fields.map(field => (
                 <div key={field.id}>
                   <label className='mb-2 block font-bold text-gray-700'>
@@ -75,16 +147,34 @@ export default function ContactPage() {
                   </label>
 
                   {field.type === 'textarea' ? (
-                    <textarea rows={field.rows} required={field.required} className='w-full rounded bg-white border border-gray-600 px-4 py-2' />
+                    <textarea
+                      name={field.id}
+                      value={formData[field.id as keyof typeof formData] || ''}
+                      onChange={handleChange}
+                      rows={field.rows}
+                      required={field.required}
+                      className='w-full rounded bg-white border border-gray-600 px-4 py-2'
+                    />
                   ) : (
-                    <input type={field.type} required={field.required} className='w-full rounded bg-white border border-gray-600 px-4 py-2' />
+                    <input
+                      name={field.id}
+                      value={formData[field.id as keyof typeof formData] || ''}
+                      onChange={handleChange}
+                      type={field.type}
+                      required={field.required}
+                      className='w-full rounded bg-white border border-gray-600 px-4 py-2'
+                    />
                   )}
                 </div>
               ))}
 
               <div className='text-right'>
-                <button type='submit' className='bg-primary rounded px-8 py-3 font-bold text-white'>
-                  {form.submitLabel}
+                <button
+                  type='submit'
+                  disabled={loading}
+                  className='bg-primary rounded px-8 py-3 font-bold text-white disabled:opacity-50'
+                >
+                  {loading ? 'Sending...' : form.submitLabel}
                 </button>
               </div>
             </form>
@@ -93,7 +183,9 @@ export default function ContactPage() {
           {/* Address */}
           <div className='w-full lg:w-4/12'>
             <div className='rounded-lg border bg-white p-8 shadow'>
-              <h3 className='mb-4 text-xl heading-gradient font-bold'>{address.companyName}</h3>
+              <h3 className='mb-4 text-xl heading-gradient font-bold'>
+                {address.companyName}
+              </h3>
 
               <ul className='space-y-4 text-gray-600'>
                 <li className='flex items-start'>
@@ -125,11 +217,16 @@ export default function ContactPage() {
         <div className='absolute inset-0 bg-black/40' />
 
         <div className='relative z-10 container mx-auto px-4 text-center text-white'>
-          <h2 className='mb-8 text-3xl font-bold'>{social.heading}</h2>
+          <h2 className='mb-8 text-3xl font-bold'>
+            {social.heading}
+          </h2>
 
           <div className='flex justify-center gap-6'>
             {Object.entries(siteData.footer.social).map(([key, href]) => {
-              const Icon = SOCIAL_ICONS[(key.charAt(0).toUpperCase() + key.slice(1)) as keyof typeof SOCIAL_ICONS]
+              const Icon =
+                SOCIAL_ICONS[
+                  (key.charAt(0).toUpperCase() + key.slice(1)) as keyof typeof SOCIAL_ICONS
+                ]
 
               if (!Icon) return null
 

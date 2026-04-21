@@ -29,8 +29,14 @@
         "intro": "Reach out to us with any inquiries related to our initiatives supporting local economic growth. Our team will review your message and respond at the earliest opportunity.",
         "fields": [
             {
-                "id": "name",
-                "label": "Name",
+                "id": "firstName",
+                "label": "First Name",
+                "type": "text",
+                "required": true
+            },
+             {
+                "id": "lastName",
+                "label": "Last Name",
                 "type": "text",
                 "required": true
             },

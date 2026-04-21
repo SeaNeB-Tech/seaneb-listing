@@ -7,7 +7,7 @@ import { sign } from 'jsonwebtoken'
 const showLogs = false
 
 export const getDefaultHeaders = async () => {
-  return { 'Content-Type': 'application/json', SameSite: 'None' }
+  return { 'Content-Type': 'application/json' }
 }
 
 export const makeUrl = ({ uri = '', pathParams, query }: MakeUrl, host: string) => {
