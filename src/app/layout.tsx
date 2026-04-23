@@ -17,9 +17,9 @@ const poppins = Roboto({
 
 
 export const metadata: Metadata = {
-  
+
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITEMAP_URL!),
-  
+
   title: {
     default: 'SeaNeB | Discover Local Business Deals & B2B Offers',
     template: '%s - SeaNeB'
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     'B2B listings',
     'verified business profiles'
   ],
-   openGraph: {
+  openGraph: {
     title: 'SeaNeB | Discover Local Business Deals & B2B Offers',
     description:
       'Explore local MSME business listings, nearby services, and vendors with SeaNeB.',
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     siteName: 'SeaNeB',
     images: [
       {
-        url: '/images/og/og.jpg', 
+        url: '/images/og/og.jpg',
         width: 1200,
         height: 630,
         alt: 'SeaNeB - Local Business Discovery Platform'
@@ -95,6 +95,54 @@ export default function RootLayout({
                 f.parentNode.insertBefore(j,f);
                 })(window,document,'script','dataLayer','GTM-PBWN9VZC');
               `
+          }}
+        />
+
+        <Script
+          id="schema-org"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": "https://www.seaneb.com/#organization",
+                  "name": "SeaNeB",
+                  "alternateName": "SeaNeB India",
+                  "url": "https://www.seaneb.com/",
+                  "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://www.seaneb.com/images/logo/logo-white.png"
+                  },
+                  "sameAs": [
+                    "https://www.facebook.com/",
+                    "https://www.instagram.com/",
+                    "https://www.linkedin.com/"
+                  ],
+                  "areaServed": {
+                    "@type": "Country",
+                    "name": "India"
+                  }
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": "https://www.seaneb.com/#website",
+                  "url": "https://www.seaneb.com/",
+                  "name": "SeaNeB - Discover Local Businesses",
+                  "inLanguage": "en-IN",
+                  "publisher": {
+                    "@id": "https://www.seaneb.com/#organization"
+                  },
+                  "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://www.seaneb.com/search?q={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                  }
+                }
+              ]
+            })
           }}
         />
       </head>

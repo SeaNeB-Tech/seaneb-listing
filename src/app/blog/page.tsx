@@ -40,8 +40,35 @@ export const metadata: Metadata = {
 ====================================================== */
 
 export default function BlogPage() {
+
+    const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": blogData.meta.title,
+    "description": blogData.meta.description,
+    "url": "https://www.seaneb.com/blog",
+    "numberOfItems": posts.length,
+    "itemListElement": posts.map((post, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "url": `https://www.seaneb.com/blog/${post.slug}`,
+      "name": post.title,
+      "image": post.image,
+      "datePublished": post.date,
+      "author": {
+        "@type": "Person",
+        "name": post.author
+      }
+    }))
+  }
   
   return (
+    <>
+      {/* Blog List Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     <main className='min-h-screen bg-gray-50 pb-20'>
       {/* ================= HERO ================= */}
       <section
@@ -162,5 +189,6 @@ export default function BlogPage() {
         </aside>
       </div>
     </main>
+    </>
   )
 }

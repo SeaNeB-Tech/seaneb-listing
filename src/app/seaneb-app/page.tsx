@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import SeaNebAppClient from './seanebAppClient'
-
+import Script from 'next/script'
 import appJson from '@/data/seaneb-app.json'
 import type { SeaNebAppData } from '@/types/seaneb-app'
 
@@ -25,5 +25,32 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-  return <SeaNebAppClient />
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": "https://www.seaneb.com/seaneb-app#app",
+    "name": appData.meta.title,
+    "description": appData.meta.description,
+    "url": "https://www.seaneb.com/seaneb-app",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Android, iOS",
+    "inLanguage": "en-IN",
+    "publisher": {
+      "@id": "https://www.seaneb.com/#organization"
+    }
+  }
+
+  return (
+    <>
+      <Script
+        id="app-schema"
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      <SeaNebAppClient />
+    </>
+  )
 }
