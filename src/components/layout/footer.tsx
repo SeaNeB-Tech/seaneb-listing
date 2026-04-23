@@ -34,7 +34,7 @@ function Footer() {
   }
 
   return (
-    <footer className='bg-black text-white'>
+    <footer className='bg-black text-white mt-0'>
       <ScreenWrapper className='py-5'>
         <div>
           {/* Logo */}

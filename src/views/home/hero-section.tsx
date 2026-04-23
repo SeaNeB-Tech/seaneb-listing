@@ -113,7 +113,7 @@ const HeroSection = () => {
   )
 
   return (
-    <div className='relative min-h-[520px] overflow-hidden pt-16 pb-24 md:min-h-[620px] lg:min-h-[700px]'>
+    <div className='relative min-h-[70vh] md:min-h-[80vh] lg:min-h-screen overflow-hidden pt-16 pb-24'>
       <Image
         src={Background}
         alt='Hero background'
@@ -128,7 +128,7 @@ const HeroSection = () => {
 
       <ScreenWrapper className='relative z-10 h-full w-full'>
         {/* Left content */}
-        <div className='z-10 flex !max-w-full flex-col justify-center py-8 lg:!max-w-[400px] xl:!max-w-full'>
+        <div className='z-10 flex !max-w-full flex-col justify-center py-8 lg:!max-w-[400px] xl:!max-w-full mt-0 lg:mt-24 xl:mt-30'>
           <h1 className='z-10 text-3xl font-medium text-white md:text-3xl lg:text-5xl'>Find Nearby local businesses</h1>
           <h2 className='z-10 mt-4 text-2xl text-white'>Explore nearby offers, activities and more</h2>
         </div>
@@ -222,50 +222,50 @@ const HeroSection = () => {
           </div>
         </form>
 
-       {/* Business registration */}
-<div className='relative z-10 mt-10 flex flex-col items-start gap-4'>
-  <p className='text-sm font-medium tracking-wide text-white/80 md:text-base'>
-    For business registration download the app now!
-  </p>
+        {/* Business registration */}
+        <div className='relative z-10 mt-10 flex flex-col items-start gap-4'>
+          <p className='text-sm font-medium tracking-wide text-white/80 md:text-base'>
+            For business registration download the app now!
+          </p>
 
-  <div className="flex w-full flex-col items-center gap-4 sm:flex-row sm:items-center">
+          <div className="flex w-full flex-col items-center gap-4 sm:flex-row sm:items-center">
 
-  {/* App Store */}
-  <Link
-    href={websiteConfig.appstore}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="transition hover:opacity-80"
-  >
-    <div className="relative h-[48px] w-[160px] sm:h-[56px] sm:w-[180px]">
-      <Image
-        src="/images/logo/app-store.svg"
-        alt="Download on App Store"
-        fill
-        className="object-contain"
-      />
-    </div>
-  </Link>
+            {/* App Store */}
+            <Link
+              href={websiteConfig.appstore}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition hover:opacity-80"
+            >
+              <div className="relative h-[48px] w-[160px] sm:h-[56px] sm:w-[180px]">
+                <Image
+                  src="/images/logo/app-store.svg"
+                  alt="Download on App Store"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            </Link>
 
-  {/* Play Store */}
-  <Link
-    href={websiteConfig.playstore}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="transition hover:opacity-80"
-  >
-    <div className="relative h-[60px] w-[150px] sm:h-[68px] sm:w-[250px]">
-      <Image
-  src="/images/logo/google-play-store.png"
-  alt="Get it on Google Play"
-  fill
-  className="object-contain scale-[1.12]"
-/>
-    </div>
-  </Link>
+            {/* Play Store */}
+            <Link
+              href={websiteConfig.playstore}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition hover:opacity-80"
+            >
+              <div className="relative h-[60px] w-[150px] sm:h-[68px] sm:w-[250px]">
+                <Image
+                  src="/images/logo/google-play-store.png"
+                  alt="Get it on Google Play"
+                  fill
+                  className="object-contain scale-[1.12]"
+                />
+              </div>
+            </Link>
 
-</div>
-</div>
+          </div>
+        </div>
 
 
 
@@ -279,10 +279,10 @@ const HeroSection = () => {
           />
         </div> */}
       </ScreenWrapper>
-      
+
     </div>
 
-    
+
   )
 }
 
