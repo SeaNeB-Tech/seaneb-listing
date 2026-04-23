@@ -10,21 +10,37 @@ const aboutData = aboutJson as AboutData
 
 
 export const metadata: Metadata = {
-  title: aboutData.meta.title,
-  description: aboutData.meta.description,
+  title: 'About SeaNeB | MSME Business Platform & Local Listings in India',
+ description:
+  'Learn about SeaNeB, a platform connecting users with local MSME businesses, services, and vendors across India, supporting small business growth.',
   alternates: {
     canonical: '/about',
   },
   robots: {
-  index: true,
-  follow: true,
-  googleBot: {
     index: true,
     follow: true,
-    'max-image-preview': 'large',
-    'max-snippet': -1,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
-}
+  openGraph: {
+    title: 'About SeaNeB | Local Business Discovery Platform',
+    description:
+      'Discover how SeaNeB helps connect users with local MSME businesses, vendors, and services across India.',
+    url: '/about',
+    siteName: 'SeaNeB',
+    locale: 'en_IN',
+    type: 'website'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About SeaNeB | MSME & Local Business Platform',
+    description:
+      'Learn about SeaNeB’s mission to empower local businesses and connect users with trusted services in India.'
+  }
 }
 
 const { hero, intro, whomWeServe, ourStory, visionMission } = aboutData

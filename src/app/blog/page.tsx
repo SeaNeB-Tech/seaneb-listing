@@ -18,21 +18,37 @@ const { hero, sidebar, posts } = blogData
 ====================================================== */
 
 export const metadata: Metadata = {
-  title: blogData.meta.title,
-  description: blogData.meta.description,
+  title: `${blogData.meta.title} | SeaNeB Blog`,
+  description:
+  'Explore SeaNeB Blog for insights on MSME businesses, startup tips, digital marketing, and business growth strategies in India.',
   alternates: {
     canonical: '/blog',
   },
   robots: {
-  index: true,
-  follow: true,
-  googleBot: {
     index: true,
     follow: true,
-    'max-image-preview': 'large',
-    'max-snippet': -1,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
-}
+  openGraph: {
+    title: `${blogData.meta.title} | SeaNeB Blog`,
+    description:
+      'Read the latest articles on MSME growth, local business strategies, and digital trends on the SeaNeB Blog.',
+    url: '/blog',
+    siteName: 'SeaNeB',
+    locale: 'en_IN',
+    type: 'website'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${blogData.meta.title} | SeaNeB Blog`,
+    description:
+      'Discover business insights, startup tips, and MSME growth strategies on the SeaNeB Blog.'
+  }
 }
 
 /* ======================================================
