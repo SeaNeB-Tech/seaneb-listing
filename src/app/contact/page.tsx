@@ -36,8 +36,9 @@ export default function Page() {
       "@id": "https://www.seaneb.com/#organization"
     }
   }
+  
   return (
-    
+
     <>
       <Script
         id="contact-schema"
