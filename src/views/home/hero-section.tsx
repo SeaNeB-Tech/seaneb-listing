@@ -113,15 +113,14 @@ const HeroSection = () => {
   )
 
   return (
-    <div className='relative min-h-[70vh] md:min-h-[80vh] lg:min-h-screen overflow-hidden pt-16 pb-24'>
-      <Image
-        src={Background}
-        alt='Hero background'
-        fill
-        priority
-        sizes='100vw'
-        className='object-cover object-center'
-      />
+    <div className='relative h-[70vh] md:h-[80vh] lg:h-screen overflow-hidden pt-16 pb-24'>      <Image
+      src={Background}
+      alt='Hero background'
+      fill
+      priority
+      sizes='100vw'
+      className='object-cover object-center'
+    />
 
       {/* overlay */}
       <div className='pointer-events-none absolute inset-0 bg-black/20 lg:bg-black/50' />
