@@ -24,6 +24,11 @@ export const metadata: Metadata = {
     default: 'Seaneb | Discover Local Business Deals & B2B Offers',
     template: '%s - Seaneb'
   },
+   icons: {
+    icon: '/images/logo/favicon.ico',
+    shortcut: '/images/logo/favicon.ico',
+    apple: '/images/logo/apple-touch-icon.png'
+  },
   description:
     'Explore local MSME business listings on Seaneb. Find nearby shops, services, and vendors with detailed profiles, offers, and business information.',
   keywords: [
