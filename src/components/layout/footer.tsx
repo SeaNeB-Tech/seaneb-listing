@@ -10,7 +10,7 @@ import {
   FaXTwitter
 } from "react-icons/fa6"
 
-import Logo from '@images/logo/logo-white.png'
+import Logo from '@images/logo/logo-white.svg'
 import { websiteConfig } from '@/config/website-config'
 import { footerLinks } from '@/config/footer-links'
 

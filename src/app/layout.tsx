@@ -114,7 +114,7 @@ export default function RootLayout({
                   "url": "https://www.seaneb.com/",
                   "logo": {
                     "@type": "ImageObject",
-                    "url": "https://www.seaneb.com/images/logo/logo-white.png"
+                    "url": "https://www.seaneb.com/images/logo/logo-white.svg"
                   },
                   "sameAs": [
                     "https://www.facebook.com/",

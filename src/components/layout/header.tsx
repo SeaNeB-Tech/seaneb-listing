@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import Logo from '@images/logo/logo-dark.png'
+import Logo from '@images/logo/logo-dark.svg'
 import ScreenWrapper from '../wrapper/screen-wrapper'
 
 import siteJson from '@/data/site.json'
