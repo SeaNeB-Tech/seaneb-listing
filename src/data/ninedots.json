@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "name": "SeaNeB",
+      "name": "Seaneb",
       "image": "/images/ninedots/seaneb-app.png",
       "url": "https://www.seaneb.com",
       "status": "live"

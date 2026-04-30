@@ -43,7 +43,7 @@ const BusinessCounter = () => {
             </h3>
 
             <p className="mt-3 text-lg font-medium text-gray-800">
-              Businesses Registered with SeaNeB
+              Businesses Registered with Seaneb
             </p>
 
             <p className="text-sm text-gray-500">
@@ -64,7 +64,7 @@ const BusinessCounter = () => {
             <div className="w-[220px] md:w-[280px]">
               <Image
                 src={BusinessImg}
-                alt="SeaNeB mobile interface"
+                alt="Seaneb mobile interface"
                 className="w-full h-auto object-contain drop-shadow-xl"
               />
             </div>

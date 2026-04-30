@@ -1,10 +1,10 @@
 {
     "company": {
-        "name": "SeaNeB",
-        "legalName": "SeaNeB Technologies Pvt. Ltd.",
+        "name": "Seaneb",
+        "legalName": "Seaneb Technologies Pvt. Ltd.",
         "email": "hello@seaneb.com",
         "tagline": "Connecting Local Businesses with Local Communities",
-        "description": "SeaNeB helps MSMEs and local entrepreneurs grow with easy-to-use, zero-commission platforms for meals, promotions, and online shops.",
+        "description": "Seaneb helps MSMEs and local entrepreneurs grow with easy-to-use, zero-commission platforms for meals, promotions, and online shops.",
         "urls": {
             "main": "https://www.seaneb.org",
             "app": "https://www.seaneb.app",
@@ -77,7 +77,7 @@
         ],
         "about": [
             {
-                "label": "About SeaNeB App",
+                "label": "About Seaneb App",
                 "href": "/about"
             },
             {

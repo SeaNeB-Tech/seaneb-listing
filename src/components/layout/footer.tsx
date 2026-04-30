@@ -210,7 +210,7 @@ function Footer() {
       <ScreenWrapper className='border-t border-gray-500'>
         <div className='py-5 lg:py-7'>
           <p className='text-center text-gray-300'>
-            <Link href={websiteConfig?.website}>SeaNeB</Link> ©{' '}
+            <Link href={websiteConfig?.website}>Seaneb</Link> ©{' '}
             {new Date().getFullYear()}. All Rights Reserved.
           </p>
         </div>

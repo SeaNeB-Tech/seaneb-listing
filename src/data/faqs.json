@@ -1,25 +1,25 @@
 {
     "meta": {
-        "title": "FAQs | SeaNeB",
-        "description": "Frequently asked questions about SeaNeB – the local business discovery and empowerment platform."
+        "title": "FAQs | Seaneb",
+        "description": "Frequently asked questions about Seaneb – the local business discovery and empowerment platform."
     },
     "heading": "Frequently Asked Questions",
-    "subheading": "Find answers to the most common questions about SeaNeB.",
+    "subheading": "Find answers to the most common questions about Seaneb.",
     "categories": [
         {
             "category": "General",
             "items": [
                 {
-                    "question": "What is SeaNeB?",
-                    "answer": "SeaNeB (Search Near By) is a location-based local business discovery platform that helps MSMEs promote their deals, offers, and services to nearby customers at zero commission."
+                    "question": "What is Seaneb?",
+                    "answer": "Seaneb (Search Near By) is a location-based local business discovery platform that helps MSMEs promote their deals, offers, and services to nearby customers at zero commission."
                 },
                 {
-                    "question": "Is SeaNeB free to use?",
-                    "answer": "Yes! Browsing local deals and businesses on the SeaNeB app is 100% free for customers. Businesses can list their basic profile for free and choose from affordable paid plans for additional promotions."
+                    "question": "Is Seaneb free to use?",
+                    "answer": "Yes! Browsing local deals and businesses on the Seaneb app is 100% free for customers. Businesses can list their basic profile for free and choose from affordable paid plans for additional promotions."
                 },
                 {
                     "question": "Which cities are supported?",
-                    "answer": "SeaNeB is currently expanding across India. Check the app to see if your city is available, and if not, you can request coverage for your area."
+                    "answer": "Seaneb is currently expanding across India. Check the app to see if your city is available, and if not, you can request coverage for your area."
                 }
             ]
         },
@@ -27,16 +27,16 @@
             "category": "For Businesses",
             "items": [
                 {
-                    "question": "How do I list my business on SeaNeB?",
-                    "answer": "Download the SeaNeB app, sign up as a customer, and then register your business from your profile page. Follow the on-screen steps to complete your business profile."
+                    "question": "How do I list my business on Seaneb?",
+                    "answer": "Download the Seaneb app, sign up as a customer, and then register your business from your profile page. Follow the on-screen steps to complete your business profile."
                 },
                 {
                     "question": "How does commission-free work?",
-                    "answer": "Unlike other platforms that charge a percentage of every sale or order, SeaNeB charges a flat subscription fee. You keep 100% of your earnings on every transaction or deal."
+                    "answer": "Unlike other platforms that charge a percentage of every sale or order, Seaneb charges a flat subscription fee. You keep 100% of your earnings on every transaction or deal."
                 },
                 {
                     "question": "What types of promotions can I run?",
-                    "answer": "You can post discount offers, limited-time deals, service announcements, product highlights, and job listings directly through the SeaNeB business dashboard."
+                    "answer": "You can post discount offers, limited-time deals, service announcements, product highlights, and job listings directly through the Seaneb business dashboard."
                 }
             ]
         },

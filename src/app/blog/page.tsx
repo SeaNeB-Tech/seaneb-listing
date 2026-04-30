@@ -18,9 +18,9 @@ const { hero, sidebar, posts } = blogData
 ====================================================== */
 
 export const metadata: Metadata = {
-  title: `${blogData.meta.title} | SeaNeB Blog`,
+  title: `${blogData.meta.title} | Seaneb Blog`,
   description:
-  'Explore SeaNeB Blog for insights on MSME businesses, startup tips, digital marketing, and business growth strategies in India.',
+  'Explore Seaneb Blog for insights on MSME businesses, startup tips, digital marketing, and business growth strategies in India.',
   alternates: {
     canonical: '/blog',
   },
@@ -35,19 +35,19 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: `${blogData.meta.title} | SeaNeB Blog`,
+    title: `${blogData.meta.title} | Seaneb Blog`,
     description:
-      'Read the latest articles on MSME growth, local business strategies, and digital trends on the SeaNeB Blog.',
+      'Read the latest articles on MSME growth, local business strategies, and digital trends on the Seaneb Blog.',
     url: '/blog',
-    siteName: 'SeaNeB',
+    siteName: 'Seaneb',
     locale: 'en_IN',
     type: 'website'
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${blogData.meta.title} | SeaNeB Blog`,
+    title: `${blogData.meta.title} | Seaneb Blog`,
     description:
-      'Discover business insights, startup tips, and MSME growth strategies on the SeaNeB Blog.'
+      'Discover business insights, startup tips, and MSME growth strategies on the Seaneb Blog.'
   }
 }
 

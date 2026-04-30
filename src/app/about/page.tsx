@@ -10,9 +10,9 @@ const aboutData = aboutJson as AboutData
 
 
 export const metadata: Metadata = {
-  title: 'About SeaNeB | MSME Business Platform & Local Listings in India',
+  title: 'About Seaneb | MSME Business Platform & Local Listings in India',
  description:
-  'Learn about SeaNeB, a platform connecting users with local MSME businesses, services, and vendors across India, supporting small business growth.',
+  'Learn about Seaneb, a platform connecting users with local MSME businesses, services, and vendors across India, supporting small business growth.',
   alternates: {
     canonical: '/about',
   },
@@ -27,19 +27,19 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'About SeaNeB | Local Business Discovery Platform',
+    title: 'About Seaneb | Local Business Discovery Platform',
     description:
-      'Discover how SeaNeB helps connect users with local MSME businesses, vendors, and services across India.',
+      'Discover how Seaneb helps connect users with local MSME businesses, vendors, and services across India.',
     url: '/about',
-    siteName: 'SeaNeB',
+    siteName: 'Seaneb',
     locale: 'en_IN',
     type: 'website'
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About SeaNeB | MSME & Local Business Platform',
+    title: 'About Seaneb | MSME & Local Business Platform',
     description:
-      'Learn about SeaNeB’s mission to empower local businesses and connect users with trusted services in India.'
+      'Learn about Seaneb’s mission to empower local businesses and connect users with trusted services in India.'
   }
 }
 
@@ -50,8 +50,8 @@ const jsonLd = {
   "@type": "AboutPage",
   "@id": "https://www.seaneb.com/about#aboutpage",
   "url": "https://www.seaneb.com/about",
-  "name": "About SeaNeB",
-  "description": "Learn about SeaNeB, a platform helping users discover local MSME businesses and services.",
+  "name": "About Seaneb",
+  "description": "Learn about Seaneb, a platform helping users discover local MSME businesses and services.",
   "inLanguage": "en-IN",
   "isPartOf": {
     "@id": "https://www.seaneb.com/#website"
@@ -98,7 +98,7 @@ export default function AboutPage() {
               <p key={i} className="mb-4 text-gray-700 leading-relaxed">
                 {para.companyLink ? (
                   <>
-                    SeaNeB App is an initiative by{' '}
+                    Seaneb App is an initiative by{' '}
                     <a
                       href={para.companyLink.href}
                       target="_blank"
@@ -211,7 +211,7 @@ export default function AboutPage() {
                   <p key={i}>
                     {i === 0 ? (
                       <>
-                        At <strong>SeaNeB (Search Near By) App</strong>, our
+                        At <strong>Seaneb (Search Near By) App</strong>, our
                         journey began with a simple yet powerful idea inspired
                         by the “Vocal For Local” vision of Prime Minister{' '}
                         <a

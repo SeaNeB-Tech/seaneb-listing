@@ -1,15 +1,15 @@
 {
     "meta": {
-        "title": "Press Kit | SeaNeB",
-        "description": "Download SeaNeB's press kit – brand assets, logos, company fact sheet, and media contact information."
+        "title": "Press Kit | Seaneb",
+        "description": "Download Seaneb's press kit – brand assets, logos, company fact sheet, and media contact information."
     },
     "heading": "Press Kit",
-    "subheading": "Everything the press needs to cover SeaNeB.",
+    "subheading": "Everything the press needs to cover Seaneb.",
     "about": {
-        "heading": "About SeaNeB",
+        "heading": "About Seaneb",
         "paragraphs": [
-            "SeaNeB (Search Near By) is an Indian tech startup building commission-free digital tools for MSMEs and local businesses. Founded to bridge the gap between local commerce and the digital economy, SeaNeB operates platforms for offers, e-commerce, job listings, and local discovery.",
-            "SeaNeB is an initiative by SeaNeB Technologies Pvt. Ltd., a government-recognised startup based in Anand, Gujarat, India."
+            "Seaneb (Search Near By) is an Indian tech startup building commission-free digital tools for MSMEs and local businesses. Founded to bridge the gap between local commerce and the digital economy, Seaneb operates platforms for offers, e-commerce, job listings, and local discovery.",
+            "Seaneb is an initiative by Seaneb Technologies Pvt. Ltd., a government-recognised startup based in Anand, Gujarat, India."
         ]
     },
     "facts": {
@@ -52,7 +52,7 @@
     },
     "mediaContact": {
         "heading": "Media Contact",
-        "name": "SeaNeB PR Team",
+        "name": "Seaneb PR Team",
         "email": "hello@seaneb.com",
         "website": "https://www.seaneb.org"
     }

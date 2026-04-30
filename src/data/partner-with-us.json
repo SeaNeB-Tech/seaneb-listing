@@ -1,12 +1,12 @@
 {
     "meta": {
-        "title": "Partner With Us | SeaNeB",
-        "description": "Grow your local business with SeaNeB. Zero commission, maximum growth. Join India's growing digital platform for local and small businesses."
+        "title": "Partner With Us | Seaneb",
+        "description": "Grow your local business with Seaneb. Zero commission, maximum growth. Join India's growing digital platform for local and small businesses."
     },
     "hero": {
         "badge": "Partner With Us",
         "heading": "Grow Your Local Business",
-        "headingSuffix": "with SeaNeB",
+        "headingSuffix": "with Seaneb",
         "subheading": "Zero Commission. Maximum Growth.",
         "ctaLabel": "Get Started Free",
         "ctaHref": "/contact"
@@ -14,14 +14,14 @@
     "intro": {
         "heading": "Join the Local Business Revolution",
         "paragraphs": [
-            "Welcome to SeaNeB, India's growing digital platform for local and small businesses. Our mission is simple — to empower entrepreneurs, shop owners, and service providers to grow online, attract more customers, and showcase their businesses across India.",
-            "Whether you're a small business owner, local service provider, or startup, SeaNeB helps you connect, promote, and grow without worrying about hefty commissions or hidden fees.",
-            "Partner with SeaNeB and take your business to the next level."
+            "Welcome to Seaneb, India's growing digital platform for local and small businesses. Our mission is simple — to empower entrepreneurs, shop owners, and service providers to grow online, attract more customers, and showcase their businesses across India.",
+            "Whether you're a small business owner, local service provider, or startup, Seaneb helps you connect, promote, and grow without worrying about hefty commissions or hidden fees.",
+            "Partner with Seaneb and take your business to the next level."
         ]
     },
     "pricing": {
         "heading": "Commission-Free Business Growth Plans",
-        "subheading": "Find the plan that best fits your business goals. SeaNeB offers lifetime 0% commission — you keep 100% of your earnings.",
+        "subheading": "Find the plan that best fits your business goals. Seaneb offers lifetime 0% commission — you keep 100% of your earnings.",
         "plans": [
             {
                 "id": "startup",
@@ -69,8 +69,8 @@
         ]
     },
     "whyPartner": {
-        "heading": "Why Partner with SeaNeB?",
-        "subheading": "SeaNeB helps you boost your revenue, connect with local customers, and grow your business visibility — all without commission cuts.",
+        "heading": "Why Partner with Seaneb?",
+        "subheading": "Seaneb helps you boost your revenue, connect with local customers, and grow your business visibility — all without commission cuts.",
         "reasons": [
             {
                 "icon": "Globe",
@@ -85,7 +85,7 @@
             {
                 "icon": "BadgeCheck",
                 "title": "Enhanced Visibility & Credibility",
-                "description": "Get discovered by new customers and gain credibility as a verified business listed on SeaNeB."
+                "description": "Get discovered by new customers and gain credibility as a verified business listed on Seaneb."
             },
             {
                 "icon": "BarChart3",
@@ -95,12 +95,12 @@
             {
                 "icon": "MessageSquare",
                 "title": "Customer Engagement",
-                "description": "SeaNeB makes it easier to engage with your audience through reviews, messages, and feedback — building stronger trust and repeat customers."
+                "description": "Seaneb makes it easier to engage with your audience through reviews, messages, and feedback — building stronger trust and repeat customers."
             },
             {
                 "icon": "DollarSign",
                 "title": "Save Marketing Costs",
-                "description": "Skip expensive ads. SeaNeB's optimised platform gives your business visibility at a fraction of the marketing cost."
+                "description": "Skip expensive ads. Seaneb's optimised platform gives your business visibility at a fraction of the marketing cost."
             },
             {
                 "icon": "Rocket",
@@ -111,12 +111,12 @@
     },
     "howItWorks": {
         "heading": "How It Works",
-        "subheading": "Getting started is simple. Follow these four easy steps to launch your business on SeaNeB.",
+        "subheading": "Getting started is simple. Follow these four easy steps to launch your business on Seaneb.",
         "steps": [
             {
                 "step": "01",
                 "title": "Sign Up",
-                "description": "List your business or service on SeaNeB and start reaching local customers instantly."
+                "description": "List your business or service on Seaneb and start reaching local customers instantly."
             },
             {
                 "step": "02",
@@ -131,7 +131,7 @@
             {
                 "step": "04",
                 "title": "Expand Your Reach",
-                "description": "Use SeaNeB's local visibility tools to stand out in your area and grow your customer base."
+                "description": "Use Seaneb's local visibility tools to stand out in your area and grow your customer base."
             }
         ]
     },
@@ -144,22 +144,22 @@
         "contactSuffix": "Our team will be happy to guide you.",
         "items": [
             {
-                "question": "How do I get started as a SeaNeB partner?",
+                "question": "How do I get started as a Seaneb partner?",
                 "answer": "You can easily sign up through our \"Partner With Us\" page and create your business profile within minutes."
             },
             {
                 "question": "What are the costs involved?",
-                "answer": "SeaNeB offers affordable monthly plans with 0% commission — you only pay for visibility, not sales."
+                "answer": "Seaneb offers affordable monthly plans with 0% commission — you only pay for visibility, not sales."
             },
             {
                 "question": "Can I list multiple businesses?",
-                "answer": "Yes! Our Professional and Enterprise plans allow multiple listings under a single SeaNeB account."
+                "answer": "Yes! Our Professional and Enterprise plans allow multiple listings under a single Seaneb account."
             }
         ]
     },
     "cta": {
         "heading": "Ready to Grow?",
-        "subheading": "Partner with SeaNeB today and take the first step toward digital visibility, local recognition, and long-term success.",
+        "subheading": "Partner with Seaneb today and take the first step toward digital visibility, local recognition, and long-term success.",
         "buttonLabel": "Contact Us",
         "buttonHref": "/contact"
     }

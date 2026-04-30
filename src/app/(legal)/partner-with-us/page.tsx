@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import PartnerWithUsPage from './PartnerWithUsPage'
 
 export const metadata: Metadata = {
-  title: 'Partner With Us - SeaNeB',
-  description: 'Join SeaNeB as a partner and grow your business with our platform.',
+  title: 'Partner With Us - Seaneb',
+  description: 'Join Seaneb as a partner and grow your business with our platform.',
   alternates: {
     canonical: '/partner-with-us',
   },

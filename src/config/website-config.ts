@@ -21,17 +21,17 @@ type WebsiteConfigType = {
 }
 
 export const websiteConfig: WebsiteConfigType = {
-  name: 'SeaNeB',
+  name: 'Seaneb',
   website: 'https://www.seaneb.com/',
   officeAddress: 'Madhav Arcade, F-8, Jol, Anand, Gujarat 388315',
   email: 'hello@seaneb.com',
 
   social: {
-    facebook: 'https://www.facebook.com/SeaNeBApp/',
+    facebook: 'https://www.facebook.com/SeanebApp/',
     instagram: 'https://www.instagram.com/seaneb.app/',
     linkedin: 'https://www.linkedin.com/showcase/seaneb-app',
     youtube: 'https://www.youtube.com/@seaneb',
-    twitter_x: 'https://x.com/SeaNeB'
+    twitter_x: 'https://x.com/Seaneb'
   },
 
   github: '#',

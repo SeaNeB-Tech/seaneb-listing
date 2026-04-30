@@ -1,24 +1,24 @@
 {
     "meta": {
-        "title": "SeaNeB (Search Near By) App | Our Solution",
-        "description": "Discover local offers and deals in your area. SeaNeB App connects local business owners with nearby customers – empowering local commerce."
+        "title": "Seaneb (Search Near By) App | Our Solution",
+        "description": "Discover local offers and deals in your area. Seaneb App connects local business owners with nearby customers – empowering local commerce."
     },
     "hero": {
-        "heading": "SeaNeB (Search Near By) App",
+        "heading": "Seaneb (Search Near By) App",
         "subheading": "Discover Local Offers/Deals in Your Area | Empowering Local Commerce"
     },
     "whatIsApp": {
-        "heading": "What is SeaNeB App?",
+        "heading": "What is Seaneb App?",
         "subheading": "Get the Best Local Offers & Deals in One Simple Place",
         "image": "/images/marketing/seaneb-offers-ui.svg",
-        "imageAlt": "SeaNeB Offers UI",
+        "imageAlt": "Seaneb Offers UI",
         "paragraphs": [
-            "SeaNeB App is a location-based local business/shop discovery app designed to connect local business owners with customers in their own locality. Whether you're a shopkeeper, a restaurant owner, or a service provider, SeaNeB App helps you post your deals, discounts, and promotions in real-time — and reach customers right where they are.",
+            "Seaneb App is a location-based local business/shop discovery app designed to connect local business owners with customers in their own locality. Whether you're a shopkeeper, a restaurant owner, or a service provider, Seaneb App helps you post your deals, discounts, and promotions in real-time — and reach customers right where they are.",
             "For customers, it's a one-stop solution to find trending offers nearby, explore new shops, and save money while supporting the local economy."
         ]
     },
     "localDiscoveryCta": {
-        "heading": "Local Discovery = SeaNeB App",
+        "heading": "Local Discovery = Seaneb App",
         "line1": "Your only app for effective and impactful #VocalForLocal.",
         "line2": "✅ Support Local • ✅ Save Smart • ✅ Stay Updated",
         "appStore": {
@@ -37,11 +37,11 @@
         }
     },
     "whyChoose": {
-        "heading": "Why Choose SeaNeB App?",
+        "heading": "Why Choose Seaneb App?",
         "subheading": "One App, Two Benefits",
         "whatYouGet": {
             "heading": "What Do You Get?",
-            "subheading": "SeaNeB is designed for quick discovery and easy redemption. Here's what the app helps you with:",
+            "subheading": "Seaneb is designed for quick discovery and easy redemption. Here's what the app helps you with:",
             "features": [
                 {
                     "title": "Location-Based Discovery",
@@ -96,7 +96,7 @@
             {
                 "title": "Empowers Smart Buying Decisions for Local Consumer",
                 "img": "/images/marketing/benefit-smart-buying.svg",
-                "body": "Customers want to stretch their spending without sacrificing quality. SeaNeB Offers helps users discover relevant discounts across food, services, retail, and more—organized by category, proximity, and expiry date.",
+                "body": "Customers want to stretch their spending without sacrificing quality. Seaneb Offers helps users discover relevant discounts across food, services, retail, and more—organized by category, proximity, and expiry date.",
                 "whyLabel": "Why It Matters:",
                 "points": [
                     "76% of consumers say personalized offers influence their purchase decisions",
@@ -110,13 +110,13 @@
                 "whyLabel": "Why It Matters:",
                 "points": [
                     "Many small businesses spend ₹5,000–₹25,000/month on digital ads with unclear ROI",
-                    "SeaNeB gives them visibility at a fraction of that cost"
+                    "Seaneb gives them visibility at a fraction of that cost"
                 ]
             },
             {
                 "title": "Bridges the Gap Between Businesses and Customers",
                 "img": "/images/marketing/benefit-bridges-gap.svg",
-                "body": "The SeaNeB Offers App connects verified local businesses directly with nearby customers looking for relevant, time-sensitive offers. Unlike mass-market deal apps, SeaNeB Offers emphasizes hyperlocal engagement, helping small businesses promote to real people in their vicinity.",
+                "body": "The Seaneb Offers App connects verified local businesses directly with nearby customers looking for relevant, time-sensitive offers. Unlike mass-market deal apps, Seaneb Offers emphasizes hyperlocal engagement, helping small businesses promote to real people in their vicinity.",
                 "whyLabel": "Why It Matters:",
                 "points": [
                     "93% of consumers say they prefer supporting local businesses when possible",
@@ -126,7 +126,7 @@
             {
                 "title": "Boosts Local Commerce Through Real-Time Offer",
                 "img": "/images/marketing/benefit-boosts-commerce.svg",
-                "body": "For both seasonal campaigns and last-minute deals, SeaNeB lets businesses instantly reach their audience. Customers receive real-time notifications about new offers in their location or category of interest, creating timely action.",
+                "body": "For both seasonal campaigns and last-minute deals, Seaneb lets businesses instantly reach their audience. Customers receive real-time notifications about new offers in their location or category of interest, creating timely action.",
                 "whyLabel": "Why It Matters:",
                 "points": [
                     "Push notifications have an average open rate of 90%",
@@ -181,7 +181,7 @@
         "subheading": "Here are some common questions about our company.",
         "items": [
             {
-                "question": "Is the SeaNeB App free?",
+                "question": "Is the Seaneb App free?",
                 "answer": "Yes, for limited time 100% free to use. No subscription or hidden fees.",
                 "listAnswer": null
             },

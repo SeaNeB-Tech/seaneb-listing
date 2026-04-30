@@ -21,13 +21,13 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITEMAP_URL!),
 
   title: {
-    default: 'SeaNeB | Discover Local Business Deals & B2B Offers',
-    template: '%s - SeaNeB'
+    default: 'Seaneb | Discover Local Business Deals & B2B Offers',
+    template: '%s - Seaneb'
   },
   description:
-    'Explore local MSME business listings on SeaNeB. Find nearby shops, services, and vendors with detailed profiles, offers, and business information.',
+    'Explore local MSME business listings on Seaneb. Find nearby shops, services, and vendors with detailed profiles, offers, and business information.',
   keywords: [
-    'SeaNeB',
+    'Seaneb',
     'MSME businesses',
     'local business listings',
     'nearby businesses',
@@ -42,17 +42,17 @@ export const metadata: Metadata = {
     'verified business profiles'
   ],
   openGraph: {
-    title: 'SeaNeB | Discover Local Business Deals & B2B Offers',
+    title: 'Seaneb | Discover Local Business Deals & B2B Offers',
     description:
-      'Explore local MSME business listings, nearby services, and vendors with SeaNeB.',
+      'Explore local MSME business listings, nearby services, and vendors with Seaneb.',
     url: process.env.NEXT_PUBLIC_SITEMAP_URL,
-    siteName: 'SeaNeB',
+    siteName: 'Seaneb',
     images: [
       {
         url: '/images/og/og.jpg',
         width: 1200,
         height: 630,
-        alt: 'SeaNeB - Local Business Discovery Platform'
+        alt: 'Seaneb - Local Business Discovery Platform'
       }
     ],
     locale: 'en_IN',
@@ -61,9 +61,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: 'summary_large_image',
-    title: 'SeaNeB | Discover Local Business Deals & B2B Offers',
+    title: 'Seaneb | Discover Local Business Deals & B2B Offers',
     description:
-      'Find nearby MSME businesses, local services, and verified vendors with SeaNeB.',
+      'Find nearby MSME businesses, local services, and verified vendors with Seaneb.',
     images: ['/images/og/og.jpg']
   }
 }
@@ -109,8 +109,8 @@ export default function RootLayout({
                 {
                   "@type": "Organization",
                   "@id": "https://www.seaneb.com/#organization",
-                  "name": "SeaNeB",
-                  "alternateName": "SeaNeB India",
+                  "name": "Seaneb",
+                  "alternateName": "Seaneb India",
                   "url": "https://www.seaneb.com/",
                   "logo": {
                     "@type": "ImageObject",
@@ -130,7 +130,7 @@ export default function RootLayout({
                   "@type": "WebSite",
                   "@id": "https://www.seaneb.com/#website",
                   "url": "https://www.seaneb.com/",
-                  "name": "SeaNeB - Discover Local Businesses",
+                  "name": "Seaneb - Discover Local Businesses",
                   "inLanguage": "en-IN",
                   "publisher": {
                     "@id": "https://www.seaneb.com/#organization"

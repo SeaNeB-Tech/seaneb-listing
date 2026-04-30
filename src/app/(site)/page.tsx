@@ -25,9 +25,9 @@ export const metadata: Metadata = {
 const jsonLd: WithContext<LocalBusiness> = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
-  name: 'SeaNeB',
+  name: 'Seaneb',
   description:
-    'SeaNeB connects you with local restaurants, stores, shops, and agencies. Browse all categories and grow your business network.',
+    'Seaneb connects you with local restaurants, stores, shops, and agencies. Browse all categories and grow your business network.',
   url: process.env.NEXT_PUBLIC_SITEMAP_URL,
   areaServed: 'Worldwide'
 }

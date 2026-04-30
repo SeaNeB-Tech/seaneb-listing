@@ -22,8 +22,8 @@ interface ConstructMetadata {
 }
 
 export function constructMetadata({
-  title = 'SeaNeB | Discover Local Business Deals & B2B Offers',
-  description = 'Explore top-rated restaurants, stores, shops, and business categories near you with SeaNeB. Connect and grow your business today.',
+  title = 'Seaneb | Discover Local Business Deals & B2B Offers',
+  description = 'Explore top-rated restaurants, stores, shops, and business categories near you with Seaneb. Connect and grow your business today.',
   image = '/images/og/og.jpg',
   icons = '/favicon.ico',
   noIndex = false,
@@ -60,8 +60,8 @@ export function constructMetadata({
         follow: true
       }
     }),
-    creator: 'SeaNeB Technologies',
-    authors: [{ name: 'SeaNeB Technologies' }]
+    creator: 'Seaneb Technologies',
+    authors: [{ name: 'Seaneb Technologies' }]
   }
 }
 
