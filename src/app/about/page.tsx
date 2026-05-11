@@ -48,7 +48,6 @@ const { hero, intro, whomWeServe, ourStory, visionMission } = aboutData
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
-  "@id": "https://www.seaneb.com/about#aboutpage",
   "url": "https://www.seaneb.com/about",
   "name": "About Seaneb",
   "description": "Learn about Seaneb, a platform helping users discover local MSME businesses and services.",

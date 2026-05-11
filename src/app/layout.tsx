@@ -113,7 +113,6 @@ export default function RootLayout({
               "@graph": [
                 {
                   "@type": "Organization",
-                  "@id": "https://www.seaneb.com/#organization",
                   "name": "Seaneb",
                   "alternateName": "Seaneb India",
                   "url": "https://www.seaneb.com/",
@@ -133,7 +132,6 @@ export default function RootLayout({
                 },
                 {
                   "@type": "WebSite",
-                  "@id": "https://www.seaneb.com/#website",
                   "url": "https://www.seaneb.com/",
                   "name": "Seaneb - Discover Local Businesses",
                   "inLanguage": "en-IN",

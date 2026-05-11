@@ -40,7 +40,6 @@ export default function Page() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ContactPage",
-    "@id": "https://www.seaneb.com/contact#contactpage",
     "url": "https://www.seaneb.com/contact",
     "name": "Contact Seaneb",
     "description": "Get in touch with Seaneb for support, partnerships, or inquiries.",

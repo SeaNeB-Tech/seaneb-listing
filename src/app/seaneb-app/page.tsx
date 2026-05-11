@@ -29,7 +29,6 @@ export default function Page() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "@id": "https://www.seaneb.com/seaneb-app#app",
     "name": appData.meta.title,
     "description": appData.meta.description,
     "url": "https://www.seaneb.com/seaneb-app",
