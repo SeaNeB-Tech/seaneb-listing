@@ -25,6 +25,7 @@ interface AppProduct {
   name: string
   url: string
   image: string | null
+  logo: string | null
   status: 'live' | 'upcoming'
 }
 
@@ -51,7 +52,7 @@ function Header() {
   useEffect(() => {
     const fetchApps = async () => {
       try {
-        const cachedStr = localStorage.getItem('ninedots_apps_cache')
+        const cachedStr = localStorage.getItem('ninedots_apps_cache_v2')
         if (cachedStr) {
           try {
             const cached = JSON.parse(cachedStr)
@@ -72,10 +73,11 @@ function Header() {
             name: prod.name || prod.product_key,
             url: prod.href || `https://${prod.product_key}.seaneb.com`,
             image: prod.icon || prod.logo,
+            logo: prod.logo,
             status: 'live' // currently all fetched apps are considered live
           }))
           
-          localStorage.setItem('ninedots_apps_cache', JSON.stringify({
+          localStorage.setItem('ninedots_apps_cache_v2', JSON.stringify({
             data: formattedApps,
             timestamp: Date.now()
           }))
@@ -122,7 +124,7 @@ function Header() {
   const upcomingApps = appsData.filter(app => app.status === 'upcoming')
   
   const seanebApp = appsData.find(app => app.product_key.toLowerCase() === 'seaneb' || app.name.toLowerCase() === 'seaneb')
-  const mainLogo = seanebApp?.image ? generatePublicImageBusinessLink(seanebApp.image) : Logo
+  const mainLogo = seanebApp?.logo ? generatePublicImageBusinessLink(seanebApp.logo) : null
 
   return (
     <>
@@ -146,14 +148,16 @@ function Header() {
             {/* Left side: Logo & Location */}
             <div className='flex items-center gap-4 lg:gap-6 lg:mr-auto'>
               <Link href='/' className='flex items-center gap-2 lg:mr-8'>
-                <Image
-                  src={Logo}
-                  alt='logo'
-                  width={220}
-                  height={38}
-                  priority
-                  className='h-auto max-w-36 sm:max-w-44 lg:max-w-full'
-                />
+                {mainLogo && (
+                  <Image
+                    src={mainLogo}
+                    alt='logo'
+                    width={220}
+                    height={38}
+                    priority
+                    className='h-8 w-auto lg:h-10 object-contain'
+                  />
+                )}
               </Link>
               
               {/* Location Selector (Desktop/Tablet) */}
