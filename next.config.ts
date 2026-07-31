@@ -1,5 +1,11 @@
 import type { NextConfig } from 'next'
 
+const s3Host = process.env.NEXT_PUBLIC_S3_BASE_URL
+  ? new URL(process.env.NEXT_PUBLIC_S3_BASE_URL).hostname
+  : 'seaneb-bucket.blr1.cdn.digitaloceanspaces.com'
+  
+const s3BaseUrl = process.env.NEXT_PUBLIC_S3_BASE_URL || 'https://seaneb-bucket.blr1.cdn.digitaloceanspaces.com'
+
 const nextConfig: NextConfig = {
   reactStrictMode: false,
   eslint: { ignoreDuringBuilds: true },
@@ -18,7 +24,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: `${process.env.NEXT_PUBLIC_DO_SPACES_NAME}.${process.env.NEXT_PUBLIC_DO_SPACES_REGION}.cdn.digitaloceanspaces.com`
+        hostname: s3Host
       },
       {
         protocol: 'https',
@@ -30,10 +36,11 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/storage/:path*',
-        destination: `https://${process.env.NEXT_PUBLIC_DO_SPACES_NAME}.${process.env.NEXT_PUBLIC_DO_SPACES_REGION}.cdn.digitaloceanspaces.com/:path*`
+        destination: `${s3BaseUrl}/:path*`
       }
     ]
   }
 }
 
 export default nextConfig
+

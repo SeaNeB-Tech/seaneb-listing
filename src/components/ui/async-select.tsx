@@ -96,10 +96,12 @@ export function AsyncSelect<T>({
 
   // Initialize selectedOption when options are loaded and value exists
   useEffect(() => {
-    if (value && options.length > 0) {
-      const option = options.find(opt => getOptionValue(opt) === value)
-      if (option) {
-        setSelectedOption(option)
+    if (options.length > 0) {
+      if (value) {
+        const option = options.find(opt => getOptionValue(opt) === value)
+        setSelectedOption(option || null)
+      } else {
+        setSelectedOption(null)
       }
     }
   }, [value, options, getOptionValue])

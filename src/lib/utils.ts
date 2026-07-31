@@ -77,7 +77,7 @@ export const generatePublicImageBusinessLink = (objectKey?: string) => {
     .replace(/^\/+/, '')
     .replace(/^storage\//, '')
 
-  return `/storage/${cleanKey}`
+  return `${process.env.NEXT_PUBLIC_S3_BASE_URL}/${cleanKey}`
 }
 
 export const generatePublicImageUserLink = (objectKey?: string) => {
@@ -92,7 +92,7 @@ export const generatePublicImageUserLink = (objectKey?: string) => {
     .replace(/^\/+/, '')
     .replace(/^storage\//, '')
 
-  return `/storage/${cleanKey}`
+  return `${process.env.NEXT_PUBLIC_S3_BASE_URL}/${cleanKey}`
 }
 
 export const parseLocationSlug = (locationSlug: string) => {
