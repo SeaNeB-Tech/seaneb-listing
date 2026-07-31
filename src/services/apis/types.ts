@@ -65,7 +65,8 @@ export interface PublicBusinessListingItem {
   area_name: string
   area_slug: string
   category_name: string | null
-  thumbnail: string | null
+  thumbnail?: string | null
+  gallery?: string[] | null
   average_rating: string
   total_reviews: number
   created_at: string

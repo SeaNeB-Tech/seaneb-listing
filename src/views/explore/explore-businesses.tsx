@@ -200,12 +200,7 @@ const ExploreBusinesses = ({ country, state, city, area }: ExploreBusinessesProp
                 Filters
               </h4>
               <div className='flex flex-col gap-y-4'>
-                <Input
-                  value={searchInput}
-                  className='bg-white'
-                  onChange={e => setSearchInput(e.target.value)}
-                  placeholder='What are you looking for?'
-                />
+
 
                 <AsyncSelect<any>
                   fetcher={searchLocation}

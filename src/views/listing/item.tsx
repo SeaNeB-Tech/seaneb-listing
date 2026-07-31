@@ -40,8 +40,10 @@ export default function VenueCard(props: VenueCardProps) {
   }, [category_name])
 
   const businessImage = useCallback(async () => {
-    if (business?.thumbnail) {
-      const imgUrl = generatePublicImageBusinessLink(business.thumbnail)
+    const imageKey = business?.thumbnail || (business?.gallery && business.gallery.length > 0 ? business.gallery[0] : null)
+    
+    if (imageKey) {
+      const imgUrl = generatePublicImageBusinessLink(imageKey)
       const valid = await isValidImageUrl(imgUrl)
 
       if (valid) {

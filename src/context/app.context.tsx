@@ -11,7 +11,7 @@ interface AppContextProps {
   setIsDetecting: (val: boolean) => void
   toggleLocationModal: () => void
   closeLocationModal: () => void
-  detectLocation: () => Promise<void>
+  detectLocation: () => Promise<string | null>
 }
 
 const AppContext = createContext<AppContextProps | undefined>(undefined)
@@ -40,50 +40,60 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     setIsDetecting(false)
   }
 
-  const fetchCurrentLocation = useCallback(async () => {
+  const fetchCurrentLocation = useCallback(async (): Promise<string | null> => {
     setIsDetecting(true)
-    try {
+    return new Promise((resolve) => {
+      const fallbackCity = 'Anand'
+
+      const handleFallback = () => {
+        setCurrentCity(fallbackCity)
+        localStorage.setItem('saved_city_name', fallbackCity)
+        setIsDetecting(false)
+        resolve(fallbackCity)
+      }
+
+      if (!navigator.geolocation) {
+        handleFallback()
+        return
+      }
+
       navigator.geolocation.getCurrentPosition(
-        async response => {
+        async (position) => {
           try {
-            const res = await fetch('/api/search/user-location', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ location: { lat: response?.coords?.latitude, long: response?.coords?.longitude } })
-            })
+            const { latitude, longitude } = position.coords
+            const response = await fetch(
+              `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
+            )
+            const data = await response.json()
+            const city = data.city || data.locality || data.principalSubdivision
 
-            const data: { status: string; data: string } = await res.json()
-
-            if (data?.status === 'success' && data?.data) {
-              setCurrentCity(data.data)
+            if (city) {
+              setCurrentCity(city)
+              localStorage.setItem('saved_city_name', city)
               setIsDetecting(false)
+              resolve(city)
             } else {
-              // Reverse geocoding failed, fallback to IP-based detection
-              getLocationFromIP()
+              handleFallback()
             }
           } catch {
-            // API call failed, fallback to IP-based detection
-            getLocationFromIP()
+            handleFallback()
           }
         },
-        err => {
-          if (err.code === 1 || err.code === 2 || err.code === 3) {
-            getLocationFromIP()
-          } else {
-            setIsDetecting(false)
-          }
+        () => {
+          handleFallback()
         },
-        { enableHighAccuracy: true, timeout: 5000 }
+        { enableHighAccuracy: true, timeout: 10000 }
       )
-    } catch {
-      setCurrentCity('')
-      setIsDetecting(false)
-    }
+    })
   }, [])
 
   useEffect(() => {
-    fetchCurrentLocation()
-  }, [fetchCurrentLocation])
+    // Only fetch from localStorage on initial load
+    const savedCity = localStorage.getItem('saved_city_name')
+    if (savedCity) {
+      setCurrentCity(savedCity)
+    }
+  }, [])
 
   const values: AppContextProps = {
     currentCity,

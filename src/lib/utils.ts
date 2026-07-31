@@ -77,7 +77,8 @@ export const generatePublicImageBusinessLink = (objectKey?: string) => {
     .replace(/^\/+/, '')
     .replace(/^storage\//, '')
 
-  return `${process.env.NEXT_PUBLIC_S3_BASE_URL}/${cleanKey}`
+  // Use the Next.js rewrite defined in next.config.ts (/storage/:path* -> S3_BASE_URL/:path*)
+  return `/storage/${cleanKey}`
 }
 
 export const generatePublicImageUserLink = (objectKey?: string) => {
@@ -92,7 +93,8 @@ export const generatePublicImageUserLink = (objectKey?: string) => {
     .replace(/^\/+/, '')
     .replace(/^storage\//, '')
 
-  return `${process.env.NEXT_PUBLIC_S3_BASE_URL}/${cleanKey}`
+  // Use the Next.js rewrite defined in next.config.ts (/storage/:path* -> S3_BASE_URL/:path*)
+  return `/storage/${cleanKey}`
 }
 
 export const parseLocationSlug = (locationSlug: string) => {

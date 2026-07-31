@@ -95,6 +95,7 @@ export default function LocationModal({ isMobile = false }: { isMobile?: boolean
     
     // Update header label
     setCurrentCity(city.city_name)
+    localStorage.setItem('saved_city_name', city.city_name)
     
     const citySlug = toUrlName(city.city_name)
     let url = ''
@@ -108,6 +109,7 @@ export default function LocationModal({ isMobile = false }: { isMobile?: boolean
       url = `/in/${citySlug}${stateSlug ? `-${stateSlug}` : ''}`
     }
     
+    localStorage.setItem('saved_location_slug', url.replace(/^\//, ''))
     router.push(url)
   }
 
@@ -127,8 +129,21 @@ export default function LocationModal({ isMobile = false }: { isMobile?: boolean
   }
 
   const handleDetect = async () => {
-    await detectLocation()
+    const city = await detectLocation()
     closeLocationModal()
+
+    if (city) {
+      let url = ''
+      if (city === 'Anand') {
+        url = '/in/anand-gj'
+      } else {
+        const citySlug = toUrlName(city)
+        url = `/in/${citySlug}`
+      }
+      
+      localStorage.setItem('saved_location_slug', url.replace(/^\//, ''))
+      router.push(url)
+    }
   }
 
   if (!isLocationModalOpen) return null

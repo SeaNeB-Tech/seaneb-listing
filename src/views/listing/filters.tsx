@@ -124,13 +124,6 @@ const ListingFilters = ({ filters, setFilters, cityValue }: Props) => {
         Filters
       </h4>
       <div className='flex flex-col gap-y-4'>
-        {/* Search */}
-        <Input
-          value={searchText}
-          className='bg-white'
-          onChange={e => setSearchText(e.target.value)}
-          placeholder='What are you looking for?'
-        />
 
         {/* Location */}
         <AsyncSelect<any>
