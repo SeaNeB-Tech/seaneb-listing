@@ -1,6 +1,8 @@
 import MajorCities from '@/views/home/major-cities'
 import { Metadata } from 'next'
 import { constructMetadata } from '@/lib/utils'
+
+export const dynamic = 'force-dynamic'
 import { fetchPublicBusinessBySeanebId } from '@/services/apis'
 import { PublicBusinessDetail } from '@/services/apis/types'
 import { TestimonialItem } from '@/types/business'
