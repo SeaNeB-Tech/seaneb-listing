@@ -156,7 +156,7 @@ function Header() {
                     height={38}
                     priority
                     unoptimized
-                    className='h-8 w-auto lg:h-10 object-contain'
+                    className='w-auto max-w-[150px] sm:max-w-[180px] lg:max-w-[220px] max-h-[38px] object-contain'
                   />
                 )}
               </Link>
