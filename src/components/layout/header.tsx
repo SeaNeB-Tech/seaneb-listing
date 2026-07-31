@@ -52,7 +52,7 @@ function Header() {
   useEffect(() => {
     const fetchApps = async () => {
       try {
-        const cachedStr = localStorage.getItem('ninedots_apps_cache_v2')
+        const cachedStr = localStorage.getItem('ninedots_apps_cache_v3')
         if (cachedStr) {
           try {
             const cached = JSON.parse(cachedStr)
@@ -77,7 +77,7 @@ function Header() {
             status: 'live' // currently all fetched apps are considered live
           }))
           
-          localStorage.setItem('ninedots_apps_cache_v2', JSON.stringify({
+          localStorage.setItem('ninedots_apps_cache_v3', JSON.stringify({
             data: formattedApps,
             timestamp: Date.now()
           }))
