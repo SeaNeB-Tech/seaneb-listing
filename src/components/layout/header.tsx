@@ -51,6 +51,19 @@ function Header() {
   useEffect(() => {
     const fetchApps = async () => {
       try {
+        const cachedStr = localStorage.getItem('ninedots_apps_cache')
+        if (cachedStr) {
+          try {
+            const cached = JSON.parse(cachedStr)
+            if (cached.timestamp && (Date.now() - cached.timestamp < 24 * 60 * 60 * 1000)) {
+              setAppsData(cached.data)
+              return
+            }
+          } catch (e) {
+            // ignore cache parse errors
+          }
+        }
+
         const response = await Axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/products/ninedots`)
         if (response.data?.success && Array.isArray(response.data.data)) {
           const apiProducts = response.data.data
@@ -61,6 +74,12 @@ function Header() {
             image: prod.icon || prod.logo,
             status: 'live' // currently all fetched apps are considered live
           }))
+          
+          localStorage.setItem('ninedots_apps_cache', JSON.stringify({
+            data: formattedApps,
+            timestamp: Date.now()
+          }))
+          
           setAppsData(formattedApps)
         }
       } catch (error) {
@@ -101,6 +120,9 @@ function Header() {
 
   const liveApps = appsData.filter(app => app.status === 'live')
   const upcomingApps = appsData.filter(app => app.status === 'upcoming')
+  
+  const seanebApp = appsData.find(app => app.product_key.toLowerCase() === 'seaneb' || app.name.toLowerCase() === 'seaneb')
+  const mainLogo = seanebApp?.image ? generatePublicImageBusinessLink(seanebApp.image) : Logo
 
   return (
     <>
@@ -124,14 +146,22 @@ function Header() {
             {/* Left side: Logo & Location */}
             <div className='flex items-center gap-4 lg:gap-6 lg:mr-auto'>
               <Link href='/' className='flex items-center gap-2'>
-                <Image
-                  src={Logo}
-                  alt='logo'
-                  width={220}
-                  height={38}
-                  priority
-                  className='h-auto max-w-36 sm:max-w-44 lg:max-w-[200px]'
-                />
+                {typeof mainLogo === 'string' ? (
+                  <img
+                    src={mainLogo}
+                    alt='logo'
+                    className='h-8 sm:h-10 w-auto object-contain max-w-36 sm:max-w-44 lg:max-w-[200px]'
+                  />
+                ) : (
+                  <Image
+                    src={Logo}
+                    alt='logo'
+                    width={220}
+                    height={38}
+                    priority
+                    className='h-auto max-w-36 sm:max-w-44 lg:max-w-[200px]'
+                  />
+                )}
               </Link>
               
               {/* Location Selector (Desktop/Tablet) */}

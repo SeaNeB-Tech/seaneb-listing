@@ -10,9 +10,28 @@ const BusinessCounter = () => {
   useEffect(() => {
     const fetchTotal = async () => {
       try {
+        const cachedStr = localStorage.getItem('business_count_cache')
+        if (cachedStr) {
+          try {
+            const cached = JSON.parse(cachedStr)
+            if (cached.timestamp && (Date.now() - cached.timestamp < 24 * 60 * 60 * 1000)) {
+              animateCount(cached.count)
+              return
+            }
+          } catch (e) {
+            // ignore cache parse errors
+          }
+        }
+
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/public/businesses/count`)
         const data = await res.json()
         const total = data?.data?.total_businesses || 251
+        
+        localStorage.setItem('business_count_cache', JSON.stringify({
+           count: total,
+           timestamp: Date.now()
+        }))
+        
         animateCount(total)
       } catch (err) {
         animateCount(251)
