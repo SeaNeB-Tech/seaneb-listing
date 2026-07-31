@@ -15,6 +15,7 @@ import { websiteConfig } from '@/config/website-config'
 import { footerLinks } from '@/config/footer-links'
 
 import { memo, useState, useEffect } from 'react'
+import { Mail, ChevronDown } from 'lucide-react'
 import Axios from 'axios'
 import { generatePublicImageBusinessLink } from '@/lib/utils'
 import ScreenWrapper from '../wrapper/screen-wrapper'
