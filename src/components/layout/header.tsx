@@ -155,6 +155,7 @@ function Header() {
                     width={220}
                     height={38}
                     priority
+                    unoptimized
                     className='h-8 w-auto lg:h-10 object-contain'
                   />
                 )}
@@ -260,6 +261,7 @@ function Header() {
                                   alt={app.name} 
                                   width={48} 
                                   height={48} 
+                                  unoptimized
                                   className='rounded-lg object-contain w-12 h-12' 
                                 />
                               ) : (
@@ -293,6 +295,7 @@ function Header() {
                                   alt={app.name} 
                                   width={48} 
                                   height={48} 
+                                  unoptimized
                                   className='rounded-lg grayscale object-contain w-12 h-12' 
                                 />
                               ) : (
