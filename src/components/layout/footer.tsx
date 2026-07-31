@@ -14,8 +14,9 @@ import Logo from '@images/logo/logo-white.svg'
 import { websiteConfig } from '@/config/website-config'
 import { footerLinks } from '@/config/footer-links'
 
-import { Mail, ChevronDown } from 'lucide-react'
-import { memo, useState } from 'react'
+import { memo, useState, useEffect } from 'react'
+import Axios from 'axios'
+import { generatePublicImageBusinessLink } from '@/lib/utils'
 import ScreenWrapper from '../wrapper/screen-wrapper'
 
 const SOCIAL_ICONS = {
@@ -28,6 +29,36 @@ const SOCIAL_ICONS = {
 
 function Footer() {
   const [openSection, setOpenSection] = useState<string | null>(null)
+  const [footerLogo, setFooterLogo] = useState<string | null>(null)
+
+  useEffect(() => {
+    const fetchLogo = async () => {
+      try {
+        const cachedStr = localStorage.getItem('ninedots_apps_cache_v4')
+        if (cachedStr) {
+          const cached = JSON.parse(cachedStr)
+          const seanebApp = cached.data?.find((app: any) => app.product_key.toLowerCase() === 'seaneb' || app.name.toLowerCase() === 'seaneb')
+          const logoToUse = seanebApp?.dark_logo || seanebApp?.logo
+          if (logoToUse) {
+            setFooterLogo(generatePublicImageBusinessLink(logoToUse))
+            return
+          }
+        }
+        
+        const response = await Axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/products/ninedots`)
+        if (response.data?.success && Array.isArray(response.data.data)) {
+          const seanebApp = response.data.data.find((app: any) => app.product_key?.toLowerCase() === 'seaneb' || app.product_name?.toLowerCase() === 'seaneb')
+          const logoToUse = seanebApp?.dark_logo_url || seanebApp?.logo_url || seanebApp?.dark_logo || seanebApp?.logo
+          if (logoToUse) {
+            setFooterLogo(generatePublicImageBusinessLink(logoToUse))
+          }
+        }
+      } catch (error) {
+        console.error('Failed to fetch footer logo:', error)
+      }
+    }
+    fetchLogo()
+  }, [])
 
   const toggleSection = (section: string) => {
     setOpenSection(prev => (prev === section ? null : section))
@@ -40,15 +71,26 @@ function Footer() {
           {/* Logo */}
           <div className='flex justify-center'>
             <Link href='/' className='mb-6 inline-block'>
-              <Image
-                src={Logo}
-                alt='Logo'
-                width={240}
-                height={240}
-                loading='lazy'
-                sizes='100vw'
-                className='h-auto w-56'
-              />
+              {footerLogo ? (
+                <Image
+                  src={footerLogo}
+                  alt='Logo'
+                  width={240}
+                  height={50}
+                  unoptimized
+                  className='max-h-[50px] w-auto object-contain'
+                />
+              ) : (
+                <Image
+                  src={Logo}
+                  alt='Logo'
+                  width={240}
+                  height={240}
+                  loading='lazy'
+                  sizes='100vw'
+                  className='h-auto w-56'
+                />
+              )}
             </Link>
           </div>
 

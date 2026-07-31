@@ -26,6 +26,7 @@ interface AppProduct {
   url: string
   image: string | null
   logo: string | null
+  dark_logo: string | null
   status: 'live' | 'upcoming'
 }
 
@@ -52,7 +53,7 @@ function Header() {
   useEffect(() => {
     const fetchApps = async () => {
       try {
-        const cachedStr = localStorage.getItem('ninedots_apps_cache_v3')
+        const cachedStr = localStorage.getItem('ninedots_apps_cache_v4')
         if (cachedStr) {
           try {
             const cached = JSON.parse(cachedStr)
@@ -74,10 +75,11 @@ function Header() {
             url: prod.href || `https://${prod.product_key}.seaneb.com`,
             image: prod.icon || prod.logo,
             logo: prod.logo,
+            dark_logo: prod.dark_logo,
             status: 'live' // currently all fetched apps are considered live
           }))
           
-          localStorage.setItem('ninedots_apps_cache_v3', JSON.stringify({
+          localStorage.setItem('ninedots_apps_cache_v4', JSON.stringify({
             data: formattedApps,
             timestamp: Date.now()
           }))
