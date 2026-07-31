@@ -119,5 +119,16 @@ export const fetchAreaList = async (): Promise<{ data: CategoryListItem[] }> => 
   return response
 }
 
+export const fetchPublicBusinessReviews = async (seanebId: string, page: number = 1, limit: number = 50) => {
+  try {
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/public/publicreview/${seanebId}?page=${page}&limit=${limit}`
+    const response = await Axios.get(url)
+    return response.data
+  } catch (error: any) {
+    console.error('Error in fetchPublicBusinessReviews:', error?.message || error)
+    return null
+  }
+}
+
 export * from './browse';
 export * from './browse-types';

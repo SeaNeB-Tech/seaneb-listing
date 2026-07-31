@@ -10,6 +10,7 @@ import LocationMap from './basic/map'
 import BusinessRating from './basic/rating'
 import BusinessReviews from './reviews'
 import { FaWhatsapp } from 'react-icons/fa'
+import Link from 'next/link'
 
 interface BusinessDetailsProps {
   businessData: PublicBusinessDetail
@@ -58,7 +59,9 @@ const BusinessDetails = ({ businessData, testimonials }: BusinessDetailsProps) =
               </div>
 
               <div className="mt-3">
-                <BusinessRating businessData={businessData} />
+                <Link href={`/${businessData?.seaneb_id}/reviews`} className="hover:opacity-80 transition-opacity inline-block cursor-pointer">
+                  <BusinessRating businessData={businessData} />
+                </Link>
               </div>
             </div>
           </div>

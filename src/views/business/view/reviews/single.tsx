@@ -1,9 +1,7 @@
 'use client'
 
 import { memo } from 'react'
-
-import { Check } from 'lucide-react'
-
+import { Check, ThumbsUp, ThumbsDown, MoreVertical } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { getInitials } from '@/utils'
 
@@ -14,15 +12,16 @@ interface ReviewProps {
   rating: number
   isVerified?: boolean
   avatarSrc?: string
+  isLast?: boolean
 }
 
 function StarRating({ rating }: { rating: number }) {
   return (
-    <div className='flex'>
+    <div className='flex items-center gap-0.5'>
       {[...Array(5)].map((_, i) => (
         <svg
           key={i}
-          className={`h-5 w-5 ${i < rating ? 'text-yellow-400' : 'text-gray-200'}`}
+          className={`h-4 w-4 ${i < rating ? 'text-yellow-400' : 'text-gray-200'}`}
           fill='currentColor'
           viewBox='0 0 20 20'
           xmlns='http://www.w3.org/2000/svg'
@@ -34,30 +33,39 @@ function StarRating({ rating }: { rating: number }) {
   )
 }
 
-export const Review = memo(({ name, date, content, rating, isVerified, avatarSrc }: ReviewProps) => {
+export const Review = memo(({ name, date, content, rating, isVerified, avatarSrc, isLast }: ReviewProps) => {
   return (
-    <div className='py-6'>
+    <div className={`p-6 sm:p-8 transition-colors hover:bg-gray-50/30 ${!isLast ? 'border-b border-gray-100' : ''}`}>
       <div className='flex items-start gap-4'>
-        <Avatar className='h-16 w-16'>
-          <AvatarImage src={avatarSrc} alt={name} />
-          <AvatarFallback className='bg-gray-200 text-gray-600'>{getInitials(name)}</AvatarFallback>
+        <Avatar className='h-12 w-12 sm:h-14 sm:w-14 shrink-0'>
+          <AvatarImage src={avatarSrc} alt={name} className="object-cover" />
+          <AvatarFallback className='bg-pink-600 text-white font-medium text-lg'>{getInitials(name)}</AvatarFallback>
         </Avatar>
-        <div className='flex-1'>
-          <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between'>
+        
+        <div className='flex-1 w-full'>
+          <div className='flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-0 mb-4'>
             <div>
               <div className='flex items-center gap-1.5'>
-                <h4 className='font-medium text-gray-900'>{name}</h4>
+                <h4 className='font-bold text-gray-900'>{name}</h4>
                 {isVerified && (
-                  <span className='flex h-5 w-5 items-center justify-center rounded-full bg-green-500 text-white'>
-                    <Check className='h-3 w-3' />
+                  <span className='flex h-4 w-4 items-center justify-center rounded-full bg-blue-500 text-white shadow-sm'>
+                    <Check className='h-2.5 w-2.5 stroke-[3]' />
                   </span>
                 )}
               </div>
-              <p className='text-sm text-gray-500'>{date}</p>
+              <p className='text-sm text-gray-500 mt-0.5'>{date}</p>
             </div>
-            <StarRating rating={rating} />
+            <div className="mt-1 sm:mt-0">
+              <StarRating rating={rating} />
+            </div>
           </div>
-          <p className='mt-3 text-gray-700'>{content}</p>
+          
+          <div className='mt-3 mb-4'>
+            <div className='text-sm sm:text-base text-gray-700 bg-[#F9FAFB] rounded-xl p-4 border border-gray-100'>
+              {content || "No review text provided."}
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

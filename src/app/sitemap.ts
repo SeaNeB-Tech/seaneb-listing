@@ -72,6 +72,13 @@ const getBusinessData = async (): Promise<MetadataRoute.Sitemap> => {
           changeFrequency: 'weekly' as const,
           priority: 0.9
         })
+        
+        businessRoutes.push({
+          url: encodeURI(`${finalUrl}/reviews`).replace(/&/g, '%26'),
+          lastModified: business.updated_at ? dayjs(business.updated_at).toDate() : new Date(),
+          changeFrequency: 'weekly' as const,
+          priority: 0.8
+        })
       }
     }
 
