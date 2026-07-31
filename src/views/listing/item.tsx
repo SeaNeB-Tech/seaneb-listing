@@ -5,22 +5,23 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import Image from 'next/image'
 
 import { generatePublicImageBusinessLink } from '@/lib/utils'
-import { Daum } from '@/services/apis/types'
+import { PublicBusinessListingItem } from '@/services/apis/types'
 import { isValidImageUrl, toUrlName } from '@/utils'
 import { Heart } from 'lucide-react'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 
 interface VenueCardProps {
-  business: Daum
+  business: PublicBusinessListingItem
   selectedArea: string
+  citySlug: string
 }
 
-const DEFAULT_IMAGE = '/images/pages/home/banner-image-1.jpg'
+const DEFAULT_IMAGE = '/images/pages/home/poster.png'
 
 export default function VenueCard(props: VenueCardProps) {
-  const { business, selectedArea } = props
+  const { business, selectedArea, citySlug } = props
 
-  const { business_name, business_legal_name, city, avg_rating } = business
+  const { display_name, category_name, seaneb_id, area_name, average_rating } = business
   const router = useRouter()
 
   const [isFavorite, setIsFavorite] = useState(false)
@@ -35,21 +36,16 @@ export default function VenueCard(props: VenueCardProps) {
   }
 
   const category = useMemo(() => {
-    const categories = business?.business_category?.split(',')
-
-    return categories?.[0] || ''
-  }, [business?.business_category])
+    return category_name || ''
+  }, [category_name])
 
   const businessImage = useCallback(async () => {
-    if (!!business?.shop_galleries?.[0]?.link && !!business?.country && !!business?.state && !!business?.city) {
-      return setImageUrl(generatePublicImageBusinessLink(business?.shop_galleries?.[0]?.link))
-    }
-
-    if (business?.icon) {
-      const valid = await isValidImageUrl(business?.icon)
+    if (business?.thumbnail) {
+      const imgUrl = generatePublicImageBusinessLink(business.thumbnail)
+      const valid = await isValidImageUrl(imgUrl)
 
       if (valid) {
-        return setImageUrl(business?.icon)
+        return setImageUrl(imgUrl)
       } else {
         return setImageUrl(DEFAULT_IMAGE)
       }
@@ -58,13 +54,18 @@ export default function VenueCard(props: VenueCardProps) {
     return setImageUrl(DEFAULT_IMAGE)
   }, [business])
 
-  const redirectRoute = useMemo(() => {
-    if (!!selectedArea) {
-      return toUrlName(`/${selectedArea}-in-${city}/${category}/${business_legal_name}`)
-    }
+  const pathname = usePathname()
 
-    return toUrlName(`/${city}/${category}/${business_legal_name}`)
-  }, [selectedArea, city, category, business_legal_name])
+  const redirectRoute = useMemo(() => {
+    const safeToUrl = (str: string) => {
+      if (!str) return ''
+      return decodeURIComponent(str).toLowerCase().replace(/[\s_]+/g, '-')
+    }
+    
+    const slugId = safeToUrl(seaneb_id)
+
+    return `/${slugId}`
+  }, [seaneb_id])
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -83,18 +84,24 @@ export default function VenueCard(props: VenueCardProps) {
       className='relative h-[240px] cursor-pointer overflow-hidden rounded-md shadow-xl transition-transform duration-300 hover:scale-105'
     >
       {/* Background Image */}
-      <div className='absolute inset-0'>
-        <Image src={imageUrl} alt={business_legal_name} fill className='object-cover' priority />
+      <div className="absolute inset-0 bg-black">
+        <Image 
+          src={imageUrl} 
+          alt={display_name} 
+          fill 
+          className={imageUrl === DEFAULT_IMAGE ? 'object-cover' : 'object-contain'} 
+          priority 
+        />
         {/* Gradient Overlay */}
-        <div className='absolute inset-0 bg-gradient-to-t from-black/80 to-transparent'></div>
+        <div className='absolute inset-0 bg-gradient-to-t from-black/80 to-transparent pointer-events-none'></div>
       </div>
 
       {/* Rating Badge */}
-      {!!avg_rating && (
+      {!!average_rating && (
         <div
-          className={`absolute top-4 left-4 ${getRatingColor(avg_rating)} flex h-10 w-10 items-center justify-center rounded-full font-bold text-white`}
+          className={`absolute top-4 left-4 ${getRatingColor(Number(average_rating))} flex h-10 w-10 items-center justify-center rounded-full font-bold text-white`}
         >
-          {avg_rating}
+          {average_rating}
         </div>
       )}
 
@@ -102,8 +109,8 @@ export default function VenueCard(props: VenueCardProps) {
       <div className='absolute bottom-0 left-0 w-full p-4 text-white'>
         <div className='flex items-center justify-between'>
           <div>
-            {business_name && <h3 className='flex items-center gap-1 text-xl font-bold'>{business_name}</h3>}
-            {city && <p className='text-sm opacity-90'>{city}</p>}
+            {display_name && <h3 className='flex items-center gap-1 text-xl font-bold'>{display_name}</h3>}
+            {(area_name || citySlug) && <p className='text-sm opacity-90'>{area_name || citySlug}</p>}
           </div>
           <button
             onClick={e => {

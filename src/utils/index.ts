@@ -56,3 +56,36 @@ export const isValidImageUrl = (url: string): Promise<boolean> => {
     img.onerror = () => resolve(false)
   })
 }
+
+export const STATE_CODES: Record<string, string> = {
+  "gujarat": "gj",
+  "maharashtra": "mh",
+  "karnataka": "ka",
+  "delhi": "dl",
+  "tamil nadu": "tn",
+  "telangana": "tg",
+  "west bengal": "wb",
+  "uttar pradesh": "up",
+  "haryana": "hr",
+  "rajasthan": "rj",
+  "punjab": "pb",
+  "bihar": "br",
+  "madhya pradesh": "mp",
+  "andhra pradesh": "ap",
+  "kerala": "kl",
+  "odisha": "or",
+  "assam": "as",
+  "jammu and kashmir": "jk",
+  "goa": "ga",
+}
+
+export const getStateSlug = (stateName: string, cityName?: string) => {
+  if (!stateName) {
+    if (cityName && STATE_CODES[cityName.toLowerCase().trim()]) {
+      return STATE_CODES[cityName.toLowerCase().trim()]
+    }
+    return ''
+  }
+  const lower = stateName.toLowerCase().trim()
+  return STATE_CODES[lower] || toUrlName(lower)
+}

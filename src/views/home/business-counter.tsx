@@ -8,23 +8,35 @@ const BusinessCounter = () => {
   const [count, setCount] = useState(0)
 
   useEffect(() => {
-    let start = 0
-    const end = 251
-    const duration = 2000
-    const interval = 16
-    const step = Math.ceil(end / (duration / interval))
-
-    const timer = setInterval(() => {
-      start += step
-      if (start >= end) {
-        setCount(end)
-        clearInterval(timer)
-      } else {
-        setCount(start)
+    const fetchTotal = async () => {
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/public/businesses/count`)
+        const data = await res.json()
+        const total = data?.data?.total_businesses || 251
+        animateCount(total)
+      } catch (err) {
+        animateCount(251)
       }
-    }, interval)
+    }
 
-    return () => clearInterval(timer)
+    const animateCount = (end: number) => {
+      let start = 0
+      const duration = 2000
+      const interval = 16
+      const step = Math.ceil(end / (duration / interval))
+
+      const timer = setInterval(() => {
+        start += step
+        if (start >= end) {
+          setCount(end)
+          clearInterval(timer)
+        } else {
+          setCount(start)
+        }
+      }, interval)
+    }
+
+    fetchTotal()
   }, [])
 
   return (

@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import { Mail, MapPin, Facebook, Twitter, Linkedin, Instagram, Youtube } from 'lucide-react'
 
 import contactJson from '@/data/contact.json'
@@ -9,8 +8,8 @@ import siteJson from '@/data/site.json'
 import type { ContactData } from '@/types/contact'
 import type { SiteData } from '@/types/site'
 
-import { callApi } from '@/utils/api-utils'
-import { endpoint } from '@/services/apis/endpoint'
+import type { SiteData } from '@/types/site'
+
 
 const contactData = contactJson as ContactData
 const siteData = siteJson as SiteData
@@ -25,83 +24,8 @@ const SOCIAL_ICONS = {
   Youtube
 }
 
-/* Compact Input */
-const InputField = ({ field, formData, handleChange }: any) => (
-  <div>
-    <label className="block text-xs font-medium text-gray-600 mb-1">
-      {field.label} {field.required && '*'}
-    </label>
-
-    {field.type === 'textarea' ? (
-      <textarea
-        name={field.id}
-        value={formData[field.id] || ''}
-        onChange={handleChange}
-        rows={4}
-        required={field.required}
-        className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-primary"
-      />
-    ) : (
-      <input
-        name={field.id}
-        value={formData[field.id] || ''}
-        onChange={handleChange}
-        type={field.type}
-        required={field.required}
-        className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-primary"
-      />
-    )}
-  </div>
-)
-
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: ''
-  })
 
-  const [loading, setLoading] = useState(false)
-
-  const handleChange = (e: any) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
-
-    try {
-      await callApi({
-        uriEndPoint: endpoint.contactUs,
-        body: {
-          ...formData,
-          product_key: 'seaneb'
-        },
-        apiHostUrl: process.env.NEXT_PUBLIC_CONTACT_URL
-      })
-
-      alert('Message sent successfully')
-
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: ''
-      })
-    } catch (err) {
-      console.error(err)
-      alert('Failed to send message')
-    } finally {
-      setLoading(false)
-    }
-  }
 
   return (
     <main className="bg-gray-50">
@@ -123,86 +47,50 @@ export default function ContactPage() {
       {/* Form + Panel */}
       <section className="py-14">
         <div className="container mx-auto px-4 max-w-5xl">
-          <div className="grid lg:grid-cols-3 gap-6 bg-white p-6 rounded-xl shadow-sm border">
+          <div className="grid sm:grid-cols-3 gap-6">
+            {/* Company */}
+            <div className="bg-white rounded-xl shadow-sm border p-6 flex flex-col justify-center">
+              <h3 className="font-semibold mb-3 text-base text-gray-900">
+                Seaneb Technologies Pvt Ltd
+              </h3>
 
-            {/* Form */}
-            <div className="lg:col-span-2">
-              <p className="mb-4 text-sm text-gray-600">
-                {form.intro}
+              <div className="space-y-3 text-gray-600 text-sm">
+                <div className="flex gap-3 items-start">
+                  <MapPin size={18} className="mt-0.5 text-gray-400" />
+                  <span>
+                    FF/8 Madhav Arcade, Jol,<br />
+                    Anand - 388120, Gujarat
+                  </span>
+                </div>
+
+                <div className="flex gap-3 items-center">
+                  <Mail size={18} className="text-gray-400" />
+                  <span>hello@seaneb.com</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Sales */}
+            <div className="bg-white rounded-xl shadow-sm border p-6 flex flex-col justify-center">
+              <h4 className="font-semibold text-base text-gray-900">Talk to Sales</h4>
+              <p className="text-sm text-gray-500 mt-1 mb-2">
+                Connect before onboarding
               </p>
-
-              <form onSubmit={handleSubmit} className="space-y-4">
-
-                <div className="grid md:grid-cols-2 gap-3">
-                  {form.fields.slice(0, 2).map(field => (
-                    <InputField key={field.id} field={field} formData={formData} handleChange={handleChange} />
-                  ))}
-                </div>
-
-                {form.fields.slice(2).map(field => (
-                  <InputField key={field.id} field={field} formData={formData} handleChange={handleChange} />
-                ))}
-
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full bg-black text-white py-2.5 rounded-md text-sm font-medium hover:opacity-90 transition disabled:opacity-50"
-                >
-                  {loading ? 'Sending...' : form.submitLabel}
-                </button>
-
-              </form>
+              <p className="text-primary font-medium">
+                sales@seaneb.com
+              </p>
             </div>
 
-            {/* Right Panel */}
-            <div className="space-y-4 text-sm">
-
-              {/* Company */}
-              <div className="border rounded-lg p-4">
-                <h3 className="font-semibold mb-2 text-sm">
-                  Seaneb Technologies Pvt Ltd
-                </h3>
-
-                <div className="space-y-2 text-gray-600">
-                  <div className="flex gap-2">
-                    <MapPin size={16} />
-                    <span>
-                      FF/8 Madhav Arcade, Jol,<br />
-                      Anand - 388120, Gujarat
-                    </span>
-                  </div>
-
-                  <div className="flex gap-2">
-                    <Mail size={16} />
-                    <span>hello@seaneb.com</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Sales */}
-              <div className="border rounded-lg p-4">
-                <h4 className="font-medium text-sm">Talk to Sales</h4>
-                <p className="text-xs text-gray-500">
-                  Connect before onboarding
-                </p>
-                <p className="text-primary text-sm mt-1">
-                  sales@seaneb.com
-                </p>
-              </div>
-
-              {/* Support */}
-              <div className="border rounded-lg p-4">
-                <h4 className="font-medium text-sm">Support</h4>
-                <p className="text-xs text-gray-500">
-                  Need help with our solutions?
-                </p>
-                <p className="text-primary text-sm mt-1">
-                  support@seaneb.com
-                </p>
-              </div>
-
+            {/* Support */}
+            <div className="bg-white rounded-xl shadow-sm border p-6 flex flex-col justify-center">
+              <h4 className="font-semibold text-base text-gray-900">Support</h4>
+              <p className="text-sm text-gray-500 mt-1 mb-2">
+                Need help with our solutions?
+              </p>
+              <p className="text-primary font-medium">
+                support@seaneb.com
+              </p>
             </div>
-
           </div>
         </div>
       </section>

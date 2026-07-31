@@ -9,30 +9,23 @@ export async function POST(req: Request) {
   }
 
   try {
-    const headers = {
-      'Content-Type': 'application/json',
-      'X-Goog-Api-Key': process.env.GOOGLE_API_KEY,
-      'X-Goog-FieldMask': '*'
-    }
+    const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/hometown`, {
+      params: { input }
+    })
 
-    const queries: any = {}
-
-    queries.input = input
-    queries.includedRegionCodes = ['IN']
-
-    const data = await axios.post('https://places.googleapis.com/v1/places:autocomplete', queries, { headers })
-
-    if (data.statusText === 'OK') {
-      const cities = data?.data.suggestions
-
-      return NextResponse.json({ status: 'success', data: cities })
+    if (data && data.success) {
+      return NextResponse.json({ status: 'success', data: data.locations || [] })
     }
 
     return NextResponse.json(
-      { status: 'error', message: 'Google API error', googleStatus: data.status },
+      { status: 'error', message: 'Hometown API error' },
       { status: 500 }
     )
   } catch (err: any) {
-    return NextResponse.json({ status: 'error', message: err.message }, { status: 500 })
+    console.error('Hometown API error:', err.response?.data || err.message)
+    return NextResponse.json({ 
+      status: 'error', 
+      message: err.message
+    }, { status: 500 })
   }
 }

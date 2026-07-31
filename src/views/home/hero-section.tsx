@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { websiteConfig } from '@/config/website-config'
@@ -16,38 +16,13 @@ import { color } from '@/constants/colors'
 import { useAppContext } from '@/context/app.context'
 import { fetchCategoryList } from '@/services/apis'
 import { PlacesApiItem, PlacesApiResponse } from '@/types/google-places'
-import { capitalizeFirstLetter, toUrlName } from '@/utils'
+import { capitalizeFirstLetter, toUrlName, getStateSlug, STATE_CODES } from '@/utils'
 import { useQuery } from '@tanstack/react-query'
 
-const modifyUserData = (city: string): PlacesApiItem => {
+const modifyUserData = (city: string): any => {
   return {
-    placePrediction: {
-      place: 'places/ChIJhYgM_X5OXjkRFVJLDDy5oKk',
-      placeId: 'ChIJhYgM_X5OXjkRFVJLDDy5oKk',
-
-      text: {
-        text: city,
-        matches: [
-          {
-            endOffset: 5
-          }
-        ]
-      },
-      structuredFormat: {
-        mainText: {
-          text: city,
-          matches: [
-            {
-              endOffset: 5
-            }
-          ]
-        },
-        secondaryText: {
-          text: city
-        }
-      },
-      types: ['geocode', 'locality', 'political']
-    }
+    display_name: city,
+    city_name: city,
   }
 }
 
@@ -65,44 +40,73 @@ const HeroSection = () => {
     queryFn: () => fetchCategoryList()
   })
 
+  // Track previous city to detect changes from header location modal
+  const prevCityRef = useRef(currentCity)
+
+  // Sync header city selection → search bar location
+  // When currentCity changes from header, reset selectedLocation so searchLocation can re-set it
+  useEffect(() => {
+    if (currentCity && currentCity !== prevCityRef.current) {
+      prevCityRef.current = currentCity
+      // Reset selectedLocation so the searchLocation callback will auto-select
+      setSelectedLocation(null)
+    }
+  }, [currentCity])
+
   const onSearch = () => {
     if (!selectedLocation) return
 
-    const city = toUrlName(selectedLocation?.toLowerCase())
+    // selectedLocation now contains the pre-formatted slug (e.g., 'anand-gj') if selected from dropdown
+    const locationSlug = toUrlName(selectedLocation?.toLowerCase())
     const category = !!selectedCategory && selectedCategory !== 'all' ? selectedCategory : ''
     const query = searchText.trim()
 
     setIsSearching(true)
 
+    // Ensure we don't duplicate /in/
+    let basePath = locationSlug.includes('/') ? `/${locationSlug}` : `/in/${locationSlug}`
+
     router.push(
-      toUrlName(`/${city}${!!category ? `/${category}` : ''}${!!query ? `?text=${encodeURIComponent(query)}` : ''}`)
+      toUrlName(`${basePath}${!!category ? `/${category}` : ''}${!!query ? `?text=${encodeURIComponent(query)}` : ''}`)
     )
   }
 
   const searchLocation = useCallback(
-    async (inputValue?: string): Promise<PlacesApiItem[]> => {
+    async (inputValue?: string): Promise<any[]> => {
       try {
-        if (!inputValue && !currentCity) return []
+        if (!!inputValue || !!currentCity) {
+          const query = inputValue || currentCity
 
-        if (!!inputValue) {
           const res = await fetch('/api/search/location', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ input: inputValue })
+            body: JSON.stringify({ input: query })
           })
 
           const data: PlacesApiResponse = await res.json()
+          const results = data?.data || []
 
-          return data?.data || []
-        } else {
-          if (!!currentCity) {
-            setSelectedLocation(currentCity)
+          // Auto-select matching result when using currentCity (not user typing)
+          if (!inputValue && !!currentCity && results.length > 0) {
+            // Find exact match by city_name, fall back to first result
+            const matchingOption = results.find(
+              (r: any) => r.city_name?.toLowerCase() === currentCity?.toLowerCase()
+            ) || results[0]
 
-            return !!currentCity ? [modifyUserData(currentCity)] : []
+            const city = toUrlName(matchingOption?.city_name || matchingOption?.display_name || '')
+            
+            if (STATE_CODES[city]) {
+              setSelectedLocation(STATE_CODES[city])
+            } else {
+              const state = getStateSlug(matchingOption?.state_name || '', matchingOption?.city_name || '')
+              setSelectedLocation(state ? `${city}-${state}` : city)
+            }
           }
 
-          return []
+          return results
         }
+
+        return []
       } catch (error) {
         console.error('error :', error)
 
@@ -150,20 +154,30 @@ const HeroSection = () => {
               {/* Enter Location */}
               <div className='flex flex-1 items-center border-b border-gray-200 bg-white px-4 py-2 md:border-r md:border-b-0 md:bg-transparent'>
                 <MapPin className='mr-2 h-5 w-5 shrink-0 text-gray-400' />
-                <AsyncSelect<PlacesApiItem>
+                <AsyncSelect<any>
                   fetcher={searchLocation}
                   renderOption={user => (
                     <div className='flex items-center gap-2'>
                       <div className='flex flex-col'>
-                        <div className='font-medium'>{user?.placePrediction?.text?.text}</div>
+                        <div className='font-medium'>{user?.display_name}</div>
                       </div>
                     </div>
                   )}
-                  getOptionValue={user => user?.placePrediction?.structuredFormat?.mainText?.text}
+                  getOptionValue={user => {
+                    const city = toUrlName(user?.city_name || user?.display_name || '')
+                    
+                    // If the selected place is a State itself (like Delhi, Haryana, Gujarat)
+                    if (STATE_CODES[city]) {
+                      return STATE_CODES[city]
+                    }
+                    
+                    const state = getStateSlug(user?.state_name || '', user?.city_name || '')
+                    return state ? `${city}-${state}` : city
+                  }}
                   getDisplayValue={user => (
                     <div className='flex items-center gap-2 text-left'>
                       <div className='flex flex-col leading-tight'>
-                        <div className='font-medium'>{user?.placePrediction?.text?.text}</div>
+                        <div className='font-medium'>{user?.display_name}</div>
                       </div>
                     </div>
                   )}
@@ -185,10 +199,10 @@ const HeroSection = () => {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value='all'>All Categories</SelectItem>
-                    {categories?.data.map(category => (
-                      <SelectItem key={category.u_id} value={`${category.main_category}-${category.u_id}`}>
+                    {categories?.data?.map(category => (
+                      <SelectItem key={category.main_category_id} value={toUrlName(category.main_category_name)}>
                         {' '}
-                        {capitalizeFirstLetter(category.category)}
+                        {capitalizeFirstLetter(category.main_category_name)}
                       </SelectItem>
                     ))}
                   </SelectContent>

@@ -5,10 +5,10 @@ import React, { useMemo } from 'react'
 import { Star } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-import { BusinessDetailsAPIResponse } from '@/types/business'
+import { PublicBusinessDetail } from '@/services/apis/types'
 
-const BusinessRating = ({ businessData }: { businessData: BusinessDetailsAPIResponse }) => {
-  const avgRating = useMemo(() => Math.floor(Number(businessData?.avg_rating || 0)), [businessData?.avg_rating])
+const BusinessRating = ({ businessData }: { businessData: PublicBusinessDetail }) => {
+  const avgRating = useMemo(() => Math.floor(Number(businessData?.review_summary?.average_rating || 0)), [businessData?.review_summary?.average_rating])
 
   return (
     <div className='mt-3 flex items-center gap-2'>
@@ -24,7 +24,7 @@ const BusinessRating = ({ businessData }: { businessData: BusinessDetailsAPIResp
         ))}
       </div>
       <p className='text-sm text-gray-600 capitalize'>
-        {businessData?.avg_rating ? `(${businessData?.avg_rating} ratings)` : ''}
+        {businessData?.review_summary?.average_rating ? `(${businessData?.review_summary?.total_reviews} ratings)` : 'Rating 0'}
       </p>
     </div>
   )

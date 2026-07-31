@@ -39,13 +39,13 @@ const ListingFilters = ({ filters, setFilters, cityValue }: Props) => {
     queryFn: () => fetchCategoryList()
   })
 
-  const allCategories = useMemo(() => categories?.data?.map(category => category?.category) || [], [categories])
+  const allCategories = useMemo(() => categories?.data?.map(category => category?.main_category_name) || [], [categories])
 
   // ** Search Delayed Query
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const delayedQuery = useCallback(debounce(refetch, 500), [searchText])
 
-  const searchLocation = useCallback(async (inputValue?: string): Promise<PlacesApiItem[]> => {
+  const searchLocation = useCallback(async (inputValue?: string): Promise<any[]> => {
     try {
       if (!inputValue) return []
 
@@ -74,20 +74,23 @@ const ListingFilters = ({ filters, setFilters, cityValue }: Props) => {
     await sleep(100)
 
     const filteredCategories = categories?.data.filter(category =>
-      category?.category?.toLowerCase().includes(inputValue?.toLowerCase())
+      category?.main_category_name?.toLowerCase().includes(inputValue?.toLowerCase())
     )
 
-    return filteredCategories?.map(category => category?.category) || []
+    return filteredCategories?.map(category => category?.main_category_name) || []
   }
 
   // && Category Change
   const handleCategoryChange = (e: string) => {
     const splitPaths = pathname?.split('/')
+    const country = splitPaths?.at(1) || 'in'
+    const location = splitPaths?.at(2)
+
     if (!!e) {
-      const pushURL = toUrlName(`/${splitPaths?.at(1)}/${e}`)
+      const pushURL = toUrlName(`/${country}/${location}/${e}`)
       router.push(pushURL)
     } else {
-      const pushURL = toUrlName(`/${splitPaths?.at(1)}`)
+      const pushURL = toUrlName(`/${country}/${location}`)
       router.push(pushURL)
     }
   }
@@ -95,14 +98,15 @@ const ListingFilters = ({ filters, setFilters, cityValue }: Props) => {
   // ** City Change
   const handleCityChange = (e: string) => {
     const splitPaths = pathname?.split('/')
+    const country = splitPaths?.at(1) || 'in'
 
     if (!!e) {
-      const category = splitPaths?.at(2)
+      const category = splitPaths?.at(3)
       if (!!category) {
-        const pushURL = toUrlName(`/${e}/${splitPaths?.at(2)}`)
+        const pushURL = toUrlName(`/${country}/${e}/${category}`)
         router.push(pushURL)
       } else {
-        const pushURL = toUrlName(`/${e}`)
+        const pushURL = toUrlName(`/${country}/${e}`)
         router.push(pushURL)
       }
     }
@@ -129,20 +133,20 @@ const ListingFilters = ({ filters, setFilters, cityValue }: Props) => {
         />
 
         {/* Location */}
-        <AsyncSelect<PlacesApiItem>
+        <AsyncSelect<any>
           fetcher={searchLocation}
           renderOption={user => (
             <div className='flex items-center gap-2'>
               <div className='flex flex-col'>
-                <div className='font-medium'>{user?.placePrediction?.text?.text}</div>
+                <div className='font-medium'>{user?.display_name}</div>
               </div>
             </div>
           )}
-          getOptionValue={user => user?.placePrediction?.structuredFormat?.mainText?.text}
+          getOptionValue={user => user?.city_name || user?.display_name}
           getDisplayValue={user => (
             <div className='flex items-center gap-2 text-left'>
               <div className='flex flex-col leading-tight'>
-                <div className='font-medium'>{user?.placePrediction?.text?.text}</div>
+                <div className='font-medium'>{user?.display_name}</div>
               </div>
             </div>
           )}

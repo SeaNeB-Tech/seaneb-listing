@@ -1,6 +1,7 @@
 import { endpoint } from '@/services/apis/endpoint'
 import HeroSection from '@/views/home/hero-section'
 import MajorCities from '@/views/home/major-cities'
+import { AutoRedirect } from '@/components/location/auto-redirect'
 import axios from 'axios'
 import { LocalBusiness, WithContext } from 'schema-dts'
 import type { Metadata } from 'next'
@@ -36,8 +37,8 @@ const fetchHomePageData = async () => {
   const listCategories = async () => {
     try {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL + endpoint.popCategory.uri
-
-      return await axios.get(apiUrl)
+      const res = await axios.get(apiUrl)
+      return res.data
     } catch {
       return null
     }
@@ -45,7 +46,8 @@ const fetchHomePageData = async () => {
 
   const listCities = async () => {
     try {
-      return await axios.get(process.env.NEXT_PUBLIC_API_URL + endpoint.majorCities.uri)
+      const res = await axios.get(process.env.NEXT_PUBLIC_API_URL + endpoint.majorCities.uri)
+      return res.data
     } catch {
       return null
     }
@@ -60,7 +62,8 @@ export default async function Home() {
   return (
     <>
       <HeroSection />
-      <MajorCities listCities={listCities?.data?.data?.data || []} />
+      <MajorCities listCities={listCities?.data?.data || []} />
+      <AutoRedirect />
       <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     </>
   )

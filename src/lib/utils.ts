@@ -68,17 +68,9 @@ export function constructMetadata({
 export const generatePublicImageBusinessLink = (objectKey?: string) => {
   if (!objectKey) return '/images/default.jpg'
 
-  return `/storage/${objectKey}`
-}
-
-export const generatePublicImageUserLink = (objectKey?: string) => {
-  if (!objectKey) return '/images/default-avatar.png'
-
-  // If full URL → extract path
-  if (objectKey.startsWith('http')) {
-    const url = new URL(objectKey)
-    
-    return `/storage${url.pathname}`
+  // If full URL or local image → return directly
+  if (objectKey.startsWith('http') || objectKey.startsWith('/images/')) {
+    return objectKey
   }
 
   const cleanKey = objectKey
@@ -86,4 +78,43 @@ export const generatePublicImageUserLink = (objectKey?: string) => {
     .replace(/^storage\//, '')
 
   return `/storage/${cleanKey}`
+}
+
+export const generatePublicImageUserLink = (objectKey?: string) => {
+  if (!objectKey) return '/images/default-avatar.png'
+
+  // If full URL or local image → return directly
+  if (objectKey.startsWith('http') || objectKey.startsWith('/images/')) {
+    return objectKey
+  }
+
+  const cleanKey = objectKey
+    .replace(/^\/+/, '')
+    .replace(/^storage\//, '')
+
+  return `/storage/${cleanKey}`
+}
+
+export const parseLocationSlug = (locationSlug: string) => {
+  const parts = locationSlug.split('-')
+  
+  if (parts.length === 1) {
+    return { city: parts[0], area: null }
+  }
+
+  const lastPart = parts[parts.length - 1]
+  
+  // If the last part is exactly 2 letters (state code like 'gj', 'mh'), it's just a city
+  if (/^[a-z]{2}$/i.test(lastPart)) {
+    return {
+      city: parts.slice(0, parts.length - 1).join('-'),
+      area: null
+    }
+  }
+
+  // Otherwise, the last part is the city name, and the rest is the area
+  return {
+    city: lastPart,
+    area: parts.slice(0, parts.length - 1).join('-')
+  }
 }

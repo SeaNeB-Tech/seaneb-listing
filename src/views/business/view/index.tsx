@@ -1,8 +1,9 @@
 'use client'
 
 import ScreenWrapper from '@/components/wrapper/screen-wrapper'
-import { generatePublicImageUserLink } from '@/lib/utils'
-import { BusinessDetailsAPIResponse, TestimonialItem } from '@/types/business'
+import { generatePublicImageUserLink, generatePublicImageBusinessLink } from '@/lib/utils'
+import { PublicBusinessDetail } from '@/services/apis/types'
+import { TestimonialItem } from '@/types/business'
 import { Mail, MapPin, Phone, Share2 } from 'lucide-react'
 import React from 'react'
 import LocationMap from './basic/map'
@@ -11,7 +12,7 @@ import BusinessReviews from './reviews'
 import { FaWhatsapp } from 'react-icons/fa'
 
 interface BusinessDetailsProps {
-  businessData: BusinessDetailsAPIResponse
+  businessData: PublicBusinessDetail
   testimonials: TestimonialItem[]
 }
 
@@ -34,18 +35,31 @@ const BusinessDetails = ({ businessData, testimonials }: BusinessDetailsProps) =
         <div className="lg:col-span-8 space-y-6">
 
           {/* Header */}
-          <div className="rounded-xl border bg-white p-5 shadow-sm">
-            <h1 className="text-2xl font-semibold">
-              {businessData?.business_name}
-            </h1>
-
-            <div className="mt-2 flex items-center gap-2 text-sm text-gray-500">
-              <MapPin className="h-4 w-4" />
-              {businessData?.area}, {businessData?.city}, {businessData?.state}
+          <div className="rounded-xl border bg-white p-5 shadow-sm flex items-start gap-5">
+            <div className="flex-shrink-0">
+              <img
+                src={businessData?.branch_logo 
+                  ? generatePublicImageBusinessLink(businessData.branch_logo)
+                  : `https://ui-avatars.com/api/?name=${encodeURIComponent(businessData?.business?.display_name || businessData?.branch_name || 'Business')}&background=random&size=96`
+                }
+                alt="Business Logo"
+                className="w-20 h-20 sm:w-24 sm:h-24 rounded-lg object-contain border p-1 bg-white shadow-sm"
+              />
             </div>
+            
+            <div className="flex-1">
+              <h1 className="text-2xl font-semibold">
+                {businessData?.business?.display_name || businessData?.branch_name}
+              </h1>
 
-            <div className="mt-3">
-              <BusinessRating businessData={businessData} />
+              <div className="mt-2 flex items-center gap-2 text-sm text-gray-500">
+                <MapPin className="h-4 w-4" />
+                {businessData?.location?.area?.area_name}, {businessData?.location?.city?.city_name}, {businessData?.location?.state?.state_name}
+              </div>
+
+              <div className="mt-3">
+                <BusinessRating businessData={businessData} />
+              </div>
             </div>
           </div>
 
@@ -53,21 +67,21 @@ const BusinessDetails = ({ businessData, testimonials }: BusinessDetailsProps) =
           <Card title="Contact Information">
             <div className="grid gap-4 sm:grid-cols-2 text-sm">
 
-              {businessData?.contact_no && (
-                <a href={`tel:${businessData.contact_no}`} className="flex items-center gap-3">
+              {businessData?.contact?.primary_number && (
+                <a href={`tel:${businessData.contact.primary_number}`} className="flex items-center gap-3">
                   <div className="bg-gray-100 p-2 rounded-md">
                     <Phone className="h-4 w-4 text-gray-600" />
                   </div>
-                  <span className="font-medium">{businessData.contact_no}</span>
+                  <span className="font-medium">{businessData.contact.country_code} {businessData.contact.primary_number}</span>
                 </a>
               )}
 
-              {businessData?.email && (
-                <a href={`mailto:${businessData.email}`} className="flex items-center gap-3">
+              {businessData?.contact?.business_email && (
+                <a href={`mailto:${businessData.contact.business_email}`} className="flex items-center gap-3">
                   <div className="bg-gray-100 p-2 rounded-md">
                     <Mail className="h-4 w-4 text-gray-600" />
                   </div>
-                  <span>{businessData.email}</span>
+                  <span>{businessData.contact.business_email}</span>
                 </a>
               )}
             </div>
@@ -76,7 +90,7 @@ const BusinessDetails = ({ businessData, testimonials }: BusinessDetailsProps) =
           {/* Location */}
           {businessData?.latitude && businessData?.longitude && (
             <Card title="Location">
-              <LocationMap lat={businessData.latitude} long={businessData.longitude} />
+              <LocationMap lat={businessData.latitude.toString()} long={businessData.longitude.toString()} />
             </Card>
           )}
 
@@ -92,39 +106,41 @@ const BusinessDetails = ({ businessData, testimonials }: BusinessDetailsProps) =
         <div className="lg:col-span-4 space-y-6">
 
           {/* Owner */}
-          <Card title="Business Owner">
-            {businessData?.users_businesses?.map(user => (
-              <div key={user?.u_id} className="space-y-4">
-
+          {businessData?.owner && (businessData.owner.full_name || businessData.owner.first_name || businessData.owner.profile_picture) && (
+            <Card title="Business Owner">
+              <div className="space-y-4">
                 {/* Profile */}
                 <div className="flex items-start gap-3">
                   <img
-                    src={generatePublicImageUserLink(user?.user?.image + '-140x140.png')}
+                    src={businessData.owner?.profile_picture 
+                      ? generatePublicImageUserLink(businessData.owner.profile_picture)
+                      : `https://ui-avatars.com/api/?name=${encodeURIComponent(businessData.owner?.full_name || businessData.owner?.first_name || 'Owner')}&background=random`
+                    }
                     className="h-12 w-12 rounded-full object-cover border"
                   />
 
                   <div className="space-y-1">
                     <p className="font-semibold text-sm">
-                      {user?.user?.full_name}
+                      {businessData.owner?.full_name || businessData.owner?.first_name || 'Owner'}
                     </p>
 
-                    {user?.user?.email && (
+                    {businessData.owner?.email && (
                       <a
-                        href={`mailto:${user?.user?.email}`}
+                        href={`mailto:${businessData.owner?.email}`}
                         className="flex items-center gap-1 text-xs text-gray-500 hover:underline"
                       >
                         <Mail className="h-3.5 w-3.5" />
-                        {user?.user?.email}
+                        {businessData.owner?.email}
                       </a>
                     )}
 
-                    {user?.user?.mobile_no && (
+                    {businessData.owner?.mobile_number && (
                       <a
-                        href={`tel:${user?.user?.mobile_no}`}
+                        href={`tel:${businessData.owner?.mobile_number}`}
                         className="flex items-center gap-1 text-xs text-gray-500 hover:underline"
                       >
                         <Phone className="h-3.5 w-3.5" />
-                        {user?.user?.mobile_no}
+                        {businessData.owner?.mobile_number}
                       </a>
                     )}
                   </div>
@@ -135,7 +151,7 @@ const BusinessDetails = ({ businessData, testimonials }: BusinessDetailsProps) =
                   <button
                     onClick={() =>
                       window.open(
-                        `https://wa.me/${businessData?.whatsapp_no || user?.user?.mobile_no}`,
+                        `https://wa.me/${businessData?.contact?.whatsapp_country_code || ''}${businessData?.contact?.whatsapp_number || businessData?.contact?.primary_number}`,
                         '_blank'
                       )
                     }
@@ -145,9 +161,9 @@ const BusinessDetails = ({ businessData, testimonials }: BusinessDetailsProps) =
                     WhatsApp
                   </button>
 
-                  {user?.user?.mobile_no && (
+                  {businessData?.contact?.primary_number && (
                     <a
-                      href={`tel:${user?.user?.mobile_no}`}
+                      href={`tel:${businessData?.contact?.primary_number}`}
                       className="flex flex-1 items-center justify-center gap-2 rounded-lg border py-2 text-sm font-medium hover:bg-gray-100 transition"
                     >
                       <Phone className="h-4 w-4" />
@@ -155,22 +171,23 @@ const BusinessDetails = ({ businessData, testimonials }: BusinessDetailsProps) =
                     </a>
                   )}
                 </div>
-
               </div>
-            ))}
-          </Card>
+            </Card>
+          )}
 
           {/* Business Details */}
           <Card title="Business Details">
             <div className="space-y-3 text-sm">
               {[
-                { label: 'City', value: businessData?.city },
-                { label: 'State', value: businessData?.state },
-                { label: 'Country', value: businessData?.country }
+                { label: 'Area', value: businessData?.location?.area?.area_name },
+                { label: 'City', value: businessData?.location?.city?.city_name },
+                { label: 'State', value: businessData?.location?.state?.state_name },
+                { label: 'Country', value: businessData?.location?.country?.country_name },
+                { label: 'Address', value: businessData?.address }
               ].map((item, i) => (
                 <div key={i} className="flex justify-between">
                   <span className="text-gray-500">{item.label}</span>
-                  <span className="font-medium capitalize">{item.value}</span>
+                  <span className="font-medium capitalize">{item.value || 'N/A'}</span>
                 </div>
               ))}
             </div>
@@ -182,7 +199,7 @@ const BusinessDetails = ({ businessData, testimonials }: BusinessDetailsProps) =
               onClick={async () => {
                 if (navigator.share) {
                   await navigator.share({
-                    title: businessData?.business_name,
+                    title: businessData?.business?.display_name || businessData?.branch_name,
                     url: window.location.href
                   })
                 } else {

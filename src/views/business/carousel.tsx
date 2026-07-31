@@ -16,16 +16,18 @@ import {
   DialogTitle,
   DialogDescription
 } from '@/components/ui/dialog'
+import ScreenWrapper from '@/components/wrapper/screen-wrapper'
 
 import { generatePublicImageBusinessLink } from '@/lib/utils'
-import { BusinessDetailsAPIResponse } from '@/types/business'
+import { PublicBusinessDetail } from '@/services/apis/types'
 
-function BusinessViewCarousel({ businessData }: { businessData: BusinessDetailsAPIResponse }) {
+function BusinessViewCarousel({ businessData }: { businessData: PublicBusinessDetail }) {
   const [image, setImage] = useState<string | null>(null)
   const [current, setCurrent] = useState(0)
   const [api, setApi] = useState<any>(null)
 
-  const images = businessData?.shop_galleries || []
+  const DEFAULT_IMAGE = '/images/pages/home/poster.png'
+  const images = businessData?.gallery?.length ? businessData.gallery : [DEFAULT_IMAGE]
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
   // 🔹 Auto-scroll (5s) with pause/resume
@@ -68,8 +70,9 @@ function BusinessViewCarousel({ businessData }: { businessData: BusinessDetailsA
 
   return (
     <>
-      {/* Carousel */}
-      <div className="relative w-full overflow-hidden rounded-xl">
+      <ScreenWrapper className="pt-6">
+        {/* Carousel */}
+        <div className="relative w-full overflow-hidden rounded-xl shadow-sm border border-gray-100">
         <Carousel
           opts={{ loop: true }}
           className="group w-full"
@@ -84,35 +87,37 @@ function BusinessViewCarousel({ businessData }: { businessData: BusinessDetailsA
           }}
         >
           <CarouselContent>
-            {images.map((gallery, index) => {
-              const imgUrl = generatePublicImageBusinessLink(gallery?.link)
+            {images.map((galleryItem, index) => {
+              const urlStr = typeof galleryItem === 'string' ? galleryItem : galleryItem?.media_url
+              const imgUrl = urlStr === DEFAULT_IMAGE ? DEFAULT_IMAGE : generatePublicImageBusinessLink(urlStr)
 
               return (
                 <CarouselItem key={index} className="w-full">
                   <div
-                    className="relative h-[250px] sm:h-[350px] md:h-[450px] lg:h-[550px] w-full cursor-zoom-in"
+                    className="relative h-[200px] sm:h-[250px] md:h-[300px] lg:h-[350px] w-full flex items-center justify-center cursor-zoom-in bg-black"
                     onClick={() => setImage(imgUrl)}
                   >
-                    {/* Image */}
                     <img
                       src={imgUrl}
-                      alt={`${businessData?.business_legal_name} ${index}`}
-                      className="h-full w-full object-contain"
+                      alt={`${businessData?.business?.display_name || 'Business'} ${index}`}
+                      className="h-full w-full object-contain object-center"
                     />
 
-                    {/* Dots (Bottom Right) */}
-                    <div className="absolute bottom-3 right-3 flex gap-1.5 bg-black/40 backdrop-blur-sm px-2 py-1 rounded-full">
-                      {images.map((_, i) => (
-                        <span
-                          key={i}
-                          className={`h-2 w-2 rounded-full transition-all ${
-                            current === i
-                              ? 'bg-white w-4'
-                              : 'bg-white/50'
-                          }`}
-                        />
-                      ))}
-                    </div>
+                    {/* Dots (Bottom Right) - only show when multiple images */}
+                    {images.length > 1 && (
+                      <div className="absolute bottom-3 right-3 flex gap-1.5 bg-black/40 backdrop-blur-sm px-2 py-1 rounded-full">
+                        {images.map((_, i) => (
+                          <span
+                            key={i}
+                            className={`h-2 w-2 rounded-full transition-all ${
+                              current === i
+                                ? 'bg-white w-4'
+                                : 'bg-white/50'
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </CarouselItem>
               )
@@ -120,10 +125,15 @@ function BusinessViewCarousel({ businessData }: { businessData: BusinessDetailsA
           </CarouselContent>
 
           {/* Navigation */}
-          <CarouselPrevious className="absolute left-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition bg-white/80 hover:bg-white" />
-          <CarouselNext className="absolute right-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition bg-white/80 hover:bg-white" />
+          {images.length > 1 && (
+            <>
+              <CarouselPrevious className="absolute left-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition bg-white/80 hover:bg-white" />
+              <CarouselNext className="absolute right-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition bg-white/80 hover:bg-white" />
+            </>
+          )}
         </Carousel>
       </div>
+      </ScreenWrapper>
 
       {/* Fullscreen Preview */}
       <Dialog open={!!image} onOpenChange={() => setImage(null)}>
@@ -134,12 +144,14 @@ function BusinessViewCarousel({ businessData }: { businessData: BusinessDetailsA
           </DialogHeader>
 
           <div className="flex items-center justify-center w-full h-full">
-            <img
-              src={image ?? ''}
-              alt="Preview"
-              draggable={false}
-              className="max-h-[95vh] max-w-[98vw] object-contain rounded-lg"
-            />
+            {image && (
+              <img
+                src={image}
+                alt="Preview"
+                draggable={false}
+                className="max-h-[95vh] max-w-[98vw] object-contain rounded-lg"
+              />
+            )}
           </div>
         </DialogContent>
       </Dialog>
