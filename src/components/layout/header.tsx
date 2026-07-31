@@ -145,23 +145,15 @@ function Header() {
 
             {/* Left side: Logo & Location */}
             <div className='flex items-center gap-4 lg:gap-6 lg:mr-auto'>
-              <Link href='/' className='flex items-center gap-2'>
-                {typeof mainLogo === 'string' ? (
-                  <img
-                    src={mainLogo}
-                    alt='logo'
-                    className='h-8 sm:h-10 w-auto object-contain max-w-36 sm:max-w-44 lg:max-w-[200px]'
-                  />
-                ) : (
-                  <Image
-                    src={Logo}
-                    alt='logo'
-                    width={220}
-                    height={38}
-                    priority
-                    className='h-auto max-w-36 sm:max-w-44 lg:max-w-[200px]'
-                  />
-                )}
+              <Link href='/' className='flex items-center gap-2 lg:mr-8'>
+                <Image
+                  src={Logo}
+                  alt='logo'
+                  width={220}
+                  height={38}
+                  priority
+                  className='h-auto max-w-36 sm:max-w-44 lg:max-w-full'
+                />
               </Link>
               
               {/* Location Selector (Desktop/Tablet) */}
