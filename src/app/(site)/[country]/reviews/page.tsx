@@ -9,18 +9,6 @@ import Link from 'next/link'
 import { FaWhatsapp } from 'react-icons/fa'
 import { Phone } from 'lucide-react'
 import dayjs from 'dayjs'
-import axios from 'axios'
-import { TestimonialItem } from '@/types/business'
-
-const getTestimonials = async (seanebId: string): Promise<TestimonialItem[]> => {
-  try {
-    const url = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/public/testimonials/${seanebId}`
-    const listReviews = await axios.get(url)
-    return listReviews?.data?.data?.data || []
-  } catch {
-    return []
-  }
-}
 
 export default async function BusinessReviewsPage({
   params
@@ -37,8 +25,8 @@ export default async function BusinessReviewsPage({
     return <NotFoundPage />
   }
 
-  // Use the same testimonials API as the business detail page
-  const reviewsList = await getTestimonials(businessData?.seaneb_id)
+  // Use reviews from the business data response directly
+  const reviewsList = Array.isArray(businessData?.reviews) ? businessData.reviews : []
 
   // Use review_summary from business data for consistent rating display
   const actualTotalReviews = Number(businessData?.review_summary?.total_reviews || reviewsList.length)
