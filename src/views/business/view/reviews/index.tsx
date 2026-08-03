@@ -52,14 +52,7 @@ const BusinessReviews = ({ testimonials }: { testimonials: TestimonialItem[] }) 
         )}
       </div>
 
-      {/* Load More Footer */}
-      {testimonials?.length > 0 && (
-        <div className="p-6 flex justify-center border-t border-gray-100">
-          <button className="flex items-center justify-center gap-2 w-full max-w-sm border hover:bg-gray-50 text-blue-600 rounded-lg py-2.5 text-sm font-medium transition-colors">
-            Load More <ArrowDown className="w-4 h-4" />
-          </button>
-        </div>
-      )}
+
     </div>
   )
 }
