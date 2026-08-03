@@ -1,4 +1,4 @@
-import { fetchPublicBusinessBySeanebId, fetchPublicBusinessReviews } from '@/services/apis'
+import { fetchPublicBusinessBySeanebId } from '@/services/apis'
 import NotFoundPage from '@/app/not-found'
 import ScreenWrapper from '@/components/wrapper/screen-wrapper'
 import BusinessReviews from '@/views/business/view/reviews'
@@ -9,6 +9,18 @@ import Link from 'next/link'
 import { FaWhatsapp } from 'react-icons/fa'
 import { Phone } from 'lucide-react'
 import dayjs from 'dayjs'
+import axios from 'axios'
+import { TestimonialItem } from '@/types/business'
+
+const getTestimonials = async (seanebId: string): Promise<TestimonialItem[]> => {
+  try {
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/public/testimonials/${seanebId}`
+    const listReviews = await axios.get(url)
+    return listReviews?.data?.data?.data || []
+  } catch {
+    return []
+  }
+}
 
 export default async function BusinessReviewsPage({
   params
@@ -25,16 +37,16 @@ export default async function BusinessReviewsPage({
     return <NotFoundPage />
   }
 
-  const reviewsResponse = await fetchPublicBusinessReviews(slug)
-  const reviewsList = Array.isArray(reviewsResponse?.data) ? reviewsResponse.data : (reviewsResponse?.data?.data || [])
+  // Use the same testimonials API as the business detail page
+  const reviewsList = await getTestimonials(businessData?.seaneb_id)
 
-  // Calculate actual stats from the reviews list
-  const actualTotalReviews = reviewsList.length
-  let actualAverageRating = '0.0'
-  if (actualTotalReviews > 0) {
-    const totalScore = reviewsList.reduce((sum: number, review: any) => sum + Number(review?.rating || 0), 0)
-    actualAverageRating = (totalScore / actualTotalReviews).toFixed(1)
-  }
+  // Use review_summary from business data for consistent rating display
+  const actualTotalReviews = Number(businessData?.review_summary?.total_reviews || reviewsList.length)
+  const actualAverageRating = businessData?.review_summary?.average_rating
+    ? Number(businessData.review_summary.average_rating).toFixed(1)
+    : (reviewsList.length > 0
+      ? (reviewsList.reduce((sum: number, review: any) => sum + Number(review?.rating || 0), 0) / reviewsList.length).toFixed(1)
+      : '0.0')
 
   return (
     <div className="bg-[#f8f9fa] min-h-screen">
