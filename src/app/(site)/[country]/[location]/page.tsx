@@ -19,10 +19,11 @@ export async function generateMetadata({
   const { country, location } = await params
 
   let decodedLocation = decodeURIComponent(location || '')
-  let displayLocation = decodedLocation
-    .split('-')
-    .map(word => capitalize(word))
-    .join(', ')
+  const { city: decodedCity, area: selectedArea } = parseLocationSlug(decodedLocation)
+
+  let displayLocation = selectedArea
+    ? `${selectedArea.split('-').map(word => capitalize(word)).join(' ')}, ${decodedCity.split('-').map(w => capitalize(w)).join(' ')}`
+    : decodedCity.split('-').map(w => capitalize(w)).join(' ')
 
   // Check if the location is actually a state
   const statesRes = await fetchBrowseStates(country)
@@ -69,10 +70,9 @@ const CityOrStatePage = async ({ params }: { params: Promise<{ country: string; 
   const { city: decodedCity, area: selectedArea } = parseLocationSlug(decodedLocation)
 
   // The UI will display the formatted location string.
-  let displayLocation = decodedLocation
-    .split('-')
-    .map(word => capitalize(word))
-    .join(', ')
+  let displayLocation = selectedArea
+    ? `${selectedArea.split('-').map(word => capitalize(word)).join(' ')}, ${decodedCity.split('-').map(w => capitalize(w)).join(' ')}`
+    : decodedCity.split('-').map(w => capitalize(w)).join(' ')
 
   let bannerPaths = [
     { path: `/${country}/${decodedLocation}`, title: displayLocation }
