@@ -8,98 +8,124 @@ import dayjs from 'dayjs'
 // ** Constants Imports
 import { sitemapRoutes } from '@/constants/sitemap-routes'
 
-// ** Services Imports
-import { endpoint } from '@/services/apis/endpoint'
-
-// ** Types Imports
-import { ApiResponse } from '@/types/api-response'
-import { BusinessSearchResponse } from '@/services/apis/types'
-
 const url = process.env.NEXT_PUBLIC_SITEMAP_URL ?? 'https://www.seaneb.com'
-const apiUrl = process.env.NEXT_PUBLIC_API_URL + endpoint.searchBusiness.uri
-
-interface BusinessDynamicList extends ApiResponse {
-  data: BusinessSearchResponse
-}
+const browseApiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/public/browse`
 
 // !! Cache configuration
 const CACHE_DURATION = 3600000 // ?? 1 hour in milliseconds
 let cachedData: MetadataRoute.Sitemap | null = null
 let cacheTimestamp: number | null = null
 
-const getBusinessData = async (): Promise<MetadataRoute.Sitemap> => {
+const fetchFromBrowse = async (path: string = '', params: any = {}) => {
+  try {
+    const res = await axios.get(`${browseApiUrl}${path}`, { params, timeout: 10000 })
+    return res.data?.data || null
+  } catch (err) {
+    return null
+  }
+}
+
+const getDynamicRoutes = async (): Promise<MetadataRoute.Sitemap> => {
   // !! Return cached data if valid
   if (cachedData && cacheTimestamp && Date.now() - cacheTimestamp < CACHE_DURATION) {
     return cachedData
   }
 
-  const sanitizeSlug = (value: string) => {
-    return value
-      .toLowerCase()
-      .replace(/&/g, 'and')
-      .replace(/[^a-z0-9\s-]/g, '') // removes || and other invalid chars
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-')
-      .replace(/^-|-$/g, '')
-  }
+  const routes: MetadataRoute.Sitemap = []
 
   try {
-    const { data: response }: { data: BusinessDynamicList } = await axios.get(apiUrl, {
-      // ?? Add timeout to prevent long hangs
-      timeout: 5000
-    })
+    const countriesData = await fetchFromBrowse()
+    const countries = countriesData?.items || []
 
-    if (!response?.data?.data?.length) {
-      cachedData = []
-      cacheTimestamp = Date.now()
+    for (const country of countries) {
+      if (!country?.slug) continue
+      const countrySlug = country.slug
 
-      return []
-    }
+      // Add Country Route
+      routes.push({
+        url: `${url}/${countrySlug}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly',
+        priority: 0.9
+      })
 
-    // ?? Process data in a single pass
-    const businessRoutes: MetadataRoute.Sitemap = []
-    for (const business of response.data.data) {
-      if (business?.city && business?.business_category && business?.business_legal_name) {
-        const rawCategory = business.business_category?.split(',')[0]?.trim() || 'general'
-        const city = sanitizeSlug(business.city)
-        const cat = sanitizeSlug(rawCategory)
-        const name = sanitizeSlug(business.business_legal_name)
-        const finalUrl = `${url}/${city}/${cat}/${name}`
+      const statesData = await fetchFromBrowse(`/${country.country_slug}`)
+      const states = statesData?.items || []
 
-        businessRoutes.push({
-          url: encodeURI(finalUrl).replace(/&/g, '%26'),
-          lastModified: business.updated_at ? dayjs(business.updated_at).toDate() : new Date(),
-          changeFrequency: 'weekly' as const,
+      for (const state of states) {
+        if (!state?.slug) continue
+        
+        // Add State Route
+        routes.push({
+          url: `${url}/${state.slug}`,
+          lastModified: new Date(),
+          changeFrequency: 'weekly',
           priority: 0.9
         })
-        
-        businessRoutes.push({
-          url: encodeURI(`${finalUrl}/reviews`).replace(/&/g, '%26'),
-          lastModified: business.updated_at ? dayjs(business.updated_at).toDate() : new Date(),
-          changeFrequency: 'weekly' as const,
-          priority: 0.8
-        })
+
+        const citiesData = await fetchFromBrowse(`/${country.country_slug}/${state.state_slug}`)
+        const cities = citiesData?.items || []
+
+        for (const city of cities) {
+          if (!city?.slug) continue
+
+          // Add City Route
+          routes.push({
+            url: `${url}/${city.slug}`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 0.9
+          })
+
+          // Fetch Areas and Businesses for the City
+          const cityAreasData = await fetchFromBrowse(`/${country.country_slug}/${state.state_slug}/${city.city_slug}`, { limit: 1000 })
+          
+          const areas = cityAreasData?.items || []
+          for (const area of areas) {
+            if (!area?.slug) continue
+            // Add Area Route
+            routes.push({
+              url: `${url}/${area.slug}`,
+              lastModified: new Date(),
+              changeFrequency: 'weekly',
+              priority: 0.8
+            })
+          }
+
+          const businesses = cityAreasData?.businesses || []
+          for (const business of businesses) {
+            if (!business?.seaneb_id) continue
+            const seanebId = business.seaneb_id
+            const lastMod = business.created_at ? dayjs(business.created_at).toDate() : new Date()
+
+            // Add Business Details Route
+            routes.push({
+              url: `${url}/${seanebId}`,
+              lastModified: lastMod,
+              changeFrequency: 'weekly',
+              priority: 0.9
+            })
+
+            // Add Business Reviews Route
+            routes.push({
+              url: `${url}/${seanebId}/reviews`,
+              lastModified: lastMod,
+              changeFrequency: 'weekly',
+              priority: 0.8
+            })
+          }
+        }
       }
     }
 
-    // !! Sort only if necessary
-    if (businessRoutes.length > 1) {
-      businessRoutes.sort((a, b) =>
-        (a.url.split('/')[3] || '').localeCompare(b.url.split('/')[3] || '', undefined, {
-          numeric: true,
-          sensitivity: 'base'
-        })
-      )
-    }
-
-    cachedData = businessRoutes
+    cachedData = routes
     cacheTimestamp = Date.now()
 
-    return businessRoutes
-  } catch {
-    cachedData = []
-    cacheTimestamp = Date.now()
-
+    return routes
+  } catch (err) {
+    console.error('Error generating sitemap routes:', err)
+    
+    // Return empty but don't cache if there was an error
     return []
   }
 }
@@ -113,12 +139,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8
   }))
 
-  const businessData = await getBusinessData()
+  const dynamicData = await getDynamicRoutes()
 
-  // ** Use Set to ensure no duplicates
-  const map = new Map()
+  // ** Use Map to ensure no duplicates
+  const map = new Map<string, any>()
 
-  for (const item of [...pageRoutes, ...businessData]) {
+  for (const item of [...pageRoutes, ...dynamicData]) {
     map.set(item.url, item)
   }
 
