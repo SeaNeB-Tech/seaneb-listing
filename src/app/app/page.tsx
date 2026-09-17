@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: appData.meta.title,
   description: appData.meta.description,
   alternates: {
-    canonical: '/seaneb-app',
+    canonical: '/app',
   },
   robots: {
   index: true,
@@ -31,7 +31,7 @@ export default function Page() {
     "@type": "SoftwareApplication",
     "name": appData.meta.title,
     "description": appData.meta.description,
-    "url": "https://www.seaneb.com/seaneb-app",
+    "url": "https://www.seaneb.com/app",
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "Android, iOS",
     "inLanguage": "en-IN",
