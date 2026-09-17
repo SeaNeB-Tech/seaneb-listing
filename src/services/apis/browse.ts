@@ -14,11 +14,12 @@ export const fetchBrowseCountries = async (): Promise<BrowseResponse<BrowseCount
   try {
     const response = await Axios.get(BROWSE_API_URL);
     
-return response.data;
-  } catch (err) {
-    console.error('Error fetching browse countries:', err);
-    
-return null;
+    return response.data;
+  } catch (err: any) {
+    if (err?.response?.status !== 404) {
+      console.error('Error fetching browse countries:', err);
+    }
+    return null;
   }
 };
 
@@ -26,11 +27,12 @@ export const fetchBrowseStates = async (countrySlug: string): Promise<BrowseResp
   try {
     const response = await Axios.get(`${BROWSE_API_URL}/${encodeURIComponent(countrySlug)}`);
     
-return response.data;
-  } catch (err) {
-    console.error('Error fetching browse states:', err);
-    
-return null;
+    return response.data;
+  } catch (err: any) {
+    if (err?.response?.status !== 404) {
+      console.error('Error fetching browse states:', err);
+    }
+    return null;
   }
 };
 
@@ -43,11 +45,12 @@ export const fetchBrowseCities = async (
       `${BROWSE_API_URL}/${encodeURIComponent(countrySlug)}/${encodeURIComponent(stateSlug)}`
     );
     
-return response.data;
-  } catch (err) {
-    console.error('Error fetching browse cities:', err);
-    
-return null;
+    return response.data;
+  } catch (err: any) {
+    if (err?.response?.status !== 404) {
+      console.error('Error fetching browse cities:', err);
+    }
+    return null;
   }
 };
 
@@ -79,11 +82,12 @@ export const fetchBrowseAreas = async (
       `${BROWSE_API_URL}/${encodeURIComponent(countrySlug)}/${encodeURIComponent(stateSlug)}/${encodeURIComponent(citySlug)}${queryString}`
     );
     
-return response.data;
-  } catch (err) {
-    console.error('Error fetching browse areas:', err);
-    
-return null;
+    return response.data;
+  } catch (err: any) {
+    if (err?.response?.status !== 404) {
+      console.error('Error fetching browse areas:', err);
+    }
+    return null;
   }
 };
 
@@ -108,10 +112,11 @@ export const fetchBrowseBusinesses = async (
       `${BROWSE_API_URL}/${encodeURIComponent(countrySlug)}/${encodeURIComponent(stateSlug)}/${encodeURIComponent(citySlug)}/${encodeURIComponent(areaSlug)}${queryString}`
     );
     
-return response.data;
-  } catch (err) {
-    console.error('Error fetching browse businesses:', err);
-    
-return null;
+    return response.data;
+  } catch (err: any) {
+    if (err?.response?.status !== 404) {
+      console.error('Error fetching browse businesses:', err);
+    }
+    return null;
   }
 };

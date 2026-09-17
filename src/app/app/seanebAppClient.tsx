@@ -127,6 +127,22 @@ function FaqItem({ item }: { item: FaqItemType }) {
 ============================== */
 
 export default function SeaNebAppPage() {
+  useEffect(() => {
+    const androidLink = "https://play.google.com/store/apps/details?id=com.seaneb.offers";
+    const iosLink = "https://apps.apple.com/in/app/seaneb/id6755147919";
+
+    const userAgent = navigator.userAgent || navigator.vendor || (window as any).opera;
+
+    if (/android/i.test(userAgent)) {
+      window.location.href = androidLink;
+    } else if (/iPad|iPhone|iPod/.test(userAgent) && !(window as any).MSStream) {
+      window.location.href = iosLink;
+    } else if (userAgent.includes('Mac') && 'ontouchend' in document) {
+      // For iPadOS 13+ which mimics a Mac
+      window.location.href = iosLink;
+    }
+  }, []);
+
   return (
     <main className="bg-white">
 
